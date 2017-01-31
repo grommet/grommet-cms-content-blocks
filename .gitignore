@@ -42,5 +42,4 @@ jspm_packages
 .node_repl_history
 .env
 .vscode
-/server/public/**/*.js
-/server/public/**/*.json
+/dist
