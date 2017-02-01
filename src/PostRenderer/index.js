@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { SectionLayoutRender } from '../';
+import { SectionLayoutRenderer } from '../';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PostRenderer extends Component {
@@ -10,7 +10,7 @@ export default class PostRenderer extends Component {
     return (
       <div>
         {filteredSections && filteredSections.map((item, i) =>
-          <SectionLayoutRender
+          <SectionLayoutRenderer
             key={i}
             section={item}
           />,
