@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import PostRenderer from '../PostRenderer';
+import { PostRenderer } from '../';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PostsRenderer extends Component {
