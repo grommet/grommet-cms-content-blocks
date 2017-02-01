@@ -25,7 +25,7 @@ export default class SectionLayoutRenderer extends Component {
         layout={section.layout}
         blocks={section.contentBlocks}
       >
-        {ContentLayoutEngine.renderBlocks(section.contentBlocks)}
+        {SectionLayoutRenderer.renderBlocks(section.contentBlocks)}
       </ContentLayoutEngine>
     );
   }
