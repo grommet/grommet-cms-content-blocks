@@ -7,15 +7,15 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'grommet-cms-content-blocks',
+    library: 'grommet-cms-content-blocks-brand-central',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
   ],
   module: {
     rules: [
@@ -23,8 +23,8 @@ export default {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'src'),
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
-  }
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
