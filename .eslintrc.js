@@ -23,3 +23,4 @@ module.exports = {
     "flowtype",
     "flowtype-errors"
   ]
+};

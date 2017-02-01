@@ -1,5 +1,5 @@
 {
-  "name": "grommet-cms-content-blocks",
+  "name": "grommet-cms-content-blocks-brand-central",
   "version": "0.0.1",
   "description": "Collection of content blocks for use in Grommet CMS",
   "main": "dist/index.js",
