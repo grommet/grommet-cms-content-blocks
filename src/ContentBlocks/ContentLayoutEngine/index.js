@@ -5,6 +5,7 @@ import Section from 'grommet/components/Section';
 import type { LayoutProps } from './flowTypes';
 import assignedLayoutProps from './utils';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class ContentLayoutEngine extends Component {
   props: LayoutProps;
   render() {
@@ -19,7 +20,7 @@ export default class ContentLayoutEngine extends Component {
             {...assignedLayoutProps(blocks[i].layout)}
           >
             {item}
-          </Box>
+          </Box>,
         )}
       </Section>
     );
