@@ -19,62 +19,73 @@ import {
   GenericPreview,
   BlockColorSwatch,
   BlockColorSwatchForm,
-  BlockColorSwatchWireframe
+  BlockColorSwatchWireframe,
+  BlockBox,
+  BlockBoxForm,
+  BlockBoxWireframe,
 } from './index';
 
 export default {
+  BlockBox: {
+    element: <BlockBox />,
+    preview: <GenericPreview />,
+    form: <BlockBoxForm />,
+    name: 'Box',
+    wireframe: <BlockBoxWireframe />,
+  },
   BlockParagraph: {
     element: <BlockParagraph />,
     preview: <GenericPreview />,
     name: 'Paragraph',
-    wireframe: <BlockParagraphWireframe />
+    wireframe: <BlockParagraphWireframe />,
   },
   BlockHeading: {
     element: <BlockHeading />,
     preview: <GenericPreview />,
     name: 'Heading',
-    wireframe: <BlockHeadingWireframe />
+    wireframe: <BlockHeadingWireframe />,
   },
   BlockImage: {
     element: <BlockImage />,
     preview: <GenericPreview />,
     name: 'Image',
-    wireframe: <BlockImageWireframe />
+    wireframe: <BlockImageWireframe />,
   },
   BlockImageParagraph: {
     element: <BlockImageParagraph />,
     preview: <GenericPreview />,
     name: 'Image + Paragraph',
-    wireframe: <BlockImageParagraphWireframe />
+    wireframe: <BlockImageParagraphWireframe />,
   },
   BlockCardParagraph: {
     element: <BlockCard />,
     preview: <GenericPreview />,
     name: 'Card + Paragraph',
-    wireframe: <BlockCardWireframe />
+    wireframe: <BlockCardWireframe />,
   },
   BlockQuote: {
     element: <BlockQuote />,
     preview: <GenericPreview />,
     name: 'Quote',
-    wireframe: <BlockQuoteWireframe />
+    wireframe: <BlockQuoteWireframe />,
   },
   BlockVideo: {
     element: <BlockVideo />,
     preview: <GenericPreview />,
     name: 'Video',
-    wireframe: <BlockVideoWireframe />
+    wireframe: <BlockVideoWireframe />,
   },
   BlockCarousel: {
     element: <BlockCarousel />,
     preview: <GenericPreview />,
     name: 'Carousel',
-    wireframe: <BlockCarouselWireframe />
+    wireframe: <BlockCarouselWireframe />,
   },
   BlockColorSwatch: {
     element: <BlockColorSwatch />,
     name: 'Color Swatch',
     preview: <GenericPreview />,
-    wireframe: <BlockColorSwatchWireframe />
-  }
+    form: <BlockColorSwatchForm />,
+    wireframe: <BlockColorSwatchWireframe />,
+  },
 };

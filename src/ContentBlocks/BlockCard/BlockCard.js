@@ -5,7 +5,7 @@ import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
 import Markdown from 'grommet/components/Markdown';
 import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
-import YoutubeLayer from '../Shared/YoutubeLayer';
+import { YoutubeLayer } from '../Shared';
 
 export default class BlockCard extends Component {
   constructor(props) {

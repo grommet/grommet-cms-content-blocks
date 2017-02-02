@@ -1,16 +1,7 @@
 /* @flow */
-
-type ContentBlockType = {
-  image: string,
-  id: string,
-  edit: boolean,
-  card?: ?{},
-  content: string,
-  layout: Array<{
-    value: string,
-    name: string
-  }>
-}
+import type {
+  ContentBlockType
+} from 'grommet-cms/components/Dashboard/PostPreview/flowTypes';
 
 type LayoutType = {
   name: string,

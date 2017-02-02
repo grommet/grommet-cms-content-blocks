@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Box from 'grommet/components/Box';
-import VideoCallout from '../Shared/VideoCallout';
-import YoutubeLayer from '../Shared/YoutubeLayer';
+import { VideoCallout, YoutubeLayer } from '../Shared';
 
 export default class BlockVideo extends Component {
   constructor(props) {

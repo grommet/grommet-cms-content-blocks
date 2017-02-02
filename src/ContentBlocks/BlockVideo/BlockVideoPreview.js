@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Paragraph from 'grommet/components/Paragraph';
-import VideoCallout from '../Shared/VideoCallout';
+import { VideoCallout } from '../Shared';
 
 export default function BlockImagePreview ({ content, image, label, linkUrl }) {  
   return (
