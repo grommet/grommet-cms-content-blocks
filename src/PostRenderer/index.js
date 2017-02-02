@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { SectionLayoutRenderer } from '../';
+import { SectionLayoutRenderer } from '../index';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class PostRenderer extends Component {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ContentLayoutEngine, BlockTypeMap } from '../';
+import { ContentLayoutEngine, BlockTypeMap } from '../index';
 
 export default class SectionLayoutRenderer extends Component {
   static renderBlocks(blocks) {
