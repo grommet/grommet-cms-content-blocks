@@ -32,6 +32,7 @@
     "flow-bin": "^0.37.4",
     "grommet": "^1.2.1",
     "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "rimraf": "^2.5.4",
     "webpack": "^2.2.0"
   }

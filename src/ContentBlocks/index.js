@@ -1,4 +1,5 @@
 export * from './Shared';
+export * from './BlockBox';
 export * from './BlockColorSwatch';
 export * from './BlockCard';
 export * from './BlockCarousel';
@@ -8,5 +9,4 @@ export * from './BlockParagraph';
 export * from './BlockQuote';
 export * from './BlockVideo';
 export * from './BlockImageParagraph';
-export * from './BlockBox';
 export ContentLayoutEngine from './ContentLayoutEngine';
