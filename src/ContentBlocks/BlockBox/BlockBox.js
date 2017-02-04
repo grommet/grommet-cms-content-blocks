@@ -19,8 +19,8 @@ export default function BlockBox(props: {
         <Markdown
           content={content}
           components={{
-            p: { props: { size: 'large', margin: 'small' } },
-            h2: { props: { strong: true } },
+            'p': { 'props':  { size: 'large', margin: 'small' } },
+            'h2': { 'props':  { strong: true } }
           }}
         />
       </Box>

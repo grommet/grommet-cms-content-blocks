@@ -17,5 +17,5 @@ export default function BlockQuote({ content, source }) {
 
 BlockQuote.propTypes = {
   content: PropTypes.string,
-  source: PropTypes.string,
+  source: PropTypes.string
 };
