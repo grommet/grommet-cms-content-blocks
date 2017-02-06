@@ -1,32 +1,25 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "grommet-cms-content-blocks-example",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "An example for testing the content blocks",
   "scripts": {
     "start": "webpack-dev-server",
     "lint": "eslint src"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/RyanCCollins/grommet-cms-content-blocks.git"
   },
   "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
+    "grommet",
+    "grommet-cms"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "Ryan Collins <ryanc.collins@mac.com> (http://github.com/ryanccollins)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
+    "url": "https://github.com/RyanCCollins/grommet-cms-content-blocks/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
+  "homepage": "https://github.com/RyanCCollins/grommet-cms-content-blocks",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",

@@ -7,12 +7,18 @@ const CLASS_ROOT = 'video-layer';
 
 export default function VideoLayer ({ video, onClose, image }) {
   return (
-    <Layer className={CLASS_ROOT} closer={true} onClose={onClose} flush={true}>
-      <Box pad="large" alignSelf="center" style={{minHeight:'90vh'}} align="center" 
-        justify="center">
+    <Layer className={CLASS_ROOT} closer={true} onClose={onClose}>
+      <Box
+        pad="small"
+        alignSelf="center"
+        style={{ minHeight:'90vh' }}
+        align="center"
+        justify="center"
+      >
         <Box className={`${CLASS_ROOT}__video-container`} full="horizontal">
           <Video
             size="large"
+            autoPlay
             poster={image.path}
             title={video.title}
             full

@@ -6,8 +6,6 @@ import {
   BlockParagraphWireframe,
   BlockImage,
   BlockImageWireframe,
-  BlockImageParagraph,
-  BlockImageParagraphWireframe,
   BlockCard,
   BlockCardWireframe,
   BlockQuote,
@@ -50,12 +48,6 @@ export default {
     preview: <GenericPreview />,
     name: 'Image',
     wireframe: <BlockImageWireframe />,
-  },
-  BlockImageParagraph: {
-    element: <BlockImageParagraph />,
-    preview: <GenericPreview />,
-    name: 'Image + Paragraph',
-    wireframe: <BlockImageParagraphWireframe />,
   },
   BlockCardParagraph: {
     element: <BlockCard />,

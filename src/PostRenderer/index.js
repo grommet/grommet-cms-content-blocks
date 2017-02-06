@@ -36,7 +36,7 @@ PostRenderer.propTypes = {
             name: PropTypes.string,
             value: PropTypes.string,
           }),
-        ).isRequired,
+        ),
       }),
     ),
   }),
