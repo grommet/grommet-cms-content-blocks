@@ -16,10 +16,8 @@ import {
   BlockCarouselWireframe,
   GenericPreview,
   BlockColorSwatch,
-  BlockColorSwatchForm,
   BlockColorSwatchWireframe,
   BlockBox,
-  BlockBoxForm,
   BlockBoxWireframe,
 } from './index';
 
@@ -27,7 +25,6 @@ export default {
   BlockBox: {
     element: <BlockBox />,
     preview: <GenericPreview />,
-    form: <BlockBoxForm />,
     name: 'Box',
     wireframe: <BlockBoxWireframe />,
   },
@@ -77,7 +74,6 @@ export default {
     element: <BlockColorSwatch />,
     name: 'Color Swatch',
     preview: <GenericPreview />,
-    form: <BlockColorSwatchForm />,
     wireframe: <BlockColorSwatchWireframe />,
   },
 };
