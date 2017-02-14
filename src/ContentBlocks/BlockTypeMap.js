@@ -4,6 +4,7 @@ import {
   BlockHeadingWireframe,
   BlockParagraph,
   BlockParagraphWireframe,
+  BlockParagraphForm,
   BlockImage,
   BlockImageWireframe,
   BlockCard,
@@ -16,28 +17,37 @@ import {
   BlockCarouselWireframe,
   GenericPreview,
   BlockColorSwatch,
+  BlockColorSwatchForm,
   BlockColorSwatchWireframe,
   BlockBox,
+  BlockBoxForm,
+  BlockHeadingForm,
   BlockBoxWireframe,
+  BlockAssetLink,
+  BlockAssetLinkForm,
+  BlockAssetLinkWireframe,
 } from './index';
 
 export default {
   BlockBox: {
     element: <BlockBox />,
     preview: <GenericPreview />,
+    form: <BlockBoxForm />,
     name: 'Box',
     wireframe: <BlockBoxWireframe />,
   },
   BlockParagraph: {
     element: <BlockParagraph />,
     preview: <GenericPreview />,
+    form: <BlockParagraphForm />,
     name: 'Paragraph',
     wireframe: <BlockParagraphWireframe />,
   },
   BlockHeading: {
     element: <BlockHeading />,
     preview: <GenericPreview />,
-    name: 'Heading',
+    form: <BlockHeadingForm />,
+    name: 'Headline',
     wireframe: <BlockHeadingWireframe />,
   },
   BlockImage: {
@@ -74,6 +84,14 @@ export default {
     element: <BlockColorSwatch />,
     name: 'Color Swatch',
     preview: <GenericPreview />,
+    form: <BlockColorSwatchForm />,
     wireframe: <BlockColorSwatchWireframe />,
+  },
+  BlockAssetLink: {
+    element: <BlockAssetLink />,
+    name: 'Asset Link',
+    preview: <GenericPreview />,
+    form: <BlockAssetLinkForm />,
+    wireframe: <BlockAssetLinkWireframe />,
   },
 };

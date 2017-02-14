@@ -9,4 +9,5 @@ export * from './BlockQuote';
 export * from './BlockVideo';
 export * from './BlockImageParagraph';
 export * from './BlockBox';
+export * from './BlockAssetLink';
 export ContentLayoutEngine from './ContentLayoutEngine';
