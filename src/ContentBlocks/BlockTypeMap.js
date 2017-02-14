@@ -24,7 +24,6 @@ import {
   BlockHeadingForm,
   BlockBoxWireframe,
   BlockAssetLink,
-  BlockAssetLinkForm,
   BlockAssetLinkWireframe,
 } from './index';
 
@@ -91,7 +90,6 @@ export default {
     element: <BlockAssetLink />,
     name: 'Asset Link',
     preview: <GenericPreview />,
-    form: <BlockAssetLinkForm />,
     wireframe: <BlockAssetLinkWireframe />,
   },
 };
