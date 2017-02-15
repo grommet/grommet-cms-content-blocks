@@ -3,7 +3,7 @@ import type {
   ContentBlockType
 } from 'grommet-cms/components/Dashboard/PostPreview/flowTypes';
 
-type LayoutType = {
+export type LayoutType = {
   name: string,
   value: string
 };
