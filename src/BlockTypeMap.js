@@ -4,7 +4,6 @@ import {
   BlockHeadingWireframe,
   BlockParagraph,
   BlockParagraphWireframe,
-  BlockParagraphForm,
   BlockImage,
   BlockImageWireframe,
   BlockCard,
@@ -17,15 +16,11 @@ import {
   BlockCarouselWireframe,
   GenericPreview,
   BlockColorSwatch,
-  BlockColorSwatchForm,
   BlockColorSwatchWireframe,
   BlockBox,
-  BlockBoxForm,
-  BlockHeadingForm,
   BlockBoxWireframe,
   BlockAssetLink,
-  BlockAssetLinkForm,
-  BlockAssetLinkWireframe
+  BlockAssetLinkWireframe,
 } from './index';
 
 export default {
@@ -33,60 +28,60 @@ export default {
     element: <BlockBox />,
     preview: <GenericPreview />,
     name: 'Box',
-    wireframe: <BlockBoxWireframe />
+    wireframe: <BlockBoxWireframe />,
   },
   BlockParagraph: {
     element: <BlockParagraph />,
     preview: <GenericPreview />,
     name: 'Paragraph',
-    wireframe: <BlockParagraphWireframe />
+    wireframe: <BlockParagraphWireframe />,
   },
   BlockHeading: {
     element: <BlockHeading />,
     preview: <GenericPreview />,
     name: 'Headline',
-    wireframe: <BlockHeadingWireframe />
+    wireframe: <BlockHeadingWireframe />,
   },
   BlockImage: {
     element: <BlockImage />,
     preview: <GenericPreview />,
     name: 'Image',
-    wireframe: <BlockImageWireframe />
+    wireframe: <BlockImageWireframe />,
   },
   BlockCardParagraph: {
     element: <BlockCard />,
     preview: <GenericPreview />,
     name: 'Card',
-    wireframe: <BlockCardWireframe />
+    wireframe: <BlockCardWireframe />,
   },
   BlockQuote: {
     element: <BlockQuote />,
     preview: <GenericPreview />,
     name: 'Quote',
-    wireframe: <BlockQuoteWireframe />
+    wireframe: <BlockQuoteWireframe />,
   },
   BlockVideo: {
     element: <BlockVideo />,
     preview: <GenericPreview />,
     name: 'Video',
-    wireframe: <BlockVideoWireframe />
+    wireframe: <BlockVideoWireframe />,
   },
   BlockCarousel: {
     element: <BlockCarousel />,
     preview: <GenericPreview />,
     name: 'Carousel',
-    wireframe: <BlockCarouselWireframe />
+    wireframe: <BlockCarouselWireframe />,
   },
   BlockColorSwatch: {
     element: <BlockColorSwatch />,
     name: 'Color Swatch',
     preview: <GenericPreview />,
-    wireframe: <BlockColorSwatchWireframe />
+    wireframe: <BlockColorSwatchWireframe />,
   },
   BlockAssetLink: {
     element: <BlockAssetLink />,
     name: 'Asset Link',
     preview: <GenericPreview />,
-    wireframe: <BlockAssetLinkWireframe />
-  }
+    wireframe: <BlockAssetLinkWireframe />,
+  },
 };
