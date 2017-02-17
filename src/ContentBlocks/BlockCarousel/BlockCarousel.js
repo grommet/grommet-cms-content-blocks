@@ -2,16 +2,16 @@ import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Carousel from 'grommet/components/Carousel';
 
-export default function BlockCarousel ({ carousel, imageSize }) {
+export default function BlockCarousel({ carousel, imageSize }) {
   const size = imageSize ? imageSize.toLowerCase() : 'large';
   const slides = carousel.map((slide, index) =>
     <Box
       key={`slide-${index}`}
       size={{ height: size }}
       full={size === 'full'}
-      style={{ backgroundSize: 'cover', backgroundPosition: 'center', width: '100%' }}
+      style={{ backgroundSize: 'cover', backgroundPosition: 'center', width: '100vw' }}
       texture={slide.image.path}
-    />
+    />,
   );
 
   return (
@@ -19,8 +19,9 @@ export default function BlockCarousel ({ carousel, imageSize }) {
       {slides}
     </Carousel>
   );
-};
+}
 
 BlockCarousel.propTypes = {
-  carousel: PropTypes.array
+  carousel: PropTypes.array,
+  imageSize: PropTypes.string,
 };
