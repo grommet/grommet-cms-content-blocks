@@ -12,11 +12,16 @@ export default class BlockHero extends Component {
     this.calculateRandomIndex = this.calculateRandomIndex.bind(this);
     this.state = {
       currentIndex: 0,
-      visible: false,
+      visible: false
     };
   }
   componentWillMount() {
     this.setRandomIndex();
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ visible: true });
+    }, 1000);
   }
   // Recursively calculate next random nextIndex
   calculateRandomIndex() {
@@ -27,8 +32,7 @@ export default class BlockHero extends Component {
   setRandomIndex() {
     const nextIndex = this.calculateRandomIndex();
     this.setState({
-      currentIndex: nextIndex,
-      visible: true,
+      currentIndex: nextIndex
     });
   }
   render() {
@@ -67,8 +71,8 @@ export default class BlockHero extends Component {
             <Markdown
               content={content || ''}
               components={{
-                p: { props: { size: 'large', margin: 'small', align: 'center' } },
-                h2: { props: { strong: true, align: 'center' } },
+                'p': { 'props':  { size: 'large', margin: 'small', align: 'center' } },
+                'h2': { 'props':  { strong: true, align: 'center' } }
               }}
             />
             <Button label="Get Started" path="/brand-central/main" />
@@ -77,11 +81,11 @@ export default class BlockHero extends Component {
       </Animate>
     );
   }
-}
+};
 
 BlockHero.propTypes = {
   carousel: PropTypes.array,
   imageSize: PropTypes.string,
   headline: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.string
 };
