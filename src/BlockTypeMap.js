@@ -1,3 +1,103 @@
-import BlockTypeMap from './ContentBlocks/BlockTypeMap';
+import React from 'react';
+import {
+  BlockHeading,
+  BlockHeadingWireframe,
+  BlockParagraph,
+  BlockParagraphWireframe,
+  BlockImage,
+  BlockImageWireframe,
+  BlockCard,
+  BlockCardWireframe,
+  BlockQuote,
+  BlockQuoteWireframe,
+  BlockVideo,
+  BlockVideoWireframe,
+  BlockCarousel,
+  BlockCarouselWireframe,
+  GenericPreview,
+  BlockColorSwatch,
+  BlockColorSwatchWireframe,
+  BlockBox,
+  BlockBoxWireframe,
+  BlockAssetLink,
+  BlockAssetLinkWireframe,
+  BlockHero,
+  BlockHeroWireframe,
+  BlockImageGallery,
+  BlockImageGalleryWireframe,
+} from './index';
 
-export default BlockTypeMap;
+export default {
+  BlockBox: {
+    element: <BlockBox />,
+    preview: <GenericPreview />,
+    name: 'Box',
+    wireframe: <BlockBoxWireframe />,
+  },
+  BlockParagraph: {
+    element: <BlockParagraph />,
+    preview: <GenericPreview />,
+    name: 'Paragraph',
+    wireframe: <BlockParagraphWireframe />,
+  },
+  BlockHeading: {
+    element: <BlockHeading />,
+    preview: <GenericPreview />,
+    name: 'Headline',
+    wireframe: <BlockHeadingWireframe />,
+  },
+  BlockImage: {
+    element: <BlockImage />,
+    preview: <GenericPreview />,
+    name: 'Image',
+    wireframe: <BlockImageWireframe />,
+  },
+  BlockImageGallery: {
+    element: <BlockImageGallery />,
+    preview: <GenericPreview />,
+    name: 'Image Gallery',
+    wireframe: <BlockImageGalleryWireframe />,
+  },
+  BlockHero: {
+    element: <BlockHero />,
+    preview: <GenericPreview />,
+    name: 'Hero',
+    wireframe: <BlockHeroWireframe />,
+  },
+  BlockCarousel: {
+    element: <BlockCarousel />,
+    preview: <GenericPreview />,
+    name: 'Carousel',
+    wireframe: <BlockCarouselWireframe />,
+  },
+  BlockVideo: {
+    element: <BlockVideo />,
+    preview: <GenericPreview />,
+    name: 'Video',
+    wireframe: <BlockVideoWireframe />,
+  },
+  BlockCardParagraph: {
+    element: <BlockCard />,
+    preview: <GenericPreview />,
+    name: 'Card',
+    wireframe: <BlockCardWireframe />,
+  },
+  BlockQuote: {
+    element: <BlockQuote />,
+    preview: <GenericPreview />,
+    name: 'Quote',
+    wireframe: <BlockQuoteWireframe />,
+  },
+  BlockColorSwatch: {
+    element: <BlockColorSwatch />,
+    name: 'Color Swatch',
+    preview: <GenericPreview />,
+    wireframe: <BlockColorSwatchWireframe />,
+  },
+  BlockAssetLink: {
+    element: <BlockAssetLink />,
+    name: 'Asset Link',
+    preview: <GenericPreview />,
+    wireframe: <BlockAssetLinkWireframe />,
+  },
+};
