@@ -11,7 +11,7 @@ export default class BlockHero extends Component {
     this.setRandomIndex = this.setRandomIndex.bind(this);
     this.calculateRandomIndex = this.calculateRandomIndex.bind(this);
     this.state = {
-      currentIndex: 1,
+      currentIndex: 0,
       visible: false,
     };
   }
@@ -19,18 +19,13 @@ export default class BlockHero extends Component {
     this.setRandomIndex();
   }
   // Recursively calculate next random nextIndex
-  calculateRandomIndex(carousel, currentIndex) {
+  calculateRandomIndex() {
+    const { carousel } = this.props;
     const randomIndex = Math.floor(Math.random() * carousel.length);
-    // Basecase, randomIndex is not current index
-    if (randomIndex !== currentIndex) {
-      return randomIndex;
-    }
-    return this.calculateRandomIndex(carousel, currentIndex);
+    return randomIndex;
   }
   setRandomIndex() {
-    const { carousel } = this.props;
-    const { currentIndex } = this.state;
-    const nextIndex = this.calculateRandomIndex(carousel, currentIndex);
+    const nextIndex = this.calculateRandomIndex();
     this.setState({
       currentIndex: nextIndex,
       visible: true,
