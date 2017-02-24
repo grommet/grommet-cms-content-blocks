@@ -17,8 +17,6 @@ export default class BlockHero extends Component {
   }
   componentWillMount() {
     this.setRandomIndex();
-  }
-  componentDidMount() {
     setTimeout(() => {
       this.setState({ visible: true });
     }, 1000);
