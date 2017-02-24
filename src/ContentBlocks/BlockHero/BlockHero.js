@@ -11,10 +11,11 @@ export default class BlockHero extends Component {
     this.setRandomIndex = this.setRandomIndex.bind(this);
     this.calculateRandomIndex = this.calculateRandomIndex.bind(this);
     this.state = {
-      currentIndex: 0
+      currentIndex: 0,
+      visible: false,
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     this.setRandomIndex();
   }
   // Recursively calculate next random nextIndex
@@ -31,13 +32,14 @@ export default class BlockHero extends Component {
     const { currentIndex } = this.state;
     const nextIndex = this.calculateRandomIndex(carousel, currentIndex);
     this.setState({
-      currentIndex: nextIndex
+      currentIndex: nextIndex,
+      visible: true,
     });
   }
   render() {
     const { carousel, imageSize, headline, content } = this.props;
     const size = imageSize ? imageSize.toLowerCase() : 'large';
-    const { currentIndex } = this.state;
+    const { currentIndex, visible } = this.state;
     const image = carousel[currentIndex - 1].image;
     const imagePath = image && image.path
       ? image.path
@@ -46,7 +48,7 @@ export default class BlockHero extends Component {
     return (
       <Animate
         keep
-        visible={true}
+        visible={visible}
         enter={{ animation: 'fade', duration: 1000, delay: 0 }}
         leave={{ animation: 'fade', duration: 1000, delay: 0 }}
       >
@@ -70,8 +72,8 @@ export default class BlockHero extends Component {
             <Markdown
               content={content || ''}
               components={{
-                'p': { 'props':  { size: 'large', margin: 'small', align: 'center' } },
-                'h2': { 'props':  { strong: true, align: 'center' } }
+                p: { props: { size: 'large', margin: 'small', align: 'center' } },
+                h2: { props: { strong: true, align: 'center' } },
               }}
             />
             <Button label="Get Started" path="/brand-central/main" />
@@ -80,9 +82,11 @@ export default class BlockHero extends Component {
       </Animate>
     );
   }
-};
+}
 
 BlockHero.propTypes = {
   carousel: PropTypes.array,
-  imageSize: PropTypes.string
+  imageSize: PropTypes.string,
+  headline: PropTypes.string,
+  content: PropTypes.string,
 };
