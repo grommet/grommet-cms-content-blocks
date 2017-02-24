@@ -10,4 +10,6 @@ export * from './BlockVideo';
 export * from './BlockImageParagraph';
 export * from './BlockBox';
 export * from './BlockAssetLink';
+export * from './BlockHero';
+export * from './BlockImageGallery';
 export ContentLayoutEngine from './ContentLayoutEngine';

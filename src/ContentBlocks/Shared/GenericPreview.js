@@ -8,9 +8,14 @@ export default function GenericPreview(props: {
   content: string,
   image?: {
     path: string
-  }
+  },
+  carousel?: Array<{
+    image: {
+      path: string
+    }
+  }>
 }) {
-  const { content, image } = props;
+  const { content, image, carousel } = props;
   return (
     <Box
       colorIndex="light-1"
@@ -20,6 +25,9 @@ export default function GenericPreview(props: {
     >
       {image && image.path &&
         <Image size="thumb" src={image.path} />
+      }
+      {carousel &&
+        <Image size="thumb" src={carousel[0].image.path} />
       }
       <Heading tag="h3">
         {content.slice(0, 50)}

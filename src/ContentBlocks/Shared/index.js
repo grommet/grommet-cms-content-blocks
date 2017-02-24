@@ -4,3 +4,4 @@ export GenericPreview from './GenericPreview';
 export VideoCallout from './VideoCallout';
 export YoutubeLayer from './YoutubeLayer';
 export VideoLayer from './VideoLayer';
+export ImageGalleryComponent from './ImageGalleryComponent';

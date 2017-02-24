@@ -1,4 +1,3 @@
-// @flow
 import type { LayoutType } from './flowTypes';
 
 const parseBooleans = (str: string) => {
@@ -11,9 +10,14 @@ const parseBooleans = (str: string) => {
 export default (layout: LayoutType[]) =>
   layout ? Object.assign({}, ...layout.map((item, i) => {
     if (item.name && item.name.includes('pad-')) {
-      const vertical = layout.filter(i => i.name === 'pad-vertical')[0].value;
-      const horizontal = layout.filter(i => i.name === 'pad-horizontal')[0].value;
-      const pad = { horizontal, vertical };
+      const verticalValue = layout.filter(i => i.name === 'pad-vertical')[0].value;
+      const horizontalValue = layout.filter(i => i.name === 'pad-horizontal')[0].value;
+      const horizontal = horizontalValue || 'none';
+      const vertical = verticalValue || 'none';
+      const pad = {
+        horizontal,
+        vertical
+      };
       return {
         pad
       };
