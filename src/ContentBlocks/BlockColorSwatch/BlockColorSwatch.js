@@ -5,8 +5,13 @@ import ColorTypeList from './internal/ColorTypeList';
 
 export default function BlockColorSwatch(props: {
   color?: {
-    name: string,
-    hex: string
+    cmyk: ?string,
+    crownFoil: ?string,
+    hex: ?string,
+    name: ?string,
+    pms: ?string,
+    rgb: ?string,
+    thumbColor: string
   }
 }) {
   const { color } = props;
@@ -16,7 +21,7 @@ export default function BlockColorSwatch(props: {
   return (
     <Box>
       <Box
-        style={{ backgroundColor: color.hex }}
+        style={{ backgroundColor: color.thumbColor }}
         size={{ height: 'xsmall', width: 'small' }}
       />
       <ColorTypeList

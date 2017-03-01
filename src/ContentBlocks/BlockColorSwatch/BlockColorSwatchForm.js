@@ -10,16 +10,26 @@ import Footer from 'grommet/components/Footer';
 import ColorTypeList from './internal/ColorTypeList';
 
 type BlockColorSwatchFormState = {
+  cmykInput: string,
+  crownFoilInput: string,
+  error: ?string,
+  hexInput: string,
   nameInput: string,
-  colorInput: string,
-  error: ?string
+  pmsInput: string,
+  rgbInput: string,
+  thumbColorInput: string,
 };
 
 type BlockColorSwatchFormProps = {
   onSubmit?: Function,
   color?: {
-    name: ?string,
-    hex: ?string
+    cmyk: ?string,
+    crownFoil: ?string,
+    hex: ?string,
+    name: string,
+    pms: ?string,
+    rgb: ?string,
+    thumbColor: string,
   }
 };
 
@@ -32,20 +42,32 @@ export default class BlockColorSwatchForm extends React.Component {
     (this:any)._onSubmit = this._onSubmit.bind(this);
     (this:any)._formIsValid = this._formIsValid.bind(this);
     let nameInput = '';
-    let colorInput = '#000000';
+    let cmykInput = '';
+    let crownFoilInput = '';
+    let pmsInput = '';
+    let rgbInput = '';
+    let thumbColorInput = '#01a982';
+    let hexInput = '';
     const { color } = props;
     if (color) {
-      if (color.name) {
-        nameInput = color.name;
-      }
-      if (color.hex) {
-        colorInput = color.hex;
-      }
+      if (color.cmyk) cmykInput = color.cmyk;
+      if (color.crownFoil) crownFoilInput = color.crownFoil;
+      if (color.hex) hexInput = color.hex;
+      if (color.name) nameInput = color.name;
+      if (color.pms) pmsInput = color.pms;
+      if (color.rgb) rgbInput = color.rgb;
+      if (color.thumbColor) thumbColorInput = color.thumbColor;
     }
+
     this.state = {
-      nameInput,
+      cmykInput,
+      crownFoilInput,
       error: null,
-      colorInput
+      hexInput,
+      nameInput,
+      pmsInput,
+      rgbInput,
+      thumbColorInput
     };
   }
   
@@ -60,32 +82,61 @@ export default class BlockColorSwatchForm extends React.Component {
 
   _onSubmit(event: any) {
     event.preventDefault();
-    const { colorInput, nameInput } = this.state;
+    const { 
+      cmykInput, crownFoilInput, hexInput, nameInput, pmsInput, rgbInput, thumbColorInput
+    } = this.state;
     if (this._formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
         color: {
-          hex: colorInput,
-          name: nameInput
+          cmyk: cmykInput,
+          crownFoil: crownFoilInput,
+          hex: hexInput,
+          name: nameInput,
+          pms: pmsInput,
+          rgb: rgbInput,
+          thumbColor: thumbColorInput
         }
       });
     } else {
       this.setState({
-        error: 'Please enter a valid name'
+        error: 'Please enter values for all fields.'
       });
     }
   }
 
   _formIsValid() {
     const hexRE = /(0x)?[0-9a-f]+/i;
-    const { colorInput, nameInput } = this.state;
-    return hexRE.test(colorInput) && nameInput.length > 0;
+    const { 
+      cmykInput, crownFoilInput, hexInput, nameInput, pmsInput, rgbInput, thumbColorInput
+    } = this.state;
+    let hasColor = (cmykInput || hexInput || rgbInput || crownFoilInput || pmsInput)
+      ? true
+      : false;
+
+    if (hexInput) {
+      const hexValue = hexInput.replace('#', '');
+      hasColor = hexRE.test(hexValue);
+    }
+
+    return nameInput && hasColor && thumbColorInput;
   }
 
   render() {
     const {
+      cmykInput,
+      crownFoilInput,
+      error,
+      hexInput,
       nameInput,
-      colorInput
+      pmsInput,
+      rgbInput,
+      thumbColorInput
     } = this.state;
+
+    const errorBox = (error)
+      ? <Box style={{ color: 'red' }} pad={{ vertical: 'small' }}>{error}</Box>
+      : undefined;
+
     return (
       <Box colorIndex="light-2" pad="medium">
         <Form>
@@ -94,40 +145,110 @@ export default class BlockColorSwatchForm extends React.Component {
               <FormField
                 label="Color Name"
                 htmlFor="nameInput"
-                error={this.state.error}
               >
                 <TextInput
                   onDOMChange={this._onChange}
                   value={nameInput}
                   name="nameInput"
                   id="nameInput"
+                  placeHolder="HPE Green"
+                />
+              </FormField>
+              <FormField
+                label="CMYK"
+                htmlFor="cmykInput"
+              >
+                <TextInput
+                  onDOMChange={this._onChange}
+                  value={cmykInput}
+                  name="cmykInput"
+                  id="cmykInput"
+                  placeHolder="80 / 0 / 60 / 0"
+                />
+              </FormField>
+              <FormField
+                label="Hex"
+                htmlFor="hexInput"
+              >
+                <TextInput
+                  onDOMChange={this._onChange}
+                  value={hexInput}
+                  name="hexInput"
+                  id="hexInput"
+                  placeHolder="#01a982"
+                />
+              </FormField>
+              <FormField
+                label="RGB"
+                htmlFor="rgbInput"
+              >
+                <TextInput
+                  onDOMChange={this._onChange}
+                  value={rgbInput}
+                  name="rgbInput"
+                  id="rgbInput"
+                  placeHolder="1 / 169 / 130"
+                />
+              </FormField>
+              <FormField
+                label="Pantone Swatch"
+                htmlFor="pmsInput"
+              >
+                <TextInput
+                  onDOMChange={this._onChange}
+                  value={pmsInput}
+                  name="pmsInput"
+                  id="pmsInput"
+                  placeHolder="10297C"
+                />
+              </FormField>
+              <FormField
+                label="Crown Foil"
+                htmlFor="crownFoilInput"
+              >
+                <TextInput
+                  onDOMChange={this._onChange}
+                  value={crownFoilInput}
+                  name="crownFoilInput"
+                  id="crownFoilInput"
+                  placeHolder="851"
                 />
               </FormField>
               <FormField
                 label="Color"
-                help="Tap the color picker to select the color value"
-                htmlFor="colorInput"
+                help="Tap the color block to select the thumbnail color"
+                htmlFor="thumbColorInput"
               >
                 <Box pad="medium" align="center">
                   <input
                     onChange={this._onChange}
                     style={{ width: 150, height: 40, padding: 0 }}
-                    value={colorInput}
-                    id="colorInput"
-                    name="colorInput"
+                    value={thumbColorInput}
+                    id="thumbColorInput"
+                    name="thumbColorInput"
                     type="color"
                   />
                   <ColorTypeList
                     color={{
-                      hex: colorInput,
-                      name: nameInput
+                      cmyk: cmykInput,
+                      hex: hexInput,
+                      name: nameInput,
+                      rgb: rgbInput,
+                      pms: pmsInput,
+                      crownFoil: crownFoilInput,
+                      thumbColor: thumbColorInput
                     }}
                   />
                 </Box>
               </FormField>
             </fieldset>
           </FormFields>
-          <Footer pad="medium">
+          <Footer
+            pad={{ vertical: 'medium' }}
+            direction="column"
+            align="start"
+          >
+            {errorBox}
             <Button
               onClick={this._onSubmit}
               type="submit"

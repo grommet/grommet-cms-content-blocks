@@ -22,5 +22,8 @@ export default function BlockCarousel ({ carousel, imageSize }) {
 };
 
 BlockCarousel.propTypes = {
-  carousel: PropTypes.array
+  carousel: PropTypes.array,
+  imageSize: PropTypes.string,
+  headline: PropTypes.string,
+  content: PropTypes.string
 };
