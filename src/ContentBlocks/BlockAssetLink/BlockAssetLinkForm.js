@@ -4,7 +4,6 @@ import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
-import { Assets } from 'grommet-cms/containers';
 
 export class AssetLinkForm extends Component {
   constructor(props) {
@@ -16,7 +15,6 @@ export class AssetLinkForm extends Component {
 
     this._onChange = this._onChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
-    this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,12 +48,9 @@ export class AssetLinkForm extends Component {
     this.props.onSubmit(formData);
   }
 
-  _onAssetSelect(asset) {
-    this.setState({ asset: asset });
-  }
-
   render() {
     const { asset, content } = this.state;
+    const { children } = this.props;
     const submit = (this._validateForm(this.state))
       ? this._onSubmit
       : undefined;
@@ -73,10 +68,7 @@ export class AssetLinkForm extends Component {
                 <input id="asset" name="asset" type="text"
                   value={asset.path} onChange={this._onChange} />
               </FormField>
-              <Assets
-                assetType=""
-                onAssetSelect={this._onAssetSelect}
-              />
+              {children && children}
             </fieldset>
             <Button onClick={submit} primary={false} type="submit"
               label="Done" />
@@ -89,7 +81,9 @@ export class AssetLinkForm extends Component {
 
 AssetLinkForm.propTypes = {
   onSubmit: PropTypes.func,
-  data: PropTypes.object
+  data: PropTypes.object,
+  children: PropTypes.node,
+  url: PropTypes.string
 };
 
 export default AssetLinkForm;

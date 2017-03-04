@@ -4,7 +4,6 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Select from 'grommet/components/Select';
-import { Assets } from 'grommet-cms/containers';
 
 export class CarouselSlideForm extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ export class CarouselSlideForm extends Component {
 
     this._onChange = this._onChange.bind(this);
     this._propsToState = this._propsToState.bind(this);
-    this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
   componentDidMount() {
@@ -58,12 +56,6 @@ export class CarouselSlideForm extends Component {
     });
   }
 
-  _onAssetSelect(image) {
-    this.setState({
-      image
-    });
-  }
-
   _validate(data) {
     if (!data || !data.image) {
       return false;
@@ -76,6 +68,7 @@ export class CarouselSlideForm extends Component {
     const onSubmit = (this._validate(this.state))
       ? this.props.onSubmit
       : undefined;
+    const { children } = this.props;
     const { image, imageSize } = this.state;
 
     return (
@@ -101,9 +94,7 @@ export class CarouselSlideForm extends Component {
                 onChange={this._onChange}
               />
             </FormField>
-            <Assets
-              onAssetSelect={this._onAssetSelect}
-            />
+            {children && children}
           </fieldset>
           <Button label="submit" primary={true} onClick={onSubmit} />
         </FormFields>
@@ -113,7 +104,9 @@ export class CarouselSlideForm extends Component {
 };
 
 CarouselSlideForm.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  children: PropTypes.node,
+  url: PropTypes.string
 };
 
 export default CarouselSlideForm;

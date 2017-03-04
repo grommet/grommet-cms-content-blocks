@@ -7,8 +7,10 @@
   "scripts": {
     "lint": "eslint src",
     "build": "webpack",
+    "bump": "npm version patch && git commit -m 'Feat: version bump with new content blocks'",
+    "shipit": "npm run copy && npm run bump && npm run publish",
     "prepublish": "rimraf dist && npm run build",
-    "copy": "node ./lib/transferContentBlocks ../brand-central-cms/src/js/ContentBlocks"
+    "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks"
   },
   "dependencies": {
     "babel-core": "^6.0.20",

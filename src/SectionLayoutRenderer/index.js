@@ -36,7 +36,7 @@ SectionLayoutRenderer.propTypes = {
     contentBlocks: PropTypes.arrayOf(
       PropTypes.shape({
         blockType: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
+        content: PropTypes.string,
         id: PropTypes.string.isRequired,
       }),
     ).isRequired,

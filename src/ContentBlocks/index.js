@@ -12,5 +12,4 @@ export * from './BlockBox';
 export * from './BlockAssetLink';
 export * from './BlockHero';
 export * from './BlockImageGallery';
-export BlockTypeMap from './BlockTypeMap';
 export ContentLayoutEngine from './ContentLayoutEngine';

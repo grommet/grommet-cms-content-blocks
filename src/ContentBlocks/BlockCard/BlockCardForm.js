@@ -60,8 +60,9 @@ export class BlockCardForm extends Component {
         linkUrl: state.linkUrl
       }
     };
-
-    this.props.onSubmit(formData);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(formData);
+    }
   }
 
   render() {
@@ -119,7 +120,7 @@ export class BlockCardForm extends Component {
 };
 
 BlockCardForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   data: PropTypes.object,
   url: PropTypes.string,
   children: PropTypes.node

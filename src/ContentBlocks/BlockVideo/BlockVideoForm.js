@@ -47,7 +47,9 @@ export class BlockVideoForm extends Component {
   _onSubmit(event) {
     event.preventDefault();
     const formData = Object.assign({}, this.state);
-    this.props.onSubmit(formData);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(formData);
+    }
   }
 
   render() {
@@ -90,7 +92,7 @@ export class BlockVideoForm extends Component {
 };
 
 BlockVideoForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   data: PropTypes.object,
   url: PropTypes.string,
   children: PropTypes.node
