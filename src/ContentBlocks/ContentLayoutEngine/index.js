@@ -6,21 +6,55 @@ import type { LayoutProps } from './flowTypes';
 import assignedLayoutProps from './utils';
 
 export default class ContentLayoutEngine extends Component {
+  static defaultProps = {
+    applyLayout: true
+  };
   props: LayoutProps;
+
+  _renderBlocks(children: Array<Object>, blocks: Array<Object>) {
+    const blockArray = [];
+    const { applyLayout } = this.props;
+    children.map((item, i) => {
+      let newLineIndex = undefined;
+      const blockLayout = blocks[i].layout;
+      const blockType = (item && item.props && item.props.blockType)
+        ? item.props.blockType
+        : undefined;
+
+      if (item && item.props && item.props.layout) {
+        newLineIndex = item.props.layout.findIndex(
+          (layoutItem) => layoutItem.name === 'newLine'
+        );
+
+        if (newLineIndex !== undefined
+            && newLineIndex > -1
+            && item.props.layout[newLineIndex].value === 'true') {
+          blockArray.push(<Box key={`new-line-${i}`} full="horizontal" />);
+        }
+      }
+
+      blockArray.push(
+        <Box
+          key={i}
+          {...assignedLayoutProps(blockLayout, applyLayout, blockType)}
+        >
+          {item}
+        </Box>
+      );
+    });
+
+    return blockArray;
+  }
+
   render() {
-    const { blocks, layout, children } = this.props;
+    const { blocks, layout, applyLayout, children } = this.props;
+    const renderedBlocks = this._renderBlocks(children, blocks);
+
     return (
       <Section
-        {...assignedLayoutProps(layout)}
+        {...assignedLayoutProps(layout, applyLayout)}
       >
-        {children.map((item, i) =>
-          <Box
-            key={i}
-            {...assignedLayoutProps(blocks[i].layout)}
-          >
-            {item}
-          </Box>
-        )}
+        {renderedBlocks}
       </Section>
     );
   }

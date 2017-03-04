@@ -10,3 +10,5 @@ config/flow-typed/npm
 [options]
 suppress_comment=.*\\$FlowFixMe
 suppress_comment=.*\\$FlowInvalidInputTest
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable

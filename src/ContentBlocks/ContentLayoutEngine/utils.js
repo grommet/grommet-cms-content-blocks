@@ -7,8 +7,11 @@ const parseBooleans = (str: string) => {
   return str;
 };
 
-export default (layout: LayoutType[]) =>
-  layout ? Object.assign({}, ...layout.map((item, i) => {
+export default (layout: LayoutType[], applyLayout: boolean, itemBlockType: string = '') => {
+  if (!layout && itemBlockType === 'BlockHeading') return { full: 'horizontal' };
+  
+  return (layout && applyLayout) ? Object.assign({}, ...layout.map((item, i) => {
+    if (item.name === 'newLine') return null;
     if (item.name && item.name.includes('pad-')) {
       const verticalValue = layout.filter(i => i.name === 'pad-vertical')[0].value;
       const horizontalValue = layout.filter(i => i.name === 'pad-horizontal')[0].value;
@@ -22,8 +25,12 @@ export default (layout: LayoutType[]) =>
         pad
       };
     }
+    if (itemBlockType === 'BlockHeading') {
+      return { full: 'horizontal' };
+    }
     return {
       [`${item.name}`]: parseBooleans(item.value)
     };
   }))
   : null;
+};

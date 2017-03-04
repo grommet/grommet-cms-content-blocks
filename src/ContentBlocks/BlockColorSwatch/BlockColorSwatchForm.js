@@ -7,29 +7,22 @@ import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
-import ColorTypeList from './internal/ColorTypeList';
+import { MarkdownHelpLayer } from '../Shared';
 
 type BlockColorSwatchFormState = {
-  cmykInput: string,
-  crownFoilInput: string,
   error: ?string,
-  hexInput: string,
   nameInput: string,
-  pmsInput: string,
-  rgbInput: string,
+  contentInput: string,
   thumbColorInput: string,
+  layer: boolean
 };
 
 type BlockColorSwatchFormProps = {
   onSubmit?: Function,
   color?: {
-    cmyk: ?string,
-    crownFoil: ?string,
-    hex: ?string,
     name: string,
-    pms: ?string,
-    rgb: ?string,
     thumbColor: string,
+    content: string,
   }
 };
 
@@ -41,33 +34,23 @@ export default class BlockColorSwatchForm extends React.Component {
     (this:any)._onChange = this._onChange.bind(this);
     (this:any)._onSubmit = this._onSubmit.bind(this);
     (this:any)._formIsValid = this._formIsValid.bind(this);
+    (this:any)._onToggleHelp = this._onToggleHelp.bind(this);
     let nameInput = '';
-    let cmykInput = '';
-    let crownFoilInput = '';
-    let pmsInput = '';
-    let rgbInput = '';
     let thumbColorInput = '#01a982';
-    let hexInput = '';
+    let contentInput = '';
     const { color } = props;
     if (color) {
-      if (color.cmyk) cmykInput = color.cmyk;
-      if (color.crownFoil) crownFoilInput = color.crownFoil;
-      if (color.hex) hexInput = color.hex;
       if (color.name) nameInput = color.name;
-      if (color.pms) pmsInput = color.pms;
-      if (color.rgb) rgbInput = color.rgb;
       if (color.thumbColor) thumbColorInput = color.thumbColor;
+      if (color.content) contentInput = color.content;
     }
 
     this.state = {
-      cmykInput,
-      crownFoilInput,
       error: null,
-      hexInput,
+      layer: false,
       nameInput,
-      pmsInput,
-      rgbInput,
-      thumbColorInput
+      thumbColorInput,
+      contentInput
     };
   }
   
@@ -83,18 +66,14 @@ export default class BlockColorSwatchForm extends React.Component {
   _onSubmit(event: any) {
     event.preventDefault();
     const { 
-      cmykInput, crownFoilInput, hexInput, nameInput, pmsInput, rgbInput, thumbColorInput
+      contentInput, nameInput, thumbColorInput
     } = this.state;
     if (this._formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
         color: {
-          cmyk: cmykInput,
-          crownFoil: crownFoilInput,
-          hex: hexInput,
           name: nameInput,
-          pms: pmsInput,
-          rgb: rgbInput,
-          thumbColor: thumbColorInput
+          thumbColor: thumbColorInput,
+          content: contentInput
         }
       });
     } else {
@@ -104,33 +83,27 @@ export default class BlockColorSwatchForm extends React.Component {
     }
   }
 
+  _onToggleHelp() {
+    this.setState({
+      layer: !this.state.layer
+    });
+  }
+
   _formIsValid() {
-    const hexRE = /(0x)?[0-9a-f]+/i;
     const { 
-      cmykInput, crownFoilInput, hexInput, nameInput, pmsInput, rgbInput, thumbColorInput
+      contentInput, nameInput, thumbColorInput
     } = this.state;
-    let hasColor = (cmykInput || hexInput || rgbInput || crownFoilInput || pmsInput)
-      ? true
-      : false;
 
-    if (hexInput) {
-      const hexValue = hexInput.replace('#', '');
-      hasColor = hexRE.test(hexValue);
-    }
-
-    return nameInput && hasColor && thumbColorInput;
+    return nameInput && thumbColorInput && contentInput;
   }
 
   render() {
     const {
-      cmykInput,
-      crownFoilInput,
       error,
-      hexInput,
       nameInput,
-      pmsInput,
-      rgbInput,
-      thumbColorInput
+      thumbColorInput,
+      contentInput,
+      layer
     } = this.state;
 
     const errorBox = (error)
@@ -140,6 +113,8 @@ export default class BlockColorSwatchForm extends React.Component {
     return (
       <Box colorIndex="light-2" pad="medium">
         <Form>
+          <MarkdownHelpLayer isVisible={layer}
+            onToggle={this._onToggleHelp} />
           <FormFields>
             <fieldset>
               <FormField
@@ -155,71 +130,24 @@ export default class BlockColorSwatchForm extends React.Component {
                 />
               </FormField>
               <FormField
-                label="CMYK"
-                htmlFor="cmykInput"
+                label="Markdown Content"
+                htmlFor="contentInput"
               >
-                <TextInput
-                  onDOMChange={this._onChange}
-                  value={cmykInput}
-                  name="cmykInput"
-                  id="cmykInput"
-                  placeHolder="80 / 0 / 60 / 0"
+                <textarea
+                  onChange={this._onChange}
+                  value={contentInput}
+                  name="contentInput"
+                  id="contentInput"
+                  rows="4"
+                  placeholder="Hex #01a982"
                 />
               </FormField>
               <FormField
-                label="Hex"
-                htmlFor="hexInput"
-              >
-                <TextInput
-                  onDOMChange={this._onChange}
-                  value={hexInput}
-                  name="hexInput"
-                  id="hexInput"
-                  placeHolder="#01a982"
-                />
-              </FormField>
-              <FormField
-                label="RGB"
-                htmlFor="rgbInput"
-              >
-                <TextInput
-                  onDOMChange={this._onChange}
-                  value={rgbInput}
-                  name="rgbInput"
-                  id="rgbInput"
-                  placeHolder="1 / 169 / 130"
-                />
-              </FormField>
-              <FormField
-                label="Pantone Swatch"
-                htmlFor="pmsInput"
-              >
-                <TextInput
-                  onDOMChange={this._onChange}
-                  value={pmsInput}
-                  name="pmsInput"
-                  id="pmsInput"
-                  placeHolder="10297C"
-                />
-              </FormField>
-              <FormField
-                label="Crown Foil"
-                htmlFor="crownFoilInput"
-              >
-                <TextInput
-                  onDOMChange={this._onChange}
-                  value={crownFoilInput}
-                  name="crownFoilInput"
-                  id="crownFoilInput"
-                  placeHolder="851"
-                />
-              </FormField>
-              <FormField
-                label="Color"
+                label="Thumbnail Color"
                 help="Tap the color block to select the thumbnail color"
                 htmlFor="thumbColorInput"
               >
-                <Box pad="medium" align="center">
+                <Box pad={{ vertical: 'small', horizontal: 'medium' }} align="start">
                   <input
                     onChange={this._onChange}
                     style={{ width: 150, height: 40, padding: 0 }}
@@ -227,17 +155,6 @@ export default class BlockColorSwatchForm extends React.Component {
                     id="thumbColorInput"
                     name="thumbColorInput"
                     type="color"
-                  />
-                  <ColorTypeList
-                    color={{
-                      cmyk: cmykInput,
-                      hex: hexInput,
-                      name: nameInput,
-                      rgb: rgbInput,
-                      pms: pmsInput,
-                      crownFoil: crownFoilInput,
-                      thumbColor: thumbColorInput
-                    }}
                   />
                 </Box>
               </FormField>

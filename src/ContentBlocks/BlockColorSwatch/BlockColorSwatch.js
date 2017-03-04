@@ -1,17 +1,14 @@
 /* @flow */
 import React from 'react';
 import Box from 'grommet/components/Box';
-import ColorTypeList from './internal/ColorTypeList';
+import Heading from 'grommet/components/Heading';
+import { BlockParagraph } from '../BlockParagraph';
 
 export default function BlockColorSwatch(props: {
   color?: {
-    cmyk: ?string,
-    crownFoil: ?string,
-    hex: ?string,
-    name: ?string,
-    pms: ?string,
-    rgb: ?string,
-    thumbColor: string
+    name: string,
+    thumbColor: string,
+    content: string
   }
 }) {
   const { color } = props;
@@ -24,10 +21,12 @@ export default function BlockColorSwatch(props: {
         style={{ backgroundColor: color.thumbColor }}
         size={{ height: 'xsmall', width: 'small' }}
       />
-      <ColorTypeList
-        color={color}
-      />
+      <Heading tag="h4" strong margin="none">
+        {color.name}
+      </Heading>
+      {color.content &&
+        <BlockParagraph content={color.content} />
+      }
     </Box>
   );
 }
-

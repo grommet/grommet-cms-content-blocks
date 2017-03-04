@@ -7,7 +7,7 @@ import FormField from 'grommet/components/FormField';
 import Select from 'grommet/components/Select';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
-import colorOptionsList from './internal/colorIndexes';
+import colorOptionsList from '../Shared/colorIndexes';
 
 type ErrorType = string;
 

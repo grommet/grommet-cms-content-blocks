@@ -1,1 +1,2 @@
-/src/ContentBlocks/
+src
+/src/**/*.js

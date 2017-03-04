@@ -7,7 +7,8 @@
   "scripts": {
     "lint": "eslint src",
     "build": "webpack",
-    "prepublish": "rimraf dist && npm run build"
+    "prepublish": "rimraf dist && npm run build",
+    "copy": "node ./lib/transferContentBlocks ../brand-central-cms/src/js/ContentBlocks"
   },
   "dependencies": {
     "babel-core": "^6.0.20",
@@ -30,6 +31,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.6.0",
     "flow-bin": "^0.37.4",
+    "fs-extra": "^2.0.0",
     "grommet": "^1.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

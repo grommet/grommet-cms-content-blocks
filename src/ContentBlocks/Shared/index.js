@@ -5,3 +5,8 @@ export VideoCallout from './VideoCallout';
 export YoutubeLayer from './YoutubeLayer';
 export VideoLayer from './VideoLayer';
 export ImageGalleryComponent from './ImageGalleryComponent';
+export ConfirmLayer from './ConfirmLayer';
+export CarouselSlideForm from './CarouselSlideForm';
+export MarkdownHelpLayer from './MarkdownHelpLayer';
+export BlockPageHeader from './BlockPageHeader';
+export MarkdownHelp from './MarkdownHelp';

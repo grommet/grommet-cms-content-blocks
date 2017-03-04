@@ -3,7 +3,7 @@ import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
-
+import Label from 'grommet/components/Label';
 import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
 import { YoutubeLayer } from '../Shared';
 
@@ -44,25 +44,30 @@ export default class BlockCard extends Component {
       : undefined;
 
     const anchor = (this._isLinkVideo(linkUrl))
-      ? <Anchor label={linkText} primary={true} icon={<CirclePlayIcon />}
+      ? <Anchor label={linkText} icon={<CirclePlayIcon />}
           onClick={this._toggleVideoLayer.bind(this, linkUrl)} />
-      : <Anchor label={linkText} primary={true} href={linkUrl} />;
+      : <Anchor label={linkText} href={linkUrl} />;
 
     return (
       <div>
         {videoLayer}
         <Card
+          contentPad="small"
           thumbnail={image.path}
-          label={label}
+          label={
+            <Label uppercase margin="none" size="small" className="block--block-card__card-label">
+              {label}
+            </Label>
+          }
           description={content}
-          heading={
-            <Box pad={{vertical: 'small'}}>
-              <Heading tag="h3" strong={true} margin="none">
+          heading={heading &&
+            <Box pad={{ vertical: 'small' }}>
+              <Heading tag="h3" margin="none">
                 {heading}
               </Heading>
             </Box>
           }
-          colorIndex="light-2" 
+          colorIndex="light-1"
           link={anchor} 
         />
       </div>

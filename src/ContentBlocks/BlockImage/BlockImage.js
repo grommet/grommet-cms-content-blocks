@@ -16,11 +16,13 @@ export default function BlockImage ({ content, image, imageSize }) {
         texture={image.path}
         style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain' }}
       />
-      <Box className="labs__section" pad={{horizontal: 'large'}}>
-        <Heading tag="h5" strong={true} margin="small">
-          {content}
-        </Heading>
-      </Box>
+      {content &&
+        <Box className="labs__section" pad={{ horizontal: 'large' }}>
+          <Heading tag="h5" strong={true} margin="small">
+            {content}
+          </Heading>
+        </Box>
+      }
     </div>
   );
 };
