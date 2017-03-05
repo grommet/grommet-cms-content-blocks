@@ -102,14 +102,18 @@ class BlockCarouselForm extends Component {
       imageSize
     };
 
-    this.props.onSubmit(dataToSubmit);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(dataToSubmit);
+    }
   }
 
   render() {
+    const { assetNode } = this.props;
     const { activeSlideIndex, imageSize } = this.state;
     const form = (
       <Box>
         <CarouselSlideForm
+          assetNode={assetNode}
           imageSize={imageSize}
           data={this.state.carousel[activeSlideIndex]}
           onChange={this._handleChange}
@@ -155,7 +159,8 @@ class BlockCarouselForm extends Component {
 };
 
 BlockCarouselForm.propTypes = {
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  assetNode: PropTypes.node
 };
 
 export default BlockCarouselForm;

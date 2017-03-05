@@ -22,6 +22,14 @@ export class BlockCardForm extends Component {
     this._onSubmit = this._onSubmit.bind(this);
   }
 
+  componentWillReceiveProps({ image }) {
+    if (image && image !== this.state.image) {
+      this.setState({
+        image
+      });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
       this.setState({
@@ -30,7 +38,8 @@ export class BlockCardForm extends Component {
     }
   }
 
-  _onChange({ target }) {
+  _onChange(e) {
+    const { target } = e;
     const key = target.id;
     let val = target.value;
 
@@ -38,6 +47,9 @@ export class BlockCardForm extends Component {
     obj[key] = val;
 
     this.setState(obj);
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   }
 
   _validateForm({ image }) {
@@ -49,19 +61,8 @@ export class BlockCardForm extends Component {
 
   _onSubmit(event) {
     event.preventDefault();
-    const state = Object.assign({}, this.state);
-    const formData = {
-      image: state.image,
-      card: {
-        content: state.content,
-        heading: state.heading,
-        label: state.label,
-        linkText: state.linkText,
-        linkUrl: state.linkUrl
-      }
-    };
     if (this.props.onSubmit) {
-      this.props.onSubmit(formData);
+      this.props.onSubmit(event);
     }
   }
 
@@ -121,9 +122,9 @@ export class BlockCardForm extends Component {
 
 BlockCardForm.propTypes = {
   onSubmit: PropTypes.func,
-  data: PropTypes.object,
-  url: PropTypes.string,
-  children: PropTypes.node
+  onChange: PropTypes.func,
+  children: PropTypes.node,
+  url: PropTypes.string
 };
 
 export default BlockCardForm;

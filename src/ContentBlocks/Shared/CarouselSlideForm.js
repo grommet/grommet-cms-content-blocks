@@ -16,6 +16,7 @@ export class CarouselSlideForm extends Component {
 
     this._onChange = this._onChange.bind(this);
     this._propsToState = this._propsToState.bind(this);
+    this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
   componentDidMount() {
@@ -42,12 +43,18 @@ export class CarouselSlideForm extends Component {
   _propsToState(props) {
     this.setState({
       imageSize: props.imageSize || 'Large',
-      image: props.data
-        && props.data.image || ''
+      image: props.data ? props.data.image : null
     });
   }
 
-  _onChange({ target, option }) {
+  _onAssetSelect(image) {
+    this.setState({
+      image
+    });
+  }
+
+  _onChange(e) {
+    const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
 
@@ -68,7 +75,7 @@ export class CarouselSlideForm extends Component {
     const onSubmit = (this._validate(this.state))
       ? this.props.onSubmit
       : undefined;
-    const { children } = this.props;
+    const { assetNode } = this.props;
     const { image, imageSize } = this.state;
 
     return (
@@ -81,7 +88,7 @@ export class CarouselSlideForm extends Component {
                 id="image"
                 name="image"
                 type="text"
-                value={image.path || ''}
+                value={image && image.path ? image.path : ''}
                 onChange={this._onChange}
               />
             </FormField>
@@ -94,7 +101,12 @@ export class CarouselSlideForm extends Component {
                 onChange={this._onChange}
               />
             </FormField>
-            {children && children}
+            {assetNode && React.cloneElement(
+              assetNode,
+              {
+                onAssetSelect: this._onAssetSelect
+              }
+            )}
           </fieldset>
           <Button label="submit" primary={true} onClick={onSubmit} />
         </FormFields>
@@ -104,8 +116,7 @@ export class CarouselSlideForm extends Component {
 };
 
 CarouselSlideForm.propTypes = {
-  data: PropTypes.object,
-  children: PropTypes.node,
+  assetNode: PropTypes.node,
   url: PropTypes.string
 };
 

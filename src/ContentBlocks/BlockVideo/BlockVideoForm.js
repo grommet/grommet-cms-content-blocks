@@ -27,7 +27,21 @@ export class BlockVideoForm extends Component {
     }
   }
 
-  _onChange({ target }) {
+  componentWillReceiveProps({ image, video }) {
+    if (image && image !== this.state.image) {
+      this.setState({
+        image
+      });
+    }
+    if (video && video !== this.state.video) {
+      this.setState({
+        video
+      });
+    }
+  }
+
+  _onChange(e) {
+    const { target } = e;
     const key = target.id;
     let val = target.value;
 
@@ -35,6 +49,9 @@ export class BlockVideoForm extends Component {
     obj[key] = val;
 
     this.setState(obj);
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   }
 
   _validateForm({ image }) {
@@ -46,9 +63,8 @@ export class BlockVideoForm extends Component {
 
   _onSubmit(event) {
     event.preventDefault();
-    const formData = Object.assign({}, this.state);
     if (this.props.onSubmit) {
-      this.props.onSubmit(formData);
+      this.props.onSubmit(event);
     }
   }
 
@@ -93,9 +109,9 @@ export class BlockVideoForm extends Component {
 
 BlockVideoForm.propTypes = {
   onSubmit: PropTypes.func,
-  data: PropTypes.object,
-  url: PropTypes.string,
-  children: PropTypes.node
+  onChange: PropTypes.func,
+  children: PropTypes.node,
+  url: PropTypes.string
 };
 
 export default BlockVideoForm;

@@ -17,6 +17,14 @@ export class AssetLinkForm extends Component {
     this._onSubmit = this._onSubmit.bind(this);
   }
 
+  componentWillReceiveProps({ asset }) {
+    if (asset && asset !== this.state.asset) {
+      this.setState({
+        asset
+      });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
       this.setState({
@@ -25,7 +33,8 @@ export class AssetLinkForm extends Component {
     }
   }
 
-  _onChange({ target, option }) {
+  _onChange(e) {
+    const { target, option } = e;
     const key = target.id;
     let val = option || target.value;
 
@@ -33,6 +42,9 @@ export class AssetLinkForm extends Component {
     obj[key] = val;
 
     this.setState(obj);
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   }
 
   _validateForm({ asset }) {
@@ -44,8 +56,9 @@ export class AssetLinkForm extends Component {
 
   _onSubmit(event) {
     event.preventDefault();
-    const formData = Object.assign({}, this.state);
-    this.props.onSubmit(formData);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(event);
+    }
   }
 
   render() {
@@ -66,7 +79,7 @@ export class AssetLinkForm extends Component {
               </FormField>
               <FormField label="Asset file path" htmlFor="asset">
                 <input id="asset" name="asset" type="text"
-                  value={asset.path} onChange={this._onChange} />
+                  value={asset.path || ''} onChange={this._onChange} />
               </FormField>
               {children && children}
             </fieldset>
@@ -81,7 +94,7 @@ export class AssetLinkForm extends Component {
 
 AssetLinkForm.propTypes = {
   onSubmit: PropTypes.func,
-  data: PropTypes.object,
+  onChange: PropTypes.func,
   children: PropTypes.node,
   url: PropTypes.string
 };
