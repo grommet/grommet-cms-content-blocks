@@ -5,6 +5,13 @@ import Tiles from 'grommet/components/Tiles';
 import Tile from 'grommet/components/Tile';
 
 export default class ImageGallery extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(i) {
+    this.props.onClickItem(i);
+  }
   render() {
     const {
       images,
@@ -44,4 +51,5 @@ ImageGallery.propTypes = {
   ),
   currentIndex: PropTypes.number.isRequired,
   imageSize: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  onClickItem: PropTypes.func.isRequired,
 };
