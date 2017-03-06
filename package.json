@@ -8,7 +8,7 @@
     "lint": "eslint src",
     "build": "webpack",
     "bump": "git add . && git commit -m 'Feat: version bump with new content blocks' && npm version patch",
-    "shipit": "npm run copy && npm run bump && npm publish",
+    "shipit": "npm run bump && npm publish",
     "prepublish": "rimraf dist && npm run build",
     "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks"
   },
