@@ -1,5 +1,6 @@
 let path = require('path');
 let webpack = require('webpack');
+const imgPath = path.join(__dirname, './img');
 
 module.exports = {
   entry: [
@@ -36,18 +37,6 @@ module.exports = {
     },
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally
@@ -58,6 +47,37 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
   ],
+  module: {
+    rules: [
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'file-loader', options: { name: '[name].css' } },
+          { loader: 'sass-loader',
+            options: {
+              outputStyle: 'compressed',
+              includePaths: [
+                './node_modules',
+                './node_modules/grommet/node_modules',
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|gif|jpg|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+      },
+    ],
+  },
 
   devServer: {
     host: 'localhost',
