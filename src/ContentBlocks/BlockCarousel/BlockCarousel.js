@@ -9,7 +9,7 @@ export default function BlockCarousel({ carousel, imageSize }) {
       key={`slide-${index}`}
       size={{ height: size, width: size }}
       full={size === 'full'}
-      style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain' }}
+      style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain', width: '100vw' }}
       texture={slide.image.path}
     />,
   );
