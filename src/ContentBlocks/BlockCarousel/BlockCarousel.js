@@ -4,6 +4,7 @@ import Carousel from 'grommet/components/Carousel';
 
 export default function BlockCarousel({ carousel, imageSize }) {
   const size = imageSize ? imageSize.toLowerCase() : 'large';
+  const backgroundSize = size === 'full' ? 'cover' : 'contain';
   const slides = carousel.map((slide, index) => {
     const sizeObject = size === 'full' ? 'full' : {
       height: size,
@@ -14,14 +15,14 @@ export default function BlockCarousel({ carousel, imageSize }) {
         key={`slide-${index}`}
         size={sizeObject}
         full={size === 'full' ? true : ''}
-        style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain', width: '100vw' }}
+        style={{ backgroundPosition: '50% 50%', backgroundSize, width: '100vw' }}
         texture={slide.image.path}
       />
     );
   });
 
   return (
-    <Box style={{ maxWidth: '100vw', width: '100%' }}>
+    <Box full={size === 'full' ? true : ''} size={size}>
       <Carousel>
         {slides}
       </Carousel>

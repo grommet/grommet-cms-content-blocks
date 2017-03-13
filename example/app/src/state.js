@@ -138,7 +138,7 @@ export default {
                 }
               }
             ],
-            "imageSize": "Full"
+            "imageSize": "large"
           }
         ]
       }
