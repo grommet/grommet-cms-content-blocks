@@ -85,7 +85,7 @@ export class BlockImageForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField>
-              <FormField label="Description" htmlFor="content">
+              <FormField label="Alt Tag" htmlFor="alt">
                 <input
                   autoFocus
                   id="alt"
