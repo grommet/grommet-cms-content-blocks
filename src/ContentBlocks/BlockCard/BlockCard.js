@@ -41,14 +41,14 @@ export default class BlockCard extends Component {
 
     const videoLayer = (this.state.layerActive)
       ? (<YoutubeLayer
-url={this.state.layerContent}
+        url={this.state.layerContent}
         onClose={this._toggleVideoLayer}
       />)
       : undefined;
 
     const anchor = (this._isLinkVideo(linkUrl))
       ? (<Anchor
-label={linkText} icon={<CirclePlayIcon />}
+        label={linkText} icon={<CirclePlayIcon />}
         onClick={this._toggleVideoLayer.bind(this, linkUrl)}
       />)
       : <Anchor label={linkText} href={linkUrl} />;
@@ -58,7 +58,12 @@ label={linkText} icon={<CirclePlayIcon />}
         {videoLayer}
         <Card
           contentPad="small"
-          thumbnail={<Image src={image.path} fit="cover" />}
+          thumbnail={
+            <Box
+              style={{ height: 192, width: '100%' }}
+              backgroundImage={`url(${image.path})`}
+            />
+          }
           label={
             <Label uppercase margin="none" size="small" className="block--block-card__card-label">
               {label}
