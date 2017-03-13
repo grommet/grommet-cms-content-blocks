@@ -36,18 +36,6 @@ module.exports = {
     },
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally
@@ -57,7 +45,43 @@ module.exports = {
 
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
+    new webpack.LoaderOptionsPlugin({
+      debug: false,
+      minimize: true,
+      options: {
+        sassLoader: {
+          includePaths: [
+            './node_modules',
+            './node_modules/grommet/node_modules',
+          ],
+        },
+      },
+    }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'file-loader', options: { name: '[name].css' } },
+          { loader: 'sass-loader',
+            options: {
+              outputStyle: 'compressed',
+              includePaths: [
+                './node_modules',
+                './node_modules/grommet/node_modules',
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
 
   devServer: {
     host: 'localhost',
