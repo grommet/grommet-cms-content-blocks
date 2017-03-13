@@ -37,7 +37,10 @@ import {
   BlockHeroForm,
   BlockHeroWireframe,
   BlockImageGallery,
-  BlockImageGalleryWireframe
+  BlockImageGalleryWireframe,
+  BlockButton,
+  BlockButtonForm,
+  BlockButtonWireframe,
 } from './index';
 
 export default {
@@ -46,90 +49,97 @@ export default {
     preview: <GenericPreview />,
     form: <BlockBoxForm />,
     name: 'Box',
-    wireframe: <BlockBoxWireframe />
+    wireframe: <BlockBoxWireframe />,
   },
   BlockParagraph: {
     element: <BlockParagraph />,
     preview: <GenericPreview />,
     form: <BlockParagraphForm />,
     name: 'Paragraph',
-    wireframe: <BlockParagraphWireframe />
+    wireframe: <BlockParagraphWireframe />,
   },
   BlockHeading: {
     element: <BlockHeading />,
     preview: <GenericPreview />,
     form: <BlockHeadingForm />,
     name: 'Headline',
-    wireframe: <BlockHeadingWireframe />
+    wireframe: <BlockHeadingWireframe />,
   },
   BlockImage: {
     element: <BlockImage />,
     preview: <GenericPreview />,
     form: <BlockImageForm />,
     name: 'Image',
-    wireframe: <BlockImageWireframe />
+    wireframe: <BlockImageWireframe />,
   },
   BlockImageGallery: {
     element: <BlockImageGallery />,
     preview: <GenericPreview />,
     form: <BlockCarouselForm />,
     name: 'Image Gallery',
-    wireframe: <BlockImageGalleryWireframe />
+    wireframe: <BlockImageGalleryWireframe />,
   },
   BlockHero: {
     element: <BlockHero />,
     preview: <GenericPreview />,
     form: <BlockHeroForm />,
     name: 'Hero',
-    wireframe: <BlockHeroWireframe />
+    wireframe: <BlockHeroWireframe />,
   },
   BlockCarousel: {
     element: <BlockCarousel />,
     preview: <GenericPreview />,
     form: <BlockCarouselForm />,
     name: 'Carousel',
-    wireframe: <BlockCarouselWireframe />
+    wireframe: <BlockCarouselWireframe />,
   },
   BlockVideo: {
     element: <BlockVideo />,
     preview: <GenericPreview />,
     form: <BlockVideoForm />,
     name: 'Video',
-    wireframe: <BlockVideoWireframe />
+    wireframe: <BlockVideoWireframe />,
   },
   BlockCardParagraph: {
     element: <BlockCard />,
     preview: <GenericPreview />,
     form: <BlockCardForm />,
     name: 'Card',
-    wireframe: <BlockCardWireframe />
+    wireframe: <BlockCardWireframe />,
   },
   BlockQuote: {
     element: <BlockQuote />,
     preview: <GenericPreview />,
     form: <BlockQuoteForm />,
     name: 'Quote',
-    wireframe: <BlockQuoteWireframe />
+    wireframe: <BlockQuoteWireframe />,
   },
   BlockQuoteCard: {
     element: <BlockQuote />,
     preview: <GenericPreview />,
     form: <BlockQuoteCardForm />,
     name: 'Quote w/ Card',
-    wireframe: <BlockQuoteWireframe />
+    wireframe: <BlockQuoteWireframe />,
   },
   BlockColorSwatch: {
     element: <BlockColorSwatch />,
     name: 'Color Swatch',
     preview: <BlockColorSwatchPreview />,
     form: <BlockColorSwatchForm />,
-    wireframe: <BlockColorSwatchWireframe />
+    wireframe: <BlockColorSwatchWireframe />,
   },
   BlockAssetLink: {
     element: <BlockAssetLink />,
     name: 'Asset Link',
     preview: <GenericPreview />,
     form: <BlockAssetLinkForm />,
-    wireframe: <BlockAssetLinkWireframe />
-  }
+    wireframe: <BlockAssetLinkWireframe />,
+  },
+  BlockButton: {
+    element: <BlockButton />,
+    name: 'Button',
+    preview: <GenericPreview />,
+    form: <BlockButtonForm />,
+    wireframe: <BlockButtonWireframe />,
+  },
 };

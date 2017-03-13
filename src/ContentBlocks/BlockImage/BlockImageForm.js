@@ -12,35 +12,35 @@ export class BlockImageForm extends Component {
     this.state = {
       image: props.image || '',
       content: props.content || '',
-      imageSize: props.imageSize || 'Large'
+      alt: props.alt || '',
+      imageSize: props.imageSize || 'Large',
+      fit: props.fit || 'Cover',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
-  componentWillReceiveProps({ image }) {
+  componentWillReceiveProps({ image, url }) {
     if (image && image !== this.state.image) {
       this.setState({
-        image
+        image,
       });
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.url !== this.props.url && this.props.url !== '') {
+    if (url !== this.props.url && this.props.url !== '') {
       this.setState({
-        image: `${this.props.url}`
+        image: `${this.props.url}`,
       });
     }
   }
 
-  _onChange(e) {
+  onChange(e) {
     const { target, option } = e;
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -49,25 +49,25 @@ export class BlockImageForm extends Component {
     }
   }
 
-  _validateForm({ image }) {
-    if (image !== '')
-      return true;
-
-    return false;
-  }
-
-  _onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(event);
     }
   }
 
+  validateForm() {
+    const { image } = this.state;
+    if (image !== '') { return true; }
+
+    return false;
+  }
+
   render() {
-    const { image, content, imageSize } = this.state;
+    const { image, content, imageSize, fit, alt } = this.state;
     const { children } = this.props;
-    const submit = (this._validateForm(this.state))
-      ? this._onSubmit
+    const submit = (this.validateForm(this.state))
+      ? this.onSubmit
       : undefined;
 
     return (
@@ -76,39 +76,77 @@ export class BlockImageForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Description" htmlFor="content">
-                <input autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} />
+                <input
+                  autoFocus
+                  id="content"
+                  name="content"
+                  type="text"
+                  value={content}
+                  onChange={this.onChange}
+                />
+              </FormField>
+              <FormField label="Description" htmlFor="content">
+                <input
+                  autoFocus
+                  id="alt"
+                  name="alt"
+                  type="text"
+                  value={alt}
+                  onChange={this.onChange}
+                />
               </FormField>
               <FormField label="Image file path" htmlFor="image">
-                <input id="image" name="image" type="text"
-                  value={image.path || ''} onChange={this._onChange} />
+                <input
+                  id="image"
+                  name="image"
+                  type="text"
+                  value={image.path || ''}
+                  onChange={this.onChange}
+                />
               </FormField>
               <FormField label="Image Size" htmlFor="imageSize">
                 <Select
                   id="imageSize"
                   inline={false}
-                  options={["Small", "Medium", "Large", "Full"]}
+                  options={['Thumb', 'Small', 'Medium', 'Large', 'Full']}
                   value={imageSize}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
+                />
+              </FormField>
+              <FormField label="Image Size" htmlFor="imageSize">
+                <Select
+                  id="fit"
+                  inline={false}
+                  options={['Contain', 'Cover']}
+                  value={fit}
+                  onChange={this.onChange}
                 />
               </FormField>
               {children && children}
             </fieldset>
-            <Button onClick={submit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={submit}
+              primary={false}
+              type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 BlockImageForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
+  fit: PropTypes.string,
+  imageSize: PropTypes.string,
+  alt: PropTypes.string,
+  content: PropTypes.string,
   url: PropTypes.string,
-  image: PropTypes.object
+  image: PropTypes.object,
 };
 
 export default BlockImageForm;

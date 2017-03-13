@@ -3,6 +3,7 @@ import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
+import Image from 'grommet/components/Image';
 import Label from 'grommet/components/Label';
 import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
 import { YoutubeLayer } from '../Shared';
@@ -13,22 +14,22 @@ export default class BlockCard extends Component {
 
     this.state = {
       layerActive: false,
-      layerContent: ''
+      layerContent: '',
     };
 
     this._toggleVideoLayer = this._toggleVideoLayer.bind(this);
   }
 
   _toggleVideoLayer(videoUrl) {
-    this.setState({ 
+    this.setState({
       layerActive: !this.state.layerActive,
-      layerContent: videoUrl
+      layerContent: videoUrl,
     });
   }
 
   _isLinkVideo(url) {
-    var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-    if(url.match(p)) {
+    const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    if (url.match(p)) {
       return url.match(p)[1];
     }
     return false;
@@ -39,13 +40,17 @@ export default class BlockCard extends Component {
     const { heading, label, linkText, linkUrl, content } = card;
 
     const videoLayer = (this.state.layerActive)
-      ? <YoutubeLayer url={this.state.layerContent} 
-          onClose={this._toggleVideoLayer} />
+      ? (<YoutubeLayer
+url={this.state.layerContent}
+        onClose={this._toggleVideoLayer}
+      />)
       : undefined;
 
     const anchor = (this._isLinkVideo(linkUrl))
-      ? <Anchor label={linkText} icon={<CirclePlayIcon />}
-          onClick={this._toggleVideoLayer.bind(this, linkUrl)} />
+      ? (<Anchor
+label={linkText} icon={<CirclePlayIcon />}
+        onClick={this._toggleVideoLayer.bind(this, linkUrl)}
+      />)
       : <Anchor label={linkText} href={linkUrl} />;
 
     return (
@@ -53,7 +58,7 @@ export default class BlockCard extends Component {
         {videoLayer}
         <Card
           contentPad="small"
-          thumbnail={image.path}
+          thumbnail={<Image src={image.path} fit="cover" />}
           label={
             <Label uppercase margin="none" size="small" className="block--block-card__card-label">
               {label}
@@ -68,16 +73,16 @@ export default class BlockCard extends Component {
             </Box>
           }
           colorIndex="light-1"
-          link={anchor} 
+          link={anchor}
         />
       </div>
     );
   }
-};
+}
 
 BlockCard.propTypes = {
   content: PropTypes.string,
   image: PropTypes.shape({
-    path: PropTypes.string
-  })
+    path: PropTypes.string,
+  }),
 };

@@ -11,7 +11,7 @@ import colorOptionsList from '../Shared/colorIndexes';
 
 type ErrorType = string;
 
-type BlockColorSwatchFormState = {
+type BlockBoxFormState = {
   colorIndexInput: ?string,
   contentInput: ?string,
   colorOptions: Array<any>,
@@ -21,16 +21,16 @@ type BlockColorSwatchFormState = {
   }
 };
 
-type BlockColorSwatchFormProps = {
+type BlockBoxFormProps = {
   onSubmit?: Function,
   colorIndex: ?string,
   content: ?string
 };
 
-export default class BlockColorSwatchForm extends React.Component {
-  state: BlockColorSwatchFormState;
-  props: BlockColorSwatchFormProps;
-  constructor(props: BlockColorSwatchFormProps) {
+export default class BlockBoxForm extends React.Component {
+  state: BlockBoxFormState;
+  props: BlockBoxFormProps;
+  constructor(props: BlockBoxFormProps) {
     super(props);
     (this:any)._onChange = this._onChange.bind(this);
     (this:any)._onSubmit = this._onSubmit.bind(this);
@@ -49,24 +49,24 @@ export default class BlockColorSwatchForm extends React.Component {
       errors: null,
       colorIndexInput,
       contentInput,
-      colorOptions: colorOptionsList
+      colorOptions: colorOptionsList,
     };
   }
-  
+
   _onChange({ target, option }: any) {
     if (option) {
       this.setState({
         [`${target.id}`]: option,
         errors: this.state.colorIndexInput
           ? null
-          : this.state.errors
+          : this.state.errors,
       });
     } else {
       this.setState({
         [`${target.id}`]: target.value,
         errors: this.state.contentInput
           ? null
-          : this.state.errors
+          : this.state.errors,
       });
     }
   }
@@ -77,17 +77,17 @@ export default class BlockColorSwatchForm extends React.Component {
     if (this._formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
         colorIndex: colorIndexInput,
-        content: contentInput
+        content: contentInput,
       });
     } else {
       const errors = {
         colorIndexInput: colorIndexInput && colorIndexInput.length > 0
           ? '' : 'Please enter a valid color index',
         contentInput: contentInput && contentInput.length > 0
-          ? '' : 'Please enter some content for the box'
+          ? '' : 'Please enter some content for the box',
       };
       this.setState({
-        errors
+        errors,
       });
     }
   }
@@ -99,7 +99,7 @@ export default class BlockColorSwatchForm extends React.Component {
       ? colorOptionsList
       : colorOptions.filter(i => i.includes(value));
     this.setState({
-      colorOptions: newOptions
+      colorOptions: newOptions,
     });
   }
 
@@ -116,7 +116,7 @@ export default class BlockColorSwatchForm extends React.Component {
       colorIndexInput,
       contentInput,
       errors,
-      colorOptions
+      colorOptions,
     } = this.state;
     return (
       <Box colorIndex="light-2" pad="medium">
