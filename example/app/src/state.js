@@ -77,7 +77,7 @@ export default {
                 }
               }
             ],
-            "imageSize": "XXLarge",
+            "imageSize": "Large",
             "content": "Now that we have created Hewlett Packard Enterprise, it’s time to tell the world our story. These guidelines contain the essential elements of our brand identity. Each section is designed to familiarize you with our brand so you can communicate clearly, consistently and in a way that is uniquely HPE.",
             "headline": "Welcome to Brand Central"
           }

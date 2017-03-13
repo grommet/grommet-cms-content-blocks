@@ -8,16 +8,18 @@ export default function BlockCarousel({ carousel, imageSize }) {
     <Box
       key={`slide-${index}`}
       size={{ height: size, width: size }}
-      full={size === 'full'}
-      style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain', width: '100vw' }}
+      full={size === 'full' ? 'horizontal' : ''}
+      style={{ backgroundPosition: '50% 50%', backgroundSize: 'contain', width: '100vw', boxSizing: 'border-box' }}
       texture={slide.image.path}
     />,
   );
 
   return (
-    <Carousel>
-      {slides}
-    </Carousel>
+    <Box style={{ maxWidth: '100vw', width: '100%' }}>
+      <Carousel>
+        {slides}
+      </Carousel>
+    </Box>
   );
 }
 
