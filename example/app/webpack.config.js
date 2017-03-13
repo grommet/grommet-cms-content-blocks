@@ -1,5 +1,6 @@
 let path = require('path');
 let webpack = require('webpack');
+const imgPath = path.join(__dirname, './img');
 
 module.exports = {
   entry: [
@@ -45,18 +46,6 @@ module.exports = {
 
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
-    new webpack.LoaderOptionsPlugin({
-      debug: false,
-      minimize: true,
-      options: {
-        sassLoader: {
-          includePaths: [
-            './node_modules',
-            './node_modules/grommet/node_modules',
-          ],
-        },
-      },
-    }),
   ],
   module: {
     rules: [
@@ -79,6 +68,13 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(png|gif|jpg|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
       },
     ],
   },
