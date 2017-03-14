@@ -79,6 +79,14 @@ export default class BlockButtonForm extends React.Component {
       this.setState({
         path: asset.path,
       });
+      if (this.props.onChange) {
+        this.props.onChange({
+          target: {
+            id: 'path',
+            value: asset.path,
+          },
+        });
+      }
     }
   }
 
