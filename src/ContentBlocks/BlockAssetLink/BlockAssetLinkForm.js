@@ -10,7 +10,7 @@ export class AssetLinkForm extends Component {
     super(props);
     this.state = {
       asset: props.asset || '',
-      content: props.content || ''
+      content: props.content || '',
     };
 
     this._onChange = this._onChange.bind(this);
@@ -20,7 +20,7 @@ export class AssetLinkForm extends Component {
   componentWillReceiveProps({ asset }) {
     if (asset && asset !== this.state.asset) {
       this.setState({
-        asset
+        asset,
       });
     }
   }
@@ -28,7 +28,7 @@ export class AssetLinkForm extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
       this.setState({
-        asset: `${this.props.url}`
+        asset: `${this.props.url}`,
       });
     }
   }
@@ -36,9 +36,9 @@ export class AssetLinkForm extends Component {
   _onChange(e) {
     const { target, option } = e;
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -48,8 +48,7 @@ export class AssetLinkForm extends Component {
   }
 
   _validateForm({ asset }) {
-    if (asset.path !== '')
-      return true;
+    if (asset.path !== '')      { return true; }
 
     return false;
   }
@@ -74,29 +73,35 @@ export class AssetLinkForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Link Text" htmlFor="content">
-                <input autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} />
+                <input
+                  autoFocus id="content" name="content" type="text"
+                  value={content} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Asset file path" htmlFor="asset">
-                <input id="asset" name="asset" type="text"
-                  value={asset.path || ''} onChange={this._onChange} />
+                <input
+                  id="asset" name="asset" type="text"
+                  value={asset.path || ''} onChange={this._onChange}
+                />
               </FormField>
               {children && children}
             </fieldset>
-            <Button onClick={submit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={submit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 AssetLinkForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  url: PropTypes.string
+  url: PropTypes.string,
 };
 
 export default AssetLinkForm;

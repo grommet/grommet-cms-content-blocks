@@ -10,8 +10,8 @@ import Footer from 'grommet/components/Footer';
 import RadioButton from 'grommet/components/RadioButton';
 import validation from './validation';
 
-type AssetType = 'path' | 'href';
-type ButtonType = 'Button' | 'Anchor';
+export type AssetType = 'path' | 'href';
+export type ButtonType = 'Button' | 'Anchor';
 
 type State = {
   labelInput: ?string,
@@ -104,11 +104,19 @@ export default class BlockButtonForm extends React.Component {
 
   onSubmit(event: any) {
     event.preventDefault();
-    const { pathInput, labelInput, primaryInput, hrefInput, assetTypeInput } = this.state;
+    const {
+      pathInput,
+      buttonTypeInput,
+      labelInput,
+      primaryInput,
+      hrefInput,
+      assetTypeInput,
+    } = this.state;
     if (this.formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
         path: pathInput,
         href: hrefInput,
+        buttonType: buttonTypeInput,
         assetType: assetTypeInput,
         label: labelInput,
         primary: primaryInput === 'True',
