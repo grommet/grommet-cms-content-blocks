@@ -14,21 +14,22 @@ export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';
 
 type State = {
-  labelInput: ?string,
-  primaryInput: ?string,
-  pathInput: ?string,
-  hrefInput: ?string,
-  buttonTypeInput: ?string,
-  assetTypeInput: AssetType,
+  label: ?string,
+  primary: ?string,
+  path: ?string,
+  href: ?string,
+  buttonType: ?string,
+  assetType: AssetType,
   error: {
-    labelInput: ?string,
-    pathInput: ?string,
-    hrefInput: ?string,
+    label: ?string,
+    path: ?string,
+    href: ?string,
   }
 };
 
 type Props = {
   onSubmit?: Function,
+  onChange?: Function,
   label?: string,
   children?: React$Element<any>, // eslint-disable-line
   primary?: boolean,
@@ -54,17 +55,18 @@ export default class BlockButtonForm extends React.Component {
     const buttonTypeInput = buttonType || 'Button';
     const pathInput = path || '';
     const hrefInput = href || '';
+    const assetTypeInput = assetType || 'path';
     this.state = {
-      labelInput,
-      primaryInput,
-      pathInput,
-      buttonTypeInput,
-      hrefInput,
-      assetTypeInput: assetType || 'path',
+      label: labelInput,
+      primary: primaryInput,
+      path: pathInput,
+      buttonType: buttonTypeInput,
+      href: hrefInput,
+      assetType: assetTypeInput,
       error: {
-        labelInput: null,
-        pathInput: null,
-        hrefInput: null,
+        label: null,
+        path: null,
+        href: null,
       },
     };
   }
@@ -72,14 +74,15 @@ export default class BlockButtonForm extends React.Component {
   state: State;
 
   componentWillReceiveProps({ asset }: Props) {
-    if (asset && asset.path !== this.state.pathInput) {
+    if (asset && asset.path !== this.state.path) {
       this.setState({
-        pathInput: asset.path,
+        path: asset.path,
       });
     }
   }
 
-  onChange({ target, option }: any) {
+  onChange(e: any) {
+    const { target, option } = e;
     if (option) {
       this.setState({
         [`${target.id}`]: option,
@@ -89,76 +92,66 @@ export default class BlockButtonForm extends React.Component {
         [`${target.id}`]: target.value,
       });
     }
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   }
 
   onChangeAssetType() {
-    const { assetTypeInput } = this.state;
+    const { assetType } = this.state;
     let newType = 'href';
-    if (assetTypeInput === 'href') {
+    if (assetType === 'href') {
       newType = 'path';
     }
     this.setState({
-      assetTypeInput: newType,
+      assetType: newType,
     });
   }
 
   onSubmit(event: any) {
     event.preventDefault();
-    const {
-      pathInput,
-      buttonTypeInput,
-      labelInput,
-      primaryInput,
-      hrefInput,
-      assetTypeInput,
-    } = this.state;
     if (this.formIsValid() && this.props.onSubmit) {
-      this.props.onSubmit({
-        path: pathInput,
-        href: hrefInput,
-        buttonType: buttonTypeInput,
-        assetType: assetTypeInput,
-        label: labelInput,
-        primary: primaryInput === 'True',
-      });
+      if (this.props.onSubmit) {
+        this.props.onSubmit(event);
+      }
     }
   }
 
   props: Props;
 
   formIsValid() {
-    const { pathInput, labelInput, hrefInput, assetTypeInput } = this.state;
-    const hrefInputError = validation.validUrl(hrefInput) === true
+    const { path, label, href, assetType } = this.state;
+    const hrefError = validation.validUrl(href) === true
       ? null
       : 'Please enter a valid url, containing a protocol such as http://';
-    const pathInputError = validation.validLength(pathInput)
+    const pathError = validation.validLength(path)
       ? null
       : 'Please enter a valid path';
-    const labelInputError = validation.validLength(labelInput)
+    const labelError = validation.validLength(label)
       ? null
       : 'Please enter a valid label';
     this.setState({
       error: {
-        hrefInput: hrefInputError,
-        pathInput: pathInputError,
-        labelInput: labelInputError,
+        href: hrefError,
+        path: pathError,
+        label: labelError,
       },
     });
-    if (assetTypeInput === 'path') {
-      return pathInputError === null && labelInputError === null;
+    if (assetType === 'path') {
+      return pathError === null && labelError === null;
     }
-    return hrefInputError === null && labelInputError === null;
+    return hrefError === null && labelError === null;
   }
 
   render() {
     const { children } = this.props;
     const {
-      labelInput,
-      primaryInput,
-      pathInput,
-      buttonTypeInput,
-      assetTypeInput,
-      hrefInput,
+      label,
+      primary,
+      path,
+      buttonType,
+      assetType,
+      href,
       error,
     } = this.state;
     return (
@@ -168,40 +161,40 @@ export default class BlockButtonForm extends React.Component {
             <fieldset>
               <FormField
                 label="Label"
-                error={error.labelInput}
+                error={error.label}
                 help="Enter a label that will appear on the button"
-                htmlFor="labelInput"
+                htmlFor="label"
               >
                 <input
-                  id="labelInput"
-                  name="labelInput"
+                  id="label"
+                  name="label"
                   type="text"
-                  value={labelInput}
+                  value={label}
                   onChange={this.onChange}
                 />
               </FormField>
               <FormField
-                error={assetTypeInput === 'path' ? error.pathInput : error.hrefInput}
-                help={assetTypeInput === 'path'
+                error={assetType === 'path' ? error.path : error.href}
+                help={assetType === 'path'
                   ? 'Enter a path to an internal asset, such as /uploads/image.png'
                   : 'Enter a url to an external site, such as http://google.com/image.png'}
                 label="Link"
-                htmlFor={assetTypeInput === 'path' ? 'pathInput' : 'hrefInput'}
+                htmlFor={assetType === 'path' ? 'path' : 'href'}
               >
-                {assetTypeInput === 'path' ?
+                {assetType === 'path' ?
                   <input
-                    id="pathInput"
-                    name="pathInput"
+                    id="path"
+                    name="path"
                     type="text"
-                    value={pathInput}
+                    value={path}
                     onChange={this.onChange}
                   />
                 :
                   <input
-                    id="hrefInput"
-                    name="hrefInput"
+                    id="href"
+                    name="href"
                     type="text"
-                    value={hrefInput}
+                    value={href}
                     onChange={this.onChange}
                   />
                 }
@@ -214,13 +207,13 @@ export default class BlockButtonForm extends React.Component {
                   <RadioButton
                     id="internal"
                     label="Internal Asset"
-                    checked={(assetTypeInput === 'path')}
+                    checked={(assetType === 'path')}
                     onChange={this.onChangeAssetType}
                     name="internal"
                   />
                   <RadioButton
                     id="external"
-                    checked={(assetTypeInput !== 'path')}
+                    checked={(assetType !== 'path')}
                     label="External URL"
                     onChange={this.onChangeAssetType}
                     name="external"
@@ -229,35 +222,35 @@ export default class BlockButtonForm extends React.Component {
               </FormField>
               <FormField
                 label="Button Type"
-                htmlFor="buttonTypeInput"
+                htmlFor="buttonType"
                 help="What type of button would you like to use?  Button or Anchor?"
               >
                 <Select
                   onChange={this.onChange}
-                  value={buttonTypeInput || ''}
+                  value={buttonType || ''}
                   options={['Button', 'Anchor']}
-                  name="buttonTypeInput"
-                  id="buttonTypeInput"
+                  name="buttonType"
+                  id="buttonType"
                 />
               </FormField>
               <FormField
                 label="Primary"
-                htmlFor="primaryInput"
-                help={buttonTypeInput === 'Anchor'
+                htmlFor="primary"
+                help={buttonType === 'Anchor'
                   ? 'Should the anchor have the arrow icon in front of it?'
                   : 'Should the button be filled in with the brand color?'
                 }
               >
                 <Select
                   onChange={this.onChange}
-                  value={primaryInput || ''}
+                  value={primary || ''}
                   options={['True', 'False']}
-                  name="primaryInput"
-                  id="primaryInput"
+                  name="primary"
+                  id="primary"
                 />
               </FormField>
             </fieldset>
-            {assetTypeInput === 'path' && children && children}
+            {assetType === 'path' && children && children}
           </FormFields>
           <Footer pad="medium">
             <Button
