@@ -51,7 +51,7 @@ export default class BlockButtonForm extends React.Component {
     (this:any).onChangeAssetType = this.onChangeAssetType.bind(this);
     const { path, primary, label, buttonType, href, assetType } = props;
     const labelInput = label || '';
-    const primaryInput = primary ? 'True' : 'False';
+    const primaryInput = primary || 'True';
     const buttonTypeInput = buttonType || 'Button';
     const pathInput = path || '';
     const hrefInput = href || '';

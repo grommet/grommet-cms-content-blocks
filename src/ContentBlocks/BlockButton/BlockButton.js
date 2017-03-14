@@ -20,7 +20,8 @@ export default function BlockButton({
   primary,
   assetType,
 }: Props) {
-  let props = { label, primary };
+  const isPrimary = primary === 'True';
+  let props = { label, primary: isPrimary };
   if (assetType === 'path') {
     props = { ...props, path };
   } else {
