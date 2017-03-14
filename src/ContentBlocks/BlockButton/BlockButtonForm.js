@@ -12,10 +12,11 @@ import validation from './validation';
 
 export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';
+export type Primary = 'True' | 'False';
 
 type State = {
   label: ?string,
-  primary: ?string,
+  primary: ?Primary,
   path: ?string,
   href: ?string,
   buttonType: ?string,
@@ -32,7 +33,7 @@ type Props = {
   onChange?: Function,
   label?: string,
   children?: React$Element<any>, // eslint-disable-line
-  primary?: boolean,
+  primary?: Primary,
   buttonType?: ButtonType,
   href?: string,
   assetType?: AssetType,
@@ -102,6 +103,15 @@ export default class BlockButtonForm extends React.Component {
     let newType = 'href';
     if (assetType === 'href') {
       newType = 'path';
+    }
+    const event = {
+      target: {
+        id: 'assetType',
+        value: newType,
+      },
+    };
+    if (this.props.onChange) {
+      this.props.onChange(event);
     }
     this.setState({
       assetType: newType,
