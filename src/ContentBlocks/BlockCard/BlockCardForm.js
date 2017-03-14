@@ -12,10 +12,10 @@ export class BlockCardForm extends Component {
     this.state = {
       content: props.content || '',
       image: props.image || '',
-      heading: props.card && props.card.heading || '',
-      label: props.card && props.card.label || '',
-      linkText: props.card && props.card.linkText || '',
-      linkUrl: props.card && props.card.linkUrl || ''
+      heading: props.heading || '',
+      label: props.label || '',
+      linkText: props.linkText || '',
+      linkUrl: props.linkUrl || '',
     };
 
     this._onChange = this._onChange.bind(this);
@@ -25,7 +25,7 @@ export class BlockCardForm extends Component {
   componentWillReceiveProps({ image }) {
     if (image && image !== this.state.image) {
       this.setState({
-        image
+        image,
       });
     }
   }
@@ -33,7 +33,7 @@ export class BlockCardForm extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
       this.setState({
-        image: `${this.props.url}`
+        image: `${this.props.url}`,
       });
     }
   }
@@ -41,9 +41,9 @@ export class BlockCardForm extends Component {
   _onChange(e) {
     const { target } = e;
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -53,8 +53,7 @@ export class BlockCardForm extends Component {
   }
 
   _validateForm({ image }) {
-    if (image !== '' && content !== '')
-      return true;
+    if (image !== '' && content !== '') { return true; }
 
     return false;
   }
@@ -73,7 +72,7 @@ export class BlockCardForm extends Component {
       image,
       label,
       linkText,
-      linkUrl
+      linkUrl,
     } = this.state;
     const { children } = this.props;
     const submit = (this._validateForm(this.state))
@@ -86,45 +85,65 @@ export class BlockCardForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Card Label" htmlFor="label">
-                <input autoFocus id="label" name="label" type="text"
-                  value={label} onChange={this._onChange} />
+                <input
+                  autoFocus id="label" name="label" type="text"
+                  value={label} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Card Heading" htmlFor="heading">
-                <input id="heading" name="heading" type="text"
-                  value={heading} onChange={this._onChange} />
+                <input
+                  id="heading" name="heading" type="text"
+                  value={heading} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Card Content" htmlFor="content">
-                <textarea id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} rows="3" />
+                <textarea
+                  id="content" name="content" type="text"
+                  value={content} onChange={this._onChange} rows="3"
+                />
               </FormField>
               <FormField label="Card Link Text" htmlFor="linkText">
-                <input id="linkText" name="linkText" type="text"
-                  value={linkText} onChange={this._onChange} />
+                <input
+                  id="linkText" name="linkText" type="text"
+                  value={linkText} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Card Link URL" htmlFor="linkUrl">
-                <input id="linkUrl" name="linkUrl" type="text"
-                  value={linkUrl} onChange={this._onChange} />
+                <input
+                  id="linkUrl" name="linkUrl" type="text"
+                  value={linkUrl} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Card thumbnail path" htmlFor="image">
-                <input id="image" name="image" type="text"
-                  value={image.path} onChange={this._onChange} />
+                <input
+                  id="image" name="image" type="text"
+                  value={image.path} onChange={this._onChange}
+                />
               </FormField>
               {children && children}
             </fieldset>
-            <Button onClick={submit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={submit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 BlockCardForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  url: PropTypes.string
+  content: PropTypes.string,
+  image: PropTypes.string,
+  heading: PropTypes.string,
+  label: PropTypes.string,
+  linkText: PropTypes.string,
+  linkUrl: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default BlockCardForm;
