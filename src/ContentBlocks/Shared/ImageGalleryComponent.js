@@ -30,7 +30,8 @@ export default class ImageGallery extends Component {
           <Tiles responsive={false} pad="none" flush={false}>
             {images && images.map((image, i) =>
               <Tile
-                onClick={() => this.handleClick(i)} key={i}
+                onClick={() => this.handleClick(i)}
+                key={i}
                 style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}
               >
                 <Image size="thumb" src={image.path} />
