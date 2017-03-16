@@ -22,22 +22,22 @@ export default class ImageGallery extends Component {
     return (
       <Box align="center" justify="center" direction="column">
         <Box
-          size={{ height: size, width: size }}
+          size={{ width: size }}
           align="center"
           justify="center"
         >
           <Image size={size} src={images[currentIndex].path} />
+          <Tiles responsive={false} pad="none" flush={false}>
+            {images && images.map((image, i) =>
+              <Tile
+                onClick={() => this.handleClick(i)} key={i}
+                style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}
+              >
+                <Image size="thumb" src={image.path} />
+              </Tile>,
+            )}
+          </Tiles>
         </Box>
-        <Tiles pad="none" flush={false}>
-          {images && images.map((image, i) =>
-            <Tile
-              onClick={() => this.handleClick(i)} key={i}
-              style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}
-            >
-              <Image size="thumb" src={image.path} />
-            </Tile>,
-          )}
-        </Tiles>
       </Box>
     );
   }
