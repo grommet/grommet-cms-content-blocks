@@ -1,34 +1,25 @@
 import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
+import Image from 'grommet/components/Image';
 import Carousel from 'grommet/components/Carousel';
 
 export default function BlockCarousel({ carousel, imageSize }) {
   const size = imageSize ? imageSize.toLowerCase() : 'large';
+  // TODO: refactor to use grommet sizes vs. custom css
   const slides = carousel.map((slide, index) => {
-    const sizeObject = size === 'full' ? 'full' : {
-      height: size,
-      width: size,
-    };
     return (
-      <Box
-        key={`slide-${index}`}
-        size={sizeObject}
-        full={size === 'full' ? true : ''}
-        className={size === 'full'
-          ? 'grommet-cms-content-blocks--carousel-slide__full'
-          : 'grommet-cms-content-blocks--carousel-slide'
-        }
-        texture={slide.image.path}
+      <Image
+        src={slide.image.path}
+        alt={`Carousel slide ${index}`}
+        className={`grommet-cms-content-blocks--carousel-slide__${size}`}
       />
     );
   });
 
   return (
-    <Box full={size === 'full' ? true : ''} size={size}>
-      <Carousel>
-        {slides}
-      </Carousel>
-    </Box>
+    <Carousel>
+      {slides}
+    </Carousel>
   );
 }
 
@@ -36,5 +27,5 @@ BlockCarousel.propTypes = {
   carousel: PropTypes.array,
   imageSize: PropTypes.string,
   headline: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.string
 };
