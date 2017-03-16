@@ -14,7 +14,6 @@ export class BlockImageForm extends Component {
       content: props.content || '',
       alt: props.alt || '',
       imageSize: props.imageSize || 'Large',
-      fit: props.fit || 'Cover',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -64,7 +63,7 @@ export class BlockImageForm extends Component {
   }
 
   render() {
-    const { image, content, imageSize, fit, alt } = this.state;
+    const { image, content, imageSize, alt } = this.state;
     const { children } = this.props;
     const submit = (this.validateForm(this.state))
       ? this.onSubmit
@@ -113,15 +112,6 @@ export class BlockImageForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField>
-              <FormField label="Image Size" htmlFor="imageSize">
-                <Select
-                  id="fit"
-                  inline={false}
-                  options={['Contain', 'Cover']}
-                  value={fit}
-                  onChange={this.onChange}
-                />
-              </FormField>
               {children && children}
             </fieldset>
             <Button
@@ -141,7 +131,6 @@ BlockImageForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  fit: PropTypes.string,
   imageSize: PropTypes.string,
   alt: PropTypes.string,
   content: PropTypes.string,

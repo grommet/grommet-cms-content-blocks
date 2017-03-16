@@ -1910,24 +1910,18 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-grommet:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.2.1.tgz#554f3e47b95496b923a0fa7c4354d535cda0fa2e"
+grommet@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.3.0.tgz#3d11fb928f6851d8db5462c88642dedcb58417b2"
   dependencies:
     classnames "^2.2.3"
     deep-assign "^2.0.0"
     hammerjs "^2.0.1"
     intl "^1.0.0"
-    inuit-clearfix "^0.2.1"
     inuit-defaults "~0.2.1"
     inuit-functions "~0.2.0"
-    inuit-headings "~0.3.0"
-    inuit-images "~0.3.3"
-    inuit-list-bare "~0.3.0"
-    inuit-lists "~0.1.0"
     inuit-mixins "~0.2.3"
     inuit-normalize "~4.1.1"
-    inuit-page "~0.2.1"
     inuit-reset "~0.1.1"
     inuit-responsive-settings "~0.1.2"
     inuit-responsive-tools "~0.1.1"
@@ -2116,10 +2110,6 @@ intl@^1.0.0:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/intl/-/intl-1.2.5.tgz#82244a2190c4e419f8371f5aa34daa3420e2abde"
 
-inuit-clearfix@^0.2.1:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/inuit-clearfix/-/inuit-clearfix-0.2.2.tgz#84292183867c443e0f4b26bb7809a6ad2996e6ee"
-
 inuit-defaults@~0.2.0, inuit-defaults@~0.2.1:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/inuit-defaults/-/inuit-defaults-0.2.3.tgz#ca94c87763baded4d0c46f678852f82a574f5d00"
@@ -2128,34 +2118,7 @@ inuit-functions@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/inuit-functions/-/inuit-functions-0.2.0.tgz#99fcdca08f094c216172081cb3eadb228c0b7c66"
 
-inuit-headings@~0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/inuit-headings/-/inuit-headings-0.3.1.tgz#11efacc052dcf3810875ba00dbca695fd8b083db"
-  dependencies:
-    inuit-defaults "~0.2.0"
-    inuit-mixins "~0.2.2"
-
-inuit-images@~0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/inuit-images/-/inuit-images-0.3.3.tgz#707e7a52d4e764343352ca04d3f5ee18adb25ccb"
-  dependencies:
-    inuit-defaults "~0.2.0"
-    inuit-mixins "~0.2.2"
-
-inuit-list-bare@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/inuit-list-bare/-/inuit-list-bare-0.3.0.tgz#b68e6a6f1f44a637727e241bfff8d0050bc96af3"
-  dependencies:
-    inuit-defaults "~0.2.0"
-
-inuit-lists@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/inuit-lists/-/inuit-lists-0.1.0.tgz#f64a7460022cdd54b4910bcc7946291a1cc1123f"
-  dependencies:
-    inuit-defaults "~0.2.0"
-    inuit-mixins "~0.2.2"
-
-inuit-mixins@~0.2.2, inuit-mixins@~0.2.3:
+inuit-mixins@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/inuit-mixins/-/inuit-mixins-0.2.3.tgz#2ad19276bb2bfa228c62079b8f5baa7debf4a99f"
   dependencies:
@@ -2164,13 +2127,6 @@ inuit-mixins@~0.2.2, inuit-mixins@~0.2.3:
 inuit-normalize@~4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/inuit-normalize/-/inuit-normalize-4.1.1.tgz#f4391a9661c483732f78b33a3937fe8aab277de7"
-
-inuit-page@~0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/inuit-page/-/inuit-page-0.2.1.tgz#69064cbea189037f640b0183a22f7edae83d0c5d"
-  dependencies:
-    inuit-defaults "~0.2.0"
-    inuit-mixins "~0.2.2"
 
 inuit-reset@~0.1.1:
   version "0.1.1"
