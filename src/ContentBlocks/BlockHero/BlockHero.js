@@ -48,7 +48,7 @@ export default class BlockHero extends Component {
         texture={imagePath}
       >
         <Box
-          pad="medium"
+          pad="large"
           align="center"
           justify="center"
         >
