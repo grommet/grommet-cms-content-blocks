@@ -14,11 +14,12 @@ class BlockHeroForm extends Component {
 
     this.state = {
       carousel: props.carousel || [],
+      button: props.button || { path: '', label: '' },
       confirmLayer: false,
       activeSlideIndex: 0,
       imageSize: props.imageSize || 'Large',
       content: props.content || '',
-      headline: props.headline || ''
+      headline: props.headline || '',
     };
 
     this._deleteSlide = this._deleteSlide.bind(this);
@@ -40,7 +41,7 @@ class BlockHeroForm extends Component {
     if (nextProps.carousel) {
       // Copy Carousel state array.
       this.setState({
-        carousel: nextProps.carousel.slice()
+        carousel: nextProps.carousel.slice(),
       });
     }
   }
@@ -52,12 +53,12 @@ class BlockHeroForm extends Component {
   _addSlideClick() {
     const nextCarouselState = this.state.carousel.slice();
     nextCarouselState.push({
-      image: ''
+      image: '',
     });
 
     this.setState({
       activeSlideIndex: nextCarouselState.length - 1,
-      carousel: nextCarouselState
+      carousel: nextCarouselState,
     });
   }
 
@@ -65,7 +66,7 @@ class BlockHeroForm extends Component {
     this.setState({ confirmLayer: !this.state.confirmLayer });
   }
 
-  _deleteSlideClick(activeIndex) {
+  _deleteSlideClick() {
     this._toggleConfirm();
   }
 
@@ -77,7 +78,7 @@ class BlockHeroForm extends Component {
     this.setState({
       activeSlideIndex: 0,
       carousel: nextCarouselState,
-      confirmLayer: false
+      confirmLayer: false,
     });
   }
 
@@ -87,35 +88,43 @@ class BlockHeroForm extends Component {
       const nextCarouselState = [
         ...carousel.slice(0, activeSlideIndex),
         {
-          image
+          image,
         },
-        ...carousel.slice(activeSlideIndex + 1)
+        ...carousel.slice(activeSlideIndex + 1),
       ];
       this.setState({ carousel: nextCarouselState });
     }
     if (imageSize !== this.state.imageSize) {
       this.setState({
-        imageSize
+        imageSize,
       });
     }
   }
 
   _onChangeContent({ target }) {
     const key = target.id;
-    let val = target.value;
-
-    let obj  = {};
-    obj[key] = val;
-
-    this.setState(obj);
+    if (key === 'path' || key === 'label') {
+      const newState = {
+        button: {
+          ...this.state.button,
+          [`${key}`]: target.value,
+        },
+      };
+      this.setState(newState);
+    }
+    const newState = {
+      [`${key}`]: target.value,
+    };
+    this.setState(newState);
   }
 
-  _onSubmit({ carousel, imageSize, content, headline }) {
+  _onSubmit({ carousel, imageSize, content, headline, button }) {
     const dataToSubmit = {
       carousel,
       imageSize,
       content,
-      headline
+      headline,
+      button,
     };
 
     if (this.props.onSubmit) {
@@ -125,17 +134,52 @@ class BlockHeroForm extends Component {
 
   render() {
     const { assetNode } = this.props;
-    const { activeSlideIndex, imageSize, content, headline } = this.state;
+    const { activeSlideIndex, imageSize, content, headline, button } = this.state;
     const form = (
       <Box>
-        <FormField label="Headline" htmlFor="headline">
-          <textarea autoFocus id="headline" name="headline" type="text"
-            value={headline} onChange={this._onChangeContent} rows="1" />
-        </FormField>
-        <FormField label="Content" htmlFor="content">
-          <textarea autoFocus id="content" name="content" type="text"
-            value={content} onChange={this._onChangeContent} rows="3" />
-        </FormField>
+        <fieldset>
+          <legend>
+            Content
+          </legend>
+          <FormField label="Headline" htmlFor="headline">
+            <textarea
+              autoFocus id="headline" name="headline" type="text"
+              value={headline} onChange={this._onChangeContent} rows="1"
+            />
+          </FormField>
+          <FormField
+            label="Content"
+            htmlFor="content"
+          >
+            <textarea
+              autoFocus
+              id="content"
+              name="content"
+              type="text"
+              value={content}
+              onChange={this._onChangeContent}
+              rows="3"
+            />
+          </FormField>
+          <FormField label="Button Label" htmlFor="label">
+            <input
+              id="label"
+              name="label"
+              type="text"
+              value={button.label}
+              onChange={this._onChangeContent}
+            />
+          </FormField>
+          <FormField label="Button Path" htmlFor="path">
+            <input
+              id="path"
+              name="path"
+              type="text"
+              value={button.path}
+              onChange={this._onChangeContent}
+            />
+          </FormField>
+        </fieldset>
         <CarouselSlideForm
           assetNode={assetNode}
           imageSize={imageSize}
@@ -147,14 +191,17 @@ class BlockHeroForm extends Component {
     );
 
     const tabs = this.state.carousel.map((slide, index) =>
-        <Tab
-          title={`Slide ${index + 1}`}
-          key={index}
-          onClick={this._onTabsClick.bind(this, index)} />);
+      <Tab
+        title={`Slide ${index + 1}`}
+        key={index}
+        onClick={this._onTabsClick.bind(this, index)}
+      />);
 
     const confirmLayer = (this.state.confirmLayer)
-      ? <ConfirmLayer name={`Slide ${activeSlideIndex + 1}`} onClose={this._toggleConfirm}
-          onSubmit={this._deleteSlide.bind(this, activeSlideIndex)} />
+      ? (<ConfirmLayer
+        name={`Slide ${activeSlideIndex + 1}`} onClose={this._toggleConfirm}
+        onSubmit={this._deleteSlide.bind(this, activeSlideIndex)}
+      />)
       : undefined;
 
     return (
@@ -164,14 +211,18 @@ class BlockHeroForm extends Component {
           <Box direction="row" align="center">
             <Button icon={<AddIcon />} label="add slide" onClick={this._addSlideClick} />
             <Box pad="small" />
-            <Button icon={<TrashIcon />} label="delete slide"
-              onClick={this._deleteSlideClick.bind(this, activeSlideIndex)} />
+            <Button
+              icon={<TrashIcon />} label="delete slide"
+              onClick={this._deleteSlideClick.bind(this, activeSlideIndex)}
+            />
           </Box>
         </Box>
         <Box>
           <Box>
-            <Tabs activeIndex={activeSlideIndex} justify="start"
-              style={{marginBottom:'-1px'}}>
+            <Tabs
+              activeIndex={activeSlideIndex} justify="start"
+              style={{ marginBottom: '-1px' }}
+            >
               {tabs}
             </Tabs>
           </Box>
@@ -180,11 +231,11 @@ class BlockHeroForm extends Component {
       </Box>
     );
   }
-};
+}
 
 BlockHeroForm.propTypes = {
   onSubmit: PropTypes.func,
-  assetNode: PropTypes.node
+  assetNode: PropTypes.node,
 };
 
 export default BlockHeroForm;
