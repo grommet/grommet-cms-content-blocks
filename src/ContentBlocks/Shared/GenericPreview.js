@@ -3,6 +3,7 @@ import React from 'react';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import Image from 'grommet/components/Image';
+import removeMarkdown from 'remove-markdown';
 
 export default function GenericPreview(props: {
   content: string,
@@ -16,6 +17,10 @@ export default function GenericPreview(props: {
   }>
 }) {
   const { content, image, carousel } = props;
+  const text = content && content.length > 50
+    ? content.slice(0, 50)
+    : content;
+  const textWithoutMarkdown = text ? removeMarkdown(text) : '';
   return (
     <Box
       colorIndex="light-1"
@@ -30,7 +35,7 @@ export default function GenericPreview(props: {
         <Image size="thumb" src={carousel[0].image.path} />
       }
       <Heading tag="h3">
-        {content.slice(0, 50)}
+        {textWithoutMarkdown}
       </Heading>
     </Box>
   );

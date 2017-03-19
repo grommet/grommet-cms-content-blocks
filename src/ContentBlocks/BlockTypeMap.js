@@ -41,6 +41,9 @@ import {
   BlockButton,
   BlockButtonForm,
   BlockButtonWireframe,
+  BlockCarouselWithContent,
+  BlockCarouselWithContentForm,
+  BlockCarouselWithContentWireframe,
 } from './index';
 
 export default {
@@ -92,6 +95,13 @@ export default {
     form: <BlockCarouselForm />,
     name: 'Carousel',
     wireframe: <BlockCarouselWireframe />,
+  },
+  BlockCarouselWithContent: {
+    element: <BlockCarouselWithContent />,
+    preview: <GenericPreview />,
+    form: <BlockCarouselWithContentForm />,
+    name: 'Carousel With Content',
+    wireframe: <BlockCarouselWithContentWireframe />,
   },
   BlockVideo: {
     element: <BlockVideo />,

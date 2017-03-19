@@ -3,145 +3,328 @@
 import testImg from './img/test.jpg';
 
 export default {
-  posts: [{ _id: '58924296985fabd13d9c9aa0', _type: 'our-brand', title: 'Hello World - Our Brand', subtitle: 'This is a story about blah blah blah', 'slug': 'hello-world-our-brand', 'image': { _id: '587d4860b3ae295860c5fcbf', title: 'Hello World Cover', 'path': '/img/dashboard/posts/hello-world-cover.jpg', '__v': 0, 'createdAt': '2017-01-16T22:25:36.354Z' }, 'date': '2017-01-01T05:00:00.000Z', sortOrder: 5, '__v': 116, createdAt: '2017-02-01T20:18:30.081Z', sections: [{ 'contentBlocks': [], layout: [], 'order': 0, id: 'next-next-marquee', name: 'Next Next' }, { name: 'Test Layout', id: 'test-layout', 'layout': [{ name: 'pad', 'value': 'large' }, { 'name': 'basis', value: 'large' }, { 'name': 'direction', value: 'row' }, { 'name': 'justify', value: 'start' }, { name: 'align', 'value': 'start' }, { 'name': 'full', 'value': 'horizontal' }, { 'name': 'wrap', value: 'true' }], order: 1, contentBlocks: [{ id: '42881ccb-313b-4905-ae44-caada09934ac', 'edit': false, blockType: 'BlockParagraph', content: '## Name in a way customers understand\nThe two branded levels appear before the offering and identifier. Offerings and Identifiers should not contain any branded or trademarked names. At HPE we only use offering names that customers can easily understand and appreciate. Offering names help customers understand how what they’re buying addresses their needs, e.g. Openstack. Identifiers help customers choose from like offerings under a family brand, e.g. Community.', layout: [{ name: 'pad', value: 'none' }, { name: 'size', 'value': 'full' }, { name: 'flex', 'value': 'grow' }] }, { 'source': 'asdf', content: 'adsf', 'blockType': 'BlockQuote', 'edit': false, 'id': '9c0f6e8e-256c-4eca-984a-4c796d91910c' }, { layout: [{ name: 'pad', value: 'none' }, { 'name': 'size', 'value': 'xlarge' }, { 'name': 'flex', 'value': 'grow' }], content: 'hjokl', 'colorIndex': 'accent-1', blockType: 'BlockBox', edit: false, 'id': '1722bb01-848c-420d-b4fd-f2e7e176e97b' }, { layout: [{ 'name': 'pad', value: 'none' }, { name: 'size', value: 'small' }, { 'name': 'flex', 'value': 'grow' }], content: 'asdfasdf', 'colorIndex': 'brand', 'blockType': 'BlockBox', edit: false, id: '7c5e7bd2-881f-465c-acc7-df2bc9906c86' }] }] }, { _id: '58935d6d910d56264bdba334', sortOrder: 6, 'title': 'Foo Bar', 'subtitle': 'This is the subtitle hehehehe', 'date': '2017-02-02T16:25:11.053Z', slug: 'foo-bar', image: { _id: '587d4860b3ae295860c5fcbf', title: 'Hello World Cover', 'path': '/img/dashboard/posts/hello-world-cover.jpg', __v: 0, 'createdAt': '2017-01-16T22:25:36.354Z' }, '_type': 'our-brand', __v: 206, 'createdAt': '2017-02-02T16:25:17.114Z', 'sections': [{ name: 'Foo Bar', 'id': 'foo-bar-marquee', order: 0, 'contentBlocks': [] }, { name: 'Yay', id: 'yay', layout: [{ value: 'medium', 'name': 'pad' }, { value: 'full', name: 'basis' }, { value: 'column', 'name': 'direction' }, { value: 'center', name: 'justify' }, { value: 'center', name: 'align' }, { value: 'false', name: 'full' }, { 'value': 'true', 'name': 'wrap' }], order: 2, contentBlocks: [{ 'id': '569c072e-9b0d-4913-8cf1-065518393bfb', edit: false, blockType: 'BlockBox', 'colorIndex': 'unknown', 'content': '5', 'layout': [{ value: 'none', 'name': 'pad' }, { 'value': 'small', 'name': 'size' }, { value: 'false', 'name': 'flex' }] }, { 'id': '81dcc1f8-c2d9-463b-9bf9-e9a9e999f6c7', edit: false, blockType: 'BlockParagraph', 'content': 'We are developing a suite of 3D product images to showcase the features and configurability of individual products, as well as the way products can be connected into systems of solutions. Our 3D product imagery style establishes a unique visual language for our brand.\nThe 3D images are created in a range of views and provided with optional transparent backgrounds for maximum flexibility across print and digital applications. If your images don’t already exist in the product image library, follow the steps below to engage with the brand team.', 'layout': [{ value: 'none', 'name': 'pad' }, { value: 'xlarge', 'name': 'size' }, { 'value': 'grow', name: 'flex' }] }, { id: '1cee898a-f8ab-427e-befc-9a4568f5bb9a', edit: false, 'blockType': 'BlockHeading', 'content': 'YAYAYAYA' }] }, { name: 'Image test', id: 'image-test', layout: [{ 'name': 'pad', value: 'medium' }, { 'name': 'basis', value: '1/2' }, { 'name': 'direction', 'value': 'row' }, { name: 'justify', value: 'start' }, { 'name': 'align', 'value': 'center' }, { name: 'full', value: 'false' }, { 'name': 'wrap', 'value': 'false' }], order: 2, 'contentBlocks': [{ id: '8bc08b28-ded8-4c01-a039-599762f4f4be', edit: false, 'blockType': 'BlockParagraph', content: 'We are developing a suite of 3D product images to showcase the features and configurability of individual products, as well as the way products can be connected into systems of solutions. Our 3D product imagery style establishes a unique visual language for our brand.\nThe 3D images are created in a range of views and provided with optional transparent backgrounds for maximum flexibility across print and digital applications. If your images don’t already exist in the product image library, follow the steps below to engage with the brand team.', 'layout': [{ 'value': 'large', name: 'pad' }, { value: 'medium', name: 'size' }, { 'value': 'false', 'name': 'flex' }] }, { 'id': '66fc8296-1395-4b2d-b111-3b1753cd2eef', 'edit': false, 'blockType': 'BlockImage', 'image': { '_id': '587d4860b3ae295860c5fcbf', path: '/img/dashboard/posts/hello-world-cover.jpg', title: 'Hello World Cover' }, content: 'asdf', 'imageSize': 'Medium', 'layout': [{ 'value': 'none', 'name': 'pad' }, { 'value': 'auto', name: 'size' }, { 'value': 'false', 'name': 'flex' }] }] }, { contentBlocks: [{ 'layout': [{ name: 'pad', 'value': 'medium' }, { name: 'size', 'value': 'medium' }, { 'name': 'flex', 'value': 'false' }], content: 'Use the color logo on a white or light background', 'colorIndex': 'ok', blockType: 'BlockBox', 'edit': false, id: '807a25ae-c722-43da-840d-bdb1818c9924' }, { layout: [{ 'name': 'pad', 'value': 'medium' }, { 'name': 'size', value: 'medium' }, { name: 'flex', 'value': 'false' }], content: 'Use the color reverse logo on a dark background that provides sufficient contrast', 'colorIndex': 'critical', 'blockType': 'BlockBox', 'edit': false, id: '032005d1-4b1b-4677-bb2e-4571788f479c' }], order: 3, layout: [{ 'name': 'pad', value: 'medium' }, { name: 'basis', 'value': 'full' }, { name: 'direction', value: 'row' }, { name: 'justify', 'value': 'center' }, { 'name': 'align', 'value': 'center' }, { 'name': 'full', value: 'false' }, { 'name': 'wrap', value: 'false' }], 'id': 'box-test', name: 'Box Test' }] },
+  "posts": [
     {
-    "_id": "58acc7d535402c0c210d691f",
-    "sortOrder": 110,
-    "title": "Intro",
-    "subtitle": "",
-    "date": "2017-02-21T23:05:50.597Z",
-    "slug": "intro",
-    "_type": "home",
-    "__v": 79,
-    "createdAt": "2017-02-21T23:05:57.665Z",
-    "sections": [
-      {
-        "name": "Intro",
-        "id": "intro",
-        "layout": [
-          {
-            "value": "row",
-            "name": "direction"
-          },
-          {
-            "value": "start",
-            "name": "justify"
-          },
-          {
-            "value": "start",
-            "name": "align"
-          },
-          {
-            "value": "none",
-            "name": "pad"
-          },
-          {
-            "value": "false",
-            "name": "full"
-          },
-          {
-            "value": "true",
-            "name": "wrap"
-          },
-          {
-            "value": "full",
-            "name": "basis"
-          }
-        ],
-        "order": 0,
-        "contentBlocks": [
-          {
-            "id": "be92a98d-c00b-4c6e-9e2d-2bf7f4387061",
-            "edit": false,
-            "blockType": "BlockHero",
-            "carousel": [
-              {
-                "image": {
-                  "_id": "58ac963635b62b6d4f6f9814",
-                  "title": "Landingpage Welcome",
-                  "path": testImg,
-                }
-              },
-              {
-                "image": {
-                  "_id": "58ac963635b62b6d4f6f97f7",
-                  "title": "Officeenvironment",
-                  "path": testImg,
-                }
-              },
-              {
-                "image": {
-                  "path": testImg,
-                  "title": "Theelement",
-                  "_id": "58ac963635b62b6d4f6f9801"
-                }
-              }
-            ],
-            "imageSize": "Full",
-            "content": "Now that we have created Hewlett Packard Enterprise, it’s time to tell the world our story. These guidelines contain the essential elements of our brand identity. Each section is designed to familiarize you with our brand so you can communicate clearly, consistently and in a way that is uniquely HPE.",
-            "headline": "Welcome to Brand Central"
-          }
-        ]
+      "_id": "58c99ff1c52b685bfe3e63af",
+      "_type": "our-brand",
+      "title": "Brand Architecture",
+      "subtitle": "",
+      "slug": "brand-architecture",
+      "date": "2017-03-15T20:11:19.934Z",
+      "sortOrder": 1,
+      "__v": 236,
+      "image": {
+        "_id": "58c9dd0711c4962f33d993e5",
+        "title": "grommet",
+        "path": testImg,
+        "__v": 0,
+        "createdAt": "2017-03-16T00:32:07.923Z"
       },
-      {
-        "name": "Carousel",
-        "id": "carousel",
-        "layout": [
-          {
-            "value": "row",
-            "name": "direction"
-          },
-          {
-            "value": "start",
-            "name": "justify"
-          },
-          {
-            "value": "start",
-            "name": "align"
-          },
-          {
-            "value": "none",
-            "name": "pad"
-          },
-          {
-            "value": "false",
-            "name": "full"
-          },
-          {
-            "value": "true",
-            "name": "wrap"
-          },
-          {
-            "value": "full",
-            "name": "basis"
-          }
-        ],
-        "order": 1,
-        "contentBlocks": [
-          {
-            "id": "ec2a7ed7-8356-4644-8ab4-1ae92e549a67",
-            "edit": false,
-            "blockType": "BlockCarousel",
-            "carousel": [
-              {
-                "image": {
-                  "_id": "58ac963635b62b6d4f6f9812",
-                  "title": "Landingpage Rethink 01",
-                  "path": testImg,
+      "modifiedAt": "2017-03-15T20:11:29.787Z",
+      "createdAt": "2017-03-15T20:11:29.787Z",
+      "sections": [
+        {
+          "contentBlocks": [
+            {
+              "layout": [
+                {
+                  "name": "newLine",
+                  "value": "false"
+                },
+                {
+                  "name": "pad-horizontal",
+                  "value": "none"
+                },
+                {
+                  "name": "pad-vertical",
+                  "value": "none"
+                },
+                {
+                  "name": "size",
+                  "value": "medium"
+                },
+                {
+                  "name": "flex",
+                  "value": "false"
                 }
+              ],
+              "content": "Test Box",
+              "colorIndex": "brand",
+              "blockType": "BlockBox",
+              "edit": false,
+              "id": "a8ca61f7-c562-4c06-8ca9-4c9d27cb3c2c"
+            },
+            {
+              "layout": [
+                {
+                  "name": "newLine",
+                  "value": "false"
+                },
+                {
+                  "name": "pad-horizontal",
+                  "value": "none"
+                },
+                {
+                  "name": "pad-vertical",
+                  "value": "medium"
+                },
+                {
+                  "name": "size",
+                  "value": "small"
+                },
+                {
+                  "name": "flex",
+                  "value": "false"
+                }
+              ],
+              "content": "Test Box 2",
+              "colorIndex": "accent-1",
+              "blockType": "BlockBox",
+              "edit": false,
+              "id": "8378dd20-e010-4d0d-8307-8d965ab53d13"
+            },
+            {
+              "layer": false,
+              "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort to help our partners address thefundamental changes in today’s business environment – the move towards the digital workplace and the explosion of big data.",
+              "blockType": "BlockParagraph",
+              "edit": false,
+              "id": "dcb76a24-ef78-4809-b7ee-67be1f5f0d43"
+            },
+            {
+              "blockType": "BlockHeading",
+              "edit": false,
+              "id": "7e9192eb-0e33-4721-9b4a-298d7f188b57",
+              "content": "test"
+            },
+            {
+              "id": "e5da9f9f-b881-4987-bb78-4eebd81940a6",
+              "edit": false,
+              "blockType": "BlockImage",
+              "image": {
+                "_id": "58cc236e41a22cbcdfc03820",
+                "title": "people_in_the_city",
+                "path": testImg
               },
-              {
-                "image": {
-                  "_id": "58ac963635b62b6d4f6f9813",
-                  "title": "Landingpage Rethink 02",
-                  "path": testImg,
+              "content": "test",
+              "imageSize": "Medium",
+              "alt": "test"
+            },
+            {
+              "id": "28aa33d0-cf69-4714-8dfc-1a1ca3693a69",
+              "edit": false,
+              "blockType": "BlockImage",
+              "image": {
+                "_id": "58cc236e41a22cbcdfc03820",
+                "title": "people_in_the_city",
+                "path": testImg
+              },
+              "content": "test",
+              "imageSize": "Large",
+              "alt": "test"
+            },
+            {
+              "id": "428a56fa-93c2-49b1-95f0-9cd48fc2f56e",
+              "edit": false,
+              "blockType": "BlockImageGallery",
+              "carousel": [
+                {
+                  "image": {
+                    "_id": "58cc236e41a22cbcdfc03820",
+                    "title": "people_in_the_city",
+                    "path": testImg
+                  }
+                },
+                {
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
                 }
+              ],
+              "imageSize": "Small"
+            },
+            {
+              "id": "88562065-39fa-43b6-a936-6f63f6ac63ba",
+              "edit": false,
+              "blockType": "BlockImageGallery",
+              "carousel": [
+                {
+                  "image": {
+                    "_id": "58cc236e41a22cbcdfc03820",
+                    "title": "people_in_the_city",
+                    "path": testImg
+                  }
+                },
+                {
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
+                }
+              ],
+              "imageSize": "XLarge"
+            },
+            {
+              "id": "9e8f2b62-6ce9-488e-915d-c27df7651814",
+              "edit": false,
+              "blockType": "BlockHero",
+              "carousel": [
+                {
+                  "image": {
+                    "_id": "587d4860b3ae295860c5fcbf",
+                    "title": "Hello World Cover",
+                    "path": testImg
+                  }
+                }
+              ],
+              "imageSize": "Large",
+              "content": "test",
+              "headline": "Test"
+            },
+            {
+              "id": "f432af63-4aff-41ee-ac9a-35d536787cc7",
+              "edit": false,
+              "blockType": "BlockCarousel",
+              "carousel": [
+                {
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
+                }
+              ],
+              "imageSize": "Full"
+            },
+            {
+              "id": "f432af63-4aff-41ee-ac9a-35d536787cc7",
+              "edit": false,
+              "blockType": "BlockCarouselWithContent",
+              "carousel": [
+                {
+                  "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort",
+                  "button": {
+                    "label": 'Get Started',
+                    "path": "/"
+                  },
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
+                },
+                {
+                  "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort",
+                  "button": {
+                    "label": 'Get Started',
+                    "path": "/"
+                  },
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
+                },
+                {
+                  "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort",
+                  "button": {
+                    "label": 'Get Started',
+                    "path": "/"
+                  },
+                  "image": {
+                    "_id": "58cc236141a22cbcdfc0381f",
+                    "title": "landingpage_powerpoint",
+                    "path": testImg
+                  }
+                },
+              ],
+              "imageSize": "Full"
+            },
+            {
+              "id": "c640a738-f69a-44bd-9bd9-fad249a0331a",
+              "edit": false,
+              "blockType": "BlockVideo",
+              "image": {
+                "_id": "58c9dd0711c4962f33d993e5",
+                "title": "grommet",
+                "path": testImg
+              },
+              "content": "Test",
+              "video": {
+                "_id": "58c9dd0711c4962f33d993e5",
+                "title": "grommet",
+                "path": testImg
+              },
+              "label": "Test"
+            },
+            {
+              "id": "23c1abbf-8fef-46a4-8156-0b32ddf2ebac",
+              "edit": false,
+              "blockType": "BlockQuote",
+              "content": "test",
+              "source": "test"
+            },
+            {
+              "id": "f5b3bd4e-02aa-40ef-a8aa-f90eee2b9ed8",
+              "edit": false,
+              "blockType": "BlockColorSwatch",
+              "color": {
+                "name": "test",
+                "thumbColor": "#01a982",
+                "content": "test"
               }
-            ],
-            "imageSize": "large"
-          }
-        ]
-      }
-    ]
-  }],
-};
+            },
+            {
+              "id": "e1254f19-bc27-48cd-bbeb-e0e0707bbdc1",
+              "edit": false,
+              "blockType": "BlockButton",
+              "asset": "",
+              "label": "test",
+              "primary": "True",
+              "buttonType": "Button",
+              "path": "test",
+              "href": "",
+              "assetType": "path"
+            }
+          ],
+          "order": 0,
+          "layout": [
+            {
+              "name": "direction",
+              "value": "column"
+            },
+            {
+              "name": "justify",
+              "value": "start"
+            },
+            {
+              "name": "align",
+              "value": "start"
+            },
+            {
+              "name": "pad",
+              "value": "small"
+            },
+            {
+              "name": "full",
+              "value": "false"
+            },
+            {
+              "name": "wrap",
+              "value": "true"
+            },
+            {
+              "name": "basis",
+              "value": "full"
+            }
+          ],
+          "id": "test-section",
+          "name": "Test Section"
+        }
+      ],
+      "tileSize": "Large Square"
+    }
+  ]
+}

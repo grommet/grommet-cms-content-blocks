@@ -52,7 +52,7 @@ export class BlockCardForm extends Component {
     }
   }
 
-  _validateForm({ image }) {
+  _validateForm({ image, content }) {
     if (image !== '' && content !== '') { return true; }
 
     return false;

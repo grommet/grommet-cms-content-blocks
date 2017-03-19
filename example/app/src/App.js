@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import state from './state';
-// import { PostsRenderer } from 'grommet-cms-content-blocks';
 import { PostsRenderer } from 'grommet-cms-content-blocks';
 
 // If you use React Router, make this component

@@ -2,7 +2,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'grommet/scss/hpe/index.scss';
+import './index.scss';
 
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -10,7 +10,7 @@ const render = Component =>
     <AppContainer>
       <Component />
     </AppContainer>,
-    rootEl
+    rootEl,
   );
 
 render(App);
