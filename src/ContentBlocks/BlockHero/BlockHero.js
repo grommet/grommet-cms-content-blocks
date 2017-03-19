@@ -10,7 +10,7 @@ export default class BlockHero extends Component {
     this.setRandomIndex = this.setRandomIndex.bind(this);
     this.calculateRandomIndex = this.calculateRandomIndex.bind(this);
     this.state = {
-      currentIndex: 0
+      currentIndex: 0,
     };
   }
   componentWillMount() {
@@ -25,11 +25,11 @@ export default class BlockHero extends Component {
   setRandomIndex() {
     const nextIndex = this.calculateRandomIndex();
     this.setState({
-      currentIndex: nextIndex
+      currentIndex: nextIndex,
     });
   }
   render() {
-    const { carousel, imageSize, headline, content } = this.props;
+    const { carousel, imageSize, headline, content, button } = this.props;
     const size = imageSize ? imageSize.toLowerCase() : 'large';
     const { currentIndex } = this.state;
     const image = carousel[currentIndex].image;
@@ -39,6 +39,7 @@ export default class BlockHero extends Component {
 
     return (
       <Box
+        id="grommet-cms-content-blocks--hero-box"
         align="center"
         justify="center"
         size={{ height: size, width: size }}
@@ -50,7 +51,6 @@ export default class BlockHero extends Component {
           pad="medium"
           align="center"
           justify="center"
-          colorIndex="grey-4-a"
         >
           <Headline align="center" size="large" strong>
             {headline || ''}
@@ -58,20 +58,28 @@ export default class BlockHero extends Component {
           <Markdown
             content={content || ''}
             components={{
-              'p': { 'props':  { size: 'large', margin: 'small', align: 'center' } },
-              'h2': { 'props':  { strong: true, align: 'center' } }
+              p: { props: { size: 'large', margin: 'small', align: 'center' } },
+              h2: { props: { strong: true, align: 'center' } },
             }}
           />
-          <Button label="Get Started" path="/brand-central/main" />
+          {button &&
+            <Button
+              {...button}
+            />
+          }
         </Box>
       </Box>
     );
   }
-};
+}
 
 BlockHero.propTypes = {
   carousel: PropTypes.array,
   imageSize: PropTypes.string,
   headline: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
+  button: PropTypes.shape({
+    label: PropTypes.string,
+    path: PropTypes.string,
+  }),
 };

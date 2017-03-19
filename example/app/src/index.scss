@@ -1,5 +1,3 @@
-@import 'grommet/scss/hpe/index.scss';
-
 .grommet-cms-content-blocks--carousel-slide__small {
   width: 100%;
   height: 192px;
@@ -43,3 +41,8 @@
   bottom: 0;
 }
 
+.grommet-cms-content-blocks--carousel-slide__inner-box {
+  @media screen and (max-width: 768px) {
+    width: auto;
+  }
+}

@@ -21,6 +21,7 @@ export default function BlockCarousel({ carousel, imageSize }) {
           className="grommet-cms-content-blocks--carousel-slide__content"
           align="start"
           justify="center"
+          margin="large"
         >
           <Box
             margin="large"
