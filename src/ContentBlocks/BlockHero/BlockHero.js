@@ -64,6 +64,7 @@ export default class BlockHero extends Component {
           />
           {button &&
             <Button
+              primary
               {...button}
             />
           }
