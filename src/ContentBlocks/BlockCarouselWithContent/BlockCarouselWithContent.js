@@ -37,7 +37,7 @@ export default function BlockCarousel({ carousel, imageSize }) {
               content={slide.content}
             />
             {slide.button &&
-              <Footer pad="small">
+              <Footer pad={{ vertical: 'medium' }}>
                 <Button {...slide.button} />
               </Footer>
             }
