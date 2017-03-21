@@ -29,6 +29,7 @@ export default class BlockHero extends Component {
           pad="large"
           align="center"
           justify="center"
+          colorIndex="grey-4-a"
         >
           <Headline align="center" size="large" strong>
             {headline || ''}
