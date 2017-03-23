@@ -32,7 +32,7 @@ export default class ImageGallery extends Component {
               <Tile
                 onClick={() => this.handleClick(i)}
                 key={i}
-                style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}
+                style={{ outline: i === currentIndex ? '.2em solid #01a982' : '' }}
               >
                 <Image size="thumb" src={image.path} />
               </Tile>,
