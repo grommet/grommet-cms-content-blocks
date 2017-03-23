@@ -5,6 +5,7 @@ import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
 import Select from 'grommet/components/Select';
+import { MarkdownHelpLayer } from '../Shared';
 
 export class BlockImageForm extends Component {
   constructor(props) {
@@ -14,11 +15,13 @@ export class BlockImageForm extends Component {
       content: props.content || '',
       alt: props.alt || '',
       imageSize: props.imageSize || 'Large',
+      layer: false
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.onToggleHelp = this.onToggleHelp.bind(this);
   }
 
   componentWillReceiveProps({ image, url }) {
@@ -32,6 +35,12 @@ export class BlockImageForm extends Component {
         image: `${this.props.url}`,
       });
     }
+  }
+
+  onToggleHelp() {
+    this.setState({
+      layer: !this.state.layer
+    });
   }
 
   onChange(e) {
@@ -63,7 +72,7 @@ export class BlockImageForm extends Component {
   }
 
   render() {
-    const { image, content, imageSize, alt } = this.state;
+    const { image, content, imageSize, alt, layer } = this.state;
     const { children } = this.props;
     const submit = (this.validateForm(this.state))
       ? this.onSubmit
@@ -71,13 +80,16 @@ export class BlockImageForm extends Component {
 
     return (
       <Box colorIndex="light-2" pad="medium">
+        <MarkdownHelpLayer isVisible={layer}
+          onToggle={this.onToggleHelp} />
         <Form compact={false} onSubmit={submit}>
           <FormFields>
             <fieldset>
               <FormField label="Description" htmlFor="content">
-                <input
+                <textarea
                   autoFocus
                   id="content"
+                  rows="3"
                   name="content"
                   type="text"
                   value={content}
@@ -86,7 +98,6 @@ export class BlockImageForm extends Component {
               </FormField>
               <FormField label="Alt Tag" htmlFor="alt">
                 <input
-                  autoFocus
                   id="alt"
                   name="alt"
                   type="text"
