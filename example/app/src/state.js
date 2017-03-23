@@ -207,10 +207,6 @@ export default {
               "carousel": [
                 {
                   "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort",
-                  "button": {
-                    "label": 'Get Started',
-                    "path": "/"
-                  },
                   "image": {
                     "_id": "58cc236141a22cbcdfc0381f",
                     "title": "landingpage_powerpoint",

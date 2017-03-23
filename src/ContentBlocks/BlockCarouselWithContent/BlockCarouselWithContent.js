@@ -33,9 +33,9 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
               colorIndex="grey-4-a"
             >
               <Markdown
-                content={parsedContent}
+                content={content}
                 components={{
-                  p: { props: { size: 'large', margin: 'small', align: 'center' } },
+                  p: { props: { size: 'large', margin: 'small' } },
                   h2: { props: { strong: true, align: 'center' } },
                 }}
               />
