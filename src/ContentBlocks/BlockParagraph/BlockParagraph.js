@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'grommet/components/Markdown';
-import parseMarkdown from '../../utils/markdownParser';
 
 export default function BlockParagraph({ content }) {
-  const parsedContent = parseMarkdown(content);
+  const markdownContent = content || '';
   return (
     <Markdown
-      content={parsedContent}
+      content={markdownContent}
       components={{
-        p: { props: { size: 'medium', margin: 'none' } },
+        p: { props: { size: 'medium', margin: 'small' } },
         h1: { props: { margin: 'none' } },
         h2: { props: { margin: 'none' } },
         h3: { props: { margin: 'none' } },
