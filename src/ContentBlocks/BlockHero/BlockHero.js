@@ -3,6 +3,7 @@ import Box from 'grommet/components/Box';
 import Markdown from 'grommet/components/Markdown';
 import Headline from 'grommet/components/Headline';
 import Button from 'grommet/components/Button';
+import parseMarkdown from '../../utils/markdownParser';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class BlockHero extends Component {
@@ -10,6 +11,7 @@ export default class BlockHero extends Component {
     const { carousel, imageSize, headline, content, button } = this.props;
     const size = imageSize ? imageSize.toLowerCase() : 'large';
     const randomIndex = Math.floor(Math.random() * carousel.length);
+    const parsedContent =  parseMarkdown(content);
     const image = carousel[randomIndex].image;
     const imagePath = image && image.path
       ? image.path
@@ -35,7 +37,7 @@ export default class BlockHero extends Component {
             {headline || ''}
           </Headline>
           <Markdown
-            content={content || ''}
+            content={parsedContent}
             components={{
               p: { props: { size: 'large', margin: 'small', align: 'center' } },
               h2: { props: { strong: true, align: 'center' } },

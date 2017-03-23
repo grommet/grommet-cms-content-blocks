@@ -85,7 +85,7 @@ export class BlockImageForm extends Component {
         <Form compact={false} onSubmit={submit}>
           <FormFields>
             <fieldset>
-              <FormField label="Description" htmlFor="content">
+              <FormField label="Content" htmlFor="content">
                 <textarea
                   autoFocus
                   id="content"

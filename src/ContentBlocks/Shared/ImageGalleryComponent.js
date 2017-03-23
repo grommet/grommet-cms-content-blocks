@@ -51,6 +51,6 @@ ImageGallery.propTypes = {
     }),
   ),
   currentIndex: PropTypes.number.isRequired,
-  imageSize: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  imageSize: PropTypes.oneOf(['Small', 'Medium', 'Large', 'Xlarge']),
   onClickItem: PropTypes.func.isRequired,
 };

@@ -1,9 +1,15 @@
 import React, { PropTypes } from 'react';
 import Headline from 'grommet/components/Headline';
 
-export default function BlockHeading ({ content }) {
+export default function BlockHeading ({ content, strong, size }) {
+  const strongProp = strong ? strong === 'True' : false;
+  const sizeProp = size ? size.toLowerCase() : 'medium';
+  const headlineProps = {
+    size: sizeProp,
+    strong: strongProp,
+  };
   return (
-    <Headline>
+    <Headline {...headlineProps}>
       {content}
     </Headline>
   );

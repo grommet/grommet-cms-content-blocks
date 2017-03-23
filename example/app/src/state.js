@@ -85,7 +85,7 @@ export default {
             },
             {
               "layer": false,
-              "content": "# Aruba\n<br>\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort to help our partners address thefundamental changes in today’s business environment – the move towards the digital workplace and the explosion of big data.",
+              "content": "# Aruba\n\n\nAruba, a Hewlett Packard Enterprise company, is a leading provider of next-generation networking solutions \n\n for enterprise that empowerorganizations to serve mobile-savvy users. Aruba’s mobile-first, cloudfirst approach is part of HPE’s effort to help our partners address thefundamental changes in today’s business environment – the move towards the digital workplace and the explosion of big data.",
               "blockType": "BlockParagraph",
               "edit": false,
               "id": "dcb76a24-ef78-4809-b7ee-67be1f5f0d43"
@@ -94,7 +94,9 @@ export default {
               "blockType": "BlockHeading",
               "edit": false,
               "id": "7e9192eb-0e33-4721-9b4a-298d7f188b57",
-              "content": "test"
+              "content": "test",
+              "strong": 'False',
+              "size": "Large"
             },
             {
               "id": "e5da9f9f-b881-4987-bb78-4eebd81940a6",
