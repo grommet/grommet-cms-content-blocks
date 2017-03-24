@@ -57,7 +57,7 @@ export default class BlockCard extends Component {
       <div>
         {videoLayer}
         <Card
-          contentPad="small"
+          contentPad="medium"
           thumbnail={
             <Box
               className="block--block-card_card-thumbnail"

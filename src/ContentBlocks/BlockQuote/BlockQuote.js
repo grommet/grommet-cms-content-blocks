@@ -3,6 +3,7 @@ import Heading from 'grommet/components/Heading';
 import Quote from 'grommet/components/Quote';
 import Label from 'grommet/components/Label';
 import Anchor from 'grommet/components/Anchor';
+import Paragraph from 'grommet/components/Paragraph';
 import Box from 'grommet/components/Box';
 
 export default function BlockQuote({ content, source, colorIndex, borderSize, label, linkUrl, linkText }) {
@@ -14,7 +15,6 @@ export default function BlockQuote({ content, source, colorIndex, borderSize, la
       size={size}
       borderColorIndex={color}
       pad="large"
-      credit={source}
     >
       <Box pad="small">
         {label &&
@@ -25,6 +25,11 @@ export default function BlockQuote({ content, source, colorIndex, borderSize, la
         <Heading tag="h3">
           {content}
         </Heading>
+        {source &&
+          <Paragraph className="grommetux-quote__credit">
+            <strong>{source}</strong>
+          </Paragraph>
+        }
         {linkUrl && linkText &&
           <Anchor label={linkText} path={linkUrl} />
         }

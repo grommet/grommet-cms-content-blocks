@@ -36,10 +36,9 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
                 content={content}
                 components={{
                   p: { props: { size: 'large', margin: 'small' } },
-                  h2: { props: { strong: true, align: 'center' } },
                 }}
               />
-              {slide.button &&
+              {slide.button && slide.button.label &&
                 <Footer pad={{ vertical: 'medium' }}>
                   <Button {...slide.button} />
                 </Footer>
