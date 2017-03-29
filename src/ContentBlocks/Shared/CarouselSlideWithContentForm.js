@@ -16,8 +16,8 @@ export class CarouselSlideWithContentForm extends Component {
       content: props.data ? props.data.content : '',
       button: props.data ? props.data.button : { path: '', label: '' },
       imageSize: props.imageSize ? props.imageSize : 'Full',
-      justification: props.data ? props.data.justification : 'left',
-      color: props.data ? props.data.color : 'black',
+      justification: (props.data && props.data.justification) ? props.data.justification : 'left',
+      color: (props.data && props.data.color) ? props.data.color : 'black',
       layer: false,
     };
 
@@ -244,6 +244,19 @@ CarouselSlideWithContentForm.propTypes = {
   assetNode: PropTypes.node,
   url: PropTypes.string,
   onSubmit: PropTypes.func,
+  imageSize: PropTypes.string,
+  data: PropTypes.shape({
+    image: PropTypes.shape({
+      path: PropTypes.string,
+    }),
+    content: PropTypes.string,
+    button: PropTypes.shape({
+      path: PropTypes.string,
+      label: PropTypes.string,
+    }),
+    justification: PropTypes.string,
+    color: PropTypes.string,
+  }),
 };
 
 export default CarouselSlideWithContentForm;
