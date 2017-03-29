@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import state from './state';
-import { PostsRenderer } from 'grommet-cms-content-blocks';
+import { CarouselSlideWithContentForm } from 'grommet-cms-content-blocks';
 
 // If you use React Router, make this component
 // render <Router> with your routes. Currently,
@@ -14,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <Layout>
-        <PostsRenderer posts={state.posts} />
+        <CarouselSlideWithContentForm />
       </Layout>
     );
   }

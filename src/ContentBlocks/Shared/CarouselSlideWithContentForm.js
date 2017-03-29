@@ -3,7 +3,8 @@ import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
-import Select from 'grommet/components/Select';
+import Box from 'grommet/components/Box';
+import RadioButton from 'grommet/components/RadioButton';
 import { MarkdownHelpLayer } from '../Shared';
 
 export class CarouselSlideWithContentForm extends Component {
@@ -15,21 +16,26 @@ export class CarouselSlideWithContentForm extends Component {
       content: props.data ? props.data.content : '',
       button: props.data ? props.data.button : { path: '', label: '' },
       imageSize: props.imageSize ? props.imageSize : 'Full',
+      justification: props.data ? props.data.justification : 'left',
+      color: props.data ? props.data.color : 'black',
       layer: false,
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._propsToState = this._propsToState.bind(this);
-    this._onAssetSelect = this._onAssetSelect.bind(this);
-    this._onToggleHelp = this._onToggleHelp.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onChangeJustification = this.onChangeJustification.bind(this);
+    this.onChangeColor = this.onChangeColor.bind(this);
+    this.propsToState = this.propsToState.bind(this);
+    this.onAssetSelect = this.onAssetSelect.bind(this);
+    this.onToggleHelp = this.onToggleHelp.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   componentDidMount() {
-    this._propsToState(this.props);
+    this.propsToState(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this._propsToState(nextProps);
+    this.propsToState(nextProps);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,28 +51,41 @@ export class CarouselSlideWithContentForm extends Component {
     }
   }
 
-  _onToggleHelp() {
+  onToggleHelp() {
     this.setState({
       layer: !this.state.layer,
     });
   }
 
-  _propsToState(props) {
+  onChangeJustification() {
+    const { justification } = this.state;
+    let newType = 'left';
+    if (justification === newType) {
+      newType = 'right';
+    }
     this.setState({
-      imageSize: props.imageSize || 'Full',
-      image: props.data ? props.data.image : null,
-      content: props.data ? props.data.content : '',
-      button: props.data ? props.data.button : { path: '', label: '' },
+      justification: newType,
     });
   }
 
-  _onAssetSelect(image) {
+  onChangeColor() {
+    const { color } = this.state;
+    let newType = 'black';
+    if (color === newType) {
+      newType = 'white';
+    }
+    this.setState({
+      color: newType,
+    });
+  }
+
+  onAssetSelect(image) {
     this.setState({
       image,
     });
   }
 
-  _onChange(e) {
+  onChange(e) {
     const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
@@ -85,7 +104,18 @@ export class CarouselSlideWithContentForm extends Component {
     }
   }
 
-  _validate(data) {
+  propsToState(props) {
+    this.setState({
+      imageSize: props.imageSize || 'Full',
+      image: props.data ? props.data.image : null,
+      color: props.data ? props.data.color : 'black',
+      justification: props.data ? props.data.justification : 'left',
+      content: props.data ? props.data.content : '',
+      button: props.data ? props.data.button : { path: '', label: '' },
+    });
+  }
+
+  validate(data) {
     if (!data || !data.image) {
       return false;
     }
@@ -94,17 +124,17 @@ export class CarouselSlideWithContentForm extends Component {
   }
 
   render() {
-    const onSubmit = (this._validate(this.state))
+    const onSubmit = (this.validate(this.state))
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
-    const { image, content, layer, button } = this.state;
+    const { image, content, layer, button, justification, color } = this.state;
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <MarkdownHelpLayer
           isVisible={layer}
-          onToggle={this._onToggleHelp}
+          onToggle={this.onToggleHelp}
         />
         <FormFields>
           <fieldset>
@@ -115,7 +145,7 @@ export class CarouselSlideWithContentForm extends Component {
                 name="image"
                 type="text"
                 value={image && image.path ? image.path : ''}
-                onChange={this._onChange}
+                onChange={this.onChange}
               />
             </FormField>
             <fieldset>
@@ -128,33 +158,78 @@ export class CarouselSlideWithContentForm extends Component {
                   name="content"
                   type="text"
                   value={content}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   rows="4"
                 />
               </FormField>
+              <FormField
+                label="Content Justification"
+              >
+                <Box direction="row" pad={{ vertical: 'small', horizontal: 'medium' }}>
+                  <RadioButton
+                    id="left"
+                    label="Left"
+                    checked={(justification === 'left')}
+                    onChange={this.onChangeJustification}
+                    name="left"
+                  />
+                  <RadioButton
+                    id="right"
+                    label="Right"
+                    checked={(justification === 'right')}
+                    onChange={this.onChangeJustification}
+                    name="right"
+                  />
+                </Box>
+              </FormField>
+              <FormField
+                label="Content Color"
+              >
+                <Box direction="row" pad={{ vertical: 'small', horizontal: 'medium' }}>
+                  <RadioButton
+                    id="black"
+                    label="Black"
+                    checked={(color === 'black')}
+                    onChange={this.onChangeColor}
+                    name="black"
+                  />
+                  <RadioButton
+                    id="white"
+                    label="White"
+                    checked={(color === 'white')}
+                    onChange={this.onChangeColor}
+                    name="white"
+                  />
+                </Box>
+              </FormField>
+            </fieldset>
+            <fieldset>
+              <legend>
+                Button
+              </legend>
               <FormField label="Button Label" htmlFor="label">
                 <input
                   id="label"
                   name="label"
                   type="text"
                   value={button.label}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                 />
               </FormField>
-              <FormField label="Path" htmlFor="path">
+              <FormField label="Button Path" htmlFor="path">
                 <input
                   id="path"
                   name="path"
                   type="text"
                   value={button.path}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                 />
               </FormField>
             </fieldset>
             {assetNode && React.cloneElement(
               assetNode,
               {
-                onAssetSelect: this._onAssetSelect,
+                onAssetSelect: this.onAssetSelect,
               },
             )}
           </fieldset>
@@ -168,6 +243,7 @@ export class CarouselSlideWithContentForm extends Component {
 CarouselSlideWithContentForm.propTypes = {
   assetNode: PropTypes.node,
   url: PropTypes.string,
+  onSubmit: PropTypes.func,
 };
 
 export default CarouselSlideWithContentForm;

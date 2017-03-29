@@ -11,6 +11,9 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
   // TODO: refactor to use grommet sizes vs. custom css
   const slides = carousel.map((slide, index) => {
     const content = slide.content || '';
+    const contentClassName = slide.color === 'white'
+      ? 'grommetux-background-color-index--dark'
+      : 'grommetux-background-color-index--light';
     return (
       <Box className="grommet-cms-content-blocks--carousel-slide__content-box">
         <Image
@@ -20,17 +23,16 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
         />
         {slide.content &&
           <Box
-            className="grommet-cms-content-blocks--carousel-slide__content"
-            align="start"
+            className={`grommet-cms-content-blocks--carousel-slide__content ${contentClassName}`}
+            align={slide.justification === 'left' ? 'start' : 'end'}
             justify="center"
             margin="large"
           >
             <Box
               margin="large"
-              className="grommet-cms-content-blocks--carousel-slide__inner-box"
+              className={'grommet-cms-content-blocks--carousel-slide__inner-box'}
               pad="large"
               size="large"
-              colorIndex="grey-4-a"
             >
               <Markdown
                 content={content}
@@ -47,7 +49,7 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
           </Box>
         }
       </Box>
-    )
+    );
   });
 
   return (
