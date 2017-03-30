@@ -30,7 +30,7 @@ export default function BlockCarouselWithContent({ carousel, imageSize }) {
           >
             <Box
               margin="large"
-              className={'grommet-cms-content-blocks--carousel-slide__inner-box'}
+              className="grommet-cms-content-blocks--carousel-slide__inner-box"
               pad="large"
               size="large"
             >

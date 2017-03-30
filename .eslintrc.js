@@ -1,11 +1,19 @@
 var path = require('path');
 
 module.exports = {
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:flowtype/recommended"
+  ],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   },
   "rules": {
     "func-names": 0,
