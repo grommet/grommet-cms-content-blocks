@@ -5,6 +5,7 @@ import Button from 'grommet/components/Button';
 import Tabs from 'grommet/components/Tabs';
 import Tab from 'grommet/components/Tab';
 import FormField from 'grommet/components/FormField';
+import FormFields from 'grommet/components/FormFields';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
 import { ConfirmLayer, MarqueeSlideForm } from '../Shared';
@@ -172,10 +173,7 @@ class BlockMarqueeForm extends Component {
     const { assetNode } = this.props;
     const { activeSlideIndex, imageSize, content, button } = this.state;
     const form = (
-      <fieldset>
-        <legend>
-          Content
-        </legend>
+      <FormFields>
         <FormField
           label="Content"
           htmlFor="content"
@@ -208,7 +206,7 @@ class BlockMarqueeForm extends Component {
             onChange={this.onChangeContent}
           />
         </FormField>
-      </fieldset>
+      </FormFields>
     );
 
     const marqueeForm = (
