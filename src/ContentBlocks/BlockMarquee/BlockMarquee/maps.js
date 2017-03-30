@@ -4,5 +4,5 @@ export default {
   large: 576,
   xlarge: 720,
   xxlarge: 960,
-  full: 100
+  full: 100,
 };

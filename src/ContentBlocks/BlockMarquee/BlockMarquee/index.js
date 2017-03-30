@@ -16,7 +16,7 @@ type Props = {
   carousel: any,
   imageSize: GrommetBoxTypes$Size,
   content: string,
-  button: {
+  button: ?{
     label: string,
     path: string,
   }
@@ -29,24 +29,26 @@ type State = {
 }
 
 class BlockMarquee extends Component { // eslint-disable-line react/prefer-stateless-function
-  props: Props;
-  state: State;
-  heroRef: ?HTMLElement;
   constructor() {
     super();
-    (this:any).handleScroll = this.handleScroll.bind(this);
-    (this:any).handleResize = this.handleResize.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleResize = this.handleResize.bind(this);
     this.heroRef = null;
     this.state = {
       scale: 1,
       isMobile: window.innerWidth <= 720,
-      opacity: 1
+      opacity: 1,
     };
   }
+  state: State;
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize);
   }
+  handleScroll: () => void;
+  handleResize: () => void;
+  heroRef: ?HTMLElement;
+  props: Props;
   handleScroll() {
     if (this.heroRef) {
       const node = findDOMNode(this.heroRef);
@@ -54,7 +56,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
         const state = calculateAnimation(node);
         window.requestAnimationFrame(() => {
           this.setState({
-            ...state
+            ...state,
           });
         });
       }
@@ -63,7 +65,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
   handleResize() {
     const isMobile = window.innerWidth <= 720;
     this.setState({
-      isMobile
+      isMobile,
     });
   }
   render() {
@@ -74,7 +76,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
     const parsedContent = content || '';
     const { image, color, justification } = carousel[randomIndex];
     const align = justification === 'left' ? 'start' : 'end';
-    const contentClassName = color === 'white'
+    const contentClassName = (color === 'white' && !isMobile)
       ? 'grommetux-background-color-index--dark'
       : 'grommetux-background-color-index--light';
     const imagePath = image && image.path
@@ -83,8 +85,9 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
 
     return (
       <WrapperBox size={size} id="grommet-cms-content-blocks--marquee">
-        <ImageWrapper size={size}>
+        <ImageWrapper id="grommet-cms-content-blocks--marquee__image-wrapper" size={size}>
           <ImageBox
+            id="grommet-cms-content-blocks--marquee__image-box"
             ref={(ref) => {
               this.heroRef = ref;
             }}
@@ -95,11 +98,11 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
           />
         </ImageWrapper>
         <ContentBox
+          id="grommet-cms-content-blocks--marquee__content-box"
           justify="center"
           pad="large"
           align={align}
           style={!isMobile && { opacity }}
-          size={size}
         >
           <Box
             pad="large"
@@ -111,11 +114,11 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
               components={{
                 p: { props: { size: 'large', margin: 'small' } },
                 h1: { props: { strong: true } },
-                h2: { props: { strong: true } }
+                h2: { props: { strong: true } },
               }}
             />
             <Footer className="grommetux-background-color-index--light">
-              {button && button.label &&
+              {button && button.label && button.path &&
                 <Button
                   primary
                   {...button}

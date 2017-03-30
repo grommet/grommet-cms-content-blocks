@@ -7,7 +7,7 @@ import Tab from 'grommet/components/Tab';
 import FormField from 'grommet/components/FormField';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer, CarouselSlideForm } from '../Shared';
+import { ConfirmLayer, MarqueeSlideForm } from '../Shared';
 
 type CarouselSlide = any;
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
@@ -125,13 +125,20 @@ class BlockMarqueeForm extends Component {
     });
   }
 
-  handleChange({ image, imageSize }: { image: string, imageSize: ImageSize }) {
+  handleChange({ image, color, justification, imageSize }: {
+    image: string,
+    imageSize: ImageSize,
+    color: string,
+    justification: string
+  }) {
     const { carousel, activeSlideIndex } = this.state;
     if (image !== carousel[activeSlideIndex]) {
       const nextCarouselState = [
         ...carousel.slice(0, activeSlideIndex),
         {
           image,
+          color,
+          justification,
         },
         ...carousel.slice(activeSlideIndex + 1),
       ];
@@ -165,52 +172,53 @@ class BlockMarqueeForm extends Component {
     const { assetNode } = this.props;
     const { activeSlideIndex, imageSize, content, button } = this.state;
     const form = (
-      <Box>
-        <fieldset>
-          <legend>
-            Content
-          </legend>
-          <FormField
-            label="Content"
-            htmlFor="content"
-          >
-            <textarea
-              autoFocus
-              id="content"
-              name="content"
-              type="text"
-              value={content}
-              onChange={this.onChangeContent}
-              rows="3"
-            />
-          </FormField>
-          <FormField label="Button Label" htmlFor="label">
-            <input
-              id="label"
-              name="label"
-              type="text"
-              value={button.label}
-              onChange={this.onChangeContent}
-            />
-          </FormField>
-          <FormField label="Button Path" htmlFor="path">
-            <input
-              id="path"
-              name="path"
-              type="text"
-              value={button.path}
-              onChange={this.onChangeContent}
-            />
-          </FormField>
-        </fieldset>
-        <CarouselSlideForm
-          assetNode={assetNode}
-          imageSize={imageSize}
-          data={this.state.carousel[activeSlideIndex]}
-          onChange={this.handleChange}
-          onSubmit={this.onSubmit.bind(this, this.state)}
-        />
-      </Box>
+      <fieldset>
+        <legend>
+          Content
+        </legend>
+        <FormField
+          label="Content"
+          htmlFor="content"
+        >
+          <textarea
+            autoFocus
+            id="content"
+            name="content"
+            type="text"
+            value={content}
+            onChange={this.onChangeContent}
+            rows="3"
+          />
+        </FormField>
+        <FormField label="Button Label" htmlFor="label">
+          <input
+            id="label"
+            name="label"
+            type="text"
+            value={button.label}
+            onChange={this.onChangeContent}
+          />
+        </FormField>
+        <FormField label="Button Path" htmlFor="path">
+          <input
+            id="path"
+            name="path"
+            type="text"
+            value={button.path}
+            onChange={this.onChangeContent}
+          />
+        </FormField>
+      </fieldset>
+    );
+
+    const marqueeForm = (
+      <MarqueeSlideForm
+        assetNode={assetNode}
+        imageSize={imageSize}
+        data={this.state.carousel[activeSlideIndex]}
+        onChange={this.handleChange}
+        onSubmit={this.onSubmit.bind(this, this.state)}
+      />
     );
 
     const tabs = this.state.carousel.map((slide, index) =>
@@ -244,6 +252,7 @@ class BlockMarqueeForm extends Component {
             />
           </Box>
         </Box>
+        {form}
         <Box>
           <Box>
             <Tabs
@@ -254,7 +263,7 @@ class BlockMarqueeForm extends Component {
             </Tabs>
           </Box>
         </Box>
-        {form}
+        {marqueeForm}
       </Box>
     );
   }

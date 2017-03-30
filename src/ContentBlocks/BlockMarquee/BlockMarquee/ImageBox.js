@@ -15,6 +15,7 @@ export function calculateImageStyle(size: string) {
   `;
 }
 
+// eslint-disable-next-line
 export default styled(({ size, ...rest }) => <Box {...rest} />)`
   ${props => calculateImageStyle(props.size)}
 `;
