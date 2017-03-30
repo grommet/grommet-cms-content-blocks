@@ -11,3 +11,4 @@ export MarkdownHelpLayer from './MarkdownHelpLayer';
 export BlockPageHeader from './BlockPageHeader';
 export MarkdownHelp from './MarkdownHelp';
 export CarouselSlideWithContentForm from './CarouselSlideWithContentForm';
+export MarqueeSlideForm from './MarqueeSlideForm';

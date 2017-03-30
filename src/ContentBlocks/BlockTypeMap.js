@@ -33,6 +33,9 @@ import {
   BlockBoxForm,
   BlockHeadingForm,
   BlockBoxWireframe,
+  BlockMarquee,
+  BlockMarqueeForm,
+  BlockMarqueeWireframe,
   BlockHero,
   BlockHeroForm,
   BlockHeroWireframe,
@@ -88,6 +91,13 @@ export default {
     form: <BlockHeroForm />,
     name: 'Hero',
     wireframe: <BlockHeroWireframe />,
+  },
+  BlockMarquee: {
+    element: <BlockMarquee />,
+    preview: <GenericPreview />,
+    form: <BlockMarqueeForm />,
+    name: 'Marquee',
+    wireframe: <BlockMarqueeWireframe />,
   },
   BlockCarousel: {
     element: <BlockCarousel />,
