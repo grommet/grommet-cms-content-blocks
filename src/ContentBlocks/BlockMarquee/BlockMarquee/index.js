@@ -113,11 +113,11 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
               content={parsedContent}
               components={{
                 p: { props: { size: 'large', margin: 'small' } },
-                h1: { props: { strong: true } },
+                h1: { props: { strong: true, margin: 'small' } },
                 h2: { props: { strong: true } },
               }}
             />
-            <Footer className="grommetux-background-color-index--light">
+            <Footer pad={{ vertical: 'medium' }} className="grommetux-background-color-index--light">
               {button && button.label && button.path &&
                 <Button
                   primary
