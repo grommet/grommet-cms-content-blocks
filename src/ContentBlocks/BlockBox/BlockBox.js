@@ -4,13 +4,15 @@ import Box from 'grommet/components/Box';
 import { BlockParagraph } from '../BlockParagraph';
 
 export default function BlockBox(props: {
+  align: ?string,
   content: ?string,
   colorIndex: ?string,
 }) {
-  const { content, colorIndex } = props;
+  const { align, content, colorIndex } = props;
+  const grommetBoxAlign = align || 'center';
   return (
     <Box
-      align="center"
+      align={grommetBoxAlign}
       justify="center"
       size={{ height: 'small' }}
       colorIndex={colorIndex || 'light-1'}
