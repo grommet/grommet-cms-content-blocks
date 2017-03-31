@@ -73,8 +73,8 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
   }
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', this.handleScroll);
-      window.addEventListener('resize', this.handleResize);
+      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('resize', this.handleResize);
     }
   }
   setRandomImage() {
