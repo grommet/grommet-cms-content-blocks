@@ -12,6 +12,7 @@ import colorOptionsList from '../Shared/colorIndexes';
 type ErrorType = string;
 
 type BlockBoxFormState = {
+  alignInput: ?string,
   colorIndexInput: ?string,
   contentInput: ?string,
   colorOptions: Array<any>,
@@ -23,6 +24,7 @@ type BlockBoxFormState = {
 
 type BlockBoxFormProps = {
   onSubmit?: Function,
+  align: ?string,
   colorIndex: ?string,
   content: ?string
 };
@@ -36,9 +38,13 @@ export default class BlockBoxForm extends React.Component {
     (this:any)._onSubmit = this._onSubmit.bind(this);
     (this:any)._onSearch = this._onSearch.bind(this);
     (this:any)._formIsValid = this._formIsValid.bind(this);
+    let alignInput = 'center';
     let colorIndexInput = '';
     let contentInput = '';
-    const { colorIndex, content } = props;
+    const { align, colorIndex, content } = props;
+    if (align) {
+      alignInput = align;
+    }
     if (colorIndex) {
       colorIndexInput = colorIndex;
     }
@@ -47,6 +53,7 @@ export default class BlockBoxForm extends React.Component {
     }
     this.state = {
       errors: null,
+      alignInput,
       colorIndexInput,
       contentInput,
       colorOptions: colorOptionsList,
@@ -73,9 +80,10 @@ export default class BlockBoxForm extends React.Component {
 
   _onSubmit(event: any) {
     event.preventDefault();
-    const { colorIndexInput, contentInput } = this.state;
+    const { alignInput, colorIndexInput, contentInput } = this.state;
     if (this._formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
+        align: alignInput,
         colorIndex: colorIndexInput,
         content: contentInput,
       });
@@ -84,7 +92,9 @@ export default class BlockBoxForm extends React.Component {
         colorIndexInput: colorIndexInput && colorIndexInput.length > 0
           ? '' : 'Please enter a valid color index',
         contentInput: contentInput && contentInput.length > 0
-          ? '' : 'Please enter some content for the box',
+          ? '' : 'Please enter some content',
+        alignInput: alignInput && alignInput.length > 0
+          ? '' : 'Please enter an align content value',
       };
       this.setState({
         errors,
@@ -104,15 +114,18 @@ export default class BlockBoxForm extends React.Component {
   }
 
   _formIsValid() {
-    const { colorIndexInput, contentInput } = this.state;
-    if (colorIndexInput && contentInput) {
-      return colorIndexInput.length > 0 && contentInput.length > 0;
+    const { alignInput, colorIndexInput, contentInput } = this.state;
+    if (alignInput && colorIndexInput && contentInput) {
+      return alignInput.length > 0
+        && colorIndexInput.length > 0
+        && contentInput.length > 0;
     }
     return false;
   }
 
   render() {
     const {
+      alignInput,
       colorIndexInput,
       contentInput,
       errors,
@@ -150,6 +163,23 @@ export default class BlockBoxForm extends React.Component {
                   options={colorOptions}
                   name="colorIndexInput"
                   id="colorIndexInput"
+                />
+              </FormField>
+              <FormField
+                label="Align Content"
+                htmlFor="alignInput"
+                error={errors && errors.alignInput ? errors.alignInput : ''}
+              >
+                <Select
+                  onChange={this._onChange}
+                  value={alignInput || 'center'}
+                  options={[
+                    'center',
+                    'end',
+                    'start',
+                  ]}
+                  name="alignInput"
+                  id="alignInput"
                 />
               </FormField>
             </fieldset>

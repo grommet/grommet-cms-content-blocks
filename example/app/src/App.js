@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import state from './state';
-import { CarouselSlideWithContentForm } from 'grommet-cms-content-blocks';
-
+import { BlockBoxForm, BlockBox } from 'grommet-cms-content-blocks';
 // If you use React Router, make this component
 // render <Router> with your routes. Currently,
 // only synchronous routes are hot reloaded, and
@@ -14,7 +13,8 @@ export default class App extends Component {
   render() {
     return (
       <Layout>
-        <CarouselSlideWithContentForm />
+        <BlockBoxForm />
+        <BlockBox content="tt" align="center" colorIndex="brand" />
       </Layout>
     );
   }
