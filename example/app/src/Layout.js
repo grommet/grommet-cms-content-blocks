@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <div style={{ minHeight: '200vh' }}>
       {children}
     </div>
   );

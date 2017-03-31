@@ -13,6 +13,6 @@ export function calculateWrapperStyle(size: string) {
   `;
 }
 
-export default styled(({ size, ...rest }) => <Box {...rest} />)`
+export default styled(Box)`
   ${props => calculateWrapperStyle(props.size)}
 `;

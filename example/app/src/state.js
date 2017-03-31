@@ -23,6 +23,74 @@ export default {
       "modifiedAt": "2017-03-15T20:11:29.787Z",
       "createdAt": "2017-03-15T20:11:29.787Z",
       "sections": [
+{
+  "contentBlocks": [
+    {
+      "id": "03c1dfe2-58cf-480e-891a-9ba971bd17b9",
+      "edit": false,
+      "blockType": "BlockMarquee",
+      "carousel": [
+        {
+          "image": {
+            "_id": "58d018c1089d008a0ac5a6ed",
+            "title": "Intro Hero 5",
+            "path": "/uploads/media/2017/3/hpe20160512062_1600_0_72_srgb-1490032833458.jpg"
+          },
+          "color": "black",
+          "justification": "right"
+        },
+        {
+          "image": {
+            "_id": "58d018fd089d008a0ac5a6f4",
+            "title": "Intro Hero 11",
+            "path": "/uploads/media/2017/3/hpe20170216034_1600_0_72_srgb-1490032893702.jpg"
+          },
+          "color": "black",
+          "justification": "left"
+        }
+      ],
+      "imageSize": "Large",
+      "content": "# __Welcome to Brand Central__\nNow that we have created Hewlett Packard Enterprise, it’s time to tell the world our story. These guidelines contain the essential elements of our brand identity. Each section is designed to familiarize you with our brand so you can communicate clearly, consistently and in a way that is uniquely HPE.",
+      "button": {
+        "path": "/brand-central/main",
+        "label": "Get Started"
+      }
+    }
+  ],
+  "order": 0,
+  "layout": [
+    {
+      "name": "direction",
+      "value": "row"
+    },
+    {
+      "name": "justify",
+      "value": "start"
+    },
+    {
+      "name": "align",
+      "value": "start"
+    },
+    {
+      "name": "pad",
+      "value": "none"
+    },
+    {
+      "name": "full",
+      "value": "false"
+    },
+    {
+      "name": "wrap",
+      "value": "true"
+    },
+    {
+      "name": "basis",
+      "value": "full"
+    }
+  ],
+  "id": "intro",
+  "name": "Intro"
+},
         {
           "contentBlocks": [
             {

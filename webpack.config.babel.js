@@ -10,9 +10,10 @@ export default {
     library: 'grommet-cms-content-blocks',
     libraryTarget: 'umd',
     umdNamedDefine: true,
+    sourceMapFilename: "[name].js.map",
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
