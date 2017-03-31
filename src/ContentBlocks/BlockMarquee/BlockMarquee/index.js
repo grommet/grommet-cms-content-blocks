@@ -66,8 +66,16 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
     this.setRandomImage();
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('resize', this.handleResize);
+    }
+  }
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('resize', this.handleResize);
+    }
   }
   setRandomImage() {
     const { carousel, imageSize, content, button } = this.props;
