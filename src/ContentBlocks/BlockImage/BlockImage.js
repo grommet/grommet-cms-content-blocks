@@ -8,6 +8,9 @@ export default function BlockImage({ content, alt, image, imageSize, fit }) {
   const full = imageSizeLower === 'full' ? 'horizontal' : false;
   const caption = content ? <Markdown content={content} /> : '';
   const path = image && image.path ? image.path : '';
+  if (path === '') {
+    return null;
+  }
   return (
     <Box align="center">
       <Image
