@@ -41,6 +41,7 @@
     "remove-markdown": "^0.1.0",
     "rimraf": "^2.5.4",
     "styled-components": "^1.4.4",
+    "unescape": "^0.2.0",
     "webpack": "^2.2.0"
   }
 }

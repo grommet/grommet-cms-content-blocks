@@ -16,7 +16,7 @@ import {
   selectAlign,
   selectImage,
   selectContent,
-  selectImageSize
+  selectImageSize,
 } from './selectors';
 
 export type Image = { path: string };
@@ -27,7 +27,7 @@ type CarouselItem = {
     path: string
   },
   color: Color,
-  justification: Justification 
+  justification: Justification
 }
 
 type Props = {
@@ -58,7 +58,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
       scale: 1,
       isMobile: window.innerWidth <= 720,
       opacity: 1,
-      currentSlide: null
+      currentSlide: null,
     };
   }
   state: State;
@@ -83,7 +83,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
     const randomIndex = Math.floor(Math.random() * carousel.length);
     const currentSlide = carousel[randomIndex];
     this.setState({
-      currentSlide
+      currentSlide,
     });
   }
   handleScroll: () => void;

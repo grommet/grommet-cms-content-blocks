@@ -5,12 +5,13 @@ import Carousel from 'grommet/components/Carousel';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import Markdown from 'grommet/components/Markdown';
+import unescape from 'unescape';
 
 export default function BlockCarouselWithContent({ carousel, imageSize }) {
   const size = imageSize ? imageSize.toLowerCase() : 'full';
   // TODO: refactor to use grommet sizes vs. custom css
   const slides = carousel.map((slide, index) => {
-    const content = slide.content || '';
+    const content = unescape(slide.content || '');
     const contentClassName = slide.color === 'white'
       ? 'grommetux-background-color-index--dark'
       : 'grommetux-background-color-index--light';

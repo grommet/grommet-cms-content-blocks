@@ -5,10 +5,12 @@ import Label from 'grommet/components/Label';
 import Anchor from 'grommet/components/Anchor';
 import Paragraph from 'grommet/components/Paragraph';
 import Box from 'grommet/components/Box';
+import unescape from 'unescape';
 
 export default function BlockQuote({ content, source, colorIndex, borderSize, label, linkUrl, linkText }) {
   const color = colorIndex || 'brand';
   const size = borderSize || 'medium';
+  const unescapedContent = unescape(content || '');
   return (
     <Quote
       style={{ width: 'inherit' }}
@@ -23,7 +25,7 @@ export default function BlockQuote({ content, source, colorIndex, borderSize, la
           </Label>
         }
         <Heading tag="h3">
-          {content}
+          {unescapedContent}
         </Heading>
         {source &&
           <Paragraph className="grommetux-quote__credit">
@@ -40,5 +42,5 @@ export default function BlockQuote({ content, source, colorIndex, borderSize, la
 
 BlockQuote.propTypes = {
   content: PropTypes.string,
-  source: PropTypes.string
+  source: PropTypes.string,
 };

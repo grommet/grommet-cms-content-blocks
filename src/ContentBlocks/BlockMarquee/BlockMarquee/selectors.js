@@ -1,6 +1,7 @@
 // @flow
-import type { Justification, Image } from './index';
 import type { GrommetBoxTypes$Size } from 'grommet';
+import unescape from 'unescape';
+import type { Justification, Image } from './index';
 
 type SelectContentClassname = (color: string, isMobile: boolean) => string;
 export const selectContentClassname: SelectContentClassname = (color, isMobile) => {
@@ -8,12 +9,11 @@ export const selectContentClassname: SelectContentClassname = (color, isMobile) 
     return 'grommetux-background-color-index--dark';
   }
   return 'grommetux-background-color-index--light';
-}
+};
 
 type SelectAlign = (justification: Justification) => string;
-export const selectAlign: SelectAlign = (justification) => {
-  return justification === 'left' ? 'start' : 'end';
-}
+// eslint-disable-next-line
+export const selectAlign: SelectAlign = justification => justification === 'left' ? 'start' : 'end';
 
 type SelectImage = (image: ?Image) => string;
 export const selectImage: SelectImage = (image) => {
@@ -21,15 +21,15 @@ export const selectImage: SelectImage = (image) => {
     return '';
   }
   return image.path;
-}
+};
 
 type SelectContent = (content: ?string) => string;
 export const selectContent: SelectContent = (content) => {
   if (!content) {
     return '';
   }
-  return content;
-}
+  return unescape(content);
+};
 
 type SelectImageSize = (imageSize: ?string) => GrommetBoxTypes$Size;
 export const selectImageSize: SelectImageSize = (imageSize) => {
@@ -37,4 +37,4 @@ export const selectImageSize: SelectImageSize = (imageSize) => {
     return 'large';
   }
   return imageSize.toLowerCase();
-}
+};

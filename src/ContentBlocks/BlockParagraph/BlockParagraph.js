@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'grommet/components/Markdown';
+import unescape from 'unescape';
 
 export default function BlockParagraph({ content }) {
-  const markdownContent = content || '';
+  const markdownContent = unescape(content || '');
   return (
     <Markdown
       content={markdownContent}
