@@ -25,7 +25,7 @@ export default function BlockButton({
   if (assetType === 'path') {
     props = { ...props, path };
   } else {
-    props = { ...props, href };
+    props = { ...props, href, target: '_blank' };
   }
   if (buttonType === 'Button') {
     return (

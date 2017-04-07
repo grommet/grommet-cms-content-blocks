@@ -14,7 +14,7 @@ export default function BlockImage({ content, alt, image, imageSize, fit }) {
     return null;
   }
   return (
-    <Box align="center">
+    <Box align="start">
       <Image
         full={full}
         src={path}
