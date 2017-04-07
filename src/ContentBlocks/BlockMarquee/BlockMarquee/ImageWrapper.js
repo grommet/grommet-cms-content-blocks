@@ -1,5 +1,4 @@
 // @flow
-import React from 'react';
 import Box from 'grommet/components/Box';
 import styled, { css } from 'styled-components';
 import calculateHeight from './heightStyles';

@@ -10,8 +10,9 @@ export function contentStyle() {
     left: 0;
     bottom: 0;
     will-change: opacity;
-    @media screen and (max-width: 720px) {
+    @media screen and (max-width: 767px) {
       position: relative;
+      align-items: flex-start;
     }
   `;
 }

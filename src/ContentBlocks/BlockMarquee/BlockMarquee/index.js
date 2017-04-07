@@ -1,6 +1,5 @@
 /* @flow */
 import React, { Component } from 'react';
-import Box from 'grommet/components/Box';
 import Markdown from 'grommet/components/Markdown';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
@@ -10,6 +9,7 @@ import ImageBox from './ImageBox';
 import WrapperBox from './WrapperBox';
 import ImageWrapper from './ImageWrapper';
 import ContentBox from './ContentBox';
+import OverlayBox from './OverlayBox';
 import calculateAnimation from './animationUtils';
 import {
   selectContentClassname,
@@ -133,6 +133,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
             size={size}
             style={{ transform: `scale(${scale})` }}
             scale={scale}
+            justification={justification}
             texture={imagePath}
           />
         </ImageWrapper>
@@ -143,7 +144,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
           align={align}
           style={!isMobile && { opacity }}
         >
-          <Box
+          <OverlayBox
             pad="large"
             justify="center"
             className={contentClassName}
@@ -164,7 +165,7 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
                 />
               }
             </Footer>
-          </Box>
+          </OverlayBox>
         </ContentBox>
       </WrapperBox>
     );
