@@ -43,6 +43,7 @@ import {
   BlockImageGalleryWireframe,
   BlockButton,
   BlockButtonForm,
+  BlockButtonPreview,
   BlockButtonWireframe,
   BlockCarouselWithContent,
   BlockCarouselWithContentForm,
@@ -158,7 +159,7 @@ export default {
   BlockButton: {
     element: <BlockButton />,
     name: 'Button',
-    preview: <GenericPreview />,
+    preview: <BlockButtonPreview />,
     form: <BlockButtonForm />,
     wireframe: <BlockButtonWireframe />,
   },
