@@ -5,6 +5,12 @@ import styled, { css } from 'styled-components';
 export function contentStyle() {
   return css`
     max-width: 50%;
+    @media screen and (max-width: 950px) {
+      padding: 24px;
+    }
+    @media screen and (max-width: 767px) {
+      max-width: 100%;
+    }
   `;
 }
 

@@ -7,7 +7,7 @@ import type { Justification } from './';
 function backgroundPosition(justification: Justification) {
   const position = justification === 'left' ? 'right' : 'left';
   return css`
-    background-position: top ${position};
+    background-position: center ${position};
   `;
 }
 
