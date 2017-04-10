@@ -20,7 +20,7 @@ export default function BlockBox(props: {
       colorIndex={colorIndex || 'light-1'}
     >
       <Box pad="small">
-        <BlockParagraph content={unescapedContent} />
+        <BlockParagraph align={grommetBoxAlign} content={unescapedContent} />
       </Box>
     </Box>
   );
