@@ -18,7 +18,10 @@ export default function BlockColorSwatch(props: {
   return (
     <Box>
       <Box
-        style={{ backgroundColor: color.thumbColor }}
+        style={{
+          backgroundColor: color.thumbColor,
+          border: '1px solid #eee',
+        }}
         size={{ height: 'xsmall', width: 'small' }}
       />
       <Heading tag="h4" strong margin="none">
