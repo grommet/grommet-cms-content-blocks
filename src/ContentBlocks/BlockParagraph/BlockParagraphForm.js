@@ -4,6 +4,7 @@ import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
+import Select from 'grommet/components/Select';
 import { MarkdownHelpLayer } from '../Shared';
 
 export class ParagraphForm extends Component {
@@ -11,7 +12,8 @@ export class ParagraphForm extends Component {
     super(props);
     this.state = {
       content: props.content || '',
-      layer: false
+      layer: false,
+      align: props.align || 'start'
     };
 
     this._onChange = this._onChange.bind(this);
@@ -20,9 +22,9 @@ export class ParagraphForm extends Component {
   }
 
   _onChange(e) {
-    const { target } = e;
+    const { target, option } = e;
     const key = target.id;
-    let val = target.value;
+    let val = option || target.value;
 
     let obj  = {};
     obj[key] = val;
@@ -46,7 +48,7 @@ export class ParagraphForm extends Component {
   }
 
   render() {
-    const { content, layer } = this.state;
+    const { content, layer, align } = this.state;
     
     return (
       <Box colorIndex="light-2" pad="medium">
@@ -58,6 +60,22 @@ export class ParagraphForm extends Component {
               <FormField label="Content" htmlFor="content">
                 <textarea autoFocus id="content" name="content" type="text"
                   value={content} onChange={this._onChange} rows="10" />
+              </FormField>
+              <FormField
+                label="Align Content"
+                htmlFor="align"
+              >
+                <Select
+                  onChange={this._onChange}
+                  value={align || 'start'}
+                  options={[
+                    'start',
+                    'center',
+                    'end',
+                  ]}
+                  name="align"
+                  id="align"
+                />
               </FormField>
             </fieldset>
             <Button onClick={this._onSubmit} primary={false} type="submit"
