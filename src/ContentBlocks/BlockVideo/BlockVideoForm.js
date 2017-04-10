@@ -85,7 +85,7 @@ export class BlockVideoForm extends Component {
                   value={label} onChange={this._onChange} />
               </FormField>
               <FormField label="Caption" htmlFor="content">
-                <input id="content" name="content" type="text"
+                <textarea rows="4" id="content" name="content" type="text"
                   value={content} onChange={this._onChange} />
               </FormField>
               <FormField label="Video file path" htmlFor="video">

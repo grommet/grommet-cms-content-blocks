@@ -4,6 +4,8 @@ import Box from 'grommet/components/Box';
 import Label from 'grommet/components/Label';
 import Heading from 'grommet/components/Heading';
 import PlayIcon from 'grommet/components/icons/base/CirclePlay';
+import Markdown from 'grommet/components/Markdown';
+import unescape from 'unescape';
 
 const ImageBox = styled(Box)`
   padding-bottom: 56%;
@@ -30,6 +32,7 @@ const Icon = styled(PlayIcon)`
 `;
 
 export default function VideoCallout({ label, onClick, description, thumbnail }) {
+  const markdownContent = unescape(description || '');
   return (
     <div>
       {label && <Label uppercase>{label}</Label>}
@@ -44,11 +47,17 @@ export default function VideoCallout({ label, onClick, description, thumbnail })
           <Icon size="xlarge" colorIndex="brand" />
         </InnerImageBox>
       </ImageBox>
-      {description &&
-        <Heading tag="h5" strong margin="small">
-          {description}
-        </Heading>
-      }
+      <Markdown
+        content={markdownContent}
+        components={{
+          p: { props: { size: 'medium', margin: 'small', align: 'start' } },
+          h1: { props: { margin: 'none', align: 'start' } },
+          h2: { props: { margin: 'none', align: 'start' } },
+          h3: { props: { margin: 'none', align: 'start' } },
+          h4: { props: { margin: 'none', align: 'start' } },
+          h5: { props: { margin: 'none', align: 'start' } },
+        }}
+      />
     </div>
   );
 }
