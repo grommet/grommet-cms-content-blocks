@@ -126,7 +126,9 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
       <WrapperBox size={size} id="grommet-cms-content-blocks--marquee">
         <ImageWrapper
           ref={(ref) => { this.heroRef = ref; }}
-          id="grommet-cms-content-blocks--marquee__image-wrapper" size={size}>
+          id="grommet-cms-content-blocks--marquee__image-wrapper"
+          size={size}
+        >
           <ImageBox
             id="grommet-cms-content-blocks--marquee__image-box"
             size={size}

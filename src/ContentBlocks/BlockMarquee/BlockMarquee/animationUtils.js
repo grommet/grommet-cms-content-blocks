@@ -22,13 +22,6 @@ export default function calculateAnimationState(
   const xScale = 100 * (endScale - 1); // 25
   const xOpacity = -100 * (1 - endOpacity);
   const calculatedScale = (ratio * xScale + 100) / 100; // 1 * 25 + 100 / 100 = 1.25
-  console.log(`
-    diff is ${diff}
-    xScale is ${xScale}
-    calculatedScale is ${calculatedScale}
-    height is ${height}
-    top is ${top}
-  `)
   const scale = Math.min(Math.max(calculatedScale, 1), endScale);
   const calculatedOpacity = (ratio * xOpacity + 100) / 100;
   const opacity = Math.max(endOpacity, calculatedOpacity);
