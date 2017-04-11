@@ -59,11 +59,13 @@ export default class BlockCard extends Component {
         <Card
           contentPad="medium"
           thumbnail={
-            <Box
-              className="block--block-card_card-thumbnail"
-              style={{ backgroundSize: 'contain' }}
-              texture={`url(${image.path})`}
-            />
+            <Box className="block--block-card_card-thumbnail-wrapper">
+              <Box
+                className="block--block-card_card-thumbnail"
+                style={{ backgroundSize: 'contain' }}
+                texture={`url(${image.path})`}
+              />
+            </Box>
           }
           label={
             <Label uppercase margin="none" size="small" className="block--block-card__card-label">
