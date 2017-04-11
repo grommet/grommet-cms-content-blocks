@@ -3,6 +3,7 @@ import React from 'react';
 import Markdown from 'grommet/components/Markdown';
 import Box from 'grommet/components/Box';
 import Anchor from 'grommet/components/Anchor';
+import Footer from 'grommet/components/Footer';
 import unescape from 'unescape';
 
 type Props = {
@@ -33,12 +34,14 @@ export default function BlockParagraphCTA({
         }}
       />
       {href && label &&
-        <Anchor
-          primary
-          target="_blank"
-          href={href}
-          label={label}
-        />
+        <Footer pad="small">
+          <Anchor
+            primary
+            target="_blank"
+            href={href}
+            label={label}
+          />
+        </Footer>
       }
     </Box>
   );
