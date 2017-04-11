@@ -5,6 +5,9 @@ import {
   BlockParagraph,
   BlockParagraphWireframe,
   BlockParagraphForm,
+  BlockParagraphCTA,
+  BlockParagraphCTAWireframe,
+  BlockParagraphCTAForm,
   BlockImage,
   BlockImageForm,
   BlockImageWireframe,
@@ -64,6 +67,13 @@ export default {
     form: <BlockParagraphForm />,
     name: 'Paragraph',
     wireframe: <BlockParagraphWireframe />,
+  },
+  BlockParagraphCTA: {
+    element: <BlockParagraphCTA />,
+    preview: <GenericPreview />,
+    form: <BlockParagraphCTAForm />,
+    name: 'Paragraph w/ CTA',
+    wireframe: <BlockParagraphCTAWireframe />,
   },
   BlockHeading: {
     element: <BlockHeading />,

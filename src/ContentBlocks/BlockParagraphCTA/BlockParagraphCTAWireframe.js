@@ -1,0 +1,14 @@
+import React from 'react';
+import Box from 'grommet/components/Box';
+import Anchor from 'grommet/components/Anchor';
+
+export default function BlockParagraphCTAWireframe() {
+  return (
+    <Box pad={{ between: 'small' }}>
+      <Box full="horizontal" pad="small" colorIndex="light-2" />
+      <Box full="horizontal" pad="small" colorIndex="light-2" />
+      <Box full="horizontal" pad="small" colorIndex="light-2" />
+      <Anchor path="" label="Get Started" primary />
+    </Box>
+  );
+}
