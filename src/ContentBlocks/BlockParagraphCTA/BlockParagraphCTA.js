@@ -34,7 +34,7 @@ export default function BlockParagraphCTA({
         }}
       />
       {href && label &&
-        <Footer pad="small">
+        <Footer pad={{ vertical: 'small' }}>
           <Anchor
             primary
             target="_blank"
