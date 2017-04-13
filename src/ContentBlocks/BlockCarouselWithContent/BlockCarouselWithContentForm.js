@@ -73,7 +73,7 @@ class BlockCarouselForm extends Component {
   _deleteSlide(activeIndex, event) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.splice(activeIndex);
+    nextCarouselState.splice(activeIndex, 1);
 
     this.setState({
       activeSlideIndex: 0,

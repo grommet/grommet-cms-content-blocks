@@ -13,7 +13,7 @@ export default function BlockImage({ content, alt, image, imageSize, fit, border
   const path = image && image.path ? image.path : '';
   const color = (borderColor && borderColor !== 'none') ? colorMap[borderColor] : '';
   const style = color !== '' ? {
-    borderBottom: `6px solid ${color}`,
+    borderBottom: `9px solid ${color}`,
   } : {};
   if (path === '') {
     return null;
