@@ -15,7 +15,8 @@ export class BlockImageForm extends Component {
       content: props.content || '',
       alt: props.alt || '',
       imageSize: props.imageSize || 'Large',
-      layer: false
+      layer: false,
+      borderColor: props.borderColor || 'none',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -39,7 +40,7 @@ export class BlockImageForm extends Component {
 
   onToggleHelp() {
     this.setState({
-      layer: !this.state.layer
+      layer: !this.state.layer,
     });
   }
 
@@ -72,7 +73,7 @@ export class BlockImageForm extends Component {
   }
 
   render() {
-    const { image, content, imageSize, alt, layer } = this.state;
+    const { image, content, imageSize, alt, layer, borderColor } = this.state;
     const { children } = this.props;
     const submit = (this.validateForm(this.state))
       ? this.onSubmit
@@ -80,8 +81,10 @@ export class BlockImageForm extends Component {
 
     return (
       <Box colorIndex="light-2" pad="medium">
-        <MarkdownHelpLayer isVisible={layer}
-          onToggle={this.onToggleHelp} />
+        <MarkdownHelpLayer
+          isVisible={layer}
+          onToggle={this.onToggleHelp}
+        />
         <Form compact={false} onSubmit={submit}>
           <FormFields>
             <fieldset>
@@ -123,6 +126,15 @@ export class BlockImageForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField>
+              <FormField label="Border Color" htmlFor="borderColor">
+                <Select
+                  id="borderColor"
+                  inline={false}
+                  options={['none', 'red', 'green']}
+                  value={borderColor}
+                  onChange={this.onChange}
+                />
+              </FormField>
               {children && children}
             </fieldset>
             <Button
@@ -147,6 +159,11 @@ BlockImageForm.propTypes = {
   content: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.object,
+  borderColor: PropTypes.oneOf([
+    'none',
+    'red',
+    'green',
+  ]),
 };
 
 export default BlockImageForm;

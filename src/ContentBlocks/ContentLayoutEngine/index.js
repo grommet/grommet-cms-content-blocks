@@ -7,7 +7,7 @@ import assignedLayoutProps from './utils';
 
 export default class ContentLayoutEngine extends Component {
   static defaultProps = {
-    applyLayout: true
+    applyLayout: true,
   };
   props: LayoutProps;
 
@@ -15,7 +15,7 @@ export default class ContentLayoutEngine extends Component {
     const blockArray = [];
     const { applyLayout } = this.props;
     children.map((item, i) => {
-      let newLineIndex = undefined;
+      let newLineIndex;
       const blockLayout = blocks[i].layout;
       const blockType = (item && item.props && item.props.blockType)
         ? item.props.blockType
@@ -23,13 +23,13 @@ export default class ContentLayoutEngine extends Component {
 
       if (item && item.props && item.props.layout) {
         newLineIndex = item.props.layout.findIndex(
-          (layoutItem) => layoutItem.name === 'newLine'
+          layoutItem => layoutItem.name === 'newLine',
         );
 
         if (newLineIndex !== undefined
             && newLineIndex > -1
             && item.props.layout[newLineIndex].value === 'true') {
-          blockArray.push(<Box key={`new-line-${i}`} full="horizontal" />);
+          blockArray.push(<Box className="grommet-cms-content-blocks--block-new-line" key={`new-line-${i}`} full="horizontal" />);
         }
       }
 
@@ -39,7 +39,7 @@ export default class ContentLayoutEngine extends Component {
           {...assignedLayoutProps(blockLayout, applyLayout, blockType)}
         >
           {item}
-        </Box>
+        </Box>,
       );
     });
 

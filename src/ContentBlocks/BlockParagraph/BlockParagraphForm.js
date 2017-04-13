@@ -13,7 +13,8 @@ export class ParagraphForm extends Component {
     this.state = {
       content: props.content || '',
       layer: false,
-      align: props.align || 'start'
+      paragraphSize: props.paragraphSize || 'medium',
+      align: props.align || 'start',
     };
 
     this._onChange = this._onChange.bind(this);
@@ -24,9 +25,9 @@ export class ParagraphForm extends Component {
   _onChange(e) {
     const { target, option } = e;
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -37,7 +38,7 @@ export class ParagraphForm extends Component {
 
   _onToggleHelp() {
     this.setState({
-      layer: !this.state.layer
+      layer: !this.state.layer,
     });
   }
 
@@ -48,18 +49,22 @@ export class ParagraphForm extends Component {
   }
 
   render() {
-    const { content, layer, align } = this.state;
-    
+    const { content, layer, align, paragraphSize } = this.state;
+
     return (
       <Box colorIndex="light-2" pad="medium">
         <Form compact={false} onSubmit={this._onSubmit}>
-          <MarkdownHelpLayer isVisible={layer}
-            onToggle={this._onToggleHelp} />
+          <MarkdownHelpLayer
+            isVisible={layer}
+            onToggle={this._onToggleHelp}
+          />
           <FormFields>
             <fieldset>
               <FormField label="Content" htmlFor="content">
-                <textarea autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} rows="10" />
+                <textarea
+                  autoFocus id="content" name="content" type="text"
+                  value={content} onChange={this._onChange} rows="10"
+                />
               </FormField>
               <FormField
                 label="Align Content"
@@ -77,20 +82,48 @@ export class ParagraphForm extends Component {
                   id="align"
                 />
               </FormField>
+              <FormField
+                label="Paragraph Size"
+                htmlFor="paragraphSize"
+              >
+                <Select
+                  onChange={this._onChange}
+                  value={paragraphSize || 'medium'}
+                  options={[
+                    'small',
+                    'medium',
+                    'large',
+                  ]}
+                  name="paragraphSize"
+                  id="paragraphSize"
+                />
+              </FormField>
             </fieldset>
-            <Button onClick={this._onSubmit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={this._onSubmit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 ParagraphForm.propTypes = {
   content: PropTypes.string,
   onSubmit: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  paragraphSize: PropTypes.oneOf([
+    'small',
+    'medium',
+    'large',
+  ]),
+  align: PropTypes.oneOf([
+    'start',
+    'center',
+    'end',
+  ]),
 };
 
 export default ParagraphForm;
