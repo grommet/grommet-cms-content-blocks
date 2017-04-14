@@ -11,6 +11,9 @@ import {
   BlockImage,
   BlockImageForm,
   BlockImageWireframe,
+  BlockSpacer,
+  BlockSpacerForm,
+  BlockSpacerWireframe,
   BlockCard,
   BlockCardForm,
   BlockCardWireframe,
@@ -158,6 +161,13 @@ export default {
     preview: <BlockColorSwatchPreview />,
     form: <BlockColorSwatchForm />,
     wireframe: <BlockColorSwatchWireframe />,
+  },
+  BlockSpacer: {
+    element: <BlockSpacer />,
+    name: 'Spacer',
+    preview: <GenericPreview />,
+    form: <BlockSpacerForm />,
+    wireframe: <BlockSpacerWireframe />,
   },
   BlockAssetLink: {
     element: <BlockAssetLink />,

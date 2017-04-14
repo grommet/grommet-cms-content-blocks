@@ -4,8 +4,10 @@ import Box from 'grommet/components/Box';
 import unescape from 'unescape';
 import { BlockParagraph } from '../BlockParagraph';
 
+type Align = 'start' | 'center' | 'end';
+
 export default function BlockBox(props: {
-  align: ?string,
+  align: ?Align,
   content: ?string,
   colorIndex: ?string,
 }) {
