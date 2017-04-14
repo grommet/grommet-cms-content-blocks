@@ -5,9 +5,7 @@ import Box from 'grommet/components/Box';
 import unescape from 'unescape';
 import colorMap from './colorMap';
 
-export default function BlockImage({ content, alt, image, imageSize, fit, borderColor }) {
-  const imageSizeLower = imageSize && imageSize.toLowerCase();
-  const full = imageSizeLower === 'full' ? 'horizontal' : false;
+export default function BlockImage({ content, alt, image, borderColor }) {
   const unescapedContent = unescape(content || '');
   const caption = (unescapedContent && unescapedContent !== '') ? <Markdown content={content} /> : '';
   const path = image && image.path ? image.path : '';
@@ -21,10 +19,10 @@ export default function BlockImage({ content, alt, image, imageSize, fit, border
   return (
     <Box align="start">
       <Image
-        full={full}
+        full
         style={style}
         src={path}
-        size={imageSizeLower}
+        size="full"
         alt={alt}
       />
       {caption}
@@ -34,7 +32,6 @@ export default function BlockImage({ content, alt, image, imageSize, fit, border
 
 BlockImage.propTypes = {
   content: PropTypes.string,
-  imageSize: PropTypes.string,
   alt: PropTypes.string,
   image: PropTypes.shape({
     path: PropTypes.string,
