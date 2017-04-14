@@ -12,6 +12,7 @@ export default (layout: LayoutType[], applyLayout: boolean, itemBlockType: strin
 
   return (layout && applyLayout) ? Object.assign({}, ...layout.map((item) => {
     if (item.name === 'newLine') return null;
+    if (item.name.includes('pad')) return null;
     if (itemBlockType === 'BlockHeading') {
       return { full: 'horizontal' };
     }
