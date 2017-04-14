@@ -13,12 +13,16 @@ export default class ContentLayoutEngine extends Component {
   renderBlocks(children: Array<Object>, blocks: Array<Object>) {
     const blockArray = [];
     const { applyLayout } = this.props;
-    children.map((item, i) => { // eslint-disable-line array-callback-return
+    children.map((item, i) => { // eslint-disable-line
       let newLineIndex;
       const blockLayout = blocks[i].layout;
       const blockType = (item && item.props && item.props.blockType)
         ? item.props.blockType
         : undefined;
+
+      if (!blockType) {
+        return null;
+      }
 
       if (item && item.props && item.props.layout) {
         newLineIndex = item.props.layout.findIndex(
@@ -35,7 +39,7 @@ export default class ContentLayoutEngine extends Component {
       blockArray.push(
         <Box
           key={i}
-          hideForResponsive={item.props.blockType === 'BlockSpacer' || false}
+          hideForResponsive={(item.props && item.props.blockType === 'BlockSpacer') || false}
           {...assignedLayoutProps(blockLayout, applyLayout, blockType)}
         >
           {item}
