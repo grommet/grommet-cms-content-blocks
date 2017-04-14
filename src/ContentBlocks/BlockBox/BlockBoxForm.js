@@ -8,6 +8,7 @@ import Select from 'grommet/components/Select';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import colorOptionsList from '../Shared/colorIndexes';
+import type { OnChangeEvent } from '../../../flow-typed/types';
 
 type ErrorType = string;
 
@@ -21,10 +22,6 @@ type BlockBoxFormState = {
     contentInput: ?ErrorType
   }
 };
-
-type OnChangeEvent = SyntheticInputEvent & {
-  option: string,
-}
 
 type BlockBoxFormProps = {
   onSubmit?: Function,
