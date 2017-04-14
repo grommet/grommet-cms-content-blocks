@@ -13,8 +13,8 @@ const Swatch = styled(Box)`
   @media screen and (max-width: 1056px) {
     width: 300px;
   }
-  @media screen and (max-width: 1300px) {
-    width: 75%;
+  @media screen and (min-width: 1300px) {
+    width: 75% !important;
   }
 `;
 
