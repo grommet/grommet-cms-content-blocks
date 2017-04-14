@@ -23,8 +23,7 @@ export default class ImageGallery extends Component {
       <Box align="center" justify="center" direction="column">
         <Box
           size={{ width: size }}
-          align="center"
-          justify="center"
+          style={{ display: 'block' }}
         >
           <Image size={size} src={images[currentIndex].path} />
           <Tiles responsive={false} pad="none" flush={false}>
