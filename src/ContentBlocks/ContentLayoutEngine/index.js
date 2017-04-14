@@ -51,13 +51,14 @@ export default class ContentLayoutEngine extends Component {
   }
 
   render() {
-    const { blocks, layout, applyLayout, children } = this.props;
+    const { blocks, layout, applyLayout, children, ...rest } = this.props;
     const renderedBlocks = this.renderBlocks(children, blocks);
 
     return (
       <Section
         wrap
         {...assignedLayoutProps(layout, applyLayout)}
+        {...rest}
       >
         {renderedBlocks}
       </Section>
