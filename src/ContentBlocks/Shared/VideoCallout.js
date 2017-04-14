@@ -8,7 +8,7 @@ import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
 
 const ImageBox = styled(Box)`
-  padding-bottom: 56%;
+  padding-bottom: 56% !important;
   background-position: 50% 50%;
   position: relative;
   @media all and (-ms-high-contrast:none) {
