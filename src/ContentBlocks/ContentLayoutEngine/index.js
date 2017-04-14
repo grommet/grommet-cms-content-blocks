@@ -1,9 +1,8 @@
 /* @flow */
 import React, { Component } from 'react';
-import Box from 'grommet/components/Box';
-import Section from 'grommet/components/Section';
 import type { LayoutProps } from './flowTypes';
 import assignedLayoutProps from './utils';
+import { Box, Section } from './styles';
 
 export default class ContentLayoutEngine extends Component {
   static defaultProps = {
@@ -11,10 +10,10 @@ export default class ContentLayoutEngine extends Component {
   };
   props: LayoutProps;
 
-  _renderBlocks(children: Array<Object>, blocks: Array<Object>) {
+  renderBlocks(children: Array<Object>, blocks: Array<Object>) {
     const blockArray = [];
     const { applyLayout } = this.props;
-    children.map((item, i) => {
+    children.map((item, i) => { // eslint-disable-line array-callback-return
       let newLineIndex;
       const blockLayout = blocks[i].layout;
       const blockType = (item && item.props && item.props.blockType)
@@ -29,7 +28,7 @@ export default class ContentLayoutEngine extends Component {
         if (newLineIndex !== undefined
             && newLineIndex > -1
             && item.props.layout[newLineIndex].value === 'true') {
-          blockArray.push(<Box className="grommet-cms-content-blocks--block-new-line" key={`new-line-${i}`} full="horizontal" />);
+          blockArray.push(<Box key={`new-line-${i}`} full="horizontal" />);
         }
       }
 
@@ -48,10 +47,11 @@ export default class ContentLayoutEngine extends Component {
 
   render() {
     const { blocks, layout, applyLayout, children } = this.props;
-    const renderedBlocks = this._renderBlocks(children, blocks);
+    const renderedBlocks = this.renderBlocks(children, blocks);
 
     return (
       <Section
+        wrap
         {...assignedLayoutProps(layout, applyLayout)}
       >
         {renderedBlocks}

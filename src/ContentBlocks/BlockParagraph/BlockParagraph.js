@@ -1,21 +1,16 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
+import { sizing } from './sizing';
 
 export default function BlockParagraph({ content, align, paragraphSize }) {
   const markdownContent = unescape(content || '');
   const textSize = paragraphSize || 'medium';
+  const markdownComponents = sizing(textSize, align);
   return (
     <Markdown
       content={markdownContent}
-      components={{
-        p: { props: { size: textSize, margin: 'small', align } },
-        h1: { props: { margin: 'none', align } },
-        h2: { props: { margin: 'none', align } },
-        h3: { props: { margin: 'none', align } },
-        h4: { props: { margin: 'none', align } },
-        h5: { props: { margin: 'none', align } },
-      }}
+      components={markdownComponents}
     />
   );
 }
