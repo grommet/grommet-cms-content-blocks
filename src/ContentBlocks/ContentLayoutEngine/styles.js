@@ -12,7 +12,9 @@ const responsiveBoxStyles = (props) => {
   }
   return css`
     @media screen and (max-width: 1056px) {
-      flex-basis: calc(100% - 24px);
+      flex-basis: 100%;
+      padding-right: 0px;
+      padding-bottom: 12px;
     }
   `;
 };

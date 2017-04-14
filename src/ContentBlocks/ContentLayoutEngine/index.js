@@ -35,6 +35,7 @@ export default class ContentLayoutEngine extends Component {
       blockArray.push(
         <Box
           key={i}
+          hideForResponsive={item.props.blockType === 'BlockSpacer' || false}
           {...assignedLayoutProps(blockLayout, applyLayout, blockType)}
         >
           {item}

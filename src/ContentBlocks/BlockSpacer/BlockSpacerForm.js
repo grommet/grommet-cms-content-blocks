@@ -16,7 +16,7 @@ export default class BlockSpacerForm extends React.Component {
 
   componentDidMount() {
     if (this.props.onSubmit) {
-      this.props.onSubmit({ hideForResponsive: true });
+      this.props.onSubmit();
     }
   }
 
@@ -24,7 +24,7 @@ export default class BlockSpacerForm extends React.Component {
   onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     if (this.props.onSubmit) {
-      this.props.onSubmit({ hideForResponsive: true });
+      this.props.onSubmit();
     }
   }
 
