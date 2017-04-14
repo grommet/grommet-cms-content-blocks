@@ -17,16 +17,15 @@ export default function BlockImage({ content, alt, image, borderColor }) {
     return null;
   }
   return (
-    <Box align="start">
+    <div>
       <Image
-        full
+        size="full"
         style={style}
         src={path}
-        size="full"
         alt={alt}
       />
       {caption}
-    </Box>
+    </div>
   );
 }
 
