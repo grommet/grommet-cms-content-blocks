@@ -3,7 +3,6 @@ import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
-import Select from 'grommet/components/Select';
 
 class ImageGallerySlideForm extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class ImageGallerySlideForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         image: `${this.props.url}`,
       });
     }
@@ -57,12 +56,11 @@ class ImageGallerySlideForm extends Component {
 
   propsToState(props) {
     this.setState({
-      imageSize: props.imageSize || 'Large',
       image: props.data ? props.data.image : null,
     });
   }
 
-  validate(data) {
+  validate(data) { // eslint-disable-line
     if (!data || !data.image) {
       return false;
     }
@@ -75,7 +73,7 @@ class ImageGallerySlideForm extends Component {
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
-    const { image, imageSize } = this.state;
+    const { image } = this.state;
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
@@ -88,15 +86,6 @@ class ImageGallerySlideForm extends Component {
                 name="image"
                 type="text"
                 value={image && image.path ? image.path : ''}
-                onChange={this.onChange}
-              />
-            </FormField>
-            <FormField label="Image Size" htmlFor="imageSize">
-              <Select
-                id="imageSize"
-                inline={false}
-                options={['Small', 'Medium', 'Large', 'XLarge', 'XXLarge', 'Full']}
-                value={imageSize}
                 onChange={this.onChange}
               />
             </FormField>
@@ -119,6 +108,7 @@ ImageGallerySlideForm.propTypes = {
   url: PropTypes.string,
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
+  data: PropTypes.any, // eslint-disable-line
 };
 
 export default ImageGallerySlideForm;
