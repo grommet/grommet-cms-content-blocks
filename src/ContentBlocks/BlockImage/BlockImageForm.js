@@ -14,7 +14,6 @@ export class BlockImageForm extends Component {
       image: props.image || '',
       content: props.content || '',
       alt: props.alt || '',
-      imageSize: props.imageSize || 'Large',
       layer: false,
       borderColor: props.borderColor || 'none',
     };
@@ -117,15 +116,6 @@ export class BlockImageForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField>
-              <FormField label="Image Size" htmlFor="imageSize">
-                <Select
-                  id="imageSize"
-                  inline={false}
-                  options={['Thumb', 'Small', 'Medium', 'Large', 'Full']}
-                  value={imageSize}
-                  onChange={this.onChange}
-                />
-              </FormField>
               <FormField label="Border Color" htmlFor="borderColor">
                 <Select
                   id="borderColor"
@@ -154,11 +144,10 @@ BlockImageForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  imageSize: PropTypes.string,
   alt: PropTypes.string,
   content: PropTypes.string,
   url: PropTypes.string,
-  image: PropTypes.object,
+  image: PropTypes.object, // eslint-disable-line
   borderColor: PropTypes.oneOf([
     'none',
     'red',
