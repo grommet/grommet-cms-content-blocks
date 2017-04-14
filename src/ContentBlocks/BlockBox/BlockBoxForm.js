@@ -8,6 +8,7 @@ import Select from 'grommet/components/Select';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import colorOptionsList from '../Shared/colorIndexes';
+import type { OnChangeEvent } from '../../types';
 
 type ErrorType = string;
 
@@ -30,14 +31,12 @@ type BlockBoxFormProps = {
 };
 
 export default class BlockBoxForm extends React.Component {
-  state: BlockBoxFormState;
-  props: BlockBoxFormProps;
   constructor(props: BlockBoxFormProps) {
     super(props);
-    (this:any)._onChange = this._onChange.bind(this);
-    (this:any)._onSubmit = this._onSubmit.bind(this);
-    (this:any)._onSearch = this._onSearch.bind(this);
-    (this:any)._formIsValid = this._formIsValid.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+    this.formIsValid = this.formIsValid.bind(this);
     let alignInput = 'center';
     let colorIndexInput = '';
     let contentInput = '';
@@ -60,7 +59,10 @@ export default class BlockBoxForm extends React.Component {
     };
   }
 
-  _onChange({ target, option }: any) {
+  state: BlockBoxFormState;
+
+  onChange: (e: SyntheticInputEvent) => void;
+  onChange({ target, option }: OnChangeEvent) {
     if (option) {
       this.setState({
         [`${target.id}`]: option,
@@ -78,10 +80,11 @@ export default class BlockBoxForm extends React.Component {
     }
   }
 
-  _onSubmit(event: any) {
+  onSubmit: (event: SyntheticInputEvent) => void;
+  onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     const { alignInput, colorIndexInput, contentInput } = this.state;
-    if (this._formIsValid() && this.props.onSubmit) {
+    if (this.formIsValid() && this.props.onSubmit) {
       this.props.onSubmit({
         align: alignInput,
         colorIndex: colorIndexInput,
@@ -102,7 +105,8 @@ export default class BlockBoxForm extends React.Component {
     }
   }
 
-  _onSearch(e: any) {
+  onSearch: (e: SyntheticInputEvent) => void;
+  onSearch(e: SyntheticInputEvent) {
     const { colorOptions } = this.state;
     const { value } = e.target;
     const newOptions = value === '' || !value
@@ -113,7 +117,10 @@ export default class BlockBoxForm extends React.Component {
     });
   }
 
-  _formIsValid() {
+  props: BlockBoxFormProps;
+
+  formIsValid: () => boolean;
+  formIsValid() {
     const { alignInput, colorIndexInput, contentInput } = this.state;
     if (alignInput && colorIndexInput && contentInput) {
       return alignInput.length > 0
@@ -146,7 +153,7 @@ export default class BlockBoxForm extends React.Component {
                   name="contentInput"
                   type="text"
                   value={contentInput}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   rows="10"
                 />
               </FormField>
@@ -157,8 +164,8 @@ export default class BlockBoxForm extends React.Component {
                 error={errors && errors.colorIndexInput ? errors.colorIndexInput : ''}
               >
                 <Select
-                  onSearch={this._onSearch}
-                  onChange={this._onChange}
+                  onSearch={this.onSearch}
+                  onChange={this.onChange}
                   value={colorIndexInput || ''}
                   options={colorOptions}
                   name="colorIndexInput"
@@ -171,7 +178,7 @@ export default class BlockBoxForm extends React.Component {
                 error={errors && errors.alignInput ? errors.alignInput : ''}
               >
                 <Select
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   value={alignInput || 'center'}
                   options={[
                     'center',
@@ -186,7 +193,7 @@ export default class BlockBoxForm extends React.Component {
           </FormFields>
           <Footer pad="medium">
             <Button
-              onClick={this._onSubmit}
+              onClick={this.onSubmit}
               type="submit"
               label="Done"
             />

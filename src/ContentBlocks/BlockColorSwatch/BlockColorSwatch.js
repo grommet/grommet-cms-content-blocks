@@ -5,7 +5,7 @@ import Heading from 'grommet/components/Heading';
 import { BlockParagraph } from '../BlockParagraph';
 
 export default function BlockColorSwatch(props: {
-  color?: {
+  color: ?{
     name: string,
     thumbColor: string,
     content: string
