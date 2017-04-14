@@ -5,7 +5,7 @@ import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 
 type BlockSpacerFormProps = {
-  onSubmit?: (event: SyntheticInputEvent) => void,
+  onSubmit?: () => void,
 };
 
 export default class BlockSpacerForm extends React.Component {
@@ -14,11 +14,17 @@ export default class BlockSpacerForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.onSubmit) {
+      this.props.onSubmit({ hideForResponsive: true });
+    }
+  }
+
   onSubmit: (event: SyntheticInputEvent) => void;
   onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     if (this.props.onSubmit) {
-      this.props.onSubmit(event);
+      this.props.onSubmit({ hideForResponsive: true });
     }
   }
 

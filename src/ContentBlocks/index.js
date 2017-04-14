@@ -16,4 +16,5 @@ export * from './BlockButton';
 export * from './BlockAssetLink';
 export * from './BlockCarouselWithContent';
 export * from './BlockMarquee';
+export * from './BlockSpacer';
 export ContentLayoutEngine from './ContentLayoutEngine';
