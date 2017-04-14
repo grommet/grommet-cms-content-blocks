@@ -6,30 +6,28 @@ export default class BlockImageGallery extends Component {
     super();
     this.handleClickingImage = this.handleClickingImage.bind(this);
     this.state = {
-      currentIndex: 0
+      currentIndex: 0,
     };
   }
   handleClickingImage(index) {
     this.setState({
-      currentIndex: index
+      currentIndex: index,
     });
   }
   render() {
-    const { carousel, imageSize } = this.props;
+    const { carousel } = this.props;
     const { currentIndex } = this.state;
 
     return (
       <ImageGalleryComponent
         images={carousel.map(i => i.image)}
-        imageSize={imageSize}
         currentIndex={currentIndex}
         onClickItem={this.handleClickingImage}
       />
     );
   }
-};
+}
 
 BlockImageGallery.propTypes = {
-  carousel: PropTypes.array,
-  imageSize: PropTypes.string
+  carousel: PropTypes.array, // eslint-disable-line
 };

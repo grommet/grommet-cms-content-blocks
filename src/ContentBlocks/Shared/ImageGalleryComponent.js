@@ -16,16 +16,13 @@ export default class ImageGallery extends Component {
     const {
       images,
       currentIndex,
-      imageSize,
     } = this.props;
-    const size = imageSize.toLowerCase();
     return (
       <Box align="center" justify="center" direction="column">
         <Box
-          size={{ width: size }}
-          style={{ display: 'block' }}
+          style={{ display: 'block', width: '100%' }}
         >
-          <Image size={size} src={images[currentIndex].path} />
+          <img alt="carousel" src={images[currentIndex].path} />
           <Tiles responsive={false} pad="none" flush={false}>
             {images && images.map((image, i) =>
               <Tile
@@ -50,6 +47,5 @@ ImageGallery.propTypes = {
     }),
   ),
   currentIndex: PropTypes.number.isRequired,
-  imageSize: PropTypes.oneOf(['Small', 'Medium', 'Large', 'Xlarge']),
   onClickItem: PropTypes.func.isRequired,
 };

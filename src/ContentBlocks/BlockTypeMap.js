@@ -47,6 +47,7 @@ import {
   BlockHeroWireframe,
   BlockImageGallery,
   BlockImageGalleryWireframe,
+  BlockImageGalleryForm,
   BlockButton,
   BlockButtonForm,
   BlockButtonPreview,
@@ -95,7 +96,7 @@ export default {
   BlockImageGallery: {
     element: <BlockImageGallery />,
     preview: <GenericPreview />,
-    form: <BlockCarouselForm />,
+    form: <BlockImageGalleryForm />,
     name: 'Image Gallery',
     wireframe: <BlockImageGalleryWireframe />,
   },

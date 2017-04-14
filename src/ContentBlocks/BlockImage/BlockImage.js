@@ -1,7 +1,14 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
+import styled from 'styled-components';
 import colorMap from './colorMap';
+
+const Div = styled.div`
+  @media all and (-ms-high-contrast:none) {
+    height: 100%;
+  }
+`;
 
 export default function BlockImage({ content, alt, image, borderColor }) {
   const unescapedContent = unescape(content || '');
@@ -20,14 +27,14 @@ export default function BlockImage({ content, alt, image, borderColor }) {
     return null;
   }
   return (
-    <div style={{ height: '100%' }}>
+    <Div>
       <img
         style={style}
         src={path}
         alt={alt}
       />
       {caption}
-    </div>
+    </Div>
   );
 }
 
