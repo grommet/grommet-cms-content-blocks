@@ -12,10 +12,9 @@ const Div = styled.div`
 `;
 
 const Img = styled.img`
-  height: 100%;
   width: 100%;
-  @-moz-document url-prefix() {
-    height: auto;
+  @media all and (-ms-high-contrast:none) {
+    height: 100%;
   }
 `;
 
