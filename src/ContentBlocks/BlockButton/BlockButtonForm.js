@@ -9,7 +9,7 @@ import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import RadioButton from 'grommet/components/RadioButton';
 import validation from './validation';
-import type { OnChangeEvent } from '../../../flow-typed/types';
+import type { OnChangeEvent } from '../../types';
 
 export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';

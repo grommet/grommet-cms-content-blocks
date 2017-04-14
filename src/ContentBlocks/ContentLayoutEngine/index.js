@@ -11,10 +11,10 @@ export default class ContentLayoutEngine extends Component {
   };
   props: LayoutProps;
 
-  _renderBlocks(children: Array<Object>, blocks: Array<Object>) {
+  renderBlocks(children: Array<Object>, blocks: Array<Object>) {
     const blockArray = [];
     const { applyLayout } = this.props;
-    children.map((item, i) => {
+    children.map((item, i) => { // eslint-disable-line array-callback-return
       let newLineIndex;
       const blockLayout = blocks[i].layout;
       const blockType = (item && item.props && item.props.blockType)
@@ -48,7 +48,7 @@ export default class ContentLayoutEngine extends Component {
 
   render() {
     const { blocks, layout, applyLayout, children } = this.props;
-    const renderedBlocks = this._renderBlocks(children, blocks);
+    const renderedBlocks = this.renderBlocks(children, blocks);
 
     return (
       <Section

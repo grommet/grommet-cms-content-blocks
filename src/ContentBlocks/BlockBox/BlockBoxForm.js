@@ -8,7 +8,7 @@ import Select from 'grommet/components/Select';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import colorOptionsList from '../Shared/colorIndexes';
-import type { OnChangeEvent } from '../../../flow-typed/types';
+import type { OnChangeEvent } from '../../types';
 
 type ErrorType = string;
 
@@ -31,8 +31,6 @@ type BlockBoxFormProps = {
 };
 
 export default class BlockBoxForm extends React.Component {
-  state: BlockBoxFormState;
-  props: BlockBoxFormProps;
   constructor(props: BlockBoxFormProps) {
     super(props);
     this.onChange = this.onChange.bind(this);
@@ -60,6 +58,8 @@ export default class BlockBoxForm extends React.Component {
       colorOptions: colorOptionsList,
     };
   }
+
+  state: BlockBoxFormState;
 
   onChange: (e: SyntheticInputEvent) => void;
   onChange({ target, option }: OnChangeEvent) {
@@ -116,6 +116,8 @@ export default class BlockBoxForm extends React.Component {
       colorOptions: newOptions,
     });
   }
+
+  props: BlockBoxFormProps;
 
   formIsValid: () => boolean;
   formIsValid() {
