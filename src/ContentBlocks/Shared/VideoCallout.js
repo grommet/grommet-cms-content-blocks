@@ -12,6 +12,10 @@ const ImageBox = styled(Box)`
   position: relative;
   padding-bottom: 56% !important;
   width: 100%;
+  @media screen and (max-width: 720px) {
+    height: 263px;
+    padding-bottom: 0;
+  }
   @media all and (-ms-high-contrast:none) {
     height: 263px;
   }
@@ -38,7 +42,6 @@ export default function VideoCallout({ label, onClick, description, thumbnail })
     <div>
       {label && <Label uppercase>{label}</Label>}
       <ImageBox
-        full="horizontal"
         align="center"
         justify="center"
         texture={thumbnail}
