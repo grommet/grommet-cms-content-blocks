@@ -1,12 +1,30 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import GrommetBox from 'grommet/components/Box';
 import GrommetSection from 'grommet/components/Section';
+
+const responsiveBoxStyles = (props) => {
+  if (props.hideForResponsive) {
+    return css`
+      @media screen and (max-width: 1056px) {
+        display: none !important;
+      }
+    `;
+  }
+  return css`
+    @media screen and (max-width: 1056px) {
+      flex-basis: 100%;
+      padding-right: 0px;
+      padding-bottom: 24px;
+    }
+  `;
+};
 
 export const Box = styled(GrommetBox)`
   padding: 0;
   margin: 0;
   padding-right: 24px;
   padding-bottom: 24px;
+  ${props => responsiveBoxStyles(props)}
 `;
 
 export const Section = styled(GrommetSection)`

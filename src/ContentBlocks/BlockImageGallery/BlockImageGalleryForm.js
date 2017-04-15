@@ -5,9 +5,10 @@ import Tabs from 'grommet/components/Tabs';
 import Tab from 'grommet/components/Tab';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer, CarouselSlideWithContentForm } from '../Shared';
+import { ConfirmLayer } from '../Shared';
+import ImageGallerySlideForm from './BlockImageGallerySlideForm';
 
-class BlockCarouselForm extends Component {
+class BlockImageGalleryForm extends Component {
   constructor(props) {
     super(props);
 
@@ -15,20 +16,19 @@ class BlockCarouselForm extends Component {
       carousel: props.carousel || [],
       confirmLayer: false,
       activeSlideIndex: 0,
-      imageSize: props.imageSize || 'Full',
     };
 
-    this._deleteSlide = this._deleteSlide.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._addSlideClick = this._addSlideClick.bind(this);
-    this._onTabsClick = this._onTabsClick.bind(this);
-    this._toggleConfirm = this._toggleConfirm.bind(this);
+    this.deleteSlide = this.deleteSlide.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.addSlideClick = this.addSlideClick.bind(this);
+    this.onTabsClick = this.onTabsClick.bind(this);
+    this.toggleConfirm = this.toggleConfirm.bind(this);
   }
 
   componentWillMount() {
     if (!this.props.carousel) {
-      this._addSlideClick();
+      this.addSlideClick();
     }
   }
 
@@ -41,38 +41,22 @@ class BlockCarouselForm extends Component {
     }
   }
 
-  _onTabsClick(tabIndex) {
+  onTabsClick(tabIndex) {
     this.setState({ activeSlideIndex: tabIndex });
   }
 
-  _addSlideClick() {
-    const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.push({
-      image: '',
-      content: '',
-      button: {
-        label: '',
-        path: '',
-      },
-    });
-
-    this.setState({
-      activeSlideIndex: nextCarouselState.length - 1,
-      carousel: nextCarouselState,
-    });
-  }
-
-  _toggleConfirm() {
+  toggleConfirm() {
     this.setState({ confirmLayer: !this.state.confirmLayer });
   }
 
-  _deleteSlideClick(activeIndex) {
-    this._toggleConfirm();
+  deleteSlideClick() {
+    this.toggleConfirm();
   }
 
-  _deleteSlide(activeIndex, event) {
+  deleteSlide(activeIndex, event) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();
+
     nextCarouselState.splice(activeIndex, 1);
 
     this.setState({
@@ -82,29 +66,23 @@ class BlockCarouselForm extends Component {
     });
   }
 
-  _handleChange({ imageSize, layer: _, ...carouselState }) {
+  handleChange({ image }) {
     const { carousel, activeSlideIndex } = this.state;
-    if (carouselState !== carousel[activeSlideIndex]) {
+    if (image !== carousel[activeSlideIndex]) {
       const nextCarouselState = [
         ...carousel.slice(0, activeSlideIndex),
         {
-          ...carouselState,
+          image,
         },
         ...carousel.slice(activeSlideIndex + 1),
       ];
       this.setState({ carousel: nextCarouselState });
     }
-    if (imageSize !== this.state.imageSize) {
-      this.setState({
-        imageSize,
-      });
-    }
   }
 
-  _onSubmit({ carousel, imageSize }) {
+  onSubmit({ carousel }) {
     const dataToSubmit = {
       carousel,
-      imageSize,
     };
 
     if (this.props.onSubmit) {
@@ -112,17 +90,28 @@ class BlockCarouselForm extends Component {
     }
   }
 
+  addSlideClick() {
+    const nextCarouselState = this.state.carousel.slice();
+    nextCarouselState.push({
+      image: '',
+    });
+
+    this.setState({
+      activeSlideIndex: nextCarouselState.length - 1,
+      carousel: nextCarouselState,
+    });
+  }
+
   render() {
     const { assetNode } = this.props;
-    const { activeSlideIndex, imageSize } = this.state;
+    const { activeSlideIndex } = this.state;
     const form = (
       <Box>
-        <CarouselSlideWithContentForm
+        <ImageGallerySlideForm
           assetNode={assetNode}
-          imageSize={imageSize}
           data={this.state.carousel[activeSlideIndex]}
-          onChange={this._handleChange}
-          onSubmit={this._onSubmit.bind(this, this.state)}
+          onChange={this.handleChange}
+          onSubmit={this.onSubmit.bind(this, this.state)}
         />
       </Box>
     );
@@ -131,13 +120,13 @@ class BlockCarouselForm extends Component {
       <Tab
         title={`Slide ${index + 1}`}
         key={index}
-        onClick={this._onTabsClick.bind(this, index)}
+        onClick={this.onTabsClick.bind(this, index)}
       />);
 
     const confirmLayer = (this.state.confirmLayer)
       ? (<ConfirmLayer
-        name={`Slide ${activeSlideIndex + 1}`} onClose={this._toggleConfirm}
-        onSubmit={this._deleteSlide.bind(this, activeSlideIndex)}
+        name={`Slide ${activeSlideIndex + 1}`} onClose={this.toggleConfirm}
+        onSubmit={this.deleteSlide.bind(this, activeSlideIndex)}
       />)
       : undefined;
 
@@ -146,11 +135,11 @@ class BlockCarouselForm extends Component {
         {confirmLayer}
         <Box direction="row">
           <Box direction="row" align="center">
-            <Button icon={<AddIcon />} label="add slide" onClick={this._addSlideClick} />
+            <Button icon={<AddIcon />} label="add slide" onClick={this.addSlideClick} />
             <Box pad="small" />
             <Button
               icon={<TrashIcon />} label="delete slide"
-              onClick={this._deleteSlideClick.bind(this, activeSlideIndex)}
+              onClick={this.deleteSlideClick.bind(this, activeSlideIndex)}
             />
           </Box>
         </Box>
@@ -170,9 +159,9 @@ class BlockCarouselForm extends Component {
   }
 }
 
-BlockCarouselForm.propTypes = {
+BlockImageGalleryForm.propTypes = {
   onSubmit: PropTypes.func,
   assetNode: PropTypes.node,
 };
 
-export default BlockCarouselForm;
+export default BlockImageGalleryForm;

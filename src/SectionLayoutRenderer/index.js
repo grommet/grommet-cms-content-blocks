@@ -8,7 +8,6 @@ export default class SectionLayoutRenderer extends Component {
     }
     return blocks.map((block, index) => { // eslint-disable-line arrow-body-style
       if (!block.blockType) {
-        console.error(`Oh no!  I think there is a bug.  The block with id ${block.id || 'unknown'} does not have a block type`);
         return null;
       }
       return (!block.edit) ? React.cloneElement(
@@ -22,10 +21,11 @@ export default class SectionLayoutRenderer extends Component {
   }
 
   render() {
-    const { section } = this.props;
+    const { section, ...rest } = this.props;
 
     return (
       <ContentLayoutEngine
+        {...rest}
         layout={section.layout}
         blocks={section.contentBlocks}
       >

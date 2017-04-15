@@ -2,15 +2,19 @@ import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Box from 'grommet/components/Box';
 import Label from 'grommet/components/Label';
-import Heading from 'grommet/components/Heading';
 import PlayIcon from 'grommet/components/icons/base/CirclePlay';
 import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
 
 const ImageBox = styled(Box)`
-  padding-bottom: 56% !important;
   background-position: 50% 50%;
   position: relative;
+  padding-bottom: 56.25% !important;
+  width: 100%;
+  @media screen and (max-width: 720px) {
+    height: 263px;
+    padding-bottom: 0 !important;
+  }
   @media all and (-ms-high-contrast:none) {
     height: 263px;
   }
@@ -37,7 +41,6 @@ export default function VideoCallout({ label, onClick, description, thumbnail })
     <div>
       {label && <Label uppercase>{label}</Label>}
       <ImageBox
-        full="horizontal"
         align="center"
         justify="center"
         texture={thumbnail}

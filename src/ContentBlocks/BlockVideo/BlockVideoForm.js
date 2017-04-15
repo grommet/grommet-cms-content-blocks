@@ -12,7 +12,7 @@ export class BlockVideoForm extends Component {
       image: props.image || '',
       content: props.content || '',
       video: props.video || '',
-      label: props.label || ''
+      label: props.label || '',
     };
 
     this._onChange = this._onChange.bind(this);
@@ -22,7 +22,7 @@ export class BlockVideoForm extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
       this.setState({
-        image: `${this.props.url}`
+        image: `${this.props.url}`,
       });
     }
   }
@@ -30,12 +30,12 @@ export class BlockVideoForm extends Component {
   componentWillReceiveProps({ image, video }) {
     if (image && image !== this.state.image) {
       this.setState({
-        image
+        image,
       });
     }
     if (video && video !== this.state.video) {
       this.setState({
-        video
+        video,
       });
     }
   }
@@ -43,9 +43,9 @@ export class BlockVideoForm extends Component {
   _onChange(e) {
     const { target } = e;
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -55,8 +55,7 @@ export class BlockVideoForm extends Component {
   }
 
   _validateForm({ image }) {
-    if (image !== '')
-      return true;
+    if (image !== '') { return true; }
 
     return false;
   }
@@ -81,37 +80,47 @@ export class BlockVideoForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Label" htmlFor="label">
-                <input autoFocus id="label" name="label" type="text"
-                  value={label} onChange={this._onChange} />
+                <input
+                  autoFocus id="label" name="label" type="text"
+                  value={label} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Caption" htmlFor="content">
-                <textarea rows="4" id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} />
+                <textarea
+                  rows="4" id="content" name="content" type="text"
+                  value={content} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Video file path" htmlFor="video">
-                <input id="video" name="video" type="text"
-                  value={video.path} onChange={this._onChange} />
+                <input
+                  id="video" name="video" type="text"
+                  value={video.path} onChange={this._onChange}
+                />
               </FormField>
               <FormField label="Video thumbnail file path" htmlFor="image">
-                <input id="image" name="image" type="text"
-                  value={image.path} onChange={this._onChange} />
+                <input
+                  id="image" name="image" type="text"
+                  value={image.path} onChange={this._onChange}
+                />
               </FormField>
               {children && children}
             </fieldset>
-            <Button onClick={submit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={submit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 BlockVideoForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  url: PropTypes.string
+  url: PropTypes.string,
 };
 
 export default BlockVideoForm;
