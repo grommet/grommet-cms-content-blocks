@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import Box from 'grommet/components/Box';
+import Select from 'grommet/components/Select';
+import {
+  PostsRenderer,
+  BlockParagraphCTAsForm,
+  BlockParagraphForm,
+} from 'grommet-cms-content-blocks';
 import Layout from './Layout';
 import state from './state';
-import { PostsRenderer } from 'grommet-cms-content-blocks';
 
 // If you use React Router, make this component
 // render <Router> with your routes. Currently,
@@ -13,9 +19,25 @@ import { PostsRenderer } from 'grommet-cms-content-blocks';
 export default class App extends Component {
   render() {
     return (
-      <Layout>
-        <PostsRenderer posts={state.posts} />
-      </Layout>
+      <span>
+        <Select
+          onChange={(e)=>{console.log(e)}}
+          value={'medium'}
+          options={[
+            'small',
+            'medium',
+            'large',
+          ]}
+          name="paragraphSize"
+          id="paragraphSize"
+        />
+        <Box size="large">
+          <BlockParagraphCTAsForm />
+        </Box>
+        <Layout>
+          {/*<PostsRenderer posts={state.posts} />*/}
+        </Layout>
+      </span>
     );
   }
 }

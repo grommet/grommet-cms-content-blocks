@@ -4,47 +4,43 @@ import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Tabs from 'grommet/components/Tabs';
 import Tab from 'grommet/components/Tab';
+import Select from 'grommet/components/Select';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer, MarqueeSlideForm } from '../Shared';
+import { BlockButtonForm } from '../BlockButton';
+import { ConfirmLayer } from '../Shared';
 
-type CarouselSlide = any;
-type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
-type ButtonType = {
-  path: string,
-  label: string,
-}
+type CtaSlide = any;
 type Props = {
-  carousel: CarouselSlide[],
-  imageSize: ImageSize,
-  button: ?ButtonType,
+  ctaArray: CtaSlide[],
   content: string,
   onSubmit: ?Function,
   assetNode: HTMLElement,
+  paragraphSize: 'small' | 'medium' | 'large',
 }
 
 type State = {
-  carousel: CarouselSlide[],
-  button: ButtonType,
+  ctaArray: CtaSlide[],
   confirmLayer: boolean,
   activeSlideIndex: number,
   content: string,
-  imageSize: ImageSize
+  error: string,
+  paragraphSize: 'small' | 'medium' | 'large',
 }
 
-class BlockMarqueeForm extends Component {
+class BlockParagraphCTAsForm extends Component {
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      carousel: props.carousel || [],
-      button: props.button || { path: '', label: '' },
+      ctaArray: props.ctaArray || [],
+      paragraphSize: props.paragraphSize || 'medium',
       confirmLayer: false,
       activeSlideIndex: 0,
-      imageSize: props.imageSize || 'Large',
       content: props.content || '',
+      error: '',
     };
 
     const This = (this: any);
@@ -60,16 +56,16 @@ class BlockMarqueeForm extends Component {
   state: State;
 
   componentWillMount() {
-    if (!this.props.carousel) {
+    if (!this.props.ctaArray) {
       this.addSlideClick();
     }
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.carousel) {
+    if (nextProps.ctaArray) {
       // Copy Carousel state array.
       this.setState({
-        carousel: nextProps.carousel.slice(),
+        ctaArray: nextProps.ctaArray.slice(),
       });
     }
   }
@@ -80,29 +76,18 @@ class BlockMarqueeForm extends Component {
 
   onChangeContent(event: SyntheticInputEvent) {
     const { target } = event;
-    const { id, value } = (target: any);
+    const { id, value, option } = (target: any);
     const key = id;
-    if (key === 'path' || key === 'label') {
-      const newState = {
-        button: {
-          ...this.state.button,
-          [`${key}`]: value,
-        },
-      };
-      this.setState(newState);
-    }
     const newState = {
-      [`${key}`]: value,
+      [`${key}`]: option || value,
     };
     this.setState(newState);
   }
 
-  onSubmit({ carousel, imageSize, content, button }: State) {
+  onSubmit({ ctaArray, content }: State) {
     const dataToSubmit = {
-      carousel,
-      imageSize,
+      ctaArray,
       content,
-      button,
     };
 
     if (this.props.onSubmit) {
@@ -116,40 +101,30 @@ class BlockMarqueeForm extends Component {
 
   deleteSlide(activeIndex: number, event: Event) {
     event.preventDefault();
-    const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.splice(activeIndex, 1);
+    const nextCtaArrayState = this.state.ctaArray.slice();
+    nextCtaArrayState.splice(activeIndex, 1);
 
     this.setState({
       activeSlideIndex: 0,
-      carousel: nextCarouselState,
+      ctaArray: nextCtaArrayState,
       confirmLayer: false,
     });
   }
 
-  handleChange({ image, color, justification, imageSize }: {
-    image: string,
-    imageSize: ImageSize,
-    color: string,
-    justification: string
-  }) {
-    const { carousel, activeSlideIndex } = this.state;
-    if (image !== carousel[activeSlideIndex]) {
-      const nextCarouselState = [
-        ...carousel.slice(0, activeSlideIndex),
-        {
-          image,
-          color,
-          justification,
-        },
-        ...carousel.slice(activeSlideIndex + 1),
-      ];
-      this.setState({ carousel: nextCarouselState });
-    }
-    if (imageSize !== this.state.imageSize) {
-      this.setState({
-        imageSize,
-      });
-    }
+  handleChange({ target }: Object) {
+    const { id, value } = target;
+    const { ctaArray, activeSlideIndex } = this.state;
+
+    const nextCtaArrayState = [
+      ...ctaArray.slice(0, activeSlideIndex),
+      {
+        ...ctaArray[activeSlideIndex],
+        [id]: value,
+      },
+      ...ctaArray.slice(activeSlideIndex + 1),
+    ];
+
+    this.setState({ ctaArray: nextCtaArrayState });
   }
 
   toggleConfirm() {
@@ -157,71 +132,37 @@ class BlockMarqueeForm extends Component {
   }
 
   addSlideClick() {
-    const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.push({
-      image: '',
+    const nextCtaArrayState = this.state.ctaArray.slice();
+    nextCtaArrayState.push({
+      label: '',
+      path: '',
+      assetType: 'path',
+      buttonType: 'Anchor',
+      primary: 'True',
     });
 
     this.setState({
-      activeSlideIndex: nextCarouselState.length - 1,
-      carousel: nextCarouselState,
+      activeSlideIndex: nextCtaArrayState.length - 1,
+      ctaArray: nextCtaArrayState,
     });
   }
   props: Props;
 
   render() {
     const { assetNode } = this.props;
-    const { activeSlideIndex, imageSize, content, button } = this.state;
-    const form = (
-      <FormFields>
-        <FormField
-          label="Content"
-          htmlFor="content"
-        >
-          <textarea
-            autoFocus
-            id="content"
-            name="content"
-            type="text"
-            value={content}
-            onChange={this.onChangeContent}
-            rows="3"
-          />
-        </FormField>
-        <FormField label="Button Label" htmlFor="label">
-          <input
-            id="label"
-            name="label"
-            type="text"
-            value={button.label}
-            onChange={this.onChangeContent}
-          />
-        </FormField>
-        <FormField label="Button Path" htmlFor="path">
-          <input
-            id="path"
-            name="path"
-            type="text"
-            value={button.path}
-            onChange={this.onChangeContent}
-          />
-        </FormField>
-      </FormFields>
-    );
-
-    const marqueeForm = (
-      <MarqueeSlideForm
+    const { activeSlideIndex, content, paragraphSize } = this.state;
+    const buttonForm = (
+      <BlockButtonForm
+        data={this.state.ctaArray[activeSlideIndex]}
         assetNode={assetNode}
-        imageSize={imageSize}
-        data={this.state.carousel[activeSlideIndex]}
         onChange={this.handleChange}
         onSubmit={this.onSubmit.bind(this, this.state)}
       />
     );
 
-    const tabs = this.state.carousel.map((slide, index) =>
+    const tabs = this.state.ctaArray.map((slide, index) =>
       <Tab
-        title={`Slide ${index + 1}`}
+        title={`CTA ${index + 1}`}
         key={index}
         onClick={this.onTabsClick.bind(this, index)}
       />,
@@ -230,7 +171,7 @@ class BlockMarqueeForm extends Component {
     const confirmLayer = (this.state.confirmLayer)
       ? (
         <ConfirmLayer
-          name={`Slide ${activeSlideIndex + 1}`}
+          name={`CTA ${activeSlideIndex + 1}`}
           onClose={this.toggleConfirm}
           onSubmit={this.deleteSlide.bind(this, activeSlideIndex)}
         />
@@ -250,7 +191,38 @@ class BlockMarqueeForm extends Component {
             />
           </Box>
         </Box>
-        {form}
+        <FormFields>
+          <FormField
+            label="Content"
+            htmlFor="content"
+          >
+            <textarea
+              autoFocus
+              id="content"
+              name="content"
+              type="text"
+              value={content}
+              onChange={this.onChangeContent}
+              rows="3"
+            />
+          </FormField>
+          <FormField
+            label="Paragraph Size"
+            htmlFor="paragraphSize"
+          >
+            <Select
+              onChange={this.onChangeContent}
+              value={paragraphSize}
+              options={[
+                'small',
+                'medium',
+                'large',
+              ]}
+              name="paragraphSize"
+              id="paragraphSize"
+            />
+          </FormField>
+        </FormFields>
         <Box>
           <Box>
             <Tabs
@@ -261,10 +233,10 @@ class BlockMarqueeForm extends Component {
             </Tabs>
           </Box>
         </Box>
-        {marqueeForm}
+        {buttonForm}
       </Box>
     );
   }
 }
 
-export default BlockMarqueeForm;
+export default BlockParagraphCTAsForm;
