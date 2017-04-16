@@ -17,7 +17,7 @@ export default function BlockImage({ content, alt, image, borderColor }) {
   const color = (borderColor && borderColor !== 'none') ? colorMap[borderColor] : '';
   const styles = {
     width: '100%',
-    height: '100%',
+    height: 'auto',
   };
   const style = color !== '' ? {
     ...styles,
