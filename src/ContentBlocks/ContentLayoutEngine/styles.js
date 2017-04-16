@@ -71,4 +71,8 @@ export const Section = styled(GrommetSection)`
       }
     }
   }
+
+  .grommetux-paragraph--large {
+    max-width: 640px;
+  }
 `;
