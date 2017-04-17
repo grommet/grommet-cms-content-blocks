@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import unescape from 'unescape';
-import { BlockParagraph } from '../BlockParagraph/';
+import { BlockParagraph } from '../BlockParagraph';
 import colorMap from './colorMap';
 import Div from './div';
 import Image from './image';
