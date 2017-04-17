@@ -21,13 +21,13 @@ export default function BlockButton({
   assetType,
 }: Props) {
   const isPrimary = primary === 'True';
-  let props = { label, primary: isPrimary };
+  let props = { label, primary: isPrimary, target: '_blank' };
   if (assetType === 'path' && path && path.indexOf('.') < 0) {
     props = { ...props, path };
   } else if (assetType === 'path' && path && path.indexOf('.') > -1) {
     props = { ...props, href: path };
   } else {
-    props = { ...props, href, target: '_blank' };
+    props = { ...props, href };
   }
   if (buttonType === 'Button') {
     return (

@@ -119,6 +119,7 @@ export class BlockImageForm extends Component {
               <FormField label="Border Color" htmlFor="borderColor">
                 <Select
                   id="borderColor"
+                  name="borderColor"
                   inline={false}
                   options={['none', 'red', 'green']}
                   value={borderColor}
