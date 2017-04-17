@@ -12,6 +12,13 @@ export default {
     umdNamedDefine: true,
     sourceMapFilename: "[name].js.map",
   },
+  resolve: {
+    alias: {
+      'grommet-cms-content-blocks': path.resolve(__dirname, '..', '..', 'src'),
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+    },
+  },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({

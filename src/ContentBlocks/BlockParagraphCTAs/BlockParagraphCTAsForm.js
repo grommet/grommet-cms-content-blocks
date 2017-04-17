@@ -13,11 +13,14 @@ import { BlockButtonForm } from '../BlockButton';
 import { ConfirmLayer } from '../Shared';
 
 type CtaSlide = any;
+type OnChangeEvent = SyntheticInputEvent & {
+  option: string,
+};
 type Props = {
   ctaArray: CtaSlide[],
   content: string,
   onSubmit: ?Function,
-  assetNode: HTMLElement,
+  assetNode: ?React$Element<any>,
   paragraphSize: 'small' | 'medium' | 'large',
 }
 
@@ -46,6 +49,7 @@ class BlockParagraphCTAsForm extends Component {
     const This = (this: any);
     This.deleteSlide = this.deleteSlide.bind(this);
     This.onSubmit = this.onSubmit.bind(this);
+    This.handleAssetSelect = this.handleAssetSelect.bind(this);
     This.handleChange = this.handleChange.bind(this);
     This.addSlideClick = this.addSlideClick.bind(this);
     This.onTabsClick = this.onTabsClick.bind(this);
@@ -63,7 +67,7 @@ class BlockParagraphCTAsForm extends Component {
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.ctaArray) {
-      // Copy Carousel state array.
+      // Copy CTA state array.
       this.setState({
         ctaArray: nextProps.ctaArray.slice(),
       });
@@ -74,13 +78,14 @@ class BlockParagraphCTAsForm extends Component {
     this.setState({ activeSlideIndex: tabIndex });
   }
 
-  onChangeContent(event: SyntheticInputEvent) {
-    const { target } = event;
-    const { id, value, option } = (target: any);
+  onChangeContent(event: OnChangeEvent) {
+    const { target, option } = event;
+    const { id, value } = (target: any);
     const key = id;
     const newState = {
       [`${key}`]: option || value,
     };
+
     this.setState(newState);
   }
 
@@ -111,15 +116,34 @@ class BlockParagraphCTAsForm extends Component {
     });
   }
 
-  handleChange({ target }: Object) {
-    const { id, value } = target;
+  handleAssetSelect(asset: {
+    _id: string,
+    title: ?string,
+    path: string
+  }) {
+    const { path } = asset;
     const { ctaArray, activeSlideIndex } = this.state;
-
     const nextCtaArrayState = [
       ...ctaArray.slice(0, activeSlideIndex),
       {
         ...ctaArray[activeSlideIndex],
-        [id]: value,
+        path,
+      },
+      ...ctaArray.slice(activeSlideIndex + 1),
+    ];
+
+    this.setState({ ctaArray: nextCtaArrayState });
+  }
+
+  handleChange(event: OnChangeEvent) {
+    const { target, option } = event;
+    const { id, value } = target;
+    const { ctaArray, activeSlideIndex } = this.state;
+    const nextCtaArrayState = [
+      ...ctaArray.slice(0, activeSlideIndex),
+      {
+        ...ctaArray[activeSlideIndex],
+        [id]: option || value,
       },
       ...ctaArray.slice(activeSlideIndex + 1),
     ];
@@ -154,10 +178,16 @@ class BlockParagraphCTAsForm extends Component {
     const buttonForm = (
       <BlockButtonForm
         data={this.state.ctaArray[activeSlideIndex]}
-        assetNode={assetNode}
         onChange={this.handleChange}
         onSubmit={this.onSubmit.bind(this, this.state)}
-      />
+      >
+        {assetNode && React.cloneElement(
+          assetNode,
+          {
+            onAssetSelect: this.handleAssetSelect,
+          },
+        )}
+      </BlockButtonForm>
     );
 
     const tabs = this.state.ctaArray.map((slide, index) =>
