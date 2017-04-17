@@ -10,7 +10,7 @@ export default {
     library: 'grommet-cms-content-blocks',
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    sourceMapFilename: "[name].js.map",
+    sourceMapFilename: '[name].js.map',
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
@@ -18,6 +18,12 @@ export default {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+    },
+  },
   module: {
     rules: [
       {
