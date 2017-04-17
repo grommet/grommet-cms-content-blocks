@@ -22,8 +22,8 @@ const responsiveBoxStyles = (props) => {
 export const Box = styled(GrommetBox)`
   padding: 0;
   margin: 0;
-  padding-right: 24px;
-  padding-bottom: 24px;
+  padding-right: 48px;
+  padding-bottom: 48px;
   ${props => responsiveBoxStyles(props)}
 `;
 
@@ -39,7 +39,7 @@ export const Section = styled(GrommetSection)`
   }
 
   ul {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     padding-bottom: 0;
 
     li:last-child {
