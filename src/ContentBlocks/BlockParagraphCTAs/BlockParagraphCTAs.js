@@ -3,6 +3,7 @@ import React from 'react';
 import Box from 'grommet/components/Box';
 import { BlockButton } from '../BlockButton';
 import { BlockParagraph } from '../BlockParagraph';
+import { BlockContainer } from './styles';
 
 type Cta = {
   label: string,
@@ -22,8 +23,12 @@ export default function BlockParagraphCTAs({
   paragraphSize,
   ctaArray,
 }: Props) {
+  const ctaArrayNodes = ctaArray && ctaArray.length > 0
+    && ctaArray.map(cta => (
+      <BlockButton {...cta} />
+    ));
   return (
-    <Box id="block--block-paragraph-ctas">
+    <BlockContainer id="block--block-paragraph-ctas">
       { content &&
         <BlockParagraph
           content={content}
@@ -31,11 +36,11 @@ export default function BlockParagraphCTAs({
           paragraphSize={paragraphSize}
         />
       }
-      {ctaArray && ctaArray.length > 0 &&
-        ctaArray.map(cta => (
-          <BlockButton {...cta} />
-        ))
+      { ctaArray && ctaArray.length > 0 &&
+        <Box style={{ paddingTop: '12px' }}>
+          {ctaArrayNodes}
+        </Box>
       }
-    </Box>
+    </BlockContainer>
   );
 }

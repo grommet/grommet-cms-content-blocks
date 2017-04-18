@@ -89,10 +89,11 @@ class BlockParagraphCTAsForm extends Component {
     this.setState(newState);
   }
 
-  onSubmit({ ctaArray, content }: State) {
+  onSubmit({ ctaArray, content, paragraphSize }: State) {
     const dataToSubmit = {
       ctaArray,
       content,
+      paragraphSize,
     };
 
     if (this.props.onSubmit) {
