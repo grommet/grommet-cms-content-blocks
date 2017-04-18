@@ -18,10 +18,12 @@ export default function BlockImage({ content, alt, image, borderColor }) {
   return (
     <Div>
       <Image
+        caption={unescapedContent}
         color={color}
         src={path}
         alt={alt}
       />
+
       {caption}
     </Div>
   );
