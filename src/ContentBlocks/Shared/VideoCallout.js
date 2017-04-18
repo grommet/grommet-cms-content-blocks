@@ -38,6 +38,8 @@ const Icon = styled(PlayIcon)`
 export default function VideoCallout({ label, onClick, description, thumbnail, video }) {
   const markdownContent = unescape(description || '');
   const videoPath = video && video.path;
+  const getLastPart = parts => parts[parts.length - 1];
+  const videoName = videoPath ? getLastPart(videoPath.split('/')) : '';
   return (
     <div>
       {label && <Label uppercase>{label}</Label>}
@@ -46,7 +48,7 @@ export default function VideoCallout({ label, onClick, description, thumbnail, v
         justify="center"
         data-analytics-track="true"
         data-analytics-type="Play"
-        data-analytics-label={label}
+        data-analytics-label={label || videoName}
         data-analytics-value={videoPath}
         texture={thumbnail}
         onClick={onClick}
