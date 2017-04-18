@@ -9,12 +9,14 @@ export const imageStyles = (color: ?string, caption: ?string) => {
   if (color !== '') {
     return css`
       border-bottom: 9px solid ${color};
+      margin-bottom: 12px;
       ${imageCss}
     `;
   }
   if (caption) {
     return css`
       margin-bottom: 12px;
+      ${imageCss}
     `;
   }
   return imageCss;
