@@ -1,7 +1,7 @@
 // @flow
 import { css } from 'styled-components';
 
-export const imageStyles = (color: ?string) => {
+export const imageStyles = (color: ?string, caption: ?string) => {
   const imageCss = css`
     width: 100%;
     height: auto;
@@ -9,6 +9,13 @@ export const imageStyles = (color: ?string) => {
   if (color !== '') {
     return css`
       border-bottom: 9px solid ${color};
+      margin-bottom: 12px;
+      ${imageCss}
+    `;
+  }
+  if (caption) {
+    return css`
+      margin-bottom: 12px;
       ${imageCss}
     `;
   }

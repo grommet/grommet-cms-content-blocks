@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import unescape from 'unescape';
-import { BlockParagraph } from '../BlockParagraph/';
+import { BlockParagraph } from '../BlockParagraph';
 import colorMap from './colorMap';
 import Div from './div';
 import Image from './image';
@@ -19,6 +19,7 @@ export default function BlockImage({ content, alt, image, borderColor }) {
   return (
     <Div>
       <Image
+        caption={unescapedContent}
         color={color}
         src={path}
         alt={alt}
