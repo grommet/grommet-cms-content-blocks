@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Box from 'grommet/components/Box';
 import unescape from 'unescape';
 import { BlockParagraph } from '../BlockParagraph/';
 import colorMap from './colorMap';
@@ -22,7 +23,9 @@ export default function BlockImage({ content, alt, image, borderColor }) {
         src={path}
         alt={alt}
       />
-      {caption}
+      <Box margin={{ horizontal: 'none', vertical: 'small' }} pad="none">
+        {caption}
+      </Box>
     </Div>
   );
 }
