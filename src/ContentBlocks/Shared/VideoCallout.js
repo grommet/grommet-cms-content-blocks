@@ -46,6 +46,7 @@ export default function VideoCallout({ label, onClick, description, thumbnail, v
         justify="center"
         data-analytics-track="true"
         data-analytics-type="Play"
+        data-analytics-label={label}
         data-analytics-value={videoPath}
         texture={thumbnail}
         onClick={onClick}

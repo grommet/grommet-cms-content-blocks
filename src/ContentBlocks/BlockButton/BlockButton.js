@@ -25,8 +25,9 @@ export default function BlockButton({
   const link = getLink(assetType, path, href);
   const tracking = {
     'data-analytics-track': 'true',
-    'data-analytics-value': path || href || '',
-    'data-analytics-type': getAnalyticsType(assetType, path),
+    'data-analytics-value': assetType === 'path' ? path : href,
+    'data-analytics-type': getAnalyticsType(assetType, path, href),
+    'data-analytics-category': buttonType,
   };
   const props = { label, primary: isPrimary, target: '_blank', ...tracking, ...link };
   if (buttonType === 'Button') {

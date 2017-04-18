@@ -39,7 +39,14 @@ export const getAnalyticsType = (
   href: ?string,
 ): AnalyticsType => {
   const type = getAssetType(assetType, path);
-  const link = path || href || '';
+  let link;
+  if (type === 'href' && href) {
+    link = href;
+  } else if (path && type === 'path') {
+    link = path;
+  } else {
+    link = href || path || '';
+  }
   const linkType = getLinkType(link, type);
   return linkType;
 };
