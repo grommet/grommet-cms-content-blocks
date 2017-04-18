@@ -34,6 +34,8 @@ module.exports = {
   resolve: {
     alias: {
       'grommet-cms-content-blocks': path.resolve(__dirname, '..', '..', 'src'),
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
     },
   },
 

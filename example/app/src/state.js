@@ -23,8 +23,30 @@ export default {
       "modifiedAt": "2017-03-15T20:11:29.787Z",
       "createdAt": "2017-03-15T20:11:29.787Z",
       "sections": [
-{
+  {
   "contentBlocks": [
+    {
+      "id": "03c1dfe2-58cf-481e-891a-9ba971bd17b8",
+      "edit": false,
+      "blockType": "BlockParagraphCTAs",
+      "content": "# This is a header\n\nThis is a paragraph.",
+      "ctaArray": [
+        {
+          assetType: "path",
+          buttonType: "Anchor",
+          label: "test",
+          path: "test",
+          primary: "True"
+        }, 
+        {
+          assetType: "path",
+          buttonType: "Anchor",
+          label: "test2",
+          path: "test2",
+          primary: "True"
+        }
+      ]
+    },
     {
       "id": "03c1dfe2-58cf-480e-891a-9ba971bd17b9",
       "edit": false,

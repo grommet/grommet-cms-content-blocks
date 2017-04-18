@@ -40,7 +40,8 @@ type Props = {
   path?: string,
   asset?: {
     path?: string,
-  }
+  },
+  data?: Object
 };
 
 export default class BlockButtonForm extends React.Component {
@@ -50,7 +51,7 @@ export default class BlockButtonForm extends React.Component {
     (this:any).onSubmit = this.onSubmit.bind(this);
     (this:any).formIsValid = this.formIsValid.bind(this);
     (this:any).onChangeAssetType = this.onChangeAssetType.bind(this);
-    const { path, primary, label, buttonType, href, assetType } = props;
+    const { path, primary, label, buttonType, href, assetType } = props.data || props;
     const labelInput = label || '';
     const primaryInput = primary || 'True';
     const buttonTypeInput = buttonType || 'Button';
@@ -74,7 +75,7 @@ export default class BlockButtonForm extends React.Component {
 
   state: State;
 
-  componentWillReceiveProps({ asset }: Props) {
+  componentWillReceiveProps({ asset, data }: Props) {
     if (asset && asset.path !== this.state.path) {
       this.setState({
         path: asset.path,
@@ -87,6 +88,9 @@ export default class BlockButtonForm extends React.Component {
           },
         });
       }
+    }
+    if (data) {
+      this.setState({ ...data });
     }
   }
 
