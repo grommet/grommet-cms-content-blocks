@@ -22,7 +22,7 @@ const responsiveBoxStyles = (props) => {
 export const Box = styled(GrommetBox)`
   padding: 0;
   margin: 0;
-  padding-right: 48px;
+  padding-right: 24px;
   padding-bottom: 48px;
   ${props => responsiveBoxStyles(props)}
 `;
@@ -73,6 +73,6 @@ export const Section = styled(GrommetSection)`
   }
 
   .grommetux-paragraph--large {
-    max-width: 640px;
+    max-width: 66%;
   }
 `;

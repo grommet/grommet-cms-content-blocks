@@ -6,6 +6,7 @@ export * from './BlockHeading';
 export * from './BlockImage';
 export * from './BlockParagraph';
 export * from './BlockParagraphCTA';
+export * from './BlockParagraphCTAs';
 export * from './BlockQuote';
 export * from './BlockVideo';
 export * from './BlockImageParagraph';
