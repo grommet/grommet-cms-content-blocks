@@ -36,6 +36,11 @@ export default function BlockParagraphCTA({
       {href && label &&
         <Footer pad={{ vertical: 'small' }}>
           <Anchor
+            data-analytics-track="true"
+            data-analytics-value={href}
+            data-analytics-category="Anchor"
+            data-analytics-type="Internal Reference"
+            data-analytics-label={label}
             primary
             target="_blank"
             href={href}

@@ -161,6 +161,11 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
             <Footer pad={{ vertical: 'medium' }} className="grommetux-background-color-index--light">
               {button && button.label && button.path &&
                 <Button
+                  data-analytics-track="true"
+                  data-analytics-value={button.path}
+                  data-analytics-category="Button"
+                  data-analytics-label={button.label}
+                  data-analytics-type="Internal Reference"
                   primary
                   {...button}
                 />
