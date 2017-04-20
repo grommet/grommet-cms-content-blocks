@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import Box from 'grommet/components/Box';
-import Image from 'grommet/components/Image';
 import Carousel from 'grommet/components/Carousel';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
@@ -9,6 +8,7 @@ import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
 import ImageWrapper from '../BlockMarquee/BlockMarquee/ImageWrapper';
 import ImageBox from '../BlockMarquee/BlockMarquee/ImageBox';
+import { createTrackerProps } from '../Shared';
 
 type Slide = {
   justification: string,
@@ -69,7 +69,16 @@ export default class BlockCarouselWithContent extends React.Component {
                     />
                     {slide.button && slide.button.label &&
                       <Footer pad={{ vertical: 'medium' }}>
-                        <Button {...slide.button} />
+                        <Button
+                          {...createTrackerProps({
+                            track: 'true',
+                            category: 'Button',
+                            value: slide.button.path,
+                            type: (slide.button.path && slide.button.path.includes('http')) ? 'External Reference' : 'Internal Reference',
+                            label: 'Carousel',
+                          })}
+                          {...slide.button}
+                        />
                       </Footer>
                     }
                   </Box>
