@@ -23,7 +23,6 @@ export default function BlockImage({ content, alt, image, borderColor }) {
         src={path}
         alt={alt}
       />
-
       {caption}
     </Div>
   );

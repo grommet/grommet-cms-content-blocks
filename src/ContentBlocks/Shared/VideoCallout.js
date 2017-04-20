@@ -35,14 +35,21 @@ const Icon = styled(PlayIcon)`
   max-height: 100%;
 `;
 
-export default function VideoCallout({ label, onClick, description, thumbnail }) {
+export default function VideoCallout({ label, onClick, description, thumbnail, video }) {
   const markdownContent = unescape(description || '');
+  const videoPath = video && video.path;
+  const getLastPart = parts => parts[parts.length - 1];
+  const videoName = videoPath ? getLastPart(videoPath.split('/')) : '';
   return (
     <div>
       {label && <Label uppercase>{label}</Label>}
       <ImageBox
         align="center"
         justify="center"
+        data-analytics-track="true"
+        data-analytics-type="Play"
+        data-analytics-label={label || videoName}
+        data-analytics-value={videoPath}
         texture={thumbnail}
         onClick={onClick}
       >
@@ -70,6 +77,9 @@ VideoCallout.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   thumbnail: PropTypes.string,
+  video: PropTypes.shape({
+    path: PropTypes.string,
+  }),
 };
 
 VideoCallout.defaultProps = {

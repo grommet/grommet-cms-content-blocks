@@ -33,6 +33,7 @@ export default class BlockVideo extends Component {
       <Box>
         {videoLayer}
         <VideoCallout
+          video={video}
           description={content}
           label={label}
           thumbnail={image.path}
