@@ -4,10 +4,10 @@ import Box from 'grommet/components/Box';
 function ctaStyles(props) {
   if (!props.isLastElement) {
     return css`
-      margin-bottom: 12px;
+      margin-bottom: 12px !important;
     `;
   }
-  return '';
+  return css``;
 }
 
 export const CTABox = styled(Box)`

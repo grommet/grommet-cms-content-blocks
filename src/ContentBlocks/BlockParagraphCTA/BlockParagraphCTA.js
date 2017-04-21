@@ -34,7 +34,7 @@ export default function BlockParagraphCTA({
         }}
       />
       {href && label &&
-        <Footer pad={{ vertical: 'small' }}>
+        <Footer pad={{ vertical: 'small' }} style={{ display: 'inline-block' }}>
           <Anchor
             data-analytics-track="true"
             data-analytics-value={href}

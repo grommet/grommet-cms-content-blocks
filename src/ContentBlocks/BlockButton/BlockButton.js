@@ -36,7 +36,9 @@ export default function BlockButton({
     );
   } else if (buttonType === 'Anchor') {
     return (
-      <Anchor {...props} />
+      <div>
+        <Anchor {...props} />
+      </div>
     );
   }
 }
