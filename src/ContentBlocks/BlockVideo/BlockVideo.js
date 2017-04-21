@@ -20,7 +20,7 @@ export default class BlockVideo extends Component {
   }
 
   render() {
-    const { content, image, label, video } = this.props;
+    const { content, image, label, video, borderColor } = this.props;
     const videoLayer = (this.state.layerActive)
       ? (<VideoLayer
         image={image}
@@ -33,6 +33,7 @@ export default class BlockVideo extends Component {
       <Box>
         {videoLayer}
         <VideoCallout
+          borderColor={borderColor}
           video={video}
           description={content}
           label={label}
@@ -46,6 +47,7 @@ export default class BlockVideo extends Component {
 
 BlockVideo.propTypes = {
   content: PropTypes.string,
+  borderColor: PropTypes.string,
   image: PropTypes.shape({
     path: PropTypes.string.isRequired,
   }),

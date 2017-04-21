@@ -4,8 +4,15 @@ import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
+import Select from 'grommet/components/Select';
 
 export class BlockVideoForm extends Component {
+  static validateForm({ image }) {
+    if (image !== '') { return true; }
+
+    return false;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,18 +20,11 @@ export class BlockVideoForm extends Component {
       content: props.content || '',
       video: props.video || '',
       label: props.label || '',
+      borderColor: props.borderColor || 'none',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
-        image: `${this.props.url}`,
-      });
-    }
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps({ image, video }) {
@@ -40,10 +40,18 @@ export class BlockVideoForm extends Component {
     }
   }
 
-  _onChange(e) {
-    const { target } = e;
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url && this.props.url !== '') {
+      this.setState({ // eslint-disable-line
+        image: `${this.props.url}`,
+      });
+    }
+  }
+
+  onChange(e) {
+    const { target, option } = e;
     const key = target.id;
-    const val = target.value;
+    const val = option || target.value;
 
     const obj = {};
     obj[key] = val;
@@ -54,13 +62,7 @@ export class BlockVideoForm extends Component {
     }
   }
 
-  _validateForm({ image }) {
-    if (image !== '') { return true; }
-
-    return false;
-  }
-
-  _onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(event);
@@ -68,10 +70,10 @@ export class BlockVideoForm extends Component {
   }
 
   render() {
-    const { image, content, label, video } = this.state;
+    const { image, content, label, video, borderColor } = this.state;
     const { children } = this.props;
-    const submit = (this._validateForm(this.state))
-      ? this._onSubmit
+    const submit = (BlockVideoForm.validateForm(this.state))
+      ? this.onSubmit
       : undefined;
 
     return (
@@ -82,25 +84,35 @@ export class BlockVideoForm extends Component {
               <FormField label="Label" htmlFor="label">
                 <input
                   autoFocus id="label" name="label" type="text"
-                  value={label} onChange={this._onChange}
+                  value={label} onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Caption" htmlFor="content">
                 <textarea
                   rows="4" id="content" name="content" type="text"
-                  value={content} onChange={this._onChange}
+                  value={content} onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Video file path" htmlFor="video">
                 <input
                   id="video" name="video" type="text"
-                  value={video.path} onChange={this._onChange}
+                  value={video.path} onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Video thumbnail file path" htmlFor="image">
                 <input
                   id="image" name="image" type="text"
-                  value={image.path} onChange={this._onChange}
+                  value={image.path} onChange={this.onChange}
+                />
+              </FormField>
+              <FormField label="Border Color" htmlFor="borderColor">
+                <Select
+                  id="borderColor"
+                  name="borderColor"
+                  inline={false}
+                  options={['none', 'red', 'green']}
+                  value={borderColor}
+                  onChange={this.onChange}
                 />
               </FormField>
               {children && children}
@@ -121,6 +133,11 @@ BlockVideoForm.propTypes = {
   onChange: PropTypes.func,
   children: PropTypes.node,
   url: PropTypes.string,
+  image: PropTypes.string,
+  content: PropTypes.string,
+  borderColor: PropTypes.string,
+  video: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default BlockVideoForm;

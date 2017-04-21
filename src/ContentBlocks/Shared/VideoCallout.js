@@ -1,12 +1,23 @@
 import React, { PropTypes } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Box from 'grommet/components/Box';
 import Label from 'grommet/components/Label';
 import PlayIcon from 'grommet/components/icons/base/CirclePlay';
 import Markdown from 'grommet/components/Markdown';
 import unescape from 'unescape';
+import colorMap from '../BlockImage/colorMap';
+
+const borderStyles = ({ borderColor }) => {
+  if (borderColor && colorMap[borderColor]) {
+    return css`
+      border-bottom: 9px solid ${colorMap[borderColor]};
+    `;
+  }
+  return '';
+};
 
 const ImageBox = styled(Box)`
+  ${props => borderStyles(props)}
   background-position: 50% 50%;
   position: relative;
   padding-bottom: 56.25% !important;
@@ -35,7 +46,14 @@ const Icon = styled(PlayIcon)`
   max-height: 100%;
 `;
 
-export default function VideoCallout({ label, onClick, description, thumbnail, video }) {
+export default function VideoCallout({
+  label,
+  onClick,
+  description,
+  thumbnail,
+  video,
+  borderColor,
+}) {
   const markdownContent = unescape(description || '');
   const videoPath = video && video.path;
   const getLastPart = parts => parts[parts.length - 1];
@@ -50,6 +68,7 @@ export default function VideoCallout({ label, onClick, description, thumbnail, v
         data-analytics-type="Play"
         data-analytics-label={label || videoName}
         data-analytics-value={videoPath}
+        borderColor={borderColor}
         texture={thumbnail}
         onClick={onClick}
       >
@@ -77,6 +96,11 @@ VideoCallout.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   thumbnail: PropTypes.string,
+  borderColor: PropTypes.oneOf([
+    'red',
+    'green',
+    'none',
+  ]),
   video: PropTypes.shape({
     path: PropTypes.string,
   }),
