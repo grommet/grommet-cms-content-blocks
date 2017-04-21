@@ -1,4 +1,5 @@
 // @flow
+import unescape from 'unescape';
 import type { AssetType } from './BlockButtonForm';
 
 type AnalyticsType = 'Download' | 'Internal Reference' | 'External Reference' | 'Support';
@@ -55,10 +56,10 @@ export const getLink = (assetType: AssetType, path: ?string, href: ?string) => {
   const type = getAssetType(assetType, path);
   if (type === 'path') {
     return {
-      path,
+      path: unescape(path || ''),
     };
   }
   return {
-    href: href || path || '',
+    href: unescape(href || path || ''),
   };
 };
