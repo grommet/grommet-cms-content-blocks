@@ -3,7 +3,7 @@ import React from 'react';
 import Box from 'grommet/components/Box';
 import { BlockButton } from '../BlockButton';
 import { BlockParagraph } from '../BlockParagraph';
-import { BlockContainer } from './styles';
+import { BlockContainer, CTABox } from './styles';
 import uuid from '../Shared/uuid';
 
 type Cta = {
@@ -24,11 +24,12 @@ export default function BlockParagraphCTAs({
   paragraphSize,
   ctaArray,
 }: Props) {
+  const length = ctaArray && ctaArray.length > 0 ? ctaArray.length : 0;
   const ctaArrayNodes = ctaArray && ctaArray.length > 0
-    && ctaArray.map(cta => (
-      <Box key={uuid()} style={{ marginBottom: 12 }} pad="none" margin="none">
+    && ctaArray.map((cta, i) => (
+      <CTABox key={uuid()} isLastElement={i === length - 1} pad="none" margin="none">
         <BlockButton {...cta} />
-      </Box>
+      </CTABox>
     ));
   return (
     <BlockContainer id="block--block-paragraph-ctas">

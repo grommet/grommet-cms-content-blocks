@@ -1,5 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Box from 'grommet/components/Box';
+
+function ctaStyles(props) {
+  if (!props.isLastElement) {
+    return css`
+      margin-bottom: 12px;
+    `;
+  }
+  return '';
+}
+
+export const CTABox = styled(Box)`
+  ${props => ctaStyles(props)}
+`;
 
 export const BlockContainer = styled(Box)`
   & > h1:first-child,

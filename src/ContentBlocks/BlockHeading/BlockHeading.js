@@ -15,7 +15,7 @@ export default function BlockHeading({ content, strong, size }) {
       {unescapedContent}
     </Headline>
   );
-};
+}
 
 BlockHeading.propTypes = {
   content: PropTypes.string,
