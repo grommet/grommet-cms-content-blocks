@@ -4,6 +4,7 @@ import Box from 'grommet/components/Box';
 import { BlockButton } from '../BlockButton';
 import { BlockParagraph } from '../BlockParagraph';
 import { BlockContainer } from './styles';
+import uuid from '../Shared/uuid';
 
 type Cta = {
   label: string,
@@ -25,7 +26,9 @@ export default function BlockParagraphCTAs({
 }: Props) {
   const ctaArrayNodes = ctaArray && ctaArray.length > 0
     && ctaArray.map(cta => (
-      <BlockButton {...cta} />
+      <Box key={uuid()} style={{ marginBottom: 12 }} pad="none" margin="none">
+        <BlockButton {...cta} />
+      </Box>
     ));
   return (
     <BlockContainer id="block--block-paragraph-ctas">
