@@ -15,7 +15,7 @@ export default function BlockCarousel({ carousel, imageSize }) {
     ));
 
   return (
-    <Carousel>
+    <Carousel autoplay={false}>
       {slides}
     </Carousel>
   );
