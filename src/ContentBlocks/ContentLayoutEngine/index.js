@@ -13,7 +13,7 @@ export default class ContentLayoutEngine extends Component {
   renderBlocks(children: Array<Object>, blocks: Array<Object>) {
     const blockArray = [];
     const { applyLayout } = this.props;
-    children.map((item, i) => { // eslint-disable-line
+    children.map((item, i) => { // eslint-disable-line array-callback-return
       let newLineIndex;
       const blockLayout = blocks[i].layout;
       const blockType = (item && item.props && item.props.blockType)

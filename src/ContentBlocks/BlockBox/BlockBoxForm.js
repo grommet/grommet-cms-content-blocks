@@ -8,6 +8,7 @@ import Select from 'grommet/components/Select';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import colorOptionsList from '../Shared/colorIndexes';
+import type { OnChangeEvent } from '../../types';
 
 type ErrorType = string;
 
@@ -35,10 +36,10 @@ type BlockBoxFormProps = {
 export default class BlockBoxForm extends React.Component {
   constructor(props: BlockBoxFormProps) {
     super(props);
-    (this: any).onChange = this.onChange.bind(this);
-    (this: any).onSubmit = this.onSubmit.bind(this);
-    (this: any).onSearch = this.onSearch.bind(this);
-    (this: any).formIsValid = this.formIsValid.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+    this.formIsValid = this.formIsValid.bind(this);
     let alignInput = 'center';
     let colorIndexInput = '';
     let contentInput = '';
@@ -64,7 +65,8 @@ export default class BlockBoxForm extends React.Component {
 
   state: BlockBoxFormState;
 
-  onChange({ target, option }: any) {
+  onChange: (e: SyntheticInputEvent) => void;
+  onChange({ target, option }: OnChangeEvent) {
     if (option) {
       this.setState({
         [`${target.id}`]: option,
@@ -82,7 +84,8 @@ export default class BlockBoxForm extends React.Component {
     }
   }
 
-  onSubmit(event: any) {
+  onSubmit: (event: SyntheticInputEvent) => void;
+  onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     const { alignInput, colorIndexInput, contentInput, borderColor } = this.state;
     if (this.formIsValid() && this.props.onSubmit) {
@@ -107,7 +110,8 @@ export default class BlockBoxForm extends React.Component {
     }
   }
 
-  onSearch(e: any) {
+  onSearch: (e: SyntheticInputEvent) => void;
+  onSearch(e: SyntheticInputEvent) {
     const { colorOptions } = this.state;
     const { value } = e.target;
     const newOptions = value === '' || !value
@@ -120,6 +124,7 @@ export default class BlockBoxForm extends React.Component {
 
   props: BlockBoxFormProps;
 
+  formIsValid: () => boolean;
   formIsValid() {
     const { alignInput, colorIndexInput, contentInput } = this.state;
     if (alignInput && colorIndexInput && contentInput) {

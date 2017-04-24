@@ -9,6 +9,7 @@ import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import RadioButton from 'grommet/components/RadioButton';
 import validation from './validation';
+import type { OnChangeEvent } from '../../types';
 
 export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';
@@ -28,6 +29,9 @@ type State = {
   }
 };
 
+// Weird issue with unwrapping props.data || props, showing unused props.
+// Disable for now.
+/* eslint-disable react/no-unused-prop-types */
 type Props = {
   onSubmit?: Function,
   onChange?: Function,
@@ -43,14 +47,15 @@ type Props = {
   },
   data?: Object
 };
+/* eslint-enable react/no-unused-prop-types */
 
 export default class BlockButtonForm extends React.Component {
   constructor(props: Props) {
     super(props);
-    (this:any).onChange = this.onChange.bind(this);
-    (this:any).onSubmit = this.onSubmit.bind(this);
-    (this:any).formIsValid = this.formIsValid.bind(this);
-    (this:any).onChangeAssetType = this.onChangeAssetType.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.formIsValid = this.formIsValid.bind(this);
+    this.onChangeAssetType = this.onChangeAssetType.bind(this);
     const { path, primary, label, buttonType, href, assetType } = props.data || props;
     const labelInput = label || '';
     const primaryInput = primary || 'True';
@@ -94,7 +99,8 @@ export default class BlockButtonForm extends React.Component {
     }
   }
 
-  onChange(e: any) {
+  onChange: (e: OnChangeEvent) => void;
+  onChange(e: OnChangeEvent) {
     const { target, option } = e;
     if (option) {
       this.setState({
@@ -110,6 +116,7 @@ export default class BlockButtonForm extends React.Component {
     }
   }
 
+  onChangeAssetType: () => void;
   onChangeAssetType() {
     const { assetType } = this.state;
     let newType = 'href';
@@ -130,7 +137,8 @@ export default class BlockButtonForm extends React.Component {
     });
   }
 
-  onSubmit(event: any) {
+  onSubmit: (event: SyntheticInputEvent) => void;
+  onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     if (this.formIsValid() && this.props.onSubmit) {
       if (this.props.onSubmit) {
@@ -141,6 +149,7 @@ export default class BlockButtonForm extends React.Component {
 
   props: Props;
 
+  formIsValid: () => boolean;
   formIsValid() {
     const { path, label, href, assetType } = this.state;
     const hrefError = validation.validUrl(href) === true

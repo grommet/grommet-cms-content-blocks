@@ -17,17 +17,17 @@ export default class BlockCard extends Component {
       layerContent: '',
     };
 
-    this._toggleVideoLayer = this._toggleVideoLayer.bind(this);
+    this.toggleVideoLayer = this.toggleVideoLayer.bind(this);
   }
 
-  _toggleVideoLayer(videoUrl) {
+  toggleVideoLayer(videoUrl) {
     this.setState({
       layerActive: !this.state.layerActive,
       layerContent: videoUrl,
     });
   }
 
-  _isLinkVideo(url) {
+  isLinkVideo(url) {
     const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     if (url.match(p)) {
       return url.match(p)[1];
@@ -46,7 +46,7 @@ export default class BlockCard extends Component {
       />)
       : undefined;
 
-    const anchor = (this._isLinkVideo(linkUrl))
+    const anchor = (this.isLinkVideo(linkUrl))
       ? (<Anchor
         label={linkText} icon={<CirclePlayIcon />}
         onClick={this._toggleVideoLayer.bind(this, linkUrl)}

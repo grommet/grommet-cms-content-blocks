@@ -6,6 +6,12 @@ import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
 
 export class AssetLinkForm extends Component {
+  static validateForm({ asset }) {
+    if (asset.path !== '') { return true; }
+
+    return false;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +19,8 @@ export class AssetLinkForm extends Component {
       content: props.content || '',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps({ asset }) {
@@ -25,15 +31,15 @@ export class AssetLinkForm extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         asset: `${this.props.url}`,
       });
     }
   }
 
-  _onChange(e) {
+  onChange(e) {
     const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
@@ -47,13 +53,7 @@ export class AssetLinkForm extends Component {
     }
   }
 
-  _validateForm({ asset }) {
-    if (asset.path !== '')      { return true; }
-
-    return false;
-  }
-
-  _onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(event);
@@ -63,8 +63,8 @@ export class AssetLinkForm extends Component {
   render() {
     const { asset, content } = this.state;
     const { children } = this.props;
-    const submit = (this._validateForm(this.state))
-      ? this._onSubmit
+    const submit = (AssetLinkForm.validateForm(this.state))
+      ? this.onSubmit
       : undefined;
 
     return (
@@ -75,13 +75,13 @@ export class AssetLinkForm extends Component {
               <FormField label="Link Text" htmlFor="content">
                 <input
                   autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange}
+                  value={content} onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Asset file path" htmlFor="asset">
                 <input
                   id="asset" name="asset" type="text"
-                  value={asset.path || ''} onChange={this._onChange}
+                  value={asset.path || ''} onChange={this.onChange}
                 />
               </FormField>
               {children && children}
@@ -102,6 +102,10 @@ AssetLinkForm.propTypes = {
   onChange: PropTypes.func,
   children: PropTypes.node,
   url: PropTypes.string,
+  asset: PropTypes.shape({
+    path: PropTypes.string,
+  }),
+  content: PropTypes.string,
 };
 
 export default AssetLinkForm;

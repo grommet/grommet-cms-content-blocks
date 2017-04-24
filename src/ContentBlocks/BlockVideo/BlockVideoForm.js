@@ -1,3 +1,4 @@
+// @flow
 import React, { Component, PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
@@ -5,18 +6,37 @@ import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
 import Select from 'grommet/components/Select';
+import type { OnChangeEvent, Asset } from '../../types';
 
-class BlockVideoForm extends Component {
+type Props = {
+  image: ?string,
+  content: ?string,
+  label: ?string,
+  video: ?string,
+  url: ?string,
+  onChange: ?(e: OnChangeEvent) => void,
+  onSubmit: ?(e: SyntheticInputEvent) => void,
+  children: HTMLElement,
+}
+
+type State = {
+  image: ?Asset,
+  content: ?string,
+  label: ?string,
+  video: ?Asset,
+  borderColor: string,
+};
+
+export class BlockVideoForm extends Component {
   static validateForm({ image }) {
     if (image !== '') { return true; }
 
     return false;
   }
-
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      image: props.image || '',
+      image: props.image || { path: '' },
       content: props.content || '',
       video: props.video || '',
       label: props.label || '',
@@ -27,7 +47,9 @@ class BlockVideoForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillReceiveProps({ image, video }) {
+  state: State;
+
+  componentWillReceiveProps({ image, video }: Props) {
     if (image && image !== this.state.image) {
       this.setState({
         image,
@@ -40,18 +62,21 @@ class BlockVideoForm extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({ // eslint-disable-line
-        image: `${this.props.url}`,
-      });
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.url) {
+      if (prevProps.url !== this.props.url && this.props.url !== '') {
+        this.setState({ // eslint-disable-line react/no-did-update-set-state
+          image: `${this.props.url}`,
+        });
+      }
     }
   }
 
-  onChange(e) {
-    const { target, option } = e;
+  onChange: (event: SyntheticInputEvent) => void;
+  onChange(e: SyntheticInputEvent) {
+    const { target } = e;
     const key = target.id;
-    const val = option || target.value;
+    const val = target.value;
 
     const obj = {};
     obj[key] = val;
@@ -62,12 +87,15 @@ class BlockVideoForm extends Component {
     }
   }
 
-  onSubmit(event) {
+  onSubmit: (event: SyntheticInputEvent) => void;
+  onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(event);
     }
   }
+
+  props: Props;
 
   render() {
     const { image, content, label, video, borderColor } = this.state;
@@ -89,20 +117,30 @@ class BlockVideoForm extends Component {
               </FormField>
               <FormField label="Caption" htmlFor="content">
                 <textarea
-                  rows="4" id="content" name="content" type="text"
-                  value={content} onChange={this.onChange}
+                  rows="4"
+                  id="content"
+                  name="content"
+                  type="text"
+                  value={content}
+                  onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Video file path" htmlFor="video">
                 <input
-                  id="video" name="video" type="text"
-                  value={video.path} onChange={this.onChange}
+                  id="video"
+                  name="video"
+                  type="text"
+                  value={video && video.path ? video.path : ''}
+                  onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Video thumbnail file path" htmlFor="image">
                 <input
-                  id="image" name="image" type="text"
-                  value={image.path} onChange={this.onChange}
+                  id="image"
+                  name="image"
+                  type="text"
+                  value={image && image.path ? image.path : ''}
+                  onChange={this.onChange}
                 />
               </FormField>
               <FormField label="Border Color" htmlFor="borderColor">
