@@ -6,7 +6,7 @@ import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
 import Select from 'grommet/components/Select';
 
-export class BlockVideoForm extends Component {
+class BlockVideoForm extends Component {
   static validateForm({ image }) {
     if (image !== '') { return true; }
 

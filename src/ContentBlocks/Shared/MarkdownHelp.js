@@ -3,7 +3,7 @@ import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import Header from 'grommet/components/Header';
 
-export default function index(props) {
+export default function index() {
   return (
     <Box direction="column" className="markdown-guide">
       <Header>
@@ -12,13 +12,13 @@ export default function index(props) {
         </Heading>
       </Header>
 
-      <Heading className="markdown-guide__title" tag="h3" margin="none" strong={true}>
+      <Heading className="markdown-guide__title" tag="h3" margin="none" strong>
         Headings
       </Heading>
-      <hr/>
+      <hr />
       <p>
-        # h1<br/>
-        ## h2<br/>
+        # h1<br />
+        ## h2<br />
         ### h3
       </p>
       <Box className="press-post markdown">
@@ -27,13 +27,13 @@ export default function index(props) {
         <h3>h3</h3>
       </Box>
 
-      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong={true}>
+      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong>
         Emphasis
       </Heading>
-      <hr/>
+      <hr />
       <p>
-        **Strong**<br/>
-        *Publication Source*<br/>
+        **Strong**<br />
+        *Publication Source*<br />
         > “This is a blockquote.”
       </p>
       <Box className="press-post markdown">
@@ -44,10 +44,10 @@ export default function index(props) {
         </blockquote>
       </Box>
 
-      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong={true}>
+      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong>
         Images
       </Heading>
-      <hr/>
+      <hr />
       <p>
         ![alt text](https://unsplash.it/200/300/?random)
       </p>
@@ -55,15 +55,15 @@ export default function index(props) {
         <img src="/img/investments/kean-io-logo.png" alt="Keen IO" />
       </Box>
 
-      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong={true}>
+      <Heading className="markdown-guide__title markdown-guide__title--pad" tag="h4" margin="none" strong>
         Links
       </Heading>
-      <hr/>
+      <hr />
       <p>
         [link text](http://my-url.com)
       </p>
       <Box className="press-post markdown">
-        <a href="#" alt="Keen IO">link text</a>
+        <a href="/" alt="Keen IO">link text</a>
       </Box>
 
     </Box>

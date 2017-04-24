@@ -7,8 +7,8 @@ import removeMarkdown from 'remove-markdown';
 
 export default function GenericPreview(props: {
   content: string,
-  image?: {
-    path: string
+  image: ?{
+    path: string,
   },
   carousel?: Array<{
     image: {
@@ -39,8 +39,8 @@ export default function GenericPreview(props: {
       </Heading>
     </Box>
   );
-};
+}
 
 GenericPreview.defaultProps = {
-  content: ''
+  content: '',
 };

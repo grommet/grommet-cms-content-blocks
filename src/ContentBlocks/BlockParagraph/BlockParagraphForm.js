@@ -17,12 +17,12 @@ export class ParagraphForm extends Component {
       align: props.align || 'start',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
-    this._onToggleHelp = this._onToggleHelp.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onToggleHelp = this.onToggleHelp.bind(this);
   }
 
-  _onChange(e) {
+  onChange(e) {
     const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
@@ -36,13 +36,13 @@ export class ParagraphForm extends Component {
     }
   }
 
-  _onToggleHelp() {
+  onToggleHelp() {
     this.setState({
       layer: !this.state.layer,
     });
   }
 
-  _onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     const formData = Object.assign({}, this.state);
     this.props.onSubmit(formData);
@@ -53,17 +53,17 @@ export class ParagraphForm extends Component {
 
     return (
       <Box colorIndex="light-2" pad="medium">
-        <Form compact={false} onSubmit={this._onSubmit}>
+        <Form compact={false} onSubmit={this.onSubmit}>
           <MarkdownHelpLayer
             isVisible={layer}
-            onToggle={this._onToggleHelp}
+            onToggle={this.onToggleHelp}
           />
           <FormFields>
             <fieldset>
               <FormField label="Content" htmlFor="content">
                 <textarea
                   autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} rows="10"
+                  value={content} onChange={this.onChange} rows="10"
                 />
               </FormField>
               <FormField
@@ -71,7 +71,7 @@ export class ParagraphForm extends Component {
                 htmlFor="align"
               >
                 <Select
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   value={align || 'start'}
                   options={[
                     'start',
@@ -87,7 +87,7 @@ export class ParagraphForm extends Component {
                 htmlFor="paragraphSize"
               >
                 <Select
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   value={paragraphSize || 'medium'}
                   options={[
                     'small',
@@ -100,7 +100,7 @@ export class ParagraphForm extends Component {
               </FormField>
             </fieldset>
             <Button
-              onClick={this._onSubmit} primary={false} type="submit"
+              onClick={this.onSubmit} primary={false} type="submit"
               label="Done"
             />
           </FormFields>

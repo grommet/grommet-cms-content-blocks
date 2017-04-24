@@ -16,7 +16,7 @@ export default function BlockPageHeader({ title, controls, fixed }) {
       align="center"
       pad={{ vertical: 'small', horizontal: 'medium' }}
     >
-      <Heading tag="h4" strong={true} margin="none">
+      <Heading tag="h4" strong margin="none">
         {title}
       </Heading>
       <Box direction="row" pad={{ between: 'small' }}>
@@ -24,14 +24,14 @@ export default function BlockPageHeader({ title, controls, fixed }) {
       </Box>
     </Header>
   );
-};
+}
 
 BlockPageHeader.propTypes = {
   title: PropTypes.string,
   controls: PropTypes.node,
-  fixed: PropTypes.bool.isRequired
+  fixed: PropTypes.bool.isRequired,
 };
 
 BlockPageHeader.defaultProps = {
-  fixed: true
+  fixed: true,
 };

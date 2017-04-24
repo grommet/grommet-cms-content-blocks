@@ -5,13 +5,13 @@ import Video from 'grommet/components/Video';
 
 const CLASS_ROOT = 'video-layer';
 
-export default function VideoLayer ({ video, onClose, image }) {
+export default function VideoLayer({ video, onClose, image }) {
   return (
-    <Layer className={CLASS_ROOT} closer={true} onClose={onClose}>
+    <Layer className={CLASS_ROOT} closer onClose={onClose}>
       <Box
         pad="small"
         alignSelf="center"
-        style={{ minHeight:'90vh' }}
+        style={{ minHeight: '90vh' }}
         align="center"
         justify="center"
       >
@@ -29,14 +29,14 @@ export default function VideoLayer ({ video, onClose, image }) {
       </Box>
     </Layer>
   );
-};
+}
 
 VideoLayer.propTypes = {
   video: PropTypes.shape({
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
   }).isRequired,
   image: PropTypes.shape({
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
   }).isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 };

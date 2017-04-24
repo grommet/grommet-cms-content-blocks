@@ -10,7 +10,15 @@ import DownIcon from 'grommet/components/icons/base/Down';
 import SettingsOptionIcon from 'grommet/components/icons/base/SettingsOption';
 import DuplicateIcon from 'grommet/components/icons/base/Duplicate';
 
-export default function PreviewHeader ({ edit, onClose, onEdit, onMove, title, onLayoutClick, onDuplicateClick }) {
+export default function PreviewHeader({
+  edit,
+  onClose,
+  onEdit,
+  onMove,
+  title,
+  onLayoutClick,
+  onDuplicateClick,
+}) {
   return (
     <Box direction="row" responsive={false} align="center">
       <Heading tag="h3">
@@ -19,16 +27,16 @@ export default function PreviewHeader ({ edit, onClose, onEdit, onMove, title, o
 
       <Box align="end" flex="grow">
         <Menu
-          responsive={true}
+          responsive
           inline={false}
         >
           {(!edit)
             ?
-            <Anchor
-              icon={<EditIcon size="small" />}
-              label="Edit"
-              onClick={onEdit}
-            />
+              <Anchor
+                icon={<EditIcon size="small" />}
+                label="Edit"
+                onClick={onEdit}
+              />
             : undefined
           }
           <Anchor
@@ -48,8 +56,8 @@ export default function PreviewHeader ({ edit, onClose, onEdit, onMove, title, o
           />
           <Anchor
             icon={<UpIcon size="small" />}
-            onClick={onMove.bind(this, 'up')} 
-            label="Move Up" 
+            onClick={onMove.bind(this, 'up')}
+            label="Move Up"
           />
           <Anchor
             label="Move Down"
@@ -60,12 +68,14 @@ export default function PreviewHeader ({ edit, onClose, onEdit, onMove, title, o
       </Box>
     </Box>
   );
-};
+}
 
 PreviewHeader.propTypes = {
   onClose: PropTypes.func,
   onEdit: PropTypes.func,
   onMove: PropTypes.func,
   onLayoutClick: PropTypes.func,
-  onDuplicateClick: PropTypes.func
+  onDuplicateClick: PropTypes.func,
+  edit: PropTypes.bool,
+  title: PropTypes.string,
 };

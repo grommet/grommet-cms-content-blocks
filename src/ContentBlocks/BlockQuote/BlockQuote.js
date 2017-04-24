@@ -7,7 +7,15 @@ import Paragraph from 'grommet/components/Paragraph';
 import Box from 'grommet/components/Box';
 import unescape from 'unescape';
 
-export default function BlockQuote({ content, source, colorIndex, borderSize, label, linkUrl, linkText }) {
+export default function BlockQuote({
+  content,
+  source,
+  colorIndex,
+  borderSize,
+  label,
+  linkUrl,
+  linkText,
+}) {
   const color = colorIndex || 'brand';
   const size = borderSize || 'medium';
   const unescapedContent = unescape(content || '');
@@ -43,4 +51,9 @@ export default function BlockQuote({ content, source, colorIndex, borderSize, la
 BlockQuote.propTypes = {
   content: PropTypes.string,
   source: PropTypes.string,
+  colorIndex: PropTypes.string,
+  borderSize: PropTypes.string,
+  label: PropTypes.string,
+  linkUrl: PropTypes.string,
+  linkText: PropTypes.string,
 };

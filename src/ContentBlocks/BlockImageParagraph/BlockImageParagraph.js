@@ -8,24 +8,29 @@ import Section from 'grommet/components/Section';
 // These are seperated out into individual components to allow
 // for more versatile layouts.
 
-const LargeBlock = ({content, image, imageDesc}) =>
-  <Section full="horizontal" align="center"
+const LargeBlock = ({ content, image, imageDesc }) =>
+  <Section
+    full="horizontal" align="center"
     pad={{ horizontal: 'large', vertical: 'small' }}
-    alignSelf="center">
-    <Box className="labs__section" direction="row" pad={{horizontal: 'large'}}>
+    alignSelf="center"
+  >
+    <Box className="labs__section" direction="row" pad={{ horizontal: 'large' }}>
       <Box basis="1/4">
-        <Markdown content={content} components={{
-          'p': { 'props':  { size: 'large', margin: 'small' } },
-          'h2': { 'props':  { strong: true } }
-        }}/>
+        <Markdown
+          content={content}
+          components={{
+            p: { props: { size: 'large', margin: 'small' } },
+            h2: { props: { strong: true } },
+          }}
+        />
       </Box>
       <Box pad="medium" />
       <Box basis="3/4">
         <Box pad={{ vertical: 'small' }}>
           <Image full="horizontal" src={image.path} />
         </Box>
-        <Box pad={{vertical: 'small'}}>
-          <Heading tag="h5" strong={true} margin="none">
+        <Box pad={{ vertical: 'small' }}>
+          <Heading tag="h5" strong margin="none">
             {imageDesc}
           </Heading>
         </Box>
@@ -33,24 +38,28 @@ const LargeBlock = ({content, image, imageDesc}) =>
     </Box>
   </Section>;
 
-const MediumBlock = ({content, image, imageDesc}) =>
-  <Section full="horizontal" align="center"
+const MediumBlock = ({ content, image, imageDesc }) =>
+  <Section
+    full="horizontal" align="center"
     pad={{ horizontal: 'large', vertical: 'small' }}
-    alignSelf="center">
-    <Box className="labs__section" direction="row" pad={{horizontal: 'large'}}>
+    alignSelf="center"
+  >
+    <Box className="labs__section" direction="row" pad={{ horizontal: 'large' }}>
       <Box basis="1/3">
-        <Markdown content={content} components={{
-          'p': { 'props':  { size: 'large', margin: 'small' } },
-          'h2': { 'props':  { strong: true } }
-        }}/>
+        <Markdown
+          content={content} components={{
+            p: { props: { size: 'large', margin: 'small' } },
+            h2: { props: { strong: true } },
+          }}
+        />
       </Box>
       <Box pad="medium" />
       <Box basis="2/3">
         <Box pad={{ vertical: 'small' }}>
           <Image full="horizontal" src={image.path} />
         </Box>
-        <Box pad={{vertical: 'small'}}>
-          <Heading tag="h5" strong={true} margin="none">
+        <Box pad={{ vertical: 'small' }}>
+          <Heading tag="h5" strong margin="none">
             {imageDesc}
           </Heading>
         </Box>
@@ -58,24 +67,28 @@ const MediumBlock = ({content, image, imageDesc}) =>
     </Box>
   </Section>;
 
-const SmallBlock = ({content, image, imageDesc}) =>
-  <Section full="horizontal" align="center"
+const SmallBlock = ({ content, image, imageDesc }) =>
+  <Section
+    full="horizontal" align="center"
     pad={{ horizontal: 'large', vertical: 'small' }}
-    alignSelf="center">
-    <Box className="labs__section" direction="row" pad={{horizontal: 'large'}}>
+    alignSelf="center"
+  >
+    <Box className="labs__section" direction="row" pad={{ horizontal: 'large' }}>
       <Box basis="2/3">
-        <Markdown content={content} components={{
-          'p': { 'props':  { size: 'large', margin: 'small' } },
-          'h2': { 'props':  { strong: true } }
-        }}/>
+        <Markdown
+          content={content} components={{
+            p: { props: { size: 'large', margin: 'small' } },
+            h2: { props: { strong: true } },
+          }}
+        />
       </Box>
       <Box pad="medium" />
       <Box basis="1/3">
         <Box pad={{ vertical: 'small' }}>
           <Image full="horizontal" src={image.path} />
         </Box>
-        <Box pad={{vertical: 'small'}}>
-          <Heading tag="h5" strong={true} margin="none">
+        <Box pad={{ vertical: 'small' }}>
+          <Heading tag="h5" strong margin="none">
             {imageDesc}
           </Heading>
         </Box>
@@ -83,13 +96,13 @@ const SmallBlock = ({content, image, imageDesc}) =>
     </Box>
   </Section>;
 
-export default function BlockImageParagraph ({
+export default function BlockImageParagraph({
   content,
   image,
   imageDesc,
-  imageSize
+  imageSize,
 }) {
-  switch(imageSize) {
+  switch (imageSize) {
     case 'Large':
       return (
         <LargeBlock
@@ -126,13 +139,13 @@ export default function BlockImageParagraph ({
         />
       );
       break;
-  };
-};
+  }
+}
 
 BlockImageParagraph.propTypes = {
   content: PropTypes.string,
   image: PropTypes.shape({
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
   }),
-  imageDesc: PropTypes.string
+  imageDesc: PropTypes.string,
 };

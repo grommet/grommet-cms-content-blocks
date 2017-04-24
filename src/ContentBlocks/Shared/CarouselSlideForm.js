@@ -6,31 +6,39 @@ import FormFields from 'grommet/components/FormFields';
 import Select from 'grommet/components/Select';
 
 export class CarouselSlideForm extends Component {
+  static validate(data) {
+    if (!data || !data.image) {
+      return false;
+    }
+
+    return true;
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
       image: props.data ? props.data.image : '',
-      imageSize: props.imageSize ? props.imageSize : 'Large'
+      imageSize: props.imageSize ? props.imageSize : 'Large',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._propsToState = this._propsToState.bind(this);
-    this._onAssetSelect = this._onAssetSelect.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.propsToState = this.propsToState.bind(this);
+    this.onAssetSelect = this.onAssetSelect.bind(this);
   }
 
   componentDidMount() {
-    this._propsToState(this.props);
+    this.propsToState(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this._propsToState(nextProps);
+    this.propsToState(nextProps);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
-        image: `${this.props.url}`
+      this.setState({ // eslint-disable-line
+        image: `${this.props.url}`,
       });
     }
 
@@ -40,39 +48,31 @@ export class CarouselSlideForm extends Component {
     }
   }
 
-  _propsToState(props) {
+  onAssetSelect(image) {
     this.setState({
-      imageSize: props.imageSize || 'Large',
-      image: props.data ? props.data.image : null
+      image,
     });
   }
 
-  _onAssetSelect(image) {
-    this.setState({
-      image
-    });
-  }
-
-  _onChange(e) {
+  onChange(e) {
     const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
 
     this.setState({
-      [`${key}`]: val
+      [`${key}`]: val,
     });
   }
 
-  _validate(data) {
-    if (!data || !data.image) {
-      return false;
-    }
-
-    return true;
+  propsToState(props) {
+    this.setState({
+      imageSize: props.imageSize || 'Large',
+      image: props.data ? props.data.image : null,
+    });
   }
 
   render() {
-    const onSubmit = (this._validate(this.state))
+    const onSubmit = (CarouselSlideForm.validate(this.state))
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
@@ -89,7 +89,7 @@ export class CarouselSlideForm extends Component {
                 name="image"
                 type="text"
                 value={image && image.path ? image.path : ''}
-                onChange={this._onChange}
+                onChange={this.onChange}
               />
             </FormField>
             <FormField label="Image Size" htmlFor="imageSize">
@@ -98,26 +98,32 @@ export class CarouselSlideForm extends Component {
                 inline={false}
                 options={['Small', 'Medium', 'Large', 'XLarge', 'XXLarge', 'Full']}
                 value={imageSize}
-                onChange={this._onChange}
+                onChange={this.onChange}
               />
             </FormField>
             {assetNode && React.cloneElement(
               assetNode,
               {
-                onAssetSelect: this._onAssetSelect
-              }
+                onAssetSelect: this.onAssetSelect,
+              },
             )}
           </fieldset>
-          <Button label="submit" primary={true} onClick={onSubmit} />
+          <Button label="submit" primary onClick={onSubmit} />
         </FormFields>
       </Form>
     );
   }
-};
+}
 
 CarouselSlideForm.propTypes = {
   assetNode: PropTypes.node,
-  url: PropTypes.string
+  url: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  data: PropTypes.shape({
+    image: PropTypes.string,
+  }),
+  imageSize: PropTypes.string,
 };
 
 export default CarouselSlideForm;

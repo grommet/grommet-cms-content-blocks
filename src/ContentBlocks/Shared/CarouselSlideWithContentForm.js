@@ -40,7 +40,7 @@ export class CarouselSlideWithContentForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         image: `${this.props.url}`,
       });
     }
@@ -257,6 +257,7 @@ CarouselSlideWithContentForm.propTypes = {
     justification: PropTypes.string,
     color: PropTypes.string,
   }),
+  onChange: PropTypes.func,
 };
 
 export default CarouselSlideWithContentForm;
