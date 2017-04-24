@@ -1,7 +1,12 @@
 // @flow
-export type OnChangeEvent = SyntheticInputEvent | {
+
+type EventOption = {
   option: string,
+  target: EventTarget,
 }
+
+// $FlowFixMe
+export type OnChangeEvent = SyntheticInputEvent & EventOption;
 
 export type Asset = {
   path: string,
