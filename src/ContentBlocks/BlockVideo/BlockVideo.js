@@ -7,36 +7,38 @@ export default class BlockVideo extends Component {
     super(props);
 
     this.state = {
-      layerActive: false
+      layerActive: false,
     };
 
-    this._toggleVideoLayer = this._toggleVideoLayer.bind(this);
+    this.toggleVideoLayer = this.toggleVideoLayer.bind(this);
   }
 
-  _toggleVideoLayer() {
+  toggleVideoLayer() {
     this.setState({ 
-      layerActive: !this.state.layerActive
+      layerActive: !this.state.layerActive,
     });
   }
 
   render() {
     const { content, image, label, video } = this.props;
     const videoLayer = (this.state.layerActive)
-      ? <VideoLayer
+      ? (
+        <VideoLayer
           image={image}
           video={video}
-          onClose={this._toggleVideoLayer}
+          onClose={this.toggleVideoLayer}
         />
+        )
       : null;
 
     return (
       <Box>
         {videoLayer}
-        <VideoCallout 
-          description={content} 
-          label={label} 
-          thumbnail={image.path} 
-          onClick={this._toggleVideoLayer}
+        <VideoCallout
+          description={content}
+          label={label}
+          thumbnail={image.path}
+          onClick={this.toggleVideoLayer}
         />
       </Box>
     );
@@ -46,10 +48,10 @@ export default class BlockVideo extends Component {
 BlockVideo.propTypes = {
   content: PropTypes.string,
   image: PropTypes.shape({
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
   }),
   label: PropTypes.string,
   video: PropTypes.shape({
-    path: PropTypes.string.isRequired
-  })
+    path: PropTypes.string.isRequired,
+  }),
 };

@@ -1,51 +1,81 @@
+// @flow
 import React, { Component, PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
+import type { OnChangeEvent, Asset } from '../../types';
+
+type Props = {
+  image: ?string,
+  content: ?string,
+  label: ?string,
+  video: ?string,
+  url: ?string,
+  onChange: ?(e: OnChangeEvent) => void,
+  onSubmit: ?(e: SyntheticInputEvent) => void,
+  children: HTMLElement,
+}
+
+type State = {
+  image: ?Asset,
+  content: ?string,
+  label: ?string,
+  video: ?Asset,
+};
 
 export class BlockVideoForm extends Component {
-  constructor(props) {
+  static validateForm({ image }) {
+    if (image !== '') { return true; }
+
+    return false;
+  }
+  constructor(props: Props) {
     super(props);
     this.state = {
-      image: props.image || '',
+      image: props.image || { path: '' },
       content: props.content || '',
-      video: props.video || '',
-      label: props.label || ''
+      video: props.video || { path: '' },
+      label: props.label || '',
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
-        image: `${this.props.url}`
-      });
-    }
-  }
+  state: State;
 
-  componentWillReceiveProps({ image, video }) {
+  componentWillReceiveProps({ image, video }: Props) {
     if (image && image !== this.state.image) {
       this.setState({
-        image
+        image,
       });
     }
     if (video && video !== this.state.video) {
       this.setState({
-        video
+        video,
       });
     }
   }
 
-  _onChange(e) {
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.url) {
+      if (prevProps.url !== this.props.url && this.props.url !== '') {
+        this.setState({ // eslint-disable-line react/no-did-update-set-state
+          image: `${this.props.url}`,
+        });
+      }
+    }
+  }
+
+  onChange: (event: SyntheticInputEvent) => void;
+  onChange(e: SyntheticInputEvent) {
     const { target } = e;
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -54,25 +84,21 @@ export class BlockVideoForm extends Component {
     }
   }
 
-  _validateForm({ image }) {
-    if (image !== '')
-      return true;
-
-    return false;
-  }
-
-  _onSubmit(event) {
+  onSubmit: (event: SyntheticInputEvent) => void;
+  onSubmit(event: SyntheticInputEvent) {
     event.preventDefault();
     if (this.props.onSubmit) {
       this.props.onSubmit(event);
     }
   }
 
+  props: Props;
+
   render() {
     const { image, content, label, video } = this.state;
     const { children } = this.props;
-    const submit = (this._validateForm(this.state))
-      ? this._onSubmit
+    const submit = (BlockVideoForm.validateForm(this.state))
+      ? this.onSubmit
       : undefined;
 
     return (
@@ -81,37 +107,47 @@ export class BlockVideoForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Label" htmlFor="label">
-                <input autoFocus id="label" name="label" type="text"
-                  value={label} onChange={this._onChange} />
+                <input
+                  autoFocus id="label" name="label" type="text"
+                  value={label} onChange={this.onChange}
+                />
               </FormField>
               <FormField label="Caption" htmlFor="content">
-                <textarea rows="4" id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} />
+                <textarea
+                  rows="4" id="content" name="content" type="text"
+                  value={content} onChange={this.onChange}
+                />
               </FormField>
               <FormField label="Video file path" htmlFor="video">
-                <input id="video" name="video" type="text"
-                  value={video.path} onChange={this._onChange} />
+                <input
+                  id="video" name="video" type="text"
+                  value={video.path} onChange={this.onChange}
+                />
               </FormField>
               <FormField label="Video thumbnail file path" htmlFor="image">
-                <input id="image" name="image" type="text"
-                  value={image.path} onChange={this._onChange} />
+                <input
+                  id="image" name="image" type="text"
+                  value={image.path} onChange={this.onChange}
+                />
               </FormField>
               {children && children}
             </fieldset>
-            <Button onClick={submit} primary={false} type="submit"
-              label="Done" />
+            <Button
+              onClick={submit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
         </Form>
       </Box>
     );
   }
-};
+}
 
 BlockVideoForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   children: PropTypes.node,
-  url: PropTypes.string
+  url: PropTypes.string,
 };
 
 export default BlockVideoForm;
