@@ -1,5 +1,5 @@
 // @flow
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
@@ -8,15 +8,22 @@ import Button from 'grommet/components/Button';
 import Select from 'grommet/components/Select';
 import type { OnChangeEvent, Asset } from '../../types';
 
+export type BorderColor = 'none' | 'red' | 'green';
+
 type Props = {
-  image: ?string,
+  image: ?{
+    path: string,
+  },
   content: ?string,
   label: ?string,
-  video: ?string,
+  video: ?{
+    path: string,
+  },
   url: ?string,
   onChange: ?(e: OnChangeEvent) => void,
-  onSubmit: ?(e: SyntheticInputEvent) => void,
+  onSubmit: ?(e: OnChangeEvent) => void,
   children: HTMLElement,
+  borderColor: BorderColor,
 }
 
 type State = {
@@ -24,7 +31,7 @@ type State = {
   content: ?string,
   label: ?string,
   video: ?Asset,
-  borderColor: string,
+  borderColor: BorderColor,
 };
 
 export class BlockVideoForm extends Component {
@@ -38,7 +45,7 @@ export class BlockVideoForm extends Component {
     this.state = {
       image: props.image || { path: '' },
       content: props.content || '',
-      video: props.video || '',
+      video: props.video || { path: '' },
       label: props.label || '',
       borderColor: props.borderColor || 'none',
     };
@@ -66,14 +73,16 @@ export class BlockVideoForm extends Component {
     if (this.props.url) {
       if (prevProps.url !== this.props.url && this.props.url !== '') {
         this.setState({ // eslint-disable-line react/no-did-update-set-state
-          image: `${this.props.url}`,
+          image: {
+            path: `${this.props.url}`,
+          },
         });
       }
     }
   }
 
-  onChange: (event: SyntheticInputEvent) => void;
-  onChange(e: SyntheticInputEvent) {
+  onChange: (event: OnChangeEvent) => void;
+  onChange(e: OnChangeEvent) {
     const { target } = e;
     const key = target.id;
     const val = target.value;
@@ -165,17 +174,5 @@ export class BlockVideoForm extends Component {
     );
   }
 }
-
-BlockVideoForm.propTypes = {
-  onSubmit: PropTypes.func,
-  onChange: PropTypes.func,
-  children: PropTypes.node,
-  url: PropTypes.string,
-  image: PropTypes.string,
-  content: PropTypes.string,
-  borderColor: PropTypes.string,
-  video: PropTypes.string,
-  label: PropTypes.string,
-};
 
 export default BlockVideoForm;
