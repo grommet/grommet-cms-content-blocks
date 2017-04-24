@@ -29,7 +29,7 @@ export default class BlockCarouselWithContent extends React.Component {
     const { carousel, imageSize } = this.props
     const size = imageSize ? imageSize.toLowerCase() : 'full';
     return (
-      <Carousel>
+      <Carousel autoplay={false}>
         {carousel.map((slide) => {
           const content = unescape(slide.content || '');
           const contentClassName = slide.color === 'white'
