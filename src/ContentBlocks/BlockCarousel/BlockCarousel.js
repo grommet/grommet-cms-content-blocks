@@ -1,18 +1,31 @@
-import React, { PropTypes } from 'react';
-import Box from 'grommet/components/Box';
+// @flow
+import React from 'react';
 import Image from 'grommet/components/Image';
 import Carousel from 'grommet/components/Carousel';
 
-export default function BlockCarousel({ carousel, imageSize }) {
+export type CarouselSlide = {
+  image: {
+    path: string, // eslint-disable-line react/no-unused-prop-types
+  },
+}
+
+export type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
+
+type Props = {
+  carousel: CarouselSlide[],
+  imageSize: 'Small' | 'medium' | 'large',
+}
+
+export default function BlockCarousel({ carousel, imageSize }: Props) {
   const size = imageSize ? imageSize.toLowerCase() : 'large';
   // TODO: refactor to use grommet sizes vs. custom css
-  const slides = carousel.map((slide, index) => (
-      <Image
-        src={slide.image.path}
-        alt={`Carousel slide ${index}`}
-        className={`grommet-cms-content-blocks--carousel-slide__${size}`}
-      />
-    ));
+  const slides = carousel.map(({ image }, index) => (
+    <Image
+      src={image.path}
+      alt={`Carousel slide ${index}`}
+      className={`grommet-cms-content-blocks--carousel-slide__${size}`}
+    />
+  ));
 
   return (
     <Carousel autoplay={false}>
@@ -20,10 +33,3 @@ export default function BlockCarousel({ carousel, imageSize }) {
     </Carousel>
   );
 }
-
-BlockCarousel.propTypes = {
-  carousel: PropTypes.array,
-  imageSize: PropTypes.string,
-  headline: PropTypes.string,
-  content: PropTypes.string,
-};
