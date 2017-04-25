@@ -19,7 +19,12 @@ export default function BlockColorSwatch(props: {
   return (
     <Box>
       <Swatch backgroundColor={color.thumbColor} />
-      <Heading tag="h4" strong margin="none">
+      <Heading
+        tag="h4"
+        strong
+        margin="none"
+        style={{ paddingTop: '12px' }}
+      >
         {color.name}
       </Heading>
       {color.content &&
