@@ -155,7 +155,7 @@ export default class BlockButtonForm extends React.Component {
     const hrefError = validation.validUrl(href) === true
       ? null
       : 'Please enter a valid url, containing a protocol such as http://';
-    const pathError = validation.validLength(path)
+    const pathError = validation.validPath(path)
       ? null
       : 'Please enter a valid path';
     const labelError = validation.validLength(label)

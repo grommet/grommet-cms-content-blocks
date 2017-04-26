@@ -3,8 +3,10 @@ const urlRe = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.|
 
 const validLength = str => str && str.length > 0;
 const validUrl = url => url && urlRe.test(url);
+const validPath = url => url && !urlRe.test(url);
 
 export default {
   validLength,
   validUrl,
+  validPath,
 };
