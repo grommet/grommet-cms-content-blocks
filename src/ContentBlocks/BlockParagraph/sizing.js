@@ -1,4 +1,9 @@
 export const sizing = (textSize, align) => ({
+  a: {
+    props: {
+      target: '_blank',
+    },
+  },
   p: {
     props: {
       size: textSize,
