@@ -57,7 +57,7 @@ export const Section = styled(GrommetSection)`
     padding-bottom: 0;
     
     p:last-child,
-    div:last-child,
+    div:last-child:not(.grommetux-tile),
     h2:last-child,
     h3:last-child,
     h4:last-child,
