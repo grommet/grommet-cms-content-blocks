@@ -51,6 +51,10 @@ type Props = {
 /* eslint-enable react/no-unused-prop-types */
 
 export default class BlockButtonForm extends React.Component {
+  static defaultProps = {
+    pad: false,
+  }
+
   constructor(props: Props) {
     super(props);
     this.onChange = this.onChange.bind(this);
@@ -186,9 +190,8 @@ export default class BlockButtonForm extends React.Component {
       href,
       error,
     } = this.state;
-    const showPadding = pad || true;
     return (
-      <Box colorIndex="light-2" pad={showPadding ? 'medium' : 'none'}>
+      <Box colorIndex="light-2" pad={pad ? 'medium' : 'none'}>
         <Form>
           <FormFields>
             <fieldset>
