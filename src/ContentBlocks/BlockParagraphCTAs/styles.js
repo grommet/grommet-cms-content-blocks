@@ -1,6 +1,14 @@
 import styled, { css } from 'styled-components';
 import Box from 'grommet/components/Box';
 
+export const ResponsiveBox = styled(Box)`
+  @media screen and (max-width: 1200px) {
+    .grommetux-button__label {
+      display: none;
+    }
+  }
+`;
+
 function ctaStyles(props) {
   if (!props.isLastElement) {
     return css`

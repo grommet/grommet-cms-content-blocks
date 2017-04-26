@@ -33,6 +33,7 @@ type State = {
 // Disable for now.
 /* eslint-disable react/no-unused-prop-types */
 type Props = {
+  pad?: boolean,
   onSubmit?: Function,
   onChange?: Function,
   label?: string,
@@ -175,7 +176,7 @@ export default class BlockButtonForm extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, pad } = this.props;
     const {
       label,
       primary,
@@ -185,8 +186,9 @@ export default class BlockButtonForm extends React.Component {
       href,
       error,
     } = this.state;
+    const showPadding = pad || true;
     return (
-      <Box colorIndex="light-2" pad="medium">
+      <Box colorIndex="light-2" pad={showPadding ? 'medium' : 'none'}>
         <Form>
           <FormFields>
             <fieldset>

@@ -11,6 +11,7 @@ import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
 import { BlockButtonForm } from '../BlockButton';
 import { ConfirmLayer } from '../Shared';
+import { ResponsiveBox } from './styles';
 
 type CtaSlide = any;
 type OnChangeEvent = SyntheticInputEvent & {
@@ -178,6 +179,7 @@ class BlockParagraphCTAsForm extends Component {
     const { activeSlideIndex, content, paragraphSize } = this.state;
     const buttonForm = (
       <BlockButtonForm
+        pad={false}
         data={this.state.ctaArray[activeSlideIndex]}
         onChange={this.handleChange}
         onSubmit={this.onSubmit.bind(this, this.state)}
@@ -213,14 +215,14 @@ class BlockParagraphCTAsForm extends Component {
       <Box direction="column" pad="medium" colorIndex="light-2">
         {confirmLayer}
         <Box direction="row">
-          <Box direction="row" align="center">
+          <ResponsiveBox direction="row" align="center">
             <Button icon={<AddIcon />} label="add slide" onClick={this.addSlideClick} />
             <Box pad="small" />
             <Button
               icon={<TrashIcon />} label="delete slide"
               onClick={this.deleteSlideClick.bind(this, activeSlideIndex)}
             />
-          </Box>
+          </ResponsiveBox>
         </Box>
         <FormFields>
           <FormField
