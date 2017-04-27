@@ -76,7 +76,7 @@ export class BlockVideoForm extends Component {
   onChange(e: SyntheticInputEvent) {
     const { target } = e;
     const key = target.id;
-    const val = target.value;
+    const val = e.value || target.value;
 
     const obj = {};
     obj[key] = val;
