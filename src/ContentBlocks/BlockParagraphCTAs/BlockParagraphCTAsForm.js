@@ -139,7 +139,6 @@ class BlockParagraphCTAsForm extends Component {
   handleChange(event: OnChangeEvent) {
     const { target, option } = event;
     const { id, value } = target;
-    console.log(`Called handle change in parent with id: ${id} and value: ${value} and option: ${option}`);
     const { ctaArray, activeSlideIndex } = this.state;
     const nextCtaArrayState = [
       ...ctaArray.slice(0, activeSlideIndex),

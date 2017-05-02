@@ -108,7 +108,6 @@ export default class BlockButtonForm extends React.Component {
   onChange: (e: OnChangeEvent) => void;
   onChange(e: OnChangeEvent) {
     const { target, option } = e;
-    console.log(`Called handle onChange with id: ${target.id} and value: ${target.value}`);
     if (option) {
       this.setState({
         [`${target.id}`]: option,
