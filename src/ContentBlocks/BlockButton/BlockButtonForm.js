@@ -61,6 +61,7 @@ export default class BlockButtonForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
     this.onChangeAssetType = this.onChangeAssetType.bind(this);
+    this.clearPathState = this.clearPathState.bind(this);
     const { path, primary, label, buttonType, href, assetType } = props.data || props;
     const labelInput = label || '';
     const primaryInput = primary || 'True';
@@ -107,6 +108,7 @@ export default class BlockButtonForm extends React.Component {
   onChange: (e: OnChangeEvent) => void;
   onChange(e: OnChangeEvent) {
     const { target, option } = e;
+    console.log(`Called handle onChange with id: ${target.id} and value: ${target.value}`);
     if (option) {
       this.setState({
         [`${target.id}`]: option,
@@ -134,12 +136,8 @@ export default class BlockButtonForm extends React.Component {
         value: newType,
       },
     };
-    if (this.props.onChange) {
-      this.props.onChange(event);
-    }
-    this.setState({
-      assetType: newType,
-    });
+    this.onChange(event);
+    this.clearPathState(newType);
   }
 
   onSubmit: (event: SyntheticInputEvent) => void;
@@ -150,6 +148,19 @@ export default class BlockButtonForm extends React.Component {
         this.props.onSubmit(event);
       }
     }
+  }
+
+  clearPathState: (assetType: AssetType) => void;
+  clearPathState(assetType: AssetType) {
+    const id = assetType === 'path'
+      ? 'href'
+      : 'path';
+    this.onChange({
+      target: {
+        id,
+        value: '',
+      },
+    });
   }
 
   props: Props;
@@ -300,4 +311,3 @@ export default class BlockButtonForm extends React.Component {
     );
   }
 }
-
