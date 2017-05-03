@@ -3,11 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import Box from '../Box';
-import SocialShare from '../SocialShare';
-import Form from '../Form';
-import FormField from '../FormField';
-import CSSClassnames from '../../utils/CSSClassnames';
+import Box from 'grommet/components/Box';
+import SocialShare from 'grommet/components/SocialShare';
+import Form from 'grommet/components/Form';
+import FormField from 'grommet/components/FormField';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 const BUTTON_CLASS = `${CLASS_ROOT}__button`;

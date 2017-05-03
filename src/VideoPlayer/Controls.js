@@ -4,18 +4,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Button from '../Button';
-import Box from '../Box';
-import Heading from '../Heading';
-import VolumeIcon from '../icons/base/Volume';
-import VolumeMuteIcon from '../icons/base/VolumeMute';
+import Button from 'grommet/components/Button';
+import Box from 'grommet/components/Box';
+import Heading from 'grommet/components/Heading';
+import VolumeIcon from 'grommet/components/icons/base/Volume';
+import VolumeMuteIcon from 'grommet/components/icons/base/VolumeMute';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
+import Intl from 'grommet/utils/Intl';
+import { formatTime } from 'grommet/utils/FormatTime';
 import VideoTime from './Time';
 import VideoFullscreenButton from './FullscreenButton';
 import VideoProgressBar from './ProgressBar';
 import VideoPlayButton from './PlayButton';
-import CSSClassnames from '../../utils/CSSClassnames';
-import Intl from '../../utils/Intl';
-import { formatTime } from '../../utils/FormatTime';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 const BUTTON_CLASS = `${CLASS_ROOT}__button`;
@@ -52,12 +52,13 @@ export default class Controls extends Component {
   _renderMuteButton () {
     const { muted, toggleMute } = this.props;
     const { intl } = this.context;
-    let buttonMessage = Intl.getMessage(intl, 'Mute');
-    let Icon = VolumeMuteIcon;
-    if (muted) {
-      Icon = VolumeIcon;
-      buttonMessage = Intl.getMessage(intl, 'Unmute');
-    }
+    const buttonMessage = (!muted)
+      ? Intl.getMessage(intl, 'Mute')
+      : Intl.getMessage(intl, 'Unmute');
+    const Icon = (!muted)
+      ? VolumeIcon
+      : VolumeMuteIcon;
+
     return (
       <Button plain={true} onClick={toggleMute} className={BUTTON_CLASS}
         a11yTitle={buttonMessage}>

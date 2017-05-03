@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Layer from 'grommet/components/Layer';
-import Video from 'grommet/components/Video';
+import Video from '../../VideoPlayer';
 
 const CLASS_ROOT = 'video-layer';
 

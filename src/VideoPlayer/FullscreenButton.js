@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Intl from '../../utils/Intl';
-import CSSClassnames from '../../utils/CSSClassnames';
-import Button from '../Button';
-import ExpandIcon from '../icons/base/Expand';
+import Intl from 'grommet/utils/Intl';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
+import Button from 'grommet/components/Button';
+import ExpandIcon from 'grommet/components/icons/base/Expand';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 const BUTTON_CLASS = `${CLASS_ROOT}__button`;

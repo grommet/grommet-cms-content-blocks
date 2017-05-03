@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 
-import Box from '../Box';
-import Heading from '../Heading';
+import Box from 'grommet/components/Box';
+import Heading from 'grommet/components/Heading';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
 import VideoShare from './Share';
 import VideoPlayButton from './PlayButton';
-import CSSClassnames from '../../utils/CSSClassnames';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 

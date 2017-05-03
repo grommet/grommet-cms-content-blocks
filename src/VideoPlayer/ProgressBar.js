@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Box from '../Box';
-import CSSClassnames from '../../utils/CSSClassnames';
+import Box from 'grommet/components/Box';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 

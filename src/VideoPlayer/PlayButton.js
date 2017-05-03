@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Intl from '../../utils/Intl';
-import CSSClassnames from '../../utils/CSSClassnames';
-import Button from '../Button';
-import CirclePlayIcon from '../icons/base/CirclePlay';
-import PlayIcon from '../icons/base/Play';
-import PauseIcon from '../icons/base/Pause';
-import RefreshIcon from '../icons/base/Refresh';
+import Intl from 'grommet/utils/Intl';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
+import Button from 'grommet/components/Button';
+import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
+import PlayIcon from 'grommet/components/icons/base/Play';
+import PauseIcon from 'grommet/components/icons/base/Pause';
+import RefreshIcon from 'grommet/components/icons/base/Refresh';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 const BUTTON_CLASS = `${CLASS_ROOT}__button`;

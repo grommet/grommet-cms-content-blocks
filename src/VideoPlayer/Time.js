@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from '../Box';
-import Heading from '../Heading';
-import CSSClassnames from '../../utils/CSSClassnames';
-import { formatTime } from '../../utils/FormatTime';
+import Box from 'grommet/components/Box';
+import Heading from 'grommet/components/Heading';
+import CSSClassnames from 'grommet/utils/CSSClassnames';
+import { formatTime } from 'grommet/utils/FormatTime';
 
 const CLASS_ROOT = CSSClassnames.VIDEO;
 
