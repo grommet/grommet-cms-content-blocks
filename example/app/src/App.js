@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import GrommetApp from 'grommet/components/App';
-import Box from 'grommet/components/Box';
-import { PostsRenderer, BlockVideo } from 'grommet-cms-content-blocks';
+import { PostsRenderer } from 'grommet-cms-content-blocks';
 import Layout from './Layout';
 import state from './state';
 
@@ -16,23 +15,10 @@ export default class App extends Component {
   render() {
     return (
       <GrommetApp centered={false}>
-        <Box size="large">
-          <BlockVideo
-            video={{
-              path: 'https://grommet-bc-prd-lb.itcs.hpe.com/uploads/media/2017/2/Whats%20in%20a%20Name-%20v6%20conversion.mp4',
-            }}
-            image={{
-              path: 'https://grommet-bc-prd-lb.itcs.hpe.com/uploads/media/2017/4/brandcentral_page_images_video_naming-1492536866662.jpg',
-            }}
-          />
-        </Box>
+        <Layout>
+          <PostsRenderer posts={state.posts} />
+        </Layout> 
       </GrommetApp>
     );
   }
 }
-/*
-<span>
-  <Layout>
-    <PostsRenderer posts={state.posts} />
-  </Layout> 
-</span> */
