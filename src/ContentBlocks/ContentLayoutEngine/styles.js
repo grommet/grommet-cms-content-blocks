@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import GrommetBox from 'grommet/components/Box';
 import GrommetSection from 'grommet/components/Section';
@@ -21,7 +22,8 @@ const responsiveBoxStyles = (props) => {
   `;
 };
 
-export const Box = styled(GrommetBox)`
+// eslint-disable-next-line no-unused-vars
+export const Box = styled(({ hideForResponsive, ...rest }) => <GrommetBox {...rest} />)`
   padding: 0;
   margin: 0;
   padding-right: 24px;
