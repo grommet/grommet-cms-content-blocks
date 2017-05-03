@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Layer from 'grommet/components/Layer';
-import Video from 'grommet/components/Video';
+import Video from './VideoPlayer';
 
 const CLASS_ROOT = 'video-layer';
 
 export default function VideoLayer({ video, onClose, image }) {
+  const isIE = !!navigator.userAgent.match(/Trident/g)
+    || !!navigator.userAgent.match(/MSIE/g)
+    || !!navigator.userAgent.match(/Edge/g);
+
   return (
     <Layer className={CLASS_ROOT} closer onClose={onClose}>
       <Box
@@ -17,6 +21,7 @@ export default function VideoLayer({ video, onClose, image }) {
       >
         <Box className={`${CLASS_ROOT}__video-container`} full="horizontal">
           <Video
+            allowFullScreen={!isIE}
             size="large"
             autoPlay
             poster={image.path}

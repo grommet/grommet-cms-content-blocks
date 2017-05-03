@@ -1,6 +1,7 @@
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './utils/objectAssign';
 import App from './App';
 import './index.scss';
 
