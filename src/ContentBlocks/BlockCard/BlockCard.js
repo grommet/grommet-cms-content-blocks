@@ -1,15 +1,46 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import React, { Component } from 'react';
 import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
-import Image from 'grommet/components/Image';
 import Label from 'grommet/components/Label';
 import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
 import { YoutubeLayer } from '../Shared';
+import type { Asset } from '../../types';
+
+/* eslint-disable react/no-unused-prop-types */
+type CardType = {
+  heading: string,
+  label: string,
+  linkText: string,
+  linkUrl: string,
+  content: string,
+}
+/* eslint-enable react/no-unused-prop-types */
+
+type Props = {
+  card: CardType,
+  image: Asset,
+}
+
+type State = {
+  layerActive: boolean,
+  layerContent: string,
+}
 
 export default class BlockCard extends Component {
-  constructor(props) {
+  static isLinkVideo: (url: string) => boolean;
+  static isLinkVideo(url: string) {
+    const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    if (url.match(p)) {
+       // $FlowFixMe
+      return url.match(p)[1];
+    }
+    return false;
+  }
+
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -20,20 +51,17 @@ export default class BlockCard extends Component {
     this.toggleVideoLayer = this.toggleVideoLayer.bind(this);
   }
 
-  toggleVideoLayer(videoUrl) {
+  state: State;
+
+  toggleVideoLayer: (videoUrl: string) => void;
+  toggleVideoLayer(videoUrl: string) {
     this.setState({
       layerActive: !this.state.layerActive,
       layerContent: videoUrl,
     });
   }
 
-  isLinkVideo(url) {
-    const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-    if (url.match(p)) {
-      return url.match(p)[1];
-    }
-    return false;
-  }
+  props: Props;
 
   render() {
     const { card, image } = this.props;
@@ -42,14 +70,14 @@ export default class BlockCard extends Component {
     const videoLayer = (this.state.layerActive)
       ? (<YoutubeLayer
         url={this.state.layerContent}
-        onClose={this._toggleVideoLayer}
+        onClose={this.toggleVideoLayer}
       />)
       : undefined;
 
-    const anchor = (this.isLinkVideo(linkUrl))
+    const anchor = (BlockCard.isLinkVideo(linkUrl))
       ? (<Anchor
         label={linkText} icon={<CirclePlayIcon />}
-        onClick={this._toggleVideoLayer.bind(this, linkUrl)}
+        onClick={this.toggleVideoLayer.bind(this, linkUrl)}
       />)
       : <Anchor label={linkText} href={linkUrl} />;
 
@@ -87,10 +115,3 @@ export default class BlockCard extends Component {
     );
   }
 }
-
-BlockCard.propTypes = {
-  content: PropTypes.string,
-  image: PropTypes.shape({
-    path: PropTypes.string,
-  }),
-};
