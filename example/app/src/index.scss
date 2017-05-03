@@ -70,7 +70,7 @@
 
   &__video-container {
     height: 90vh;
-    
+    overflow: hidden;
     // remove the centered pause button on video player
     .grommetux-video__overlay {
       .grommetux-video__button {
@@ -89,6 +89,18 @@
     }
   }
 
+  .grommetux-video__controls-primary {
+    button.grommetux-video__button {
+      display: flex;
+
+      svg.grommetux-control-icon-expand {
+        // Icon is flush with svg edge which makes it larger than other icons.
+        height: 23px;
+        width: 23px;
+      }
+    }
+  }
+
   .grommetux-layer__closer .grommetux-button__icon > svg {
     fill: nth($brand-light-colors, 2);
     stroke: nth($brand-light-colors, 2);
@@ -104,3 +116,6 @@
   display: block !important;
 }
 
+.grommetux-control-icon:not([class*="color-index-plain"]) * {
+  stroke: inherit;
+}

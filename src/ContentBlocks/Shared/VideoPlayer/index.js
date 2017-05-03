@@ -220,7 +220,7 @@ export default class Video extends Component {
       align, autoPlay, className, colorIndex, fit, full, loop, muted, poster,
       showControls, size
     } = this.props;
-    const { ended, hasPlayed, interacting, mouseActive, playing} = this.state;
+    const { ended, hasPlayed, interacting, mouseActive, playing } = this.state;
     const classes = classnames(
       CLASS_ROOT,
       {

@@ -75,15 +75,16 @@ export default class ProgressBar extends Component {
     return (
       <Box pad="none" className={`${CLASS_ROOT}__progress`} direction="row">
         <div className={`${CLASS_ROOT}__progress-bar-fill`} style={{
-          width: progress + '%'
+          width: progress + '%',
+          pointerEvents: 'none',
         }} />
         {timeline ? this._renderChapterMarkers() : undefined}
         <input className={`${CLASS_ROOT}__progress-bar-input`}
           onChange={this._onProgressBarChange}
+          onMouseUp={this._onProgressBarChange}
           type="range"
           min="0"
           max="100"
-          value={progress || ''}
           step="0.1" />
       </Box>
     );

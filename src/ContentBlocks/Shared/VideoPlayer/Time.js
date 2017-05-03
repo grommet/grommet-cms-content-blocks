@@ -16,7 +16,7 @@ export default class Time extends Component {
     const { currentTime, duration } = this.props;
 
     return (
-      <Box pad={{ horizontal: 'small', vertical: 'none' }}>
+      <Box>
         <Heading tag="h3" margin="none" className={`${CLASS_ROOT}__time`}>
           {formatTime(currentTime)} / {formatTime(duration)}
         </Heading>

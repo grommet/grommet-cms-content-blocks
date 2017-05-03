@@ -136,7 +136,7 @@ export default class Controls extends Component {
             {this._renderTitle()}
           </Box>
           <Box direction="row" align="center"
-            pad={{ horizontal: 'small', vertical: 'none'}}>
+            pad={{ horizontal: 'small', vertical: 'none', between: 'small' }}>
             <VideoTime currentTime={currentTime} duration={duration} />
             {this._renderMuteButton()}
             {allowFullScreen ?
