@@ -113,7 +113,8 @@ export default class Controls extends Component {
       seek,
       timeline,
       allowFullScreen,
-      fullscreen
+      fullscreen,
+      percentageBuffered
     } = this.props;
 
     if (!hasPlayed) {
@@ -123,9 +124,14 @@ export default class Controls extends Component {
     let overlayContent = (
       <Box pad="none" className={`${CLASS_ROOT}__controls`}
         direction="column" justify="start">
-        <VideoProgressBar progress={percentagePlayed}
+        <VideoProgressBar
+          progress={percentagePlayed}
           onChapterHover={this._onChapterTickHover}
-          duration={duration} onChange={seek} timeline={timeline} />
+          duration={duration}
+          onChange={seek}
+          timeline={timeline}
+          percentageBuffered={percentageBuffered}
+        />
         {timeline ? this._renderChapterLabels() : undefined}
         <Box pad="none" className={`${CLASS_ROOT}__controls-primary`}
           direction="row" justify="between">
@@ -142,7 +148,7 @@ export default class Controls extends Component {
             {allowFullScreen ?
               <VideoFullscreenButton onClick={fullscreen} /> : undefined}
           </Box>
-       </Box>
+        </Box>
       </Box>
     );
 

@@ -70,8 +70,15 @@ export default class ProgressBar extends Component {
   }
 
   render () {
-    const { progress, timeline } = this.props;
-
+    const { progress, timeline, percentageBuffered } = this.props;
+    const downloadProgress = (
+      <div
+        style={{
+          width: `${percentageBuffered}%`,
+          background: 'rgba(110,110,110,0.85)',
+        }}
+      />
+    );
     return (
       <Box pad="none" className={`${CLASS_ROOT}__progress`} direction="row">
         <div className={`${CLASS_ROOT}__progress-bar-fill`} style={{
@@ -86,6 +93,7 @@ export default class ProgressBar extends Component {
           min="0"
           max="100"
           step="0.1" />
+        {downloadProgress}
       </Box>
     );
   }

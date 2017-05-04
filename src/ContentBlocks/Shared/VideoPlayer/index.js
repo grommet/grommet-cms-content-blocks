@@ -115,7 +115,9 @@ export default class Video extends Component {
       interacting: interacting,
       // computed values
       hasPlayed: this._hasPlayed,
-      playing: !this._video.paused && !this._video.loading,
+      playing: (this._video.ended)
+        ? false
+        : !this._video.paused && !this._video.loading,
       percentageBuffered: this._video.buffered.length &&
         this._video.buffered.end(this._video.buffered.length - 1) /
         this._video.duration * 100,
@@ -133,7 +135,7 @@ export default class Video extends Component {
   }
 
   _togglePlay () {
-    if (this.state.paused) {
+    if (this.state.paused || this.state.ended) {
       this._play();
     } else {
       this._pause();
@@ -203,7 +205,8 @@ export default class Video extends Component {
       shareHeadline: this.props.shareHeadline,
       shareText: this.props.shareText,
       allowFullScreen: this.props.allowFullScreen,
-      size: this.props.size
+      size: this.props.size,
+      percentageBuffered: this.state.percentageBuffered
     }, this.state);
 
     return (
