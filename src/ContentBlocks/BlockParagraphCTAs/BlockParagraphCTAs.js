@@ -33,7 +33,7 @@ export default function BlockParagraphCTAs({
     ));
   return (
     <BlockContainer id="block--block-paragraph-ctas">
-      { content &&
+      {content &&
         <BlockParagraph
           content={content}
           align="start"
