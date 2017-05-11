@@ -20,7 +20,7 @@ export class BlockQuoteCardForm extends Component {
       colorIndex: props.colorIndex || '',
       borderSize: props.borderSize || '',
       colorOptions: colorOptionsList,
-      showAdvanced: false
+      showAdvanced: false,
     };
 
     this._onChange = this._onChange.bind(this);
@@ -31,26 +31,24 @@ export class BlockQuoteCardForm extends Component {
 
   componentWillMount() {
     let { showAdvanced } = this.state;
-    const advancedOptionKeys = Object.keys(this.state).filter(key => {
-      return key !== 'content' &&
+    const advancedOptionKeys = Object.keys(this.state).filter(key => key !== 'content' &&
         key !== 'source' && key !== 'label' &&
-        key !== 'showAdvanced' && key !== 'colorOptions';
-    });
+        key !== 'showAdvanced' && key !== 'colorOptions');
     advancedOptionKeys.forEach((key) => {
       if (this.state[`${key}`] !== '') {
         showAdvanced = true;
       }
     });
     this.setState({
-      showAdvanced
+      showAdvanced,
     });
   }
 
   _onChange({ target, option }) {
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -63,13 +61,13 @@ export class BlockQuoteCardForm extends Component {
       ? colorOptionsList
       : colorOptions.filter(i => i.includes(value));
     this.setState({
-      colorOptions: newOptions
+      colorOptions: newOptions,
     });
   }
 
   _onChangeToggle() {
     this.setState({
-      showAdvanced: !this.state.showAdvanced
+      showAdvanced: !this.state.showAdvanced,
     });
   }
 
@@ -89,7 +87,7 @@ export class BlockQuoteCardForm extends Component {
       linkText,
       linkUrl,
       label,
-      showAdvanced
+      showAdvanced,
     } = this.state;
 
     return (
@@ -98,12 +96,16 @@ export class BlockQuoteCardForm extends Component {
           <FormFields>
             <fieldset>
               <FormField label="Content" htmlFor="content">
-                <textarea autoFocus id="content" name="content" type="text"
-                  value={content} onChange={this._onChange} rows="4" />
+                <textarea
+                  autoFocus id="content" name="content" type="text"
+                  value={content} onChange={this._onChange} rows="4"
+                />
               </FormField>
               <FormField label="Source" htmlFor="source">
-                <input id="source" name="source" type="text"
-                  value={source} onChange={this._onChange} />
+                <input
+                  id="source" name="source" type="text"
+                  value={source} onChange={this._onChange}
+                />
               </FormField>
             </fieldset>
             <fieldset>
@@ -119,16 +121,22 @@ export class BlockQuoteCardForm extends Component {
                 {showAdvanced &&
                   <FormFields>
                     <FormField label="Label" htmlFor="label">
-                      <input id="label" name="label" type="text"
-                        value={label} onChange={this._onChange} />
+                      <input
+                        id="label" name="label" type="text"
+                        value={label} onChange={this._onChange}
+                      />
                     </FormField>
                     <FormField label="Link Text" htmlFor="linkText">
-                      <input id="linkText" name="linkText" type="text"
-                        value={linkText} onChange={this._onChange} />
+                      <input
+                        id="linkText" name="linkText" type="text"
+                        value={linkText} onChange={this._onChange}
+                      />
                     </FormField>
                     <FormField label="Link URL" htmlFor="linkUrl">
-                      <input id="linkUrl" name="linkUrl" type="text"
-                        value={linkUrl} onChange={this._onChange} />
+                      <input
+                        id="linkUrl" name="linkUrl" type="text"
+                        value={linkUrl} onChange={this._onChange}
+                      />
                     </FormField>
                     <FormField
                       label="Color Index"
@@ -148,27 +156,29 @@ export class BlockQuoteCardForm extends Component {
                       <Select
                         id="borderSize"
                         inline={false}
-                        options={["small", "medium", "large"]}
+                        options={['small', 'medium', 'large']}
                         value={borderSize}
                         onChange={this._onChange}
                       />
                     </FormField>
-                  </FormFields> 
+                  </FormFields>
                 }
               </Box>
             </fieldset>
-            <Button onClick={this._onSubmit} primary={false} type="submit" 
-              label="Done" />
+            <Button
+              onClick={this._onSubmit} primary={false} type="submit"
+              label="Done"
+            />
           </FormFields>
-        </Form> 
+        </Form>
       </Box>
     );
   }
-};
+}
 
 BlockQuoteCardForm.propTypes = {
   content: PropTypes.string,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
 };
 
 export default BlockQuoteCardForm;

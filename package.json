@@ -4,17 +4,39 @@
   "description": "Collection of content blocks for use in Grommet CMS.",
   "main": "dist/index.js",
   "license": "APACHE",
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/lib/testing/preprocessor.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/(build|docs|node_modules)/",
+      "/__mocks__/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  },
   "scripts": {
     "lint": "eslint src",
     "build": "webpack",
     "bump": "git add . && git commit -m 'Feat: version bump with new content blocks' && npm version patch",
     "shipit": "npm run bump && npm publish",
     "prepublish": "rimraf dist && npm run build",
-    "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks"
+    "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks",
+    "test": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony_proxies node_modules/.bin/jest"
   },
   "dependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^7.1.0",
+    "babel-jest": "^20.0.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-add-module-exports": "^0.2.0",
     "babel-plugin-flow-react-proptypes": "^0.20.0",
@@ -25,6 +47,9 @@
     "babel-preset-stage-0": "^6.0.15",
     "classnames": "^2.2.5",
     "color-convert": "^1.9.0",
+    "cross-env": "^5.0.0",
+    "enzyme": "^2.8.2",
+    "enzyme-to-json": "^1.5.1",
     "eslint": "^3.10.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-loader": "^1.6.1",
@@ -36,8 +61,11 @@
     "flow-bin": "^0.42.0",
     "fs-extra": "^2.0.0",
     "grommet": "1.3.4",
+    "jest": "19.0.2",
+    "jest-cli": "19.0.2",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "remove-markdown": "^0.1.0",
     "rimraf": "^2.5.4",
