@@ -14,7 +14,7 @@ export default class BlockVideo extends Component {
   }
 
   toggleVideoLayer() {
-    this.setState({ 
+    this.setState({
       layerActive: !this.state.layerActive,
     });
   }
