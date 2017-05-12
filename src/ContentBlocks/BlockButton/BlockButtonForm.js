@@ -14,6 +14,16 @@ import type { OnChangeEvent } from '../../types';
 export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';
 export type Primary = 'True' | 'False';
+export type IconType =
+  'primary' |
+  'email' |
+  'chat' |
+  'share' |
+  'attachment' |
+  'word' |
+  'zip' |
+  'download' |
+  'print';
 
 type State = {
   label: ?string,
@@ -22,6 +32,7 @@ type State = {
   href: ?string,
   buttonType: ?string,
   assetType: AssetType,
+  icon?: IconType,
   error: {
     label: ?string,
     path: ?string,
@@ -40,6 +51,7 @@ type Props = {
   children?: React$Element<any>, // eslint-disable-line
   primary?: Primary,
   buttonType?: ButtonType,
+  icon?: IconType,
   href?: string,
   assetType?: AssetType,
   path?: string,
@@ -61,10 +73,11 @@ export default class BlockButtonForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
     this.onChangeAssetType = this.onChangeAssetType.bind(this);
-    const { path, primary, label, buttonType, href, assetType } = props.data || props;
+    const { path, primary, label, buttonType, href, assetType, icon } = props.data || props;
     const labelInput = label || '';
     const primaryInput = primary || 'True';
     const buttonTypeInput = buttonType || 'Button';
+    const iconInput = icon || 'primary';
     const pathInput = path || '';
     const hrefInput = href || '';
     const assetTypeInput = assetType || 'path';
@@ -73,6 +86,7 @@ export default class BlockButtonForm extends React.Component {
       primary: primaryInput,
       path: pathInput,
       buttonType: buttonTypeInput,
+      icon: iconInput,
       href: hrefInput,
       assetType: assetTypeInput,
       error: {
@@ -186,6 +200,7 @@ export default class BlockButtonForm extends React.Component {
       primary,
       path,
       buttonType,
+      icon,
       assetType,
       href,
       error,
@@ -235,6 +250,21 @@ export default class BlockButtonForm extends React.Component {
                   />
                 }
               </FormField>
+              {assetType === 'path' && primary && buttonType === 'Anchor' &&
+                <FormField
+                  label="CTA Icon"
+                  htmlFor="icon"
+                  help="Add an optional icon to the CTA."
+                >
+                  <Select
+                    onChange={this.onChange}
+                    value={icon || 'primary'}
+                    options={['primary', 'email', 'chat', 'share', 'attachment', 'word', 'zip', 'download', 'print']}
+                    name="icon"
+                    id="icon"
+                  />
+                </FormField>
+              }
               <FormField
                 label="Asset Link Type"
                 help="What type of asset should the button link to?"

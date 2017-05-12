@@ -2,8 +2,9 @@
 import React from 'react';
 import Button from 'grommet/components/Button';
 import Anchor from 'grommet/components/Anchor';
-import type { AssetType, ButtonType } from './BlockButtonForm';
+import type { AssetType, ButtonType, IconType } from './BlockButtonForm';
 import { getAnalyticsType, getLink } from './utils';
+import IconPicker from './iconPicker';
 
 export type Props = {
   label?: string,
@@ -12,6 +13,7 @@ export type Props = {
   assetType: AssetType,
   buttonType?: ButtonType,
   primary?: boolean,
+  icon?: IconType,
 }
 export default function BlockButton({
   buttonType,
@@ -20,6 +22,7 @@ export default function BlockButton({
   label,
   primary,
   assetType,
+  icon,
 }: Props) {
   const isPrimary = primary === 'True';
   const link = getLink(assetType, path, href);
@@ -29,12 +32,18 @@ export default function BlockButton({
     'data-analytics-type': getAnalyticsType(assetType, path, href),
     'data-analytics-category': buttonType,
   };
-  const props = { label, primary: isPrimary, target: '_blank', ...tracking, ...link };
+  let props = { label, primary: isPrimary, target: '_blank', ...tracking, ...link };
   if (buttonType === 'Button') {
     return (
       <Button {...props} />
     );
   } else if (buttonType === 'Anchor') {
+    if (icon && primary) {
+      props = {
+        ...props,
+        icon: <IconPicker icon={icon} />,
+      };
+    }
     return (
       <div>
         <Anchor {...props} />
