@@ -5,7 +5,7 @@ import type { AssetType } from './BlockButtonForm';
 type AnalyticsType = 'Download' | 'Internal Reference' | 'External Reference' | 'Support';
 
 export const getAssetType = (assetType: AssetType, path: ?string) => {
-  if (assetType === 'path' && path && path.indexOf('.') < 0) {
+  if (assetType === 'path' && path) {
     return 'path';
   }
   return 'href';

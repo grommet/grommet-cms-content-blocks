@@ -12,11 +12,10 @@ import TrashIcon from 'grommet/components/icons/base/Trash';
 import { BlockButtonForm } from '../BlockButton';
 import { ConfirmLayer } from '../Shared';
 import { ResponsiveBox } from './styles';
+import type { OnChangeEvent } from '../../types';
 
 type CtaSlide = any;
-type OnChangeEvent = SyntheticInputEvent & {
-  option: string,
-};
+
 type Props = {
   ctaArray: CtaSlide[],
   content: string,
