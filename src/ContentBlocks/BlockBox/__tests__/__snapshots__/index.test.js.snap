@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BlockBox /> when shallow rendered should create a snapshot 1`] = `
+<Styled(Box)
+  align="center"
+  colorIndex="light-1"
+  justify="center"
+  size={
+    Object {
+      "height": "small",
+    }
+  }
+>
+  <Box
+    announce={false}
+    direction="column"
+    focusable={true}
+    pad="small"
+    responsive={true}
+    tag="div"
+  >
+    <BlockParagraph
+      align="center"
+      content="foo"
+    />
+  </Box>
+</Styled(Box)>
+`;
