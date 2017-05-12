@@ -1,6 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BlockBox /> when shallow rendered should create a snapshot 1`] = `
+exports[`<BlockBox /> when shallow rendered should create a snapshot with borderColor prop 1`] = `
+<Styled(Box)
+  align="start"
+  borderColor="#fff"
+  colorIndex="brand"
+  justify="center"
+  size={
+    Object {
+      "height": "small",
+    }
+  }
+>
+  <Box
+    announce={false}
+    direction="column"
+    focusable={true}
+    pad="small"
+    responsive={true}
+    tag="div"
+  >
+    <BlockParagraph
+      align="start"
+      content="foo"
+    />
+  </Box>
+</Styled(Box)>
+`;
+
+exports[`<BlockBox /> when shallow rendered should create a snapshot with custom props 1`] = `
+<Styled(Box)
+  align="start"
+  colorIndex="brand"
+  justify="center"
+  size={
+    Object {
+      "height": "small",
+    }
+  }
+>
+  <Box
+    announce={false}
+    direction="column"
+    focusable={true}
+    pad="small"
+    responsive={true}
+    tag="div"
+  >
+    <BlockParagraph
+      align="start"
+      content="foo"
+    />
+  </Box>
+</Styled(Box)>
+`;
+
+exports[`<BlockBox /> when shallow rendered should create a snapshot with default props 1`] = `
 <Styled(Box)
   align="center"
   colorIndex="light-1"
@@ -21,7 +76,7 @@ exports[`<BlockBox /> when shallow rendered should create a snapshot 1`] = `
   >
     <BlockParagraph
       align="center"
-      content="foo"
+      content=""
     />
   </Box>
 </Styled(Box)>

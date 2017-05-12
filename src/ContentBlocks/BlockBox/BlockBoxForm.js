@@ -65,7 +65,7 @@ export default class BlockBoxForm extends React.Component {
 
   state: BlockBoxFormState;
 
-  onChange: (e: SyntheticInputEvent) => void;
+  onChange: (e: OnChangeEvent) => void;
   onChange({ target, option }: OnChangeEvent) {
     if (option) {
       this.setState({
@@ -110,8 +110,8 @@ export default class BlockBoxForm extends React.Component {
     }
   }
 
-  onSearch: (e: SyntheticInputEvent) => void;
-  onSearch(e: SyntheticInputEvent) {
+  onSearch: (e: OnChangeEvent) => void;
+  onSearch(e: OnChangeEvent) {
     const { colorOptions } = this.state;
     const { value } = e.target;
     const newOptions = value === '' || !value
