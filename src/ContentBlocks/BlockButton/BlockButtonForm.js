@@ -10,6 +10,7 @@ import Footer from 'grommet/components/Footer';
 import RadioButton from 'grommet/components/RadioButton';
 import validation from './validation';
 import type { OnChangeEvent } from '../../types';
+import iconMap from './iconMap';
 
 export type AssetType = 'path' | 'href';
 export type ButtonType = 'Button' | 'Anchor';
@@ -22,7 +23,9 @@ export type IconType =
   'attachment' |
   'word' |
   'zip' |
+  'document download' |
   'download' |
+  'play' |
   'print';
 
 type State = {
@@ -259,7 +262,7 @@ export default class BlockButtonForm extends React.Component {
                   <Select
                     onChange={this.onChange}
                     value={icon || 'primary'}
-                    options={['primary', 'email', 'chat', 'share', 'attachment', 'word', 'zip', 'download', 'print']}
+                    options={Object.keys(iconMap)}
                     name="icon"
                     id="icon"
                   />

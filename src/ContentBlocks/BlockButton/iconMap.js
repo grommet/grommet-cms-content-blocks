@@ -9,6 +9,8 @@ import AttachmentIcon from 'grommet/components/icons/base/Attachment';
 import DocumentZipIcon from 'grommet/components/icons/base/DocumentZip';
 import DocumentDownloadIcon from 'grommet/components/icons/base/DocumentDownload';
 import PrintIcon from 'grommet/components/icons/base/Print';
+import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
+import DownloadIcon from 'grommet/components/icons/base/Download';
 
 export default {
   primary: <LinkNextIcon />,
@@ -18,6 +20,8 @@ export default {
   attachment: <AttachmentIcon />,
   word: <DocumentWordIcon />,
   zip: <DocumentZipIcon />,
-  download: <DocumentDownloadIcon />,
+  'document download': <DocumentDownloadIcon />,
+  download: <DownloadIcon />,
+  play: <CirclePlayIcon />,
   print: <PrintIcon />,
 };
