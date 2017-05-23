@@ -2,6 +2,19 @@
 
 type Direction = 'FORWARDS' | 'BACKWARDS';
 
+export function getNextActiveSlide(
+  carousel: any[],
+  activeSlideIndex: number,
+  direction: Direction,
+): number {
+  if (direction === 'FORWARDS' && activeSlideIndex !== carousel.length - 1) {
+    return activeSlideIndex + 1;
+  } else if (direction === 'BACKWARDS' && activeSlideIndex !== 0) {
+    return activeSlideIndex - 1;
+  }
+  return activeSlideIndex;
+}
+
 function forwards(items: any[], index: number) {
   if (index !== items.length - 1) {
     return [

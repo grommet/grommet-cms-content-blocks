@@ -7,7 +7,7 @@ import FormFields from 'grommet/components/FormFields';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
 import { ConfirmLayer, MarqueeSlideForm, SlideReordering } from '../Shared';
-import swapItemOrder from '../Shared/arrayUtils';
+import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type CarouselSlide = any;
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
@@ -31,15 +31,6 @@ type State = {
   activeSlideIndex: number,
   content: string,
   imageSize: ImageSize
-}
-
-function getNextActiveSlide(carousel, activeSlideIndex, direction) {
-  if (direction === 'FORWARDS' && activeSlideIndex !== carousel.length - 1) {
-    return activeSlideIndex + 1;
-  } else if (direction === 'BACKWARDS' && activeSlideIndex !== 0) {
-    return activeSlideIndex - 1;
-  }
-  return activeSlideIndex;
 }
 
 class BlockMarqueeForm extends Component {
