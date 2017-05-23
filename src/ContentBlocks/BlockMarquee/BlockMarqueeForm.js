@@ -2,13 +2,12 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
-import Tabs from 'grommet/components/Tabs';
-import Tab from 'grommet/components/Tab';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer, MarqueeSlideForm } from '../Shared';
+import { ConfirmLayer, MarqueeSlideForm, SlideReordering } from '../Shared';
+import swapItemOrder from '../Shared/arrayUtils';
 
 type CarouselSlide = any;
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
@@ -55,6 +54,7 @@ class BlockMarqueeForm extends Component {
     This.onTabsClick = this.onTabsClick.bind(this);
     This.toggleConfirm = this.toggleConfirm.bind(this);
     This.onChangeContent = this.onChangeContent.bind(this);
+    this.onReorderTabs = this.onReorderTabs.bind(this);
   }
 
   state: State;
@@ -108,6 +108,15 @@ class BlockMarqueeForm extends Component {
     if (this.props.onSubmit) {
       this.props.onSubmit(dataToSubmit);
     }
+  }
+
+  onReorderTabs: (direction: 'FORWARDS' | 'BACKWARDS') => void;
+  onReorderTabs(direction: 'FORWARDS' | 'BACKWARDS') {
+    const { carousel, activeSlideIndex } = this.state;
+    const newCarousel = swapItemOrder(carousel, activeSlideIndex, direction);
+    this.setState({
+      carousel: newCarousel,
+    });
   }
 
   deleteSlideClick() {
@@ -167,6 +176,7 @@ class BlockMarqueeForm extends Component {
       carousel: nextCarouselState,
     });
   }
+
   props: Props;
 
   render() {
@@ -219,14 +229,6 @@ class BlockMarqueeForm extends Component {
       />
     );
 
-    const tabs = this.state.carousel.map((slide, index) =>
-      <Tab
-        title={`Slide ${index + 1}`}
-        key={index}
-        onClick={this.onTabsClick.bind(this, index)}
-      />,
-    );
-
     const confirmLayer = (this.state.confirmLayer)
       ? (
         <ConfirmLayer
@@ -252,14 +254,12 @@ class BlockMarqueeForm extends Component {
         </Box>
         {form}
         <Box>
-          <Box>
-            <Tabs
-              activeIndex={activeSlideIndex} justify="start"
-              style={{ marginBottom: '-1px' }}
-            >
-              {tabs}
-            </Tabs>
-          </Box>
+          <SlideReordering
+            activeSlideIndex={activeSlideIndex}
+            carousel={this.state.carousel}
+            onTabsClick={this.onTabsClick}
+            onReorder={this.onReorderTabs}
+          />
         </Box>
         {marqueeForm}
       </Box>

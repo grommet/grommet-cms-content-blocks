@@ -13,3 +13,4 @@ export MarkdownHelp from './MarkdownHelp';
 export CarouselSlideWithContentForm from './CarouselSlideWithContentForm';
 export MarqueeSlideForm from './MarqueeSlideForm';
 export createTrackerProps from './createTrackerProps';
+export SlideReordering from './SlideReordering';

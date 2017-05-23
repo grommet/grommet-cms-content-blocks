@@ -7,7 +7,7 @@ import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import Select from 'grommet/components/Select';
 
-export class MarqueeSlideForm extends Component {
+class MarqueeSlideForm extends Component {
   constructor(props) {
     super(props);
 

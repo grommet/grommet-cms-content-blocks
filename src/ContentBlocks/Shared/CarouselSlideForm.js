@@ -5,7 +5,7 @@ import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Select from 'grommet/components/Select';
 
-export class CarouselSlideForm extends Component {
+class CarouselSlideForm extends Component {
   static validate(data) {
     if (!data || !data.image) {
       return false;
