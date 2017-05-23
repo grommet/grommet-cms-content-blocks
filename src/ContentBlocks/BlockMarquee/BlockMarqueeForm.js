@@ -33,6 +33,15 @@ type State = {
   imageSize: ImageSize
 }
 
+function getNextActiveSlide(carousel, activeSlideIndex, direction) {
+  if (direction === 'FORWARDS' && activeSlideIndex < carousel.length) {
+    return activeSlideIndex + 1;
+  } else if (direction === 'BACKWARDS' && activeSlideIndex !== 0) {
+    return activeSlideIndex - 1;
+  }
+  return activeSlideIndex;
+}
+
 class BlockMarqueeForm extends Component {
   constructor(props: Props) {
     super(props);
@@ -114,8 +123,10 @@ class BlockMarqueeForm extends Component {
   onReorderTabs(direction: 'FORWARDS' | 'BACKWARDS') {
     const { carousel, activeSlideIndex } = this.state;
     const newCarousel = swapItemOrder(carousel, activeSlideIndex, direction);
+    const nextActiveSlide = getNextActiveSlide(carousel, activeSlideIndex, direction);
     this.setState({
       carousel: newCarousel,
+      activeSlideIndex: nextActiveSlide,
     });
   }
 
