@@ -6,6 +6,9 @@ import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import Select from 'grommet/components/Select';
+import Image from 'grommet/components/Image';
+import Label from 'grommet/components/Label';
+
 
 class MarqueeSlideForm extends Component {
   constructor(props) {
@@ -131,6 +134,12 @@ class MarqueeSlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
+          <Box pad={{ vertical: 'small' }}>
+            <Label>
+              {image.title || ''}
+            </Label>
+            <Image alt="thumbnail" size="thumb" src={image && image.path ? image.path : ''} />
+          </Box>
           <FormField label="Image" htmlFor="image">
             <input
               autoFocus
