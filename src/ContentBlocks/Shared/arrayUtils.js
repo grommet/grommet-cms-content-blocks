@@ -3,7 +3,8 @@
 type Direction = 'FORWARDS' | 'BACKWARDS';
 
 function forwards(items: any[], index: number) {
-  if (index < items.length - 1) {
+  console.log(`Called forwards with index: ${index} and: ${items.length - 1}`);
+  if (index !== items.length - 1) {
     return [
       ...items.slice(0, index),
       items[index + 1],

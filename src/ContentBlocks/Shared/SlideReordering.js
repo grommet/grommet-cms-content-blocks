@@ -33,6 +33,7 @@ export default class SlideReordering extends React.Component {
           >
             {carousel.map((slide, index) =>
               <Tab
+                id={`slide-${index}`}
                 title={`Slide ${index + 1}`}
                 key={index}
                 onClick={() => onTabsClick(index)}

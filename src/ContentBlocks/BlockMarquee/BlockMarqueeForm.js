@@ -34,7 +34,7 @@ type State = {
 }
 
 function getNextActiveSlide(carousel, activeSlideIndex, direction) {
-  if (direction === 'FORWARDS' && activeSlideIndex < carousel.length) {
+  if (direction === 'FORWARDS' && activeSlideIndex !== carousel.length - 1) {
     return activeSlideIndex + 1;
   } else if (direction === 'BACKWARDS' && activeSlideIndex !== 0) {
     return activeSlideIndex - 1;
