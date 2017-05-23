@@ -134,11 +134,11 @@ class MarqueeSlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
-          <Box pad={{ vertical: 'small' }}>
-            <Label>
+          <Box direction="row" align="center" pad={{ vertical: 'small' }}>
+            <Image alt="thumbnail" size="thumb" src={image && image.path ? image.path : ''} />
+            <Label style={{ marginLeft: 6 }} margin="none">
               {image.title || ''}
             </Label>
-            <Image alt="thumbnail" size="thumb" src={image && image.path ? image.path : ''} />
           </Box>
           <FormField label="Image" htmlFor="image">
             <input
