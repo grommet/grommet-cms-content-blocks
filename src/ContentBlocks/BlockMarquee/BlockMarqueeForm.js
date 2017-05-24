@@ -10,6 +10,7 @@ import { ConfirmLayer, MarqueeSlideForm, SlideReordering } from '../Shared';
 import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type CarouselSlide = any;
+type Asset = { path: string };
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
 type ButtonType = {
   path: string,
@@ -55,6 +56,7 @@ class BlockMarqueeForm extends Component {
     This.toggleConfirm = this.toggleConfirm.bind(this);
     This.onChangeContent = this.onChangeContent.bind(this);
     this.onReorderTabs = this.onReorderTabs.bind(this);
+    this.onAddAssets = this.onAddAssets.bind(this);
   }
 
   state: State;
@@ -76,6 +78,18 @@ class BlockMarqueeForm extends Component {
 
   onTabsClick(tabIndex: number) {
     this.setState({ activeSlideIndex: tabIndex });
+  }
+
+  onAddAssets: (assets: Asset[]) => void;
+  onAddAssets(assets: Asset[]) {
+    const newAssets = assets.map(image => ({ image }));
+    this.setState({
+      activeSlideIndex: (this.state.carousel.length - 1) + (newAssets.length),
+      carousel: [
+        ...this.state.carousel,
+        ...newAssets,
+      ],
+    });
   }
 
   onChangeContent(event: SyntheticInputEvent) {
@@ -224,6 +238,7 @@ class BlockMarqueeForm extends Component {
     const marqueeForm = (
       <MarqueeSlideForm
         assetNode={assetNode}
+        onAssetsSelect={this.onAddAssets}
         imageSize={imageSize}
         data={this.state.carousel[activeSlideIndex]}
         onChange={this.handleChange}
