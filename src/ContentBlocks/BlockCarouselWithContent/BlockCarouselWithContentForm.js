@@ -12,9 +12,9 @@ type CarouselSlide = any;
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
 
 type Props = {
-  carousel: CarouselSlide[],
+  carousel?: CarouselSlide[],
   onSubmit: ?Function,
-  imageSize: ImageSize,
+  imageSize?: ImageSize,
   assetNode: HTMLElement,
 }
 

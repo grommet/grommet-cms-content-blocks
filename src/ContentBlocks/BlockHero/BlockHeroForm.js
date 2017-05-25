@@ -248,6 +248,7 @@ class BlockHeroForm extends Component {
           </FormField>
         </fieldset>
         <CarouselSlideForm
+          onAssetsSelect={this.onAddAssets}
           assetNode={assetNode}
           imageSize={imageSize}
           data={this.state.carousel[activeSlideIndex]}

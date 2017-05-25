@@ -132,10 +132,6 @@ class CarouselSlideWithContentForm extends Component {
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
-        <MarkdownHelpLayer
-          isVisible={layer}
-          onToggle={this.onToggleHelp}
-        />
         <FormFields>
           <ImagePreview image={image} />
           <fieldset>
@@ -153,6 +149,10 @@ class CarouselSlideWithContentForm extends Component {
               <legend>
                 Carousel Content
               </legend>
+              <MarkdownHelpLayer
+                isVisible={layer}
+                onToggle={this.onToggleHelp}
+              />
               <FormField label="Content" htmlFor="content">
                 <textarea
                   id="content"
@@ -213,7 +213,7 @@ class CarouselSlideWithContentForm extends Component {
                   id="label"
                   name="label"
                   type="text"
-                  value={button.label}
+                  value={button ? button.label : ''}
                   onChange={this.onChange}
                 />
               </FormField>
@@ -222,7 +222,7 @@ class CarouselSlideWithContentForm extends Component {
                   id="path"
                   name="path"
                   type="text"
-                  value={button.path}
+                  value={button ? button.path : ''}
                   onChange={this.onChange}
                 />
               </FormField>

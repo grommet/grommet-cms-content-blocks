@@ -72,7 +72,7 @@ export class BlockImageForm extends Component {
   }
 
   render() {
-    const { image, content, imageSize, alt, layer, borderColor } = this.state;
+    const { image, content, alt, layer, borderColor } = this.state;
     const { children } = this.props;
     const submit = (this.validateForm(this.state))
       ? this.onSubmit
