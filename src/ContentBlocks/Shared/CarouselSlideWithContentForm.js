@@ -6,8 +6,17 @@ import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import { MarkdownHelpLayer } from '../Shared';
+import ImagePreview from '../Shared/ImagePreview';
 
 class CarouselSlideWithContentForm extends Component {
+  static validate(data) {
+    if (!data || !data.image) {
+      return false;
+    }
+
+    return true;
+  }
+
   constructor(props) {
     super(props);
 
@@ -27,7 +36,6 @@ class CarouselSlideWithContentForm extends Component {
     this.propsToState = this.propsToState.bind(this);
     this.onAssetSelect = this.onAssetSelect.bind(this);
     this.onToggleHelp = this.onToggleHelp.bind(this);
-    this.validate = this.validate.bind(this);
   }
 
   componentDidMount() {
@@ -115,16 +123,8 @@ class CarouselSlideWithContentForm extends Component {
     });
   }
 
-  validate(data) {
-    if (!data || !data.image) {
-      return false;
-    }
-
-    return true;
-  }
-
   render() {
-    const onSubmit = (this.validate(this.state))
+    const onSubmit = (CarouselSlideWithContentForm.validate(this.state))
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
@@ -132,11 +132,8 @@ class CarouselSlideWithContentForm extends Component {
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
-        <MarkdownHelpLayer
-          isVisible={layer}
-          onToggle={this.onToggleHelp}
-        />
         <FormFields>
+          <ImagePreview image={image} />
           <fieldset>
             <FormField label="Image" htmlFor="image">
               <input
@@ -152,6 +149,10 @@ class CarouselSlideWithContentForm extends Component {
               <legend>
                 Carousel Content
               </legend>
+              <MarkdownHelpLayer
+                isVisible={layer}
+                onToggle={this.onToggleHelp}
+              />
               <FormField label="Content" htmlFor="content">
                 <textarea
                   id="content"
@@ -212,7 +213,7 @@ class CarouselSlideWithContentForm extends Component {
                   id="label"
                   name="label"
                   type="text"
-                  value={button.label}
+                  value={button ? button.label : ''}
                   onChange={this.onChange}
                 />
               </FormField>
@@ -221,7 +222,7 @@ class CarouselSlideWithContentForm extends Component {
                   id="path"
                   name="path"
                   type="text"
-                  value={button.path}
+                  value={button ? button.path : ''}
                   onChange={this.onChange}
                 />
               </FormField>
@@ -230,6 +231,7 @@ class CarouselSlideWithContentForm extends Component {
               assetNode,
               {
                 onAssetSelect: this.onAssetSelect,
+                onAssetsSelect: this.props.onAssetsSelect,
               },
             )}
           </fieldset>
@@ -245,6 +247,7 @@ CarouselSlideWithContentForm.propTypes = {
   url: PropTypes.string,
   onSubmit: PropTypes.func,
   imageSize: PropTypes.string,
+  onAssetsSelect: PropTypes.func,
   data: PropTypes.shape({
     image: PropTypes.shape({
       path: PropTypes.string,

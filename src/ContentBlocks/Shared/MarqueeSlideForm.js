@@ -6,9 +6,6 @@ import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import Select from 'grommet/components/Select';
-import Image from 'grommet/components/Image';
-import Label from 'grommet/components/Label';
-import missingImage from './missingImage';
 import ImagePreview from '../Shared/ImagePreview';
 
 class MarqueeSlideForm extends Component {

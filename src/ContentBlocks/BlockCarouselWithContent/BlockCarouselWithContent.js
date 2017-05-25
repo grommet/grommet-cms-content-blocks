@@ -10,23 +10,33 @@ import ImageWrapper from '../BlockMarquee/BlockMarquee/ImageWrapper';
 import ImageBox from '../BlockMarquee/BlockMarquee/ImageBox';
 import { createTrackerProps } from '../Shared';
 
+/* eslint-disable react/no-unused-prop-types */
 type Slide = {
   justification: string,
   color: 'white' | 'black',
-  content: string,
+  content: ?string,
+  button: {
+    label: string,
+    path: string,
+  },
   image: {
     path: string,
   }
 }
+/* eslint-enable react/no-unused-prop-types */
 
 type Props = {
   carousel: Slide[],
   imageSize: string
 }
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class BlockCarouselWithContent extends React.Component {
+
+  props: Props;
+
   render() {
-    const { carousel, imageSize } = this.props
+    const { carousel, imageSize } = this.props;
     const size = imageSize ? imageSize.toLowerCase() : 'full';
     return (
       <Carousel autoplay={false}>
@@ -59,7 +69,7 @@ export default class BlockCarouselWithContent extends React.Component {
                     margin="large"
                     className="grommet-cms-content-blocks--carousel-slide__inner-box"
                     pad="large"
-                    size="large"
+                    size={{ width: 'large', height: 'large' }}
                   >
                     <Markdown
                       content={content}

@@ -157,7 +157,7 @@ class BlockHeroForm extends Component {
   deleteSlide(activeIndex: number, event: SyntheticInputEvent) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.splice(activeIndex);
+    nextCarouselState.splice(activeIndex, 1);
 
     this.setState({
       activeSlideIndex: 0,
@@ -248,6 +248,7 @@ class BlockHeroForm extends Component {
           </FormField>
         </fieldset>
         <CarouselSlideForm
+          onAssetsSelect={this.onAddAssets}
           assetNode={assetNode}
           imageSize={imageSize}
           data={this.state.carousel[activeSlideIndex]}

@@ -7,11 +7,11 @@ export default function BlockCarousel({ carousel, imageSize }) {
   const size = imageSize ? imageSize.toLowerCase() : 'large';
   // TODO: refactor to use grommet sizes vs. custom css
   const slides = carousel.map((slide, index) => (
-      <Image
-        src={slide.image.path}
-        alt={`Carousel slide ${index}`}
-        className={`grommet-cms-content-blocks--carousel-slide__${size}`}
-      />
+    <Image
+      src={slide.image.path}
+      alt={`Carousel slide ${index}`}
+      className={`grommet-cms-content-blocks--carousel-slide__${size}`}
+    />
     ));
 
   return (

@@ -4,6 +4,7 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Select from 'grommet/components/Select';
+import ImagePreview from '../Shared/ImagePreview';
 
 class CarouselSlideForm extends Component {
   static validate(data) {
@@ -81,6 +82,7 @@ class CarouselSlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
+          <ImagePreview image={image} />
           <fieldset>
             <FormField label="Image" htmlFor="image">
               <input
@@ -105,6 +107,7 @@ class CarouselSlideForm extends Component {
               assetNode,
               {
                 onAssetSelect: this.onAssetSelect,
+                onAssetsSelect: this.props.onAssetsSelect,
               },
             )}
           </fieldset>
@@ -119,6 +122,7 @@ CarouselSlideForm.propTypes = {
   assetNode: PropTypes.node,
   url: PropTypes.string,
   onSubmit: PropTypes.func,
+  onAssetsSelect: PropTypes.func,
   onChange: PropTypes.func,
   data: PropTypes.shape({
     image: PropTypes.string,
