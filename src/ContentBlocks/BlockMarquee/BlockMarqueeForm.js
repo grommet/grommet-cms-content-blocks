@@ -16,14 +16,6 @@ type ButtonType = {
   path: string,
   label: string,
 }
-type Props = {
-  carousel: CarouselSlide[],
-  imageSize: ImageSize,
-  button: ?ButtonType,
-  content: string,
-  onSubmit: ?Function,
-  assetNode: HTMLElement,
-}
 
 type State = {
   carousel: CarouselSlide[],
@@ -32,6 +24,15 @@ type State = {
   activeSlideIndex: number,
   content: string,
   imageSize: ImageSize
+}
+
+type Props = {
+  carousel: CarouselSlide[],
+  imageSize: ImageSize,
+  button: ?ButtonType,
+  content: string,
+  onSubmit: (state: any) => void,
+  assetNode: HTMLElement,
 }
 
 class BlockMarqueeForm extends Component {
@@ -47,14 +48,13 @@ class BlockMarqueeForm extends Component {
       content: props.content || '',
     };
 
-    const This = (this: any);
-    This.deleteSlide = this.deleteSlide.bind(this);
-    This.onSubmit = this.onSubmit.bind(this);
-    This.handleChange = this.handleChange.bind(this);
-    This.addSlideClick = this.addSlideClick.bind(this);
-    This.onTabsClick = this.onTabsClick.bind(this);
-    This.toggleConfirm = this.toggleConfirm.bind(this);
-    This.onChangeContent = this.onChangeContent.bind(this);
+    this.deleteSlide = this.deleteSlide.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.addSlideClick = this.addSlideClick.bind(this);
+    this.onTabsClick = this.onTabsClick.bind(this);
+    this.toggleConfirm = this.toggleConfirm.bind(this);
+    this.onChangeContent = this.onChangeContent.bind(this);
     this.onReorderTabs = this.onReorderTabs.bind(this);
     this.onAddAssets = this.onAddAssets.bind(this);
   }
@@ -76,6 +76,7 @@ class BlockMarqueeForm extends Component {
     }
   }
 
+  onTabsClick: (tabIndex: number) => void;
   onTabsClick(tabIndex: number) {
     this.setState({ activeSlideIndex: tabIndex });
   }
@@ -92,6 +93,7 @@ class BlockMarqueeForm extends Component {
     });
   }
 
+  onChangeContent: (event: SyntheticInputEvent) => void;
   onChangeContent(event: SyntheticInputEvent) {
     const { target } = event;
     const { id, value } = (target: any);
@@ -111,6 +113,7 @@ class BlockMarqueeForm extends Component {
     this.setState(newState);
   }
 
+  onSubmit: (state: State) => void;
   onSubmit({ carousel, imageSize, content, button }: State) {
     const dataToSubmit = {
       carousel,
@@ -135,6 +138,7 @@ class BlockMarqueeForm extends Component {
     });
   }
 
+  deleteSlideClick: () => void;
   deleteSlideClick() {
     this.toggleConfirm();
   }
@@ -152,6 +156,7 @@ class BlockMarqueeForm extends Component {
     });
   }
 
+  handleChange: (state: State) => void;
   handleChange({ image, color, justification, imageSize }: {
     image: string,
     imageSize: ImageSize,
@@ -178,10 +183,12 @@ class BlockMarqueeForm extends Component {
     }
   }
 
+  toggleConfirm: () => void;
   toggleConfirm() {
     this.setState({ confirmLayer: !this.state.confirmLayer });
   }
 
+  addSlideClick: () => void;
   addSlideClick() {
     const nextCarouselState = this.state.carousel.slice();
     nextCarouselState.push({
