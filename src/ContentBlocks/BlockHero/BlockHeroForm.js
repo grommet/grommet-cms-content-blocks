@@ -157,7 +157,7 @@ class BlockHeroForm extends Component {
   deleteSlide(activeIndex: number, event: SyntheticInputEvent) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();
-    nextCarouselState.splice(activeIndex);
+    nextCarouselState.splice(activeIndex, 1);
 
     this.setState({
       activeSlideIndex: 0,
