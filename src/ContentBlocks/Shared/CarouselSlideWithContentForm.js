@@ -7,7 +7,7 @@ import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import { MarkdownHelpLayer } from '../Shared';
 
-export class CarouselSlideWithContentForm extends Component {
+class CarouselSlideWithContentForm extends Component {
   constructor(props) {
     super(props);
 

@@ -2,15 +2,15 @@
 import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
-import Tabs from 'grommet/components/Tabs';
-import Tab from 'grommet/components/Tab';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer, MarqueeSlideForm } from '../Shared';
+import { ConfirmLayer, MarqueeSlideForm, SlideReordering } from '../Shared';
+import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type CarouselSlide = any;
+type Asset = { path: string };
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
 type ButtonType = {
   path: string,
@@ -55,6 +55,8 @@ class BlockMarqueeForm extends Component {
     This.onTabsClick = this.onTabsClick.bind(this);
     This.toggleConfirm = this.toggleConfirm.bind(this);
     This.onChangeContent = this.onChangeContent.bind(this);
+    this.onReorderTabs = this.onReorderTabs.bind(this);
+    this.onAddAssets = this.onAddAssets.bind(this);
   }
 
   state: State;
@@ -76,6 +78,18 @@ class BlockMarqueeForm extends Component {
 
   onTabsClick(tabIndex: number) {
     this.setState({ activeSlideIndex: tabIndex });
+  }
+
+  onAddAssets: (assets: Asset[]) => void;
+  onAddAssets(assets: Asset[]) {
+    const newAssets = assets.map(image => ({ image }));
+    this.setState({
+      activeSlideIndex: (this.state.carousel.length - 1) + (newAssets.length),
+      carousel: [
+        ...this.state.carousel,
+        ...newAssets,
+      ],
+    });
   }
 
   onChangeContent(event: SyntheticInputEvent) {
@@ -108,6 +122,17 @@ class BlockMarqueeForm extends Component {
     if (this.props.onSubmit) {
       this.props.onSubmit(dataToSubmit);
     }
+  }
+
+  onReorderTabs: (direction: 'FORWARDS' | 'BACKWARDS') => void;
+  onReorderTabs(direction: 'FORWARDS' | 'BACKWARDS') {
+    const { carousel, activeSlideIndex } = this.state;
+    const newCarousel = swapItemOrder(carousel, activeSlideIndex, direction);
+    const nextActiveSlide = getNextActiveSlide(carousel, activeSlideIndex, direction);
+    this.setState({
+      carousel: newCarousel,
+      activeSlideIndex: nextActiveSlide,
+    });
   }
 
   deleteSlideClick() {
@@ -167,6 +192,7 @@ class BlockMarqueeForm extends Component {
       carousel: nextCarouselState,
     });
   }
+
   props: Props;
 
   render() {
@@ -212,19 +238,12 @@ class BlockMarqueeForm extends Component {
     const marqueeForm = (
       <MarqueeSlideForm
         assetNode={assetNode}
+        onAssetsSelect={this.onAddAssets}
         imageSize={imageSize}
         data={this.state.carousel[activeSlideIndex]}
         onChange={this.handleChange}
         onSubmit={this.onSubmit.bind(this, this.state)}
       />
-    );
-
-    const tabs = this.state.carousel.map((slide, index) =>
-      <Tab
-        title={`Slide ${index + 1}`}
-        key={index}
-        onClick={this.onTabsClick.bind(this, index)}
-      />,
     );
 
     const confirmLayer = (this.state.confirmLayer)
@@ -252,14 +271,12 @@ class BlockMarqueeForm extends Component {
         </Box>
         {form}
         <Box>
-          <Box>
-            <Tabs
-              activeIndex={activeSlideIndex} justify="start"
-              style={{ marginBottom: '-1px' }}
-            >
-              {tabs}
-            </Tabs>
-          </Box>
+          <SlideReordering
+            activeSlideIndex={activeSlideIndex}
+            carousel={this.state.carousel}
+            onTabsClick={this.onTabsClick}
+            onReorder={this.onReorderTabs}
+          />
         </Box>
         {marqueeForm}
       </Box>

@@ -6,8 +6,11 @@ import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
 import Select from 'grommet/components/Select';
+import Image from 'grommet/components/Image';
+import Label from 'grommet/components/Label';
+import missingImage from './missingImage';
 
-export class MarqueeSlideForm extends Component {
+class MarqueeSlideForm extends Component {
   constructor(props) {
     super(props);
 
@@ -131,6 +134,12 @@ export class MarqueeSlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
+          <Box direction="row" align="center" pad={{ vertical: 'small' }}>
+            <Image alt="thumbnail" size="thumb" src={image && image.path ? image.path : missingImage} />
+            <Label style={{ marginLeft: 6 }} margin="none">
+              {image.title || ''}
+            </Label>
+          </Box>
           <FormField label="Image" htmlFor="image">
             <input
               autoFocus
@@ -199,6 +208,7 @@ export class MarqueeSlideForm extends Component {
             assetNode,
             {
               onAssetSelect: this.onAssetSelect,
+              onAssetsSelect: this.props.onAssetsSelect,
             },
           )}
           <Button label="submit" primary onClick={onSubmit} />
@@ -214,6 +224,7 @@ MarqueeSlideForm.propTypes = {
   onSubmit: PropTypes.func,
   imageSize: PropTypes.string,
   onChange: PropTypes.func,
+  onAssetsSelect: PropTypes.func,
   data: PropTypes.shape({
     image: PropTypes.shape({
       path: PropTypes.string,
