@@ -10,7 +10,7 @@ import { ConfirmLayer, MarqueeSlideForm, SlideReordering } from '../Shared';
 import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type CarouselSlide = any;
-type Asset = { path: string };
+export type Asset = { path: string };
 type ImageSize = 'Small' | 'Medium' | 'Large' | 'XLarge' | 'XXLarge' | 'Full';
 type ButtonType = {
   path: string,
@@ -139,6 +139,7 @@ class BlockMarqueeForm extends Component {
     this.toggleConfirm();
   }
 
+  deleteSlide: (activeIndex: number, event: Event) => void;
   deleteSlide(activeIndex: number, event: Event) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();

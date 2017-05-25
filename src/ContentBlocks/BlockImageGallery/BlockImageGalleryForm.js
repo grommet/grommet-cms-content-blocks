@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import AddIcon from 'grommet/components/icons/base/Add';
@@ -8,9 +9,22 @@ import ImageGallerySlideForm from './BlockImageGallerySlideForm';
 import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type Asset = { path: string };
+type CarouselSlide = any;
+
+type Props = {
+  carousel: CarouselSlide[],
+  onSubmit: ?Function,
+  assetNode: HTMLElement,
+}
+
+type State = {
+  carousel: CarouselSlide[],
+  confirmLayer: boolean,
+  activeSlideIndex: number,
+}
 
 class BlockImageGalleryForm extends Component {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -29,13 +43,15 @@ class BlockImageGalleryForm extends Component {
     this.onAddAssets = this.onAddAssets.bind(this);
   }
 
+  state: State;
+
   componentWillMount() {
     if (!this.props.carousel) {
       this.addSlideClick();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.carousel) {
       // Copy Carousel state array.
       this.setState({
@@ -56,7 +72,8 @@ class BlockImageGalleryForm extends Component {
     });
   }
 
-  onTabsClick(tabIndex) {
+  onTabsClick: (tabIndex: number) => void;
+  onTabsClick(tabIndex: number) {
     this.setState({ activeSlideIndex: tabIndex });
   }
 
@@ -71,7 +88,8 @@ class BlockImageGalleryForm extends Component {
     });
   }
 
-  onSubmit({ carousel }) {
+  onSubmit: (state: State) => void;
+  onSubmit({ carousel }: State) {
     const dataToSubmit = {
       carousel,
     };
@@ -81,11 +99,14 @@ class BlockImageGalleryForm extends Component {
     }
   }
 
+  props: Props;
+
   deleteSlideClick() {
     this.toggleConfirm();
   }
 
-  deleteSlide(activeIndex, event) {
+  deleteSlide: (activeIndex: number, event: Event) => void;
+  deleteSlide(activeIndex: number, event: Event) {
     event.preventDefault();
     const nextCarouselState = this.state.carousel.slice();
 
@@ -98,7 +119,8 @@ class BlockImageGalleryForm extends Component {
     });
   }
 
-  handleChange({ image }) {
+  handleChange: (obj: { image: Asset }) => void;
+  handleChange({ image }: { image: Asset }) {
     const { carousel, activeSlideIndex } = this.state;
     if (image !== carousel[activeSlideIndex]) {
       const nextCarouselState = [
@@ -112,10 +134,12 @@ class BlockImageGalleryForm extends Component {
     }
   }
 
+  toggleConfirm: () => void;
   toggleConfirm() {
     this.setState({ confirmLayer: !this.state.confirmLayer });
   }
 
+  addSlideClick: () => void;
   addSlideClick() {
     const nextCarouselState = this.state.carousel.slice();
     nextCarouselState.push({
@@ -176,15 +200,5 @@ class BlockImageGalleryForm extends Component {
     );
   }
 }
-
-BlockImageGalleryForm.propTypes = {
-  onSubmit: PropTypes.func,
-  assetNode: PropTypes.node,
-  carousel: PropTypes.arrayOf(
-    PropTypes.shape({
-      image: PropTypes.object.isRequired,
-    }),
-  ),
-};
 
 export default BlockImageGalleryForm;
