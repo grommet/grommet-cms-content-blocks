@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
-import Tabs from 'grommet/components/Tabs';
-import Tab from 'grommet/components/Tab';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
-import { ConfirmLayer } from '../Shared';
+import { ConfirmLayer, SlideReordering } from '../Shared';
 import ImageGallerySlideForm from './BlockImageGallerySlideForm';
+import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
+
+type Asset = { path: string };
 
 class BlockImageGalleryForm extends Component {
   constructor(props) {
@@ -24,6 +25,8 @@ class BlockImageGalleryForm extends Component {
     this.addSlideClick = this.addSlideClick.bind(this);
     this.onTabsClick = this.onTabsClick.bind(this);
     this.toggleConfirm = this.toggleConfirm.bind(this);
+    this.onReorderTabs = this.onReorderTabs.bind(this);
+    this.onAddAssets = this.onAddAssets.bind(this);
   }
 
   componentWillMount() {
@@ -41,12 +44,41 @@ class BlockImageGalleryForm extends Component {
     }
   }
 
+  onAddAssets: (assets: Asset[]) => void;
+  onAddAssets(assets: Asset[]) {
+    const newAssets = assets.map(image => ({ image }));
+    this.setState({
+      activeSlideIndex: (this.state.carousel.length - 1) + (newAssets.length),
+      carousel: [
+        ...this.state.carousel,
+        ...newAssets,
+      ],
+    });
+  }
+
   onTabsClick(tabIndex) {
     this.setState({ activeSlideIndex: tabIndex });
   }
 
-  toggleConfirm() {
-    this.setState({ confirmLayer: !this.state.confirmLayer });
+  onReorderTabs: (direction: 'FORWARDS' | 'BACKWARDS') => void;
+  onReorderTabs(direction: 'FORWARDS' | 'BACKWARDS') {
+    const { carousel, activeSlideIndex } = this.state;
+    const newCarousel = swapItemOrder(carousel, activeSlideIndex, direction);
+    const nextActiveSlide = getNextActiveSlide(carousel, activeSlideIndex, direction);
+    this.setState({
+      carousel: newCarousel,
+      activeSlideIndex: nextActiveSlide,
+    });
+  }
+
+  onSubmit({ carousel }) {
+    const dataToSubmit = {
+      carousel,
+    };
+
+    if (this.props.onSubmit) {
+      this.props.onSubmit(dataToSubmit);
+    }
   }
 
   deleteSlideClick() {
@@ -80,14 +112,8 @@ class BlockImageGalleryForm extends Component {
     }
   }
 
-  onSubmit({ carousel }) {
-    const dataToSubmit = {
-      carousel,
-    };
-
-    if (this.props.onSubmit) {
-      this.props.onSubmit(dataToSubmit);
-    }
+  toggleConfirm() {
+    this.setState({ confirmLayer: !this.state.confirmLayer });
   }
 
   addSlideClick() {
@@ -108,6 +134,7 @@ class BlockImageGalleryForm extends Component {
     const form = (
       <Box>
         <ImageGallerySlideForm
+          onAssetsSelect={this.onAddAssets}
           assetNode={assetNode}
           data={this.state.carousel[activeSlideIndex]}
           onChange={this.handleChange}
@@ -115,13 +142,6 @@ class BlockImageGalleryForm extends Component {
         />
       </Box>
     );
-
-    const tabs = this.state.carousel.map((slide, index) =>
-      <Tab
-        title={`Slide ${index + 1}`}
-        key={index}
-        onClick={this.onTabsClick.bind(this, index)}
-      />);
 
     const confirmLayer = (this.state.confirmLayer)
       ? (<ConfirmLayer
@@ -144,14 +164,12 @@ class BlockImageGalleryForm extends Component {
           </Box>
         </Box>
         <Box>
-          <Box>
-            <Tabs
-              activeIndex={activeSlideIndex} justify="start"
-              style={{ marginBottom: '-1px' }}
-            >
-              {tabs}
-            </Tabs>
-          </Box>
+          <SlideReordering
+            activeSlideIndex={activeSlideIndex}
+            carousel={this.state.carousel}
+            onTabsClick={this.onTabsClick}
+            onReorder={this.onReorderTabs}
+          />
         </Box>
         {form}
       </Box>
@@ -162,6 +180,11 @@ class BlockImageGalleryForm extends Component {
 BlockImageGalleryForm.propTypes = {
   onSubmit: PropTypes.func,
   assetNode: PropTypes.node,
+  carousel: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.object.isRequired,
+    }),
+  ),
 };
 
 export default BlockImageGalleryForm;

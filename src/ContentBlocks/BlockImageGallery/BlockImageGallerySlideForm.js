@@ -3,6 +3,7 @@ import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
+import ImagePreview from '../Shared/ImagePreview';
 
 class ImageGallerySlideForm extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class ImageGallerySlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
+          <ImagePreview image={image} />
           <fieldset>
             <FormField label="Image" htmlFor="image">
               <input
@@ -93,6 +95,7 @@ class ImageGallerySlideForm extends Component {
               assetNode,
               {
                 onAssetSelect: this.onAssetSelect,
+                onAssetsSelect: this.props.onAssetsSelect,
               },
             )}
           </fieldset>
@@ -108,6 +111,7 @@ ImageGallerySlideForm.propTypes = {
   url: PropTypes.string,
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
+  onAssetsSelect: PropTypes.func,
   data: PropTypes.any, // eslint-disable-line
 };
 

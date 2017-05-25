@@ -9,6 +9,7 @@ import Select from 'grommet/components/Select';
 import Image from 'grommet/components/Image';
 import Label from 'grommet/components/Label';
 import missingImage from './missingImage';
+import ImagePreview from '../Shared/ImagePreview';
 
 class MarqueeSlideForm extends Component {
   constructor(props) {
@@ -134,12 +135,7 @@ class MarqueeSlideForm extends Component {
     return (
       <Form compact={false} onSubmit={onSubmit}>
         <FormFields>
-          <Box direction="row" align="center" pad={{ vertical: 'small' }}>
-            <Image alt="thumbnail" size="thumb" src={image && image.path ? image.path : missingImage} />
-            <Label style={{ marginLeft: 6 }} margin="none">
-              {image.title || ''}
-            </Label>
-          </Box>
+          <ImagePreview image={image} />
           <FormField label="Image" htmlFor="image">
             <input
               autoFocus
