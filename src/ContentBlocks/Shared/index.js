@@ -14,3 +14,5 @@ export CarouselSlideWithContentForm from './CarouselSlideWithContentForm';
 export MarqueeSlideForm from './MarqueeSlideForm';
 export createTrackerProps from './createTrackerProps';
 export SlideReordering from './SlideReordering';
+export NonImageThumbnail from './NonImageThumbnail';
+export SmartImage from './SmartImage';
