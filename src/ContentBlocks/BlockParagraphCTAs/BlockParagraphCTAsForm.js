@@ -123,12 +123,13 @@ class BlockParagraphCTAsForm extends Component {
     title: ?string,
     path: string
   }) {
-    const { path } = asset;
+    const { path, _id } = asset;
     const { ctaArray, activeSlideIndex } = this.state;
     const nextCtaArrayState = [
       ...ctaArray.slice(0, activeSlideIndex),
       {
         ...ctaArray[activeSlideIndex],
+        _id,
         path,
       },
       ...ctaArray.slice(activeSlideIndex + 1),
