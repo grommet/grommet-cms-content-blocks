@@ -253,7 +253,7 @@ export default class BlockButtonForm extends React.Component {
                   />
                 }
               </FormField>
-              {primary === 'True' && buttonType === 'Anchor' &&
+              {primary === 'True' && buttonType === 'Anchor' ?
                 <FormField
                   label="CTA Icon"
                   htmlFor="icon"
@@ -267,6 +267,8 @@ export default class BlockButtonForm extends React.Component {
                     id="icon"
                   />
                 </FormField>
+              :
+                null
               }
               <FormField
                 label="Asset Link Type"
