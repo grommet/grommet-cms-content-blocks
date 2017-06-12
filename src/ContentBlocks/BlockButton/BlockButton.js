@@ -38,7 +38,7 @@ export default function BlockButton({
       <Button {...props} />
     );
   } else if (buttonType === 'Anchor') {
-    if (icon && primary) {
+    if (icon && isPrimary) {
       props = {
         ...props,
         icon: <IconPicker icon={icon} />,
