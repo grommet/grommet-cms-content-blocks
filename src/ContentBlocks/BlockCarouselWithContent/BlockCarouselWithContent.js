@@ -69,7 +69,7 @@ export default class BlockCarouselWithContent extends React.Component {
                     margin="large"
                     className="grommet-cms-content-blocks--carousel-slide__inner-box"
                     pad="large"
-                    size={{ width: 'large', height: 'large' }}
+                    size={{ width: 'large' }}
                   >
                     <Markdown
                       content={content}
