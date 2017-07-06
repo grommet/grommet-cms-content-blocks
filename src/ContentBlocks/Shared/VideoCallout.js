@@ -56,8 +56,7 @@ export default function VideoCallout({
 }) {
   const markdownContent = unescape(description || '');
   const videoPath = video && video.path;
-  const getLastPart = parts => parts[parts.length - 1];
-  const videoName = videoPath ? getLastPart(videoPath.split('/')) : '';
+  const videoTitle = video && video.title;
   return (
     <div>
       {label && <Label uppercase>{label}</Label>}
@@ -66,7 +65,7 @@ export default function VideoCallout({
         justify="center"
         data-analytics-track="true"
         data-analytics-type="Play"
-        data-analytics-label={label || videoName}
+        data-analytics-label={label || videoTitle}
         data-analytics-value={videoPath}
         borderColor={borderColor}
         texture={thumbnail}
