@@ -16,11 +16,11 @@ export type Props = {
   icon?: IconType,
 }
 export default function BlockButton({
-  buttonType,
+  buttonType = 'Button',
   href,
   path,
   label,
-  primary,
+  primary = 'False',
   assetType,
   icon,
 }: Props) {
