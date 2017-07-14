@@ -41,11 +41,11 @@ export default class PlayButton extends Component {
 
     return (
       <Button
-        data-analytics-track={playType === 'Restart'}
+        data-analytics-track={playType === 'Restart' ? 'true' : 'false'}
         data-analytics-type="Replay"
         data-analytics-label={title}
         data-analytics-value={path}
-        plain={true} className={BUTTON_CLASS} onClick={() => togglePlay(playType)}
+        plain={true} className={BUTTON_CLASS} onClick={togglePlay}
         a11yTitle={a11yControlButtonTitle}>
         {controlIcon}
       </Button>

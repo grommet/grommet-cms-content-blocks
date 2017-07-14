@@ -135,12 +135,7 @@ export default class Video extends Component {
     this._video.pause();
   }
 
-  _togglePlay (playType) {
-    if (playType === 'Restart') {
-      if (this.props.onReplay && typeof this.props.onReplay === 'function') {
-        this.props.onReplay();
-      }
-    }
+  _togglePlay () {
     if (this.state.paused || this.state.ended) {
       this._play();
     } else {
