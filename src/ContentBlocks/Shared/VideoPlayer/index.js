@@ -1,3 +1,4 @@
+/* eslint-disable */
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 import React, { Component } from 'react';
@@ -134,7 +135,12 @@ export default class Video extends Component {
     this._video.pause();
   }
 
-  _togglePlay () {
+  _togglePlay (playType) {
+    if (playType === 'Restart') {
+      if (this.props.onReplay && typeof this.props.onReplay === 'function') {
+        this.props.onReplay();
+      }
+    }
     if (this.state.paused || this.state.ended) {
       this._play();
     } else {
@@ -192,6 +198,7 @@ export default class Video extends Component {
   _renderControls () {
     let extendedProps = Object.assign({
       title: this.props.title,
+      path: this.props.video.path,
       togglePlay: this._togglePlay,
       toggleMute: this._toggleMute,
       play: this._play,
@@ -323,6 +330,7 @@ Video.propTypes = {
     time: PropTypes.number,
   })),
   title: PropTypes.node,
+  video: PropTypes.object
 };
 
 Video.defaultProps = {

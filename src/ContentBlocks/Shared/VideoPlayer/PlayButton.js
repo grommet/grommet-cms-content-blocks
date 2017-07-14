@@ -1,3 +1,4 @@
+/* eslint-disable */
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 import React, { Component } from 'react';
@@ -17,7 +18,7 @@ export default class PlayButton extends Component {
 
   render () {
     const {
-      ended, iconSize, playing, primary, togglePlay
+      ended, iconSize, playing, primary, togglePlay, title, path
     } = this.props;
     const { intl } = this.context;
 
@@ -32,11 +33,19 @@ export default class PlayButton extends Component {
       'Pause Video' : (ended ? 'Restart Video' :'Play Video')
     );
 
+    const playType = playing (playing ?
+      'Pause' : (ended ? 'Restart' :'Play'));
+
     const a11yControlButtonTitle =
       Intl.getMessage(intl, a11yControlButtonMessage);
 
     return (
-      <Button plain={true} className={BUTTON_CLASS} onClick={togglePlay}
+      <Button
+        data-analytics-track={playType === 'Restart'}
+        data-analytics-type="Replay"
+        data-analytics-label={title}
+        data-analytics-value={path}
+        plain={true} className={BUTTON_CLASS} onClick={() => togglePlay(playType)}
         a11yTitle={a11yControlButtonTitle}>
         {controlIcon}
       </Button>
@@ -49,7 +58,9 @@ PlayButton.propTypes = {
   playing: PropTypes.bool,
   primary: PropTypes.bool,
   ended: PropTypes.bool,
-  togglePlay: PropTypes.func
+  togglePlay: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 };
 
 PlayButton.defaultProps = {
