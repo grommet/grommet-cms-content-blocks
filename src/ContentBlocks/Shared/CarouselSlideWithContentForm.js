@@ -5,7 +5,7 @@ import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
-import { MarkdownHelpLayer } from '../Shared';
+import { MarkdownHelpButton } from '../Shared';
 import ImagePreview from '../Shared/ImagePreview';
 
 class CarouselSlideWithContentForm extends Component {
@@ -27,7 +27,6 @@ class CarouselSlideWithContentForm extends Component {
       imageSize: props.imageSize ? props.imageSize : 'Full',
       justification: (props.data && props.data.justification) ? props.data.justification : 'left',
       color: (props.data && props.data.color) ? props.data.color : 'black',
-      layer: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -35,7 +34,6 @@ class CarouselSlideWithContentForm extends Component {
     this.onChangeColor = this.onChangeColor.bind(this);
     this.propsToState = this.propsToState.bind(this);
     this.onAssetSelect = this.onAssetSelect.bind(this);
-    this.onToggleHelp = this.onToggleHelp.bind(this);
   }
 
   componentDidMount() {
@@ -57,12 +55,6 @@ class CarouselSlideWithContentForm extends Component {
     if (JSON.stringify(this.state) !== JSON.stringify(prevState)) {
       this.props.onChange(this.state);
     }
-  }
-
-  onToggleHelp() {
-    this.setState({
-      layer: !this.state.layer,
-    });
   }
 
   onChangeJustification() {
@@ -128,7 +120,7 @@ class CarouselSlideWithContentForm extends Component {
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
-    const { image, content, layer, button, justification, color } = this.state;
+    const { image, content, button, justification, color } = this.state;
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
@@ -149,10 +141,7 @@ class CarouselSlideWithContentForm extends Component {
               <legend>
                 Carousel Content
               </legend>
-              <MarkdownHelpLayer
-                isVisible={layer}
-                onToggle={this.onToggleHelp}
-              />
+              <MarkdownHelpButton />
               <FormField label="Content" htmlFor="content">
                 <textarea
                   id="content"
