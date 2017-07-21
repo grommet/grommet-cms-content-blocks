@@ -16,7 +16,7 @@ export default function BlockQuote({
   linkUrl,
   linkText,
 }) {
-  const color = colorIndex || 'brand';
+  const color = colorIndex || 'accent-3';
   const size = borderSize || 'medium';
   const unescapedContent = unescape(content || '');
   return (
@@ -24,22 +24,25 @@ export default function BlockQuote({
       style={{ width: 'inherit' }}
       size={size}
       borderColorIndex={color}
-      pad="large"
+      credit={
+        source && <Box pad="none">
+          <Label uppercase margin="small">
+            {source}
+          </Label>
+        </Box>
+      }
     >
-      <Box pad="small">
+      <Box>
         {label &&
           <Label margin="small" uppercase size="small" style={{ fontWeight: 700 }}>
             {label}
           </Label>
         }
-        <Heading tag="h3">
-          {unescapedContent}
-        </Heading>
-        {source &&
-          <Paragraph className="grommetux-quote__credit">
-            <strong>{source}</strong>
-          </Paragraph>
-        }
+        <Box pad={{ vertical: 'small' }}>
+          <Heading tag="h2" margin="none">
+            {unescapedContent}
+          </Heading>
+        </Box>
         {linkUrl && linkText &&
           <Anchor label={linkText} path={linkUrl} />
         }
