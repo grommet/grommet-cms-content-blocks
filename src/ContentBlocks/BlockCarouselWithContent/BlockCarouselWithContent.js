@@ -27,7 +27,7 @@ type Slide = {
 
 type Props = {
   carousel: Slide[],
-  imageSize: string
+  imageSize?: string
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
