@@ -22,6 +22,7 @@ import {
 export type Image = { path: string };
 export type Justification = 'left' | 'right';
 export type Color = 'White' | 'Black';
+
 type CarouselItem = {
   image: {
     path: string
@@ -31,7 +32,7 @@ type CarouselItem = {
 }
 
 type Props = {
-  carousel: CarouselItem[],
+  carousel: Object[],
   imageSize: GrommetBoxTypes$Size,
   content: string,
   button: ?{
@@ -77,24 +78,25 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
       window.removeEventListener('resize', this.handleResize);
     }
   }
+
+  setRandomImage: () => void;
   setRandomImage() {
-    const { carousel, imageSize, content, button } = this.props;
-    const { scale, opacity, isMobile } = this.state;
+    const { carousel } = this.props;
     const randomIndex = Math.floor(Math.random() * carousel.length);
     const currentSlide = carousel[randomIndex];
     this.setState({
       currentSlide,
     });
   }
-  handleScroll: () => void;
-  handleResize: () => void;
-  setRandomImage: () => void;
+
   heroRef: ?HTMLElement;
   props: Props;
+
+  handleScroll: () => void;
   handleScroll() {
-    if (this.heroRef) {
+    if (this.heroRef && typeof this.heroRef === 'object') {
       const node = findDOMNode(this.heroRef);
-      if (node) {
+      if (node && typeof node === 'object') {
         const state = calculateAnimation(node);
         window.requestAnimationFrame(() => {
           this.setState({
@@ -104,17 +106,20 @@ class BlockMarquee extends Component { // eslint-disable-line react/prefer-state
       }
     }
   }
+
+  handleResize: () => void;
   handleResize() {
     const isMobile = window.innerWidth <= 720;
     this.setState({
       isMobile,
     });
   }
+
   render() {
     const { scale, opacity, isMobile, currentSlide } = this.state;
     if (!currentSlide) return null;
 
-    const { carousel, imageSize, content, button } = this.props;
+    const { imageSize, content, button } = this.props;
     const { image, color, justification } = currentSlide;
     const align = selectAlign(justification);
     const size = selectImageSize(imageSize);
