@@ -17,7 +17,7 @@ type Props = {
     title?: string
   },
   size: ImageSize,
-  type: ImageType
+  type?: ImageType
 }
 /* eslint-enable react/no-unused-prop-types */
 
