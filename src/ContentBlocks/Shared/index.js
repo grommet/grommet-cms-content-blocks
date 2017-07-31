@@ -8,6 +8,7 @@ export ImageGalleryComponent from './ImageGalleryComponent';
 export ConfirmLayer from './ConfirmLayer';
 export CarouselSlideForm from './CarouselSlideForm';
 export MarkdownHelpLayer from './MarkdownHelpLayer';
+export MarkdownHelpButton from './MarkdownHelpButton';
 export BlockPageHeader from './BlockPageHeader';
 export MarkdownHelp from './MarkdownHelp';
 export CarouselSlideWithContentForm from './CarouselSlideWithContentForm';

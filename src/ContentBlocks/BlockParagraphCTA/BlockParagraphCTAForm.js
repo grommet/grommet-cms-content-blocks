@@ -5,14 +5,13 @@ import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Button from 'grommet/components/Button';
 import Select from 'grommet/components/Select';
-import { MarkdownHelpLayer } from '../Shared';
+import { MarkdownHelpButton } from '../Shared';
 
 export class ParagraphCTAForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       content: props.content || '',
-      layer: false,
       align: props.align || 'start',
       href: props.href || '',
       label: props.label || '',
@@ -20,7 +19,6 @@ export class ParagraphCTAForm extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onToggleHelp = this.onToggleHelp.bind(this);
   }
 
   onChange(e) {
@@ -37,12 +35,6 @@ export class ParagraphCTAForm extends Component {
     }
   }
 
-  onToggleHelp() {
-    this.setState({
-      layer: !this.state.layer,
-    });
-  }
-
   onSubmit(event) {
     event.preventDefault();
     const formData = Object.assign({}, this.state);
@@ -50,15 +42,12 @@ export class ParagraphCTAForm extends Component {
   }
 
   render() {
-    const { content, layer, align, label, href } = this.state;
+    const { content, align, label, href } = this.state;
 
     return (
       <Box colorIndex="light-2" pad="medium">
         <Form compact={false} onSubmit={this.onSubmit}>
-          <MarkdownHelpLayer
-            isVisible={layer}
-            onToggle={this.onToggleHelp}
-          />
+          <MarkdownHelpButton />
           <FormFields>
             <fieldset>
               <FormField label="Content" htmlFor="content">

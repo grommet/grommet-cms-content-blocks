@@ -7,14 +7,13 @@ import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
-import { MarkdownHelpLayer } from '../Shared';
+import { MarkdownHelpButton } from '../Shared';
 
 type BlockColorSwatchFormState = {
   error: ?string,
   nameInput: string,
   contentInput: string,
   thumbColorInput: string,
-  layer: boolean
 };
 
 type BlockColorSwatchFormProps = {
@@ -34,7 +33,6 @@ export default class BlockColorSwatchForm extends React.Component {
     (this:any)._onChange = this._onChange.bind(this);
     (this:any)._onSubmit = this._onSubmit.bind(this);
     (this:any)._formIsValid = this._formIsValid.bind(this);
-    (this:any)._onToggleHelp = this._onToggleHelp.bind(this);
     let nameInput = '';
     let thumbColorInput = '#01a982';
     let contentInput = '';
@@ -47,7 +45,6 @@ export default class BlockColorSwatchForm extends React.Component {
 
     this.state = {
       error: null,
-      layer: false,
       nameInput,
       thumbColorInput,
       contentInput
@@ -83,12 +80,6 @@ export default class BlockColorSwatchForm extends React.Component {
     }
   }
 
-  _onToggleHelp() {
-    this.setState({
-      layer: !this.state.layer
-    });
-  }
-
   _formIsValid() {
     const { 
       contentInput, nameInput, thumbColorInput
@@ -103,7 +94,6 @@ export default class BlockColorSwatchForm extends React.Component {
       nameInput,
       thumbColorInput,
       contentInput,
-      layer
     } = this.state;
 
     const errorBox = (error)
@@ -113,8 +103,7 @@ export default class BlockColorSwatchForm extends React.Component {
     return (
       <Box colorIndex="light-2" pad="medium">
         <Form>
-          <MarkdownHelpLayer isVisible={layer}
-            onToggle={this._onToggleHelp} />
+          <MarkdownHelpButton />
           <FormFields>
             <fieldset>
               <FormField
