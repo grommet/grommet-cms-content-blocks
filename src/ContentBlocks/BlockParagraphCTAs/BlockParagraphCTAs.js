@@ -13,9 +13,10 @@ type Cta = {
   buttonType: 'Anchor' | 'Button',
   primary: 'True' | 'False',
 }
+
 type Props = {
   content: ?string,
-  paragraphSize: string,
+  paragraphSize?: string,
   ctaArray: ?Array<Cta>,
 }
 
@@ -31,13 +32,14 @@ export default function BlockParagraphCTAs({
         <BlockButton {...cta} />
       </CTABox>
     ));
+  const size = paragraphSize || 'medium';
   return (
     <BlockContainer id="block--block-paragraph-ctas">
       {content &&
         <BlockParagraph
           content={content}
           align="start"
-          paragraphSize={paragraphSize}
+          paragraphSize={size}
         />
       }
       { ctaArray && ctaArray.length > 0 &&
