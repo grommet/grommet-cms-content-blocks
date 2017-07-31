@@ -1,3 +1,4 @@
+/* eslint-disable */
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 import React, { Component } from 'react';
@@ -60,14 +61,16 @@ export default class Overlay extends Component {
   }
 
   render() {
-    const { ended, playing, togglePlay, videoHeader } = this.props;
+    const { ended, playing, togglePlay, videoHeader, video } = this.props;
 
     return (
       <Box pad="none" align="center" justify="center"
         className={`${CLASS_ROOT}__overlay`}>
         {videoHeader}
         <Box pad="none" align="center" justify="center">
-          <VideoPlayButton iconSize={this.state.iconSize}
+          <VideoPlayButton
+            video={video}
+            iconSize={this.state.iconSize}
             playing={playing}
             ended={ended}
             togglePlay={togglePlay} />
