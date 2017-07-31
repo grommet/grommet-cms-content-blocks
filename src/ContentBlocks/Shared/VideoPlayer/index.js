@@ -1,4 +1,3 @@
-/* eslint-disable */
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 import React, { Component } from 'react';
@@ -31,7 +30,6 @@ export default class Video extends Component {
     this._onInterationStart = this._onInterationStart.bind(this);
     this._onInteractionOver = this._onInteractionOver.bind(this);
     this._renderControls = this._renderControls.bind(this);
-    this._logAnalyticsEvent = this._logAnalyticsEvent.bind(this);
 
     this.state = {
       mouseActive: false,
@@ -136,21 +134,11 @@ export default class Video extends Component {
     this._video.pause();
   }
 
-  _logAnalyticsEvent() {
-    const node = document.getElementById('analytics-tracker-node');
-    if (node) {
-      node.click();
-    }
-  }
-
-  _togglePlay (sendEvent) {
+  _togglePlay () {
     if (this.state.paused || this.state.ended) {
       this._play();
     } else {
       this._pause();
-    }
-    if (sendEvent && sendEvent === true) {
-      this._logAnalyticsEvent();
     }
   }
 
@@ -223,7 +211,7 @@ export default class Video extends Component {
 
     return (
       <div>
-        <VideoOverlay video={this.props.video} {...extendedProps} />
+        <VideoOverlay {...extendedProps} />
         <VideoControls ref={(ref) => this._controlRef = ref}
           {...extendedProps} />
       </div>
@@ -335,7 +323,6 @@ Video.propTypes = {
     time: PropTypes.number,
   })),
   title: PropTypes.node,
-  video: PropTypes.object
 };
 
 Video.defaultProps = {

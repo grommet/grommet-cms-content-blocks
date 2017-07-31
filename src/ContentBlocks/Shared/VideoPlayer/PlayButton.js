@@ -1,4 +1,3 @@
-/* eslint-disable */
 // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 import React, { Component } from 'react';
@@ -18,7 +17,7 @@ export default class PlayButton extends Component {
 
   render () {
     const {
-      ended, iconSize, playing, primary, togglePlay, video
+      ended, iconSize, playing, primary, togglePlay
     } = this.props;
     const { intl } = this.context;
 
@@ -33,21 +32,11 @@ export default class PlayButton extends Component {
       'Pause Video' : (ended ? 'Restart Video' :'Play Video')
     );
 
-    const sendEvent = a11yControlButtonMessage === 'Restart Video';
-
     const a11yControlButtonTitle =
       Intl.getMessage(intl, a11yControlButtonMessage);
 
     return (
-      <Button
-        id="video-play-button"
-        data-analytics-track="true"
-        data-analytics-value={video && video.path}
-        data-analytics-category="Button"
-        data-analytics-type="Replay"
-        data-analytics-label={video && video.title}
-        plain={true} className={BUTTON_CLASS}
-        onClick={() => togglePlay(sendEvent)}
+      <Button plain={true} className={BUTTON_CLASS} onClick={togglePlay}
         a11yTitle={a11yControlButtonTitle}>
         {controlIcon}
       </Button>

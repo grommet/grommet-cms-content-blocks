@@ -21,7 +21,6 @@ export default function VideoLayer({ video, onClose, image }) {
       >
         <Box className={`${CLASS_ROOT}__video-container`} full="horizontal">
           <Video
-            video={video}
             allowFullScreen={!isIE}
             size="large"
             autoPlay
