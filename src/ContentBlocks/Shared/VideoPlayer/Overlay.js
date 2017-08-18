@@ -60,7 +60,7 @@ export default class Overlay extends Component {
   }
 
   render() {
-    const { ended, playing, togglePlay, videoHeader } = this.props;
+    const { ended, playing, togglePlay, videoHeader, title, path } = this.props;
 
     return (
       <Box pad="none" align="center" justify="center"
@@ -70,7 +70,9 @@ export default class Overlay extends Component {
           <VideoPlayButton iconSize={this.state.iconSize}
             playing={playing}
             ended={ended}
-            togglePlay={togglePlay} />
+            togglePlay={togglePlay}
+            title={title}
+            path={path} />
         </Box>
         {this._renderReplayMenu()}
       </Box>

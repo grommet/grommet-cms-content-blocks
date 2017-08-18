@@ -213,7 +213,10 @@ export default class Video extends Component {
 
     return (
       <div>
-        <VideoOverlay {...extendedProps} />
+        {
+          this.state.playing !== undefined &&
+          <VideoOverlay {...extendedProps} />
+        }
         <VideoControls ref={(ref) => this._controlRef = ref}
           {...extendedProps} />
       </div>

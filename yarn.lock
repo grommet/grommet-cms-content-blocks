@@ -2672,6 +2672,10 @@ is-path-inside@^1.0.0:
   dependencies:
     path-is-inside "^1.0.1"
 
+is-plain-obj@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
+
 is-plain-object@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.1.tgz#4d7ca539bc9db9b737b8acb612f2318ef92f294f"
@@ -3303,12 +3307,13 @@ markdown-escapes@^1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.0.tgz#c8ca19f1d94d682459e0a93c86db27a7ef716b23"
 
 markdown-to-jsx@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.0.1.tgz#1c2aafd3a00a1a4a217c9549f0e7e506f2e38ee3"
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.4.2.tgz#2cb3b1ce28009190f619ecc8c5c8b171433fb56a"
   dependencies:
     lodash.get "^4.4.2"
-    remark-parse "^2.0.1"
-    unified "^5.0.0"
+    prop-types "^15.5.10"
+    remark-parse "^4.0.0"
+    unified "^6.1.5"
 
 memory-fs@^0.4.0, memory-fs@~0.4.1:
   version "0.4.1"
@@ -3592,7 +3597,7 @@ object.values@^1.0.3:
     function-bind "^1.1.0"
     has "^1.0.1"
 
-once@^1.3.0, once@^1.3.3, once@^1.4.0:
+once@^1.3.0, once@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
   dependencies:
@@ -3811,6 +3816,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@^15.5.10:
+  version "15.5.10"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+
 prop-types@^15.5.4, prop-types@^15.5.8:
   version "15.5.9"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.9.tgz#d478eef0e761396942f70c78e772f76e8be747c9"
@@ -3924,8 +3936,8 @@ react-dom, react-dom@^15.3.0:
     object-assign "^4.1.0"
 
 react-intl@^2.1.2:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.2.3.tgz#8eebb03cddc38b337ed22fab78037ab53a594270"
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.3.0.tgz#e1df6af5667fdf01cbe4aab20e137251e2ae5142"
   dependencies:
     intl-format-cache "^2.0.5"
     intl-messageformat "^1.3.0"
@@ -4045,12 +4057,11 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-remark-parse@^2.0.1:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-2.2.0.tgz#92a8e7750d4fbfd53cd460adad686014f2a7f43b"
+remark-parse@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-4.0.0.tgz#99f1f049afac80382366e2e0d0bd55429dd45d8b"
   dependencies:
     collapse-white-space "^1.0.2"
-    has "^1.0.1"
     is-alphabetical "^1.0.0"
     is-decimal "^1.0.0"
     is-whitespace-character "^1.0.0"
@@ -4612,17 +4623,16 @@ unherit@^1.0.4:
     inherits "^2.0.1"
     xtend "^4.0.1"
 
-unified@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/unified/-/unified-5.1.0.tgz#61268da9b91ce925be1f3d198c0278b0e9716094"
+unified@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/unified/-/unified-6.1.5.tgz#716937872621a63135e62ced2f3ac6a063c6fb87"
   dependencies:
     bail "^1.0.0"
     extend "^3.0.0"
-    has "^1.0.1"
-    is-buffer "^1.1.4"
-    once "^1.3.3"
+    is-plain-obj "^1.1.0"
     trough "^1.0.0"
     vfile "^2.0.0"
+    x-is-function "^1.0.4"
     x-is-string "^0.1.0"
 
 unist-util-remove-position@^1.0.0:
@@ -4841,6 +4851,10 @@ write@^0.2.1:
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+x-is-function@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/x-is-function/-/x-is-function-1.0.4.tgz#5d294dc3d268cbdd062580e0c5df77a391d1fa1e"
 
 x-is-string@^0.1.0:
   version "0.1.0"

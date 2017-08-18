@@ -33,8 +33,9 @@ export default class PlayButton extends Component {
       'Pause Video' : (ended ? 'Restart Video' :'Play Video')
     );
 
-    const playType = playing (playing ?
-      'Pause' : (ended ? 'Restart' :'Play'));
+    const playType =  playing
+      ? 'Pause'
+      : (ended ? 'Restart' :'Play');
 
     const a11yControlButtonTitle =
       Intl.getMessage(intl, a11yControlButtonMessage);
