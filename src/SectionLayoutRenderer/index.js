@@ -61,5 +61,5 @@ SectionLayoutRenderer.propTypes = {
       }),
     ).isRequired,
   }),
-  blockMap: PropTypes.array
+  blockMap: PropTypes.object
 };
