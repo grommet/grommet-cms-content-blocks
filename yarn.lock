@@ -2306,15 +2306,9 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-grommet-icons@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-0.10.1.tgz#495ac86b8b1d96792d21189b572c4168ddbd049a"
-  dependencies:
-    deep-assign "^2.0.0"
-
-grommet@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.8.0.tgz#d2665ffe66e2ff6460ce2d893b9eaa4deeab6d2b"
+grommet@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.8.1.tgz#28086f152f681d9a27020ee5667a4bb15fe3cb36"
   dependencies:
     classnames "^2.2.3"
     deep-assign "^2.0.0"
