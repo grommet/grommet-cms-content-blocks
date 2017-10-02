@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { ContentLayoutEngine, BlockTypeMap } from '../index';
 
 export default class SectionLayoutRenderer extends Component {

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from 'grommet/components/Box';
 import Image from 'grommet/components/Image';
 import Markdown from 'grommet/components/Markdown';
@@ -17,7 +18,7 @@ export default function BlockImagePreview ({ content, image, imageDesc }) {
       </Box>
     </Box>
   );
-};
+}
 
 BlockImagePreview.propTypes = {
   content: PropTypes.string,

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Heading from 'grommet/components/Heading';
 import Quote from 'grommet/components/Quote';
 import Label from 'grommet/components/Label';

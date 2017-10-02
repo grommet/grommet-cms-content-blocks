@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
@@ -57,7 +58,7 @@ export class BlockQuoteForm extends Component {
       </Box>
     );
   }
-};
+}
 
 BlockQuoteForm.propTypes = {
   content: PropTypes.string,
