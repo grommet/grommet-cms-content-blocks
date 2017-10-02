@@ -47,6 +47,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "classnames": "^2.2.5",
     "color-convert": "^1.9.0",
+    "create-react-class": "^15.6.2",
     "cross-env": "^5.0.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
