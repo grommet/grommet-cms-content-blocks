@@ -66,6 +66,7 @@
     "jest-cli": "19.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "remove-markdown": "^0.1.0",
     "rimraf": "^2.5.4",
     "styled-components": "^1.4.4",
