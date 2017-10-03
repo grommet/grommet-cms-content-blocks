@@ -2314,9 +2314,9 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-grommet@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.8.1.tgz#28086f152f681d9a27020ee5667a4bb15fe3cb36"
+grommet@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-1.8.2.tgz#9580fdb30b8130d521d21ef05e9050108cecad03"
   dependencies:
     classnames "^2.2.3"
     deep-assign "^2.0.0"
@@ -2335,7 +2335,6 @@ grommet@1.8.1:
     moment "^2.13.0"
     prop-types "^15.5.8"
     react-desc "^1.0.0"
-    react-dom "^16.0.0"
     react-intl "^2.2.3"
     react-router "2 - 4"
     react-transition-group "^1.1.1"
@@ -4080,15 +4079,6 @@ rc@^1.1.7:
 react-desc@^1.0.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-desc/-/react-desc-1.4.1.tgz#99beddf7be2575902d159e919408d118823cc78b"
-
-react-dom@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
 
 react-intl@^2.2.3:
   version "2.4.0"
