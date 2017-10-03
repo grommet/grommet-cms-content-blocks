@@ -1,17 +1,17 @@
 // @flow
 import React from 'react';
 import Box from 'grommet/components/Box';
-import Button from 'grommet/components/Button';
 import Heading from 'grommet/components/Heading';
 
 type BlockProps = {
   title: string,
   onClick: () => void,
-  wireframe: HTMLElement,
+  wireframe: React$Element<any>,
+  key: string,
 }
 
-const Block = ({ title, onClick, wireframe }: BlockProps) =>
-  <Button onClick={onClick}>
+const Block = ({ title, onClick, wireframe, key }: BlockProps) =>
+  <Box onClick={onClick} key={key}>
     <Box align="center" pad={{ vertical: 'small', horizontal: 'small' }}>
       <Box
         size={{ height: 'small', width: 'small' }} colorIndex="grey-4"
@@ -20,13 +20,13 @@ const Block = ({ title, onClick, wireframe }: BlockProps) =>
           vertical: 'small',
         }} justify="center"
       >
-        {wireframe}
+        {React.cloneElement(wireframe)}
       </Box>
       <Heading tag="h3">
         {title}
       </Heading>
     </Box>
-  </Button>;
+  </Box>;
 
 type BlockSelectorProps = {
   onClick: Function,
@@ -36,7 +36,8 @@ type BlockSelectorProps = {
 export default function BlockSelector({ onClick, blockMap }: BlockSelectorProps) {
   const blocks = Object.keys(blockMap).map((block, index) =>
     <Block
-      title={blockMap[block].name} onClick={onClick.bind(this, block)}
+      title={blockMap[block].name}
+      onClick={onClick.bind(this, block)}
       wireframe={blockMap[block].wireframe}
       key={`block-${index}`}
     />,
