@@ -43,6 +43,7 @@ export default function BlockParagraphCTA({
             data-analytics-label={label}
             primary
             target="_blank"
+            rel="noopener"
             href={href}
             label={label}
           />
