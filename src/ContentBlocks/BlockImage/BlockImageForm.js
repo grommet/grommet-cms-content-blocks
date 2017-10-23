@@ -15,7 +15,6 @@ export class BlockImageForm extends Component {
       image: props.image || '',
       content: props.content || '',
       alt: props.alt || '',
-      borderColor: props.borderColor || 'none',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -65,7 +64,7 @@ export class BlockImageForm extends Component {
   }
 
   render() {
-    const { image, content, alt, borderColor } = this.state;
+    const { image, content, alt } = this.state;
     const { children } = this.props;
     const submit = (this.validateForm(this.state))
       ? this.onSubmit
@@ -106,16 +105,6 @@ export class BlockImageForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField>
-              <FormField label="Border Color" htmlFor="borderColor">
-                <Select
-                  id="borderColor"
-                  name="borderColor"
-                  inline={false}
-                  options={['none', 'red', 'green']}
-                  value={borderColor}
-                  onChange={this.onChange}
-                />
-              </FormField>
               {children && children}
             </fieldset>
             <Button
@@ -139,11 +128,6 @@ BlockImageForm.propTypes = {
   content: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.object, // eslint-disable-line
-  borderColor: PropTypes.oneOf([
-    'none',
-    'red',
-    'green',
-  ]),
 };
 
 export default BlockImageForm;
