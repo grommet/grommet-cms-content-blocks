@@ -13,8 +13,8 @@ export default class SectionLayoutRenderer extends Component {
     if (blockMap) {
       mergedBlockMap = {
         ...BlockTypeMap,
-        ...blockMap
-      }
+        ...blockMap,
+      };
     }
 
     return blocks.map((block, index) => { // eslint-disable-line arrow-body-style
@@ -33,10 +33,10 @@ export default class SectionLayoutRenderer extends Component {
 
   render() {
     const { section, blockMap, ...rest } = this.props;
-
     return (
       <ContentLayoutEngine
         {...rest}
+        id={section.id}
         layout={section.layout}
         blocks={section.contentBlocks}
       >
@@ -62,5 +62,5 @@ SectionLayoutRenderer.propTypes = {
       }),
     ).isRequired,
   }),
-  blockMap: PropTypes.object
+  blockMap: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
