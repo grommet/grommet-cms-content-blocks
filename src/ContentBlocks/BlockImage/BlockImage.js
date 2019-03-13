@@ -5,7 +5,7 @@ import colorMap from './colorMap';
 import Div from './div';
 import Image from './image';
 
-export default function BlockImage({ content, alt, image, borderColor }) {
+export default function BlockImage({ content, alt, image, borderColor, link }) {
   const unescapedContent = unescape(content || '');
   const caption = (unescapedContent && unescapedContent !== '')
     ? <BlockParagraph content={content} />
@@ -17,12 +17,23 @@ export default function BlockImage({ content, alt, image, borderColor }) {
   }
   return (
     <Div>
-      <Image
-        caption={unescapedContent}
-        color={color}
-        src={path}
-        alt={alt}
-      />
+      {
+        link ?
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <Image
+              caption={unescapedContent}
+              color={color}
+              src={path}
+              alt={alt}
+            />
+          </a> :
+          <Image
+            caption={unescapedContent}
+            color={color}
+            src={path}
+            alt={alt}
+          />
+      }
       {caption}
     </Div>
   );
@@ -30,6 +41,7 @@ export default function BlockImage({ content, alt, image, borderColor }) {
 
 BlockImage.propTypes = {
   content: PropTypes.string,
+  link: PropTypes.string,
   alt: PropTypes.string,
   image: PropTypes.shape({
     path: PropTypes.string,
