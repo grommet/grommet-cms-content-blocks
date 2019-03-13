@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import unescape from 'unescape';
 import { BlockParagraph } from '../BlockParagraph';
 import colorMap from './colorMap';
@@ -20,14 +19,14 @@ export default function BlockImage({ content, alt, image, borderColor, link }) {
     <Div>
       {
         link ?
-          <Link href={link} target="_blank" rel="noopener noreferrer">
+          <a href={link} target="_blank" rel="noopener noreferrer">
             <Image
               caption={unescapedContent}
               color={color}
               src={path}
               alt={alt}
             />
-          </Link> :
+          </a> :
           <Image
             caption={unescapedContent}
             color={color}
