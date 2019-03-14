@@ -17,7 +17,6 @@ export class BlockImageForm extends Component {
       alt: props.alt || '',
       borderColor: props.borderColor || 'none',
     };
-
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
@@ -34,7 +33,7 @@ export class BlockImageForm extends Component {
         image: `${this.props.url}`,
       });
     }
-    if (link && link !== this.state.link) {
+    if (link && link !== this.props.link) {
       this.setState({
         link,
       });
