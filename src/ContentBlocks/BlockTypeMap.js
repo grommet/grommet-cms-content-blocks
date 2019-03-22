@@ -58,6 +58,9 @@ import {
   BlockCarouselWithContent,
   BlockCarouselWithContentForm,
   BlockCarouselWithContentWireframe,
+  BlockCustomComponent,
+  BlockCustomComponentPreview,
+  BlockCustomComponentForm,
 } from './index';
 
 export default {
@@ -193,5 +196,12 @@ export default {
     preview: <BlockButtonPreview />,
     form: <BlockButtonForm />,
     wireframe: <BlockButtonWireframe />,
+  },
+  BlockCustomComponent: {
+    element: <BlockCustomComponent />,
+    name: 'Custom Component',
+    preview: <BlockCustomComponentPreview />,
+    form: <BlockCustomComponentForm />,
+    wireframe: <BlockCardWireframe />,
   },
 };

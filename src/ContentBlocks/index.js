@@ -2,6 +2,7 @@ export * from './Shared';
 export * from './BlockColorSwatch';
 export * from './BlockCard';
 export * from './BlockCarousel';
+export * from './BlockCustomComponent';
 export * from './BlockHeading';
 export * from './BlockImage';
 export * from './BlockParagraph';
