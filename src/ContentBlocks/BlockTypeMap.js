@@ -61,6 +61,7 @@ import {
   BlockCustomComponent,
   BlockCustomComponentPreview,
   BlockCustomComponentForm,
+  BlockCustomComponentWireframe,
 } from './index';
 
 export default {
@@ -202,6 +203,6 @@ export default {
     name: 'Custom Component',
     preview: <BlockCustomComponentPreview />,
     form: <BlockCustomComponentForm />,
-    wireframe: <BlockCardWireframe />,
+    wireframe: <BlockCustomComponentWireframe />,
   },
 };

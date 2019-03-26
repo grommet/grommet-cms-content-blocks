@@ -57,11 +57,10 @@ class BlockCustomComponentForm extends Component {
                   name="customComponent"
                   inline={false}
                   options={[
-                    { label: 'test value', value: 'testValue'},
-                    { label: 'Merchandise Site Selector', value: 'MerchandiseSiteSelector' }
+                    { label: 'Merchandise Site Selector', value: 'MerchandiseSiteSelector' },
                   ]}
                   onChange={this.onChange}
-                  value={content}
+                  value={content || 'Select Component'}
                 />
               </FormField>
             </fieldset>

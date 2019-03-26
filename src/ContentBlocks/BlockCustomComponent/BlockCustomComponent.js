@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { customComponents } from './components';
 
-const BlockCustomComponent = () => (
-  <div>
-    <h1>Custom Block Component</h1>
-    <p>Testing</p>
-  </div>
-);
+const BlockCustomComponent = ({ customComponent, ...rest }) => {
+  const Component = customComponents[customComponent];
+  return (
+    <Component customComponent={customComponent} {...rest} />
+  );
+};
 
 BlockCustomComponent.propTypes = {
-
+  customComponent: PropTypes.string.isRequired,
 };
 
 export default BlockCustomComponent;
