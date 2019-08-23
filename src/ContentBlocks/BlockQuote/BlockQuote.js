@@ -1,11 +1,16 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 import Heading from 'grommet/components/Heading';
-import Quote from 'grommet/components/Quote';
+import QuoteComponent from 'grommet/components/Quote';
 import Label from 'grommet/components/Label';
 import Anchor from 'grommet/components/Anchor';
 import Paragraph from 'grommet/components/Paragraph';
 import Box from 'grommet/components/Box';
 import unescape from 'unescape';
+
+const Quote = styled(QuoteComponent)`
+  border-color: #32dac8;
+`;
 
 export default function BlockQuote({
   content,
@@ -16,7 +21,7 @@ export default function BlockQuote({
   linkUrl,
   linkText,
 }) {
-  const color = colorIndex || 'accent-3';
+  const color = colorIndex || '';
   const size = borderSize || 'medium';
   const unescapedContent = unescape(content || '');
   return (
