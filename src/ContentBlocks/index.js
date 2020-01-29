@@ -4,6 +4,7 @@ export * from './BlockCard';
 export * from './BlockCarousel';
 export * from './BlockCustomComponent';
 export * from './BlockHeading';
+export * from './BlockIframe';
 export * from './BlockImage';
 export * from './BlockParagraph';
 export * from './BlockParagraphCTA';

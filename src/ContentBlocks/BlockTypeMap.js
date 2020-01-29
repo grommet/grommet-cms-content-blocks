@@ -51,6 +51,9 @@ import {
   BlockImageGallery,
   BlockImageGalleryWireframe,
   BlockImageGalleryForm,
+  BlockIframe,
+  BlockIframeWireframe,
+  BlockIframeForm,
   BlockButton,
   BlockButtonForm,
   BlockButtonPreview,
@@ -99,6 +102,13 @@ export default {
     form: <BlockHeadingForm />,
     name: 'Headline',
     wireframe: <BlockHeadingWireframe />,
+  },
+  BlockIframe: {
+    element: <BlockIframe />,
+    preview: <GenericPreview />,
+    form: <BlockIframeForm />,
+    name: 'Iframe',
+    wireframe: <BlockIframeWireframe />,
   },
   BlockImage: {
     element: <BlockImage />,
