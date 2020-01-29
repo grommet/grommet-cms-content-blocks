@@ -57,12 +57,12 @@ class BlockIframeForm extends Component {
     this.props.onSubmit(formData);
   }
 
-  validateForm({ image }) {
-    return image !== '';
+  validateForm({ srcUrl, height }) {
+    return srcUrl !== '' && height !== '';
   }
 
   render() {
-    const { image, srcUrl, height, width } = this.state;
+    const { srcUrl, height } = this.state;
     const { children } = this.props;
     const submit = this.validateForm(this.state) ? this.onSubmit : undefined;
 

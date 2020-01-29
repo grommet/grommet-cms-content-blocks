@@ -17,6 +17,7 @@ class BlockIframe extends Component {
       <Box
         style={{
           height,
+          width: '100%',
           margin: 'auto',
         }}
         basis="full"
