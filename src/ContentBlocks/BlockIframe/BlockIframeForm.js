@@ -9,11 +9,8 @@ class BlockIframeForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: props.image || '',
       srcUrl: props.srcUrl || '',
       height: props.height || '',
-      // width: props.width || '',
-      // button: props.button || '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -98,7 +95,7 @@ class BlockIframeForm extends Component {
                   onChange={this.onChange}
                 />
               </FormField> */}
-              <FormField label="Height" htmlFor="height">
+              <FormField label="Height (in px).  Width will be full." htmlFor="height">
                 <input id="height" name="height" type="text" value={height || ''} onChange={this.onChange} />
               </FormField>
               {/* <FormField label="Width" htmlFor="width">
@@ -121,7 +118,6 @@ class BlockIframeForm extends Component {
 
 BlockIframeForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  image: PropTypes.object,
   url: PropTypes.string,
   srcUrl: PropTypes.string.isRequired,
   height: PropTypes.string,
