@@ -15,7 +15,7 @@ const BlockIframe = ({ srcUrl, height }) => (
       src={srcUrl}
       height="100%"
       width="100%"
-      sandbox="allow-same-origin allow-scripts allow-popups"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-downloads"
       seamless
       style={{ border: 'none' }}
     />
