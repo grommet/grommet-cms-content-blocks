@@ -27,7 +27,9 @@ type Slide = {
 
 type Props = {
   carousel: Slide[],
-  imageSize?: string
+  imageSize?: string,
+  autoplay?: boolean,
+  autoplaySpeed?: number
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,10 +38,10 @@ export default class BlockCarouselWithContent extends React.Component {
   props: Props;
 
   render() {
-    const { carousel, imageSize } = this.props;
+    const { carousel, imageSize, autoplay, autoplaySpeed } = this.props;
     const size = imageSize ? imageSize.toLowerCase() : 'full';
     return (
-      <Carousel autoplay={false}>
+      <Carousel autoplay={autoplay} autoplaySpeed={autoplaySpeed}>
         {carousel.map((slide) => {
           const content = unescape(slide.content || '');
           const contentClassName = slide.color === 'white'
