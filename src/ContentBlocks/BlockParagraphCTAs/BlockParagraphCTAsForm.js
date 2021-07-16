@@ -7,11 +7,15 @@ import Tab from 'grommet/components/Tab';
 import Select from 'grommet/components/Select';
 import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
+import Menu from 'grommet/components/Menu';
 import AddIcon from 'grommet/components/icons/base/Add';
 import TrashIcon from 'grommet/components/icons/base/Trash';
+import PreviousIcon from 'grommet/components/icons/base/Previous';
+import NextIcon from 'grommet/components/icons/base/Next';
 import { BlockButtonForm } from '../BlockButton';
 import { ConfirmLayer } from '../Shared';
 import { ResponsiveBox } from './styles';
+import swapItemOrder, { getNextActiveSlide } from '../Shared/arrayUtils';
 
 type CtaSlide = any;
 type OnChangeEvent = SyntheticInputEvent & {
@@ -56,6 +60,7 @@ class BlockParagraphCTAsForm extends Component {
     This.onTabsClick = this.onTabsClick.bind(this);
     This.toggleConfirm = this.toggleConfirm.bind(this);
     This.onChangeContent = this.onChangeContent.bind(this);
+    This.onReorderCTAs = this.onReorderCTAs.bind(this);
   }
 
   state: State;
@@ -88,6 +93,17 @@ class BlockParagraphCTAsForm extends Component {
     };
 
     this.setState(newState);
+  }
+
+  onReorderCTAs(direction: 'FORWARDS' | 'BACKWARDS') {
+    const { ctaArray, activeSlideIndex } = this.state;
+    const newCtaArray = swapItemOrder(ctaArray, activeSlideIndex, direction);
+    const nextActiveSlide = getNextActiveSlide(ctaArray, activeSlideIndex, direction);
+
+    this.setState({
+      ctaArray: newCtaArray,
+      activeSlideIndex: nextActiveSlide,
+    });
   }
 
   onSubmit({ ctaArray, content, paragraphSize }: State) {
@@ -257,15 +273,20 @@ class BlockParagraphCTAsForm extends Component {
             />
           </FormField>
         </FormFields>
-        <Box>
-          <Box>
+        <Box direction="row">
+          <Box flex>
             <Tabs
+              responsive={false}
               activeIndex={activeSlideIndex} justify="start"
               style={{ marginBottom: '-1px' }}
             >
               {tabs}
             </Tabs>
           </Box>
+          <Menu inline align="start" direction="row">
+            <Button onClick={() => this.onReorderCTAs('BACKWARDS')} icon={<PreviousIcon />} />
+            <Button onClick={() => this.onReorderCTAs('FORWARDS')} icon={<NextIcon />} />
+          </Menu>
         </Box>
         {buttonForm}
       </Box>
