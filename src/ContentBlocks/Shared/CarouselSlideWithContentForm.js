@@ -5,6 +5,7 @@ import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Box from 'grommet/components/Box';
 import RadioButton from 'grommet/components/RadioButton';
+import DateTime from 'grommet/components/DateTime';
 import { MarkdownHelpButton } from '../Shared';
 import ImagePreview from '../Shared/ImagePreview';
 
@@ -90,7 +91,14 @@ class CarouselSlideWithContentForm extends Component {
     const key = target.id;
     const val = option || target.value;
 
-    if (key === 'label' || key === 'path') {
+    if (key === 'date' || key === 'description') {
+      this.setState({
+        update: {
+          ...this.state.update,
+          [key]: val,
+        },
+      });
+    } else if (key === 'label' || key === 'path') {
       this.setState({
         button: {
           ...this.state.button,
@@ -112,6 +120,7 @@ class CarouselSlideWithContentForm extends Component {
       justification: props.data ? props.data.justification : 'left',
       content: props.data ? props.data.content : '',
       button: props.data ? props.data.button : { path: '', label: '' },
+      update: props.data ? props.data.update : { date: '', description: '' },
     });
   }
 
@@ -120,7 +129,7 @@ class CarouselSlideWithContentForm extends Component {
       ? this.props.onSubmit
       : undefined;
     const { assetNode } = this.props;
-    const { image, content, button, justification, color } = this.state;
+    const { image, content, button, update, justification, color } = this.state;
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
@@ -194,6 +203,23 @@ class CarouselSlideWithContentForm extends Component {
               </FormField>
             </fieldset>
             <fieldset>
+              <legend>Update Card</legend>
+              <FormField label="Date" htmlFor="date">
+                <DateTime id="date" name="date" format="M/D/YYYY" onChange={this.onChange} value={update ? update.date : ''} />
+              </FormField>
+              <FormField label="Description" htmlFor="description">
+                <textarea
+                  id="description"
+                  name="description"
+                  type="text"
+                  value={update ? update.description : ''}
+                  onChange={this.onChange}
+                  maxLength={80}
+                  rows="2"
+                />
+              </FormField>
+            </fieldset>
+            <fieldset>
               <legend>
                 Button
               </legend>
@@ -245,6 +271,10 @@ CarouselSlideWithContentForm.propTypes = {
     button: PropTypes.shape({
       path: PropTypes.string,
       label: PropTypes.string,
+    }),
+    update: PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      description: PropTypes.isRequired,
     }),
     justification: PropTypes.string,
     color: PropTypes.string,
