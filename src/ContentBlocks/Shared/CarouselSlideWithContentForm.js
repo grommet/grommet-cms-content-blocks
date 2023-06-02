@@ -92,6 +92,9 @@ class CarouselSlideWithContentForm extends Component {
     const key = target.id;
     const val = option || target.value;
 
+    console.log('target', target);
+    console.log('option', option);
+
     if (key === 'date' || key === 'description') {
       this.setState({
         update: {
@@ -207,7 +210,7 @@ class CarouselSlideWithContentForm extends Component {
             <fieldset>
               <legend>Update Card</legend>
               <FormField label="Date" htmlFor="date">
-                <DateTime id="date" name="date" format="M/D/YYYY" onChange={this.onChange} value={update ? update.date : ''} />
+                <DateTime id="date" name="date" format="MMM D, YYYY" onChange={this.onChange} value={update ? update.date : ''} />
               </FormField>
               <FormField label="Description" htmlFor="description">
                 <textarea
