@@ -3,6 +3,9 @@
   "version": "1.5.2-21",
   "description": "Collection of content blocks for use in Grommet CMS.",
   "main": "dist/index.js",
+  "engines": {
+    "node": "8.11.1"
+  },
   "license": "APACHE",
   "jest": {
     "transform": {
