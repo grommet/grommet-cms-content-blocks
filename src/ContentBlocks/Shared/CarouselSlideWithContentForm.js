@@ -32,6 +32,7 @@ class CarouselSlideWithContentForm extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
     this.onChangeJustification = this.onChangeJustification.bind(this);
     this.onChangeColor = this.onChangeColor.bind(this);
     this.propsToState = this.propsToState.bind(this);
@@ -87,15 +88,21 @@ class CarouselSlideWithContentForm extends Component {
     });
   }
 
+  onDateChange(value) {
+    this.setState({
+      update: {
+        ...this.state.update,
+        date: value,
+      },
+    });
+  }
+
   onChange(e) {
     const { target, option } = e;
     const key = target.id;
     const val = option || target.value;
 
-    console.log('target', target);
-    console.log('option', option);
-
-    if (key === 'date' || key === 'description') {
+    if (key === 'description') {
       this.setState({
         update: {
           ...this.state.update,
@@ -134,7 +141,6 @@ class CarouselSlideWithContentForm extends Component {
       : undefined;
     const { assetNode } = this.props;
     const { image, content, button, update, justification, color } = this.state;
-    console.log('UPDATE', update);
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
@@ -210,7 +216,7 @@ class CarouselSlideWithContentForm extends Component {
             <fieldset>
               <legend>Update Card</legend>
               <FormField label="Date" htmlFor="date">
-                <DateTime id="date" name="date" format="MMM D, YYYY" onChange={this.onChange} value={update ? update.date : ''} />
+                <DateTime id="date" name="date" format="MMM DD, YYYY" onChange={this.onDateChange} value={update ? update.date : ''} />
               </FormField>
               <FormField label="Description" htmlFor="description">
                 <textarea
