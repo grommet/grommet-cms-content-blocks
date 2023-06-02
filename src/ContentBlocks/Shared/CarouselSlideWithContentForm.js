@@ -25,6 +25,7 @@ class CarouselSlideWithContentForm extends Component {
       image: props.data ? props.data.image : '',
       content: props.data ? props.data.content : '',
       button: props.data ? props.data.button : { path: '', label: '' },
+      update: props.data ? props.data.update : { date: '', description: '' },
       imageSize: props.imageSize ? props.imageSize : 'Full',
       justification: (props.data && props.data.justification) ? props.data.justification : 'left',
       color: (props.data && props.data.color) ? props.data.color : 'black',
@@ -130,6 +131,7 @@ class CarouselSlideWithContentForm extends Component {
       : undefined;
     const { assetNode } = this.props;
     const { image, content, button, update, justification, color } = this.state;
+    console.log('UPDATE', update);
 
     return (
       <Form compact={false} onSubmit={onSubmit}>
