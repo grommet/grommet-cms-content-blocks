@@ -2,6 +2,8 @@ import React from 'react';
 import {
   BlockHeading,
   BlockHeadingWireframe,
+  BlockHeading2,
+  BlockHeading2Wireframe,
   BlockParagraph,
   BlockParagraphWireframe,
   BlockParagraphForm,
@@ -41,6 +43,7 @@ import {
   BlockBox,
   BlockBoxForm,
   BlockHeadingForm,
+  BlockHeading2Form,
   BlockBoxWireframe,
   BlockMarquee,
   BlockMarqueeForm,
@@ -102,6 +105,13 @@ export default {
     form: <BlockHeadingForm />,
     name: 'Headline',
     wireframe: <BlockHeadingWireframe />,
+  },
+  BlockHeading2: {
+    element: <BlockHeading2 />,
+    preview: <GenericPreview />,
+    form: <BlockHeading2Form />,
+    name: 'Headline 2',
+    wireframe: <BlockHeading2Wireframe />,
   },
   BlockIframe: {
     element: <BlockIframe />,
