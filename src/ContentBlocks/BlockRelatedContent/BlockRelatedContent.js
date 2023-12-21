@@ -16,7 +16,7 @@ export default function BlockRelatedContent({ data, label }) {
               <Paragraph margin="none">
                 <b>{title}</b>
               </Paragraph>
-              <Paragraph margin="none">{content}</Paragraph>
+              <Paragraph margin="none">{content}</Paragraph> 
             </StyledAnchor>
           </StyledBox>
         ))}
