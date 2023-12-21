@@ -1,15 +1,14 @@
 import React, { PropTypes } from "react";
 import Box from "grommet/components/Box";
-import Heading from "grommet/components/Heading";
 import Paragraph from "grommet/components/Paragraph";
-import { StyledBox, StyledAnchor } from "./styles";
+import { StyledBox, StyledAnchor, StyledHeading } from "./styles";
 
-export default function BlockRelatedContent({ data }) {
+export default function BlockRelatedContent({ data, label }) {
   return (
     <Box pad="medium">
-      <Heading tag="h3" strong colorIndex="black">
-        Related Content
-      </Heading>
+      <StyledHeading tag="h3" strong>
+        {label}
+      </StyledHeading>
       {data &&
         data.map(({ href, title, content }, index) => (
           <StyledBox>

@@ -13,6 +13,7 @@ export class RelatedContentForm extends Component {
     super(props);
     this.state = {
       data: props.data || [{ href: "", title: "", content: "" }],
+      label: props.label || "Related Content"
     };
 
     this.onDataChange = this.onDataChange.bind(this);
@@ -48,9 +49,19 @@ export class RelatedContentForm extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, label } = this.state;
     return (
       <Box>
+        <fieldset>
+          <FormField label="label" help="Enter a label" htmlFor="label">
+            <input
+              name="label"
+              value={label}
+              onChange={(e) => this.onDataChange(e, 0)}
+              placeholder="label"
+            />
+          </FormField>
+        </fieldset>
         {data.length > 0 &&
           data.map((val, i) => (
             <Box colorIndex="light-2" pad="medium">
@@ -93,15 +104,10 @@ export class RelatedContentForm extends Component {
                 </FormFields>
                 <Footer pad="medium">
                   <Box direction="row" align="center">
-                    <Button
-                      icon={<AddIcon />}
-                      primary={true}
-                      onClick={this.onAdd}
-                      pad="small"
-                    >
+                    <Button icon={<AddIcon />} onClick={this.onAdd} pad="small">
                       Add
                     </Button>
-                    <Box pad="small" ></Box>
+                    <Box pad="small"></Box>
                     {data.length > 1 && (
                       <Button
                         icon={<TrashIcon />}
@@ -109,7 +115,7 @@ export class RelatedContentForm extends Component {
                         pad="small"
                       >
                         Delete
-                      </Button>                     
+                      </Button>
                     )}
                   </Box>
                 </Footer>
