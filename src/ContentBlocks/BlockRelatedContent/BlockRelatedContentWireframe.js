@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "grommet/components/Box";
 
-export default function BlockHeading2Wireframe() {
+export default function BlockRelatedContentWireframe() {
   return (
     <Box pad={{ between: "small" }}>
       <Box full="horizontal" pad="medium" colorIndex="light-2" />
