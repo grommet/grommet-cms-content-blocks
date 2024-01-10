@@ -32,7 +32,7 @@ export default function BlockButton({
     'data-analytics-type': getAnalyticsType(assetType, path, href),
     'data-analytics-category': buttonType,
   };
-  let props = { label, primary: isPrimary, target: '_blank', ...tracking, ...link };
+  let props = { label, primary: isPrimary, target: '_blank', rel: 'noopener', ...tracking, ...link };
   if (buttonType === 'Button') {
     return (
       <Button {...props} />

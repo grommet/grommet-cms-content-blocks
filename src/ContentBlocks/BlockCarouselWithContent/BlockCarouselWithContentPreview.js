@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from 'grommet/components/Box';
 import Carousel from 'grommet/components/Carousel';
 import Image from 'grommet/components/Image';
@@ -18,7 +19,7 @@ export default function BlockCarouselPreview ({ carousel }) {
       </Carousel>
     </Box>
   );
-};
+}
 
 BlockCarouselPreview.propTypes = {
   carousel: PropTypes.array

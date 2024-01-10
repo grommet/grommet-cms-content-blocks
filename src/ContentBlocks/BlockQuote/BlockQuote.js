@@ -4,7 +4,6 @@ import Heading from 'grommet/components/Heading';
 import QuoteComponent from 'grommet/components/Quote';
 import Label from 'grommet/components/Label';
 import Anchor from 'grommet/components/Anchor';
-import Paragraph from 'grommet/components/Paragraph';
 import Box from 'grommet/components/Box';
 import unescape from 'unescape';
 

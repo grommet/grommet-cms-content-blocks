@@ -1,17 +1,28 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { ContentLayoutEngine, BlockTypeMap } from '../index';
 
 export default class SectionLayoutRenderer extends Component {
-  static renderBlocks(blocks) {
+  static renderBlocks(blocks, blockMap) {
     if (!blocks && !blocks.length) {
       return null;
     }
+
+    // Merge user supplied content blocks with default set.
+    let mergedBlockMap = BlockTypeMap;
+    if (blockMap) {
+      mergedBlockMap = {
+        ...BlockTypeMap,
+        ...blockMap,
+      };
+    }
+
     return blocks.map((block, index) => { // eslint-disable-line arrow-body-style
       if (!block.blockType) {
         return null;
       }
       return (!block.edit) ? React.cloneElement(
-        BlockTypeMap[block.blockType].element,
+        mergedBlockMap[block.blockType].element,
         {
           ...block,
           key: `block-${index}`,
@@ -21,15 +32,15 @@ export default class SectionLayoutRenderer extends Component {
   }
 
   render() {
-    const { section, ...rest } = this.props;
-
+    const { section, blockMap, ...rest } = this.props;
     return (
       <ContentLayoutEngine
         {...rest}
+        id={section.id}
         layout={section.layout}
         blocks={section.contentBlocks}
       >
-        {SectionLayoutRenderer.renderBlocks(section.contentBlocks)}
+        {SectionLayoutRenderer.renderBlocks(section.contentBlocks, blockMap)}
       </ContentLayoutEngine>
     );
   }
@@ -51,4 +62,5 @@ SectionLayoutRenderer.propTypes = {
       }),
     ).isRequired,
   }),
+  blockMap: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };

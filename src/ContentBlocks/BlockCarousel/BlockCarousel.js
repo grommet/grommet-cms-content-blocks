@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from 'grommet/components/Box';
 import Image from 'grommet/components/Image';
 import Carousel from 'grommet/components/Carousel';

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Headline from 'grommet/components/Headline';
 
 export default function BlockHeadingPreview ({ content }) {
@@ -7,7 +8,7 @@ export default function BlockHeadingPreview ({ content }) {
       {content}
     </Headline>
   );
-};
+}
 
 BlockHeadingPreview.propTypes = {
   content: PropTypes.string

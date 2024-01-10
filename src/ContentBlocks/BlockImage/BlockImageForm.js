@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
@@ -15,7 +16,6 @@ export class BlockImageForm extends Component {
       link: props.link || '',
       content: props.content || '',
       alt: props.alt || '',
-      borderColor: props.borderColor || 'none',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);

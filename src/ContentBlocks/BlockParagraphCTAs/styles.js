@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Box from 'grommet/components/Box';
 
@@ -9,18 +10,16 @@ export const ResponsiveBox = styled(Box)`
   }
 `;
 
-function ctaStyles(props) {
-  if (!props.isLastElement) {
-    return css`
-      margin-bottom: 12px !important;
-    `;
-  }
-  return css``;
-}
-
-export const CTABox = styled(Box)`
-  ${props => ctaStyles(props)}
+export const CTABox = styled(
+  ({ isLastElement, children, ...rest }) => // eslint-disable-line
+    <Box {...rest}>{children}</Box>,
+)`
+  ${props => (!props.isLastElement
+    ? 'margin-bottom: 12px !important;'
+    : ''
+  )}
 `;
+
 
 export const BlockContainer = styled(Box)`
   & > h1:first-child,

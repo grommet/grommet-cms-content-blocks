@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Box from 'grommet/components/Box';
 import Image from 'grommet/components/Image';
 import Markdown from 'grommet/components/Markdown';
 
-export default function BlockImagePreview ({ content, image, imageDesc }) {
+export default function BlockImagePreview({ content, image, imageDesc }) {
   return (
     <Box colorIndex="light-1" direction="row" pad={{ between: 'medium' }}>
       <Box>
@@ -11,15 +12,18 @@ export default function BlockImagePreview ({ content, image, imageDesc }) {
         {imageDesc}
       </Box>
       <Box>
-        <Markdown content={content} components={{
-          'p': { 'props': { 'margin': 'none' } }
-        }}/>
+        <Markdown
+          content={content} components={{
+            p: { props: { margin: 'none' } },
+          }}
+        />
       </Box>
     </Box>
   );
-};
+}
 
 BlockImagePreview.propTypes = {
   content: PropTypes.string,
-  image: PropTypes.string
+  image: PropTypes.string,
+  imageDesc: PropTypes.string,
 };
