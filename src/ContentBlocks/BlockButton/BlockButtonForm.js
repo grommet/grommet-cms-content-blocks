@@ -5,6 +5,7 @@ import Form from 'grommet/components/Form';
 import FormFields from 'grommet/components/FormFields';
 import FormField from 'grommet/components/FormField';
 import Select from 'grommet/components/Select';
+import CheckBox from "grommet/components/CheckBox";
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import RadioButton from 'grommet/components/RadioButton';
@@ -33,6 +34,7 @@ type State = {
   primary: ?Primary,
   path: ?string,
   href: ?string,
+  newTab: ?boolean,
   buttonType: ?string,
   assetType: AssetType,
   icon?: IconType,
@@ -56,6 +58,7 @@ type Props = {
   buttonType?: ButtonType,
   icon?: IconType,
   href?: string,
+  newTab?: boolean,
   assetType?: AssetType,
   path?: string,
   asset?: {
@@ -76,13 +79,14 @@ export default class BlockButtonForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
     this.onChangeAssetType = this.onChangeAssetType.bind(this);
-    const { path, primary, label, buttonType, href, assetType, icon } = props.data || props;
+    const { path, primary, label, buttonType, href, newTab, assetType, icon } = props.data || props;
     const labelInput = label || '';
     const primaryInput = primary || 'True';
     const buttonTypeInput = buttonType || 'Button';
     const iconInput = icon || 'primary';
     const pathInput = path || '';
     const hrefInput = href || '';
+    const newTabInput = newTab || false;
     const assetTypeInput = assetType || 'path';
     this.state = {
       label: labelInput,
@@ -91,6 +95,7 @@ export default class BlockButtonForm extends React.Component {
       buttonType: buttonTypeInput,
       icon: iconInput,
       href: hrefInput,
+      newTab: newTabInput,
       assetType: assetTypeInput,
       error: {
         label: null,
@@ -130,7 +135,7 @@ export default class BlockButtonForm extends React.Component {
       });
     } else {
       this.setState({
-        [`${target.id}`]: target.value,
+        [`${target.id}`]: target.type === 'checkbox' ? target.checked : target.value,
       });
     }
     if (this.props.onChange) {
@@ -206,6 +211,7 @@ export default class BlockButtonForm extends React.Component {
       icon,
       assetType,
       href,
+      newTab,
       error,
     } = this.state;
     return (
@@ -290,6 +296,17 @@ export default class BlockButtonForm extends React.Component {
                     name="external"
                   />
                 </Box>
+              </FormField>
+              <FormField>
+                <CheckBox
+                  onChange={this.onChange}
+                  checked={(assetType !== 'path') && newTab}
+                  id="newTab"
+                  toggle
+                  reverse
+                  label="New Browser Tab?"
+                  disabled={assetType === 'path'}
+                />
               </FormField>
               <FormField
                 label="Button Type"
