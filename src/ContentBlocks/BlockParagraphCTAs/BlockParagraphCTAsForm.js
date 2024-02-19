@@ -156,13 +156,13 @@ class BlockParagraphCTAsForm extends Component {
 
   handleChange(event: OnChangeEvent) {
     const { target, option } = event;
-    const { id, value } = target;
+    const { id, value, checked, type } = target;
     const { ctaArray, activeSlideIndex } = this.state;
     const nextCtaArrayState = [
       ...ctaArray.slice(0, activeSlideIndex),
       {
         ...ctaArray[activeSlideIndex],
-        [id]: option || value,
+        [id]: type === 'checkbox' ? checked : option || value,
       },
       ...ctaArray.slice(activeSlideIndex + 1),
     ];
