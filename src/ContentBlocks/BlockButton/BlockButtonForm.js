@@ -34,6 +34,7 @@ type State = {
   primary: ?Primary,
   path: ?string,
   href: ?string,
+
   newTab: ?boolean,
   buttonType: ?string,
   assetType: AssetType,
