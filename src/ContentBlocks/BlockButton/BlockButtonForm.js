@@ -214,6 +214,7 @@ export default class BlockButtonForm extends React.Component {
       newTab,
       error,
     } = this.state;
+
     return (
       <Box colorIndex="light-2" pad={pad ? 'medium' : 'none'}>
         <Form>
