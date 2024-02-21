@@ -301,12 +301,11 @@ export default class BlockButtonForm extends React.Component {
               <FormField>
                 <CheckBox
                   onChange={this.onChange}
-                  checked={(assetType !== 'path') && newTab}
+                  checked={newTab}
                   id="newTab"
                   toggle
                   reverse
                   label="New Browser Tab?"
-                  disabled={assetType === 'path'}
                 />
               </FormField>
               <FormField
