@@ -234,7 +234,7 @@ class CarouselSlideWithContentForm extends Component {
               <legend>
                 Button
               </legend>
-              <FormField label="Button Label" htmlFor="label">
+              <FormField label="Button Label label label" htmlFor="label">
                 <input
                   id="label"
                   name="label"
