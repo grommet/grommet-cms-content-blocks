@@ -1,6 +1,6 @@
 {
   "name": "grommet-cms-content-blocks",
-  "version": "2.0.11",
+  "version": "2.0.13",
   "description": "Collection of content blocks for use in Grommet CMS.",
   "main": "dist/index.js",
   "engines": {
@@ -29,10 +29,9 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "build": "webpack",
+    "build": "rimraf dist && webpack",
     "bump": "git add . && git commit -m 'Feat: version bump with new content blocks' && npm version patch",
-    "shipit": "npm run bump && npm publish",
-    "prepublish": "rimraf dist && npm run build",
+    "shipit": "npm run bump && git push && git push --tags",
     "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks",
     "test": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony_proxies node_modules/.bin/jest"
   },
@@ -75,5 +74,9 @@
     "styled-components": "^1.4.4",
     "unescape": "^0.2.0",
     "webpack": "^2.2.0"
+  },
+  "volta": {
+    "node": "8.11.1",
+    "yarn": "1.22.19"
   }
 }
