@@ -22,6 +22,8 @@ install:
 dev:
 	@echo "Starting development mode"
 	$(MAKE) install
+	@echo "Building local package"
+	yarn build
 	@echo "Registering package locally via yarn link"
 	yarn link 
 	@echo $(DONE)
