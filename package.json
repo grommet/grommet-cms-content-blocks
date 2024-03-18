@@ -29,10 +29,10 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "build": "webpack",
-    "bump": "git add . && git commit -m 'Feat: version bump with new content blocks' && npm version patch",
+    "build": "rimraf dist && webpack",
+    "bump": "npm run build && git add . && git commit -m 'Feat: version bump with new content blocks' && npm version patch",
     "shipit": "npm run bump && npm publish",
-    "prepublish": "rimraf dist && npm run build",
+    "prepublish": "npm run build",
     "copy": "babel-node ./lib/transferContentBlocks ../brand-central-cms/src/js/components/ContentBlocks",
     "test": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony_proxies node_modules/.bin/jest"
   },
