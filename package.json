@@ -74,5 +74,9 @@
     "styled-components": "^1.4.4",
     "unescape": "^0.2.0",
     "webpack": "^2.2.0"
+  },  
+  "volta": {
+    "node": "8.11.1",
+    "yarn": "1.22.19"
   }
 }

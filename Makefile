@@ -12,7 +12,8 @@ help: Makefile
 dev:
 	@echo "Starting development mode"
 	$(MAKE) install
-	yarn api-dev:all 
+	@echo "Registering package locally via yarn link"
+	yarn link 
 	@echo $(DONE)
 
 ## install: Sets Volta engine and yarn installs
