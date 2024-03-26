@@ -1,6 +1,6 @@
 {
   "name": "grommet-cms-content-blocks",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Collection of content blocks for use in Grommet CMS.",
   "main": "dist/index.js",
   "engines": {
